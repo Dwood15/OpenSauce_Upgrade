@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="hello">Hello World, QR2NativeActivity!</string>
+    <string name="app_name">QR2NativeActivity</string>
+</resources>

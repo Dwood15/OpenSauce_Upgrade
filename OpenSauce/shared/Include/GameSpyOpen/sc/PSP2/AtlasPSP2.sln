@@ -1,0 +1,38 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "atlasQuerySample", "..\atlasQuerySample\PSP2\atlasQuerySample.vcproj", "{EE08DDE9-D69D-4B22-9A11-37497DF1FCDE}"
+	ProjectSection(ProjectDependencies) = postProject
+		{8490B9DD-0D8C-4AAF-8DF9-E5224044450E} = {8490B9DD-0D8C-4AAF-8DF9-E5224044450E}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "atlasReportingSample", "..\atlasReportingSample\PSP2\atlasReportingSample.vcproj", "{BE9285F3-95AC-4891-A8A7-68FC80830CDE}"
+	ProjectSection(ProjectDependencies) = postProject
+		{8490B9DD-0D8C-4AAF-8DF9-E5224044450E} = {8490B9DD-0D8C-4AAF-8DF9-E5224044450E}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "atlasLib", "..\atlasLib\PSP2\atlasLib.vcproj", "{8490B9DD-0D8C-4AAF-8DF9-E5224044450E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		PSP2 Debug|Win32 = PSP2 Debug|Win32
+		PSP2 Release|Win32 = PSP2 Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{EE08DDE9-D69D-4B22-9A11-37497DF1FCDE}.PSP2 Debug|Win32.ActiveCfg = PSP2 Debug|Win32
+		{EE08DDE9-D69D-4B22-9A11-37497DF1FCDE}.PSP2 Debug|Win32.Build.0 = PSP2 Debug|Win32
+		{EE08DDE9-D69D-4B22-9A11-37497DF1FCDE}.PSP2 Release|Win32.ActiveCfg = PSP2 Release|Win32
+		{EE08DDE9-D69D-4B22-9A11-37497DF1FCDE}.PSP2 Release|Win32.Build.0 = PSP2 Release|Win32
+		{BE9285F3-95AC-4891-A8A7-68FC80830CDE}.PSP2 Debug|Win32.ActiveCfg = PSP2 Debug|Win32
+		{BE9285F3-95AC-4891-A8A7-68FC80830CDE}.PSP2 Debug|Win32.Build.0 = PSP2 Debug|Win32
+		{BE9285F3-95AC-4891-A8A7-68FC80830CDE}.PSP2 Release|Win32.ActiveCfg = PSP2 Release|Win32
+		{BE9285F3-95AC-4891-A8A7-68FC80830CDE}.PSP2 Release|Win32.Build.0 = PSP2 Release|Win32
+		{8490B9DD-0D8C-4AAF-8DF9-E5224044450E}.PSP2 Debug|Win32.ActiveCfg = PSP2 Debug|Win32
+		{8490B9DD-0D8C-4AAF-8DF9-E5224044450E}.PSP2 Debug|Win32.Build.0 = PSP2 Debug|Win32
+		{8490B9DD-0D8C-4AAF-8DF9-E5224044450E}.PSP2 Release|Win32.ActiveCfg = PSP2 Release|Win32
+		{8490B9DD-0D8C-4AAF-8DF9-E5224044450E}.PSP2 Release|Win32.Build.0 = PSP2 Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
