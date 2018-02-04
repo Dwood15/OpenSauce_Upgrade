@@ -15,7 +15,7 @@
 
 namespace Yelo
 {
-	namespace Enums
+	namespace Enums 
 	{
 		enum {
 			k_maximum_network_machine_count = k_multiplayer_maximum_players / k_maximum_number_of_local_players,

@@ -6,12 +6,9 @@
 */
 #pragma once
 
-namespace Yelo
-{
-	namespace Enums
-	{
-		enum player_action_result
-		{
+namespace Yelo {
+	namespace Enums {
+		enum player_action_result {
 			_player_action_result_none,
 			_player_action_result_pickup_powerup,
 			_player_action_result_swap_powerup,
@@ -33,19 +30,16 @@ namespace Yelo
 		};
 	};
 
-	namespace Players
-	{
-		struct s_player_action_result
-		{
+	namespace Players {
+		struct s_player_action_result {
 			datum_index action_object_index; //0x0
 			int16 action_result;			 //0x4  num object_type
 			int16 action_seat_index;		 //0x6
 		}; BOOST_STATIC_ASSERT( sizeof(s_player_action_result) == 0x8 );
 
-		struct s_player_action
-		{
-			long_flags control_flags;
-			real_euler_angles2d desired_facing;
+		struct s_player_action {
+			long_flags control_flags; //0x4
+			real_euler_angles2d desired_facing; 
 			real_vector2d throttle;
 			real primary_trigger;
 			int16 desired_weapon_index, desired_grenade_index;

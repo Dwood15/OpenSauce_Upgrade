@@ -9,12 +9,9 @@
 #include <blamlib/Halo1/game/game_configuration.hpp>
 #include <blamlib/Halo1/models/model_animations.hpp>
 
-namespace Yelo
-{
-	namespace GameUI
-	{
-		struct s_first_person_weapon : TStructImpl(0x1EA0)
-		{
+namespace Yelo {
+	namespace GameUI {
+		struct s_first_person_weapon : TStructImpl(0x1EA0) {
 			TStructGetPtrImpl(bool, IsVisible, 0x0);
 			TStructGetPtrImpl(datum_index, UnitIndex, 0x4);
 			TStructGetPtrImpl(datum_index, WeaponIndex, 0x8);
@@ -57,7 +54,7 @@ namespace Yelo
 			// 0x1E0E bool remapped hands
 			// PAD8;
 			// 0x1E10 int16 node_remappings[64]
-			//////////////////////////////////////////////////////////////////////////
+			//////////////////////////////////////////////////////////////////////////A
 			// 0x1E90 bool
 			// 0x1E94 _enum shotgun_reload_type;
 			//		_shotgun_reload_type_last_round = 1
@@ -65,15 +62,13 @@ namespace Yelo
 			TStructGetPtrImpl(datum_index, AnimationSoundIndex, 0x1E98);
 			TStructGetPtrImpl(_enum, AnimationStateDuringSound, 0x1E9C);
 		};
-		struct s_first_person_weapons
-		{
+		struct s_first_person_weapons {
 			s_first_person_weapon local_players[Enums::k_maximum_number_of_local_players];
-		}; BOOST_STATIC_ASSERT( sizeof(s_first_person_weapons) == 0x1EA0 );
+		}; BOOST_STATIC_ASSERT( sizeof(s_first_person_weapons) == (0x1EA0 * Enums::k_maximum_number_of_local_players));
 		s_first_person_weapons*		FirstPersonWeapons();
 	};
 
-	namespace blam
-	{
+	namespace blam {
 		void PLATFORM_API first_person_weapons_initialize_for_new_map();
 	};
 };

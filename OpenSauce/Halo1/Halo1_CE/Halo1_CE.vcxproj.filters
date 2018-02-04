@@ -91,12 +91,6 @@
     <Filter Include="TagGroups\Impl">
       <UniqueIdentifier>{36201a7b-a00c-4d8e-ba37-cc6137c11790}</UniqueIdentifier>
     </Filter>
-    <Filter Include="_Resources\1.08">
-      <UniqueIdentifier>{0144098b-caa6-4e1c-b5e4-ce1bbf753d69}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="_Resources\1.09">
-      <UniqueIdentifier>{8ecc773f-653b-4299-8acc-d5230c2954d9}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Rasterizer">
       <UniqueIdentifier>{942092e8-65b2-40df-b257-c248220d2a94}</UniqueIdentifier>
     </Filter>
@@ -1949,84 +1943,6 @@
     <None Include="Halo1_CE.def">
       <Filter>_Resources</Filter>
     </None>
-    <None Include="Memory\1.08\_EngineLayout.Game.EngineFunctions.inl">
-      <Filter>_Resources\1.08</Filter>
-    </None>
-    <None Include="Memory\1.08\_EngineLayout.Game.HS.inl">
-      <Filter>_Resources\1.08</Filter>
-    </None>
-    <None Include="Memory\1.08\_EngineLayout.Game.inl">
-      <Filter>_Resources\1.08</Filter>
-    </None>
-    <None Include="Memory\1.08\_EngineLayout.Interface.inl">
-      <Filter>_Resources\1.08</Filter>
-    </None>
-    <None Include="Memory\1.08\_EngineLayout.Networking.inl">
-      <Filter>_Resources\1.08</Filter>
-    </None>
-    <None Include="Memory\1.08\_EngineLayout.Objects.inl">
-      <Filter>_Resources\1.08</Filter>
-    </None>
-    <None Include="Memory\1.08\_EngineLayout.OpenSauce.inl">
-      <Filter>_Resources\1.08</Filter>
-    </None>
-    <None Include="Memory\1.08\_EngineLayout.Rasterizer.DX9.inl">
-      <Filter>_Resources\1.08</Filter>
-    </None>
-    <None Include="Memory\1.08\_EngineLayout.Rasterizer.inl">
-      <Filter>_Resources\1.08</Filter>
-    </None>
-    <None Include="Memory\1.08\_EngineLayout.Rasterizer.ShaderDraw.inl">
-      <Filter>_Resources\1.08</Filter>
-    </None>
-    <None Include="Memory\1.08\_EngineLayout.Rasterizer.ShaderExtension.inl">
-      <Filter>_Resources\1.08</Filter>
-    </None>
-    <None Include="Memory\1.08\_EngineLayout.Scenario.inl">
-      <Filter>_Resources\1.08</Filter>
-    </None>
-    <None Include="Memory\1.08\_EngineLayout.TagGroups.inl">
-      <Filter>_Resources\1.08</Filter>
-    </None>
-    <None Include="Memory\1.09\_EngineLayout.Game.EngineFunctions.inl">
-      <Filter>_Resources\1.09</Filter>
-    </None>
-    <None Include="Memory\1.09\_EngineLayout.Game.HS.inl">
-      <Filter>_Resources\1.09</Filter>
-    </None>
-    <None Include="Memory\1.09\_EngineLayout.Game.inl">
-      <Filter>_Resources\1.09</Filter>
-    </None>
-    <None Include="Memory\1.09\_EngineLayout.Interface.inl">
-      <Filter>_Resources\1.09</Filter>
-    </None>
-    <None Include="Memory\1.09\_EngineLayout.Networking.inl">
-      <Filter>_Resources\1.09</Filter>
-    </None>
-    <None Include="Memory\1.09\_EngineLayout.Objects.inl">
-      <Filter>_Resources\1.09</Filter>
-    </None>
-    <None Include="Memory\1.09\_EngineLayout.OpenSauce.inl">
-      <Filter>_Resources\1.09</Filter>
-    </None>
-    <None Include="Memory\1.09\_EngineLayout.Rasterizer.DX9.inl">
-      <Filter>_Resources\1.09</Filter>
-    </None>
-    <None Include="Memory\1.09\_EngineLayout.Rasterizer.inl">
-      <Filter>_Resources\1.09</Filter>
-    </None>
-    <None Include="Memory\1.09\_EngineLayout.Rasterizer.ShaderDraw.inl">
-      <Filter>_Resources\1.09</Filter>
-    </None>
-    <None Include="Memory\1.09\_EngineLayout.Rasterizer.ShaderExtension.inl">
-      <Filter>_Resources\1.09</Filter>
-    </None>
-    <None Include="Memory\1.09\_EngineLayout.Scenario.inl">
-      <Filter>_Resources\1.09</Filter>
-    </None>
-    <None Include="Memory\1.09\_EngineLayout.TagGroups.inl">
-      <Filter>_Resources\1.09</Filter>
-    </None>
     <None Include="Rasterizer\PostProcessing\MotionBlur\MotionBlurDefinitions.inl">
       <Filter>Rasterizer\PostProcessing\MotionBlur</Filter>
     </None>
@@ -2240,69 +2156,6 @@
     <None Include="Objects\Units.SeatBoarding.inl">
       <Filter>Objects\Impl</Filter>
     </None>
-    <None Include="..\..\..\shared\bin\mmbbq_3.0.2\HaloCE\1_09_Client\TagGroups.lua">
-      <Filter>_Resources\1.09\LUA\Client</Filter>
-    </None>
-    <None Include="..\..\..\shared\bin\mmbbq_3.0.2\HaloCE\1_09_Client\Game.lua">
-      <Filter>_Resources\1.09\LUA\Client</Filter>
-    </None>
-    <None Include="..\..\..\shared\bin\mmbbq_3.0.2\HaloCE\1_09_Client\Game_EngineFunctions.lua">
-      <Filter>_Resources\1.09\LUA\Client</Filter>
-    </None>
-    <None Include="..\..\..\shared\bin\mmbbq_3.0.2\HaloCE\1_09_Client\Game_HS.lua">
-      <Filter>_Resources\1.09\LUA\Client</Filter>
-    </None>
-    <None Include="..\..\..\shared\bin\mmbbq_3.0.2\HaloCE\1_09_Client\Interface.lua">
-      <Filter>_Resources\1.09\LUA\Client</Filter>
-    </None>
-    <None Include="..\..\..\shared\bin\mmbbq_3.0.2\HaloCE\1_09_Client\Networking.lua">
-      <Filter>_Resources\1.09\LUA\Client</Filter>
-    </None>
-    <None Include="..\..\..\shared\bin\mmbbq_3.0.2\HaloCE\1_09_Client\Objects.lua">
-      <Filter>_Resources\1.09\LUA\Client</Filter>
-    </None>
-    <None Include="..\..\..\shared\bin\mmbbq_3.0.2\HaloCE\1_09_Client\OpenSauce.lua">
-      <Filter>_Resources\1.09\LUA\Client</Filter>
-    </None>
-    <None Include="..\..\..\shared\bin\mmbbq_3.0.2\HaloCE\1_09_Client\Rasterizer.lua">
-      <Filter>_Resources\1.09\LUA\Client</Filter>
-    </None>
-    <None Include="..\..\..\shared\bin\mmbbq_3.0.2\HaloCE\1_09_Client\Rasterizer_DX9.lua">
-      <Filter>_Resources\1.09\LUA\Client</Filter>
-    </None>
-    <None Include="..\..\..\shared\bin\mmbbq_3.0.2\HaloCE\1_09_Client\Rasterizer_ShaderDraw.lua">
-      <Filter>_Resources\1.09\LUA\Client</Filter>
-    </None>
-    <None Include="..\..\..\shared\bin\mmbbq_3.0.2\HaloCE\1_09_Client\Rasterizer_ShaderExtension.lua">
-      <Filter>_Resources\1.09\LUA\Client</Filter>
-    </None>
-    <None Include="..\..\..\shared\bin\mmbbq_3.0.2\HaloCE\1_09_Client\Scenario.lua">
-      <Filter>_Resources\1.09\LUA\Client</Filter>
-    </None>
-    <None Include="..\..\..\shared\bin\mmbbq_3.0.2\HaloCE\1_09_Server\Game.lua">
-      <Filter>_Resources\1.09\LUA\Server</Filter>
-    </None>
-    <None Include="..\..\..\shared\bin\mmbbq_3.0.2\HaloCE\1_09_Server\Game_EngineFunctions.lua">
-      <Filter>_Resources\1.09\LUA\Server</Filter>
-    </None>
-    <None Include="..\..\..\shared\bin\mmbbq_3.0.2\HaloCE\1_09_Server\Game_HS.lua">
-      <Filter>_Resources\1.09\LUA\Server</Filter>
-    </None>
-    <None Include="..\..\..\shared\bin\mmbbq_3.0.2\HaloCE\1_09_Server\Networking.lua">
-      <Filter>_Resources\1.09\LUA\Server</Filter>
-    </None>
-    <None Include="..\..\..\shared\bin\mmbbq_3.0.2\HaloCE\1_09_Server\Objects.lua">
-      <Filter>_Resources\1.09\LUA\Server</Filter>
-    </None>
-    <None Include="..\..\..\shared\bin\mmbbq_3.0.2\HaloCE\1_09_Server\OpenSauce.lua">
-      <Filter>_Resources\1.09\LUA\Server</Filter>
-    </None>
-    <None Include="..\..\..\shared\bin\mmbbq_3.0.2\HaloCE\1_09_Server\Scenario.lua">
-      <Filter>_Resources\1.09\LUA\Server</Filter>
-    </None>
-    <None Include="..\..\..\shared\bin\mmbbq_3.0.2\HaloCE\1_09_Server\TagGroups.lua">
-      <Filter>_Resources\1.09\LUA\Server</Filter>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <Xml Include="Halo1_CE_Version.xml" />
@@ -2380,15 +2233,6 @@
     </Filter>
     <Filter Include="Game\Impl\AI">
       <UniqueIdentifier>{62fd605b-7fa9-4b74-8e6a-6cb3209d309a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="_Resources\1.09\LUA">
-      <UniqueIdentifier>{292c5546-a8f1-4c61-8b6f-e96203133b5d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="_Resources\1.09\LUA\Client">
-      <UniqueIdentifier>{f357d139-2aba-4c05-8b8e-219aef527ab8}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="_Resources\1.09\LUA\Server">
-      <UniqueIdentifier>{08f4997f-c50a-4f53-8475-4b3e72b50913}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
