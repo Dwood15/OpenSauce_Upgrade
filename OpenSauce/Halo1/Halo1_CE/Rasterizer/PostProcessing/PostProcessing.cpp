@@ -138,29 +138,10 @@ namespace Yelo
 		 * \see
 		 * IPostProcessingComponent
 		 */
-		void		Initialize3D(IDirect3DDevice9* pDevice, D3DPRESENT_PARAMETERS* pParameters)
-		{
-			if(CMDLINE_GET_PARAM(no_os_gfx).ParameterSet())
-				return;
-
+		void		Initialize3D(IDirect3DDevice9* pDevice, D3DPRESENT_PARAMETERS* pParameters) {
 			// initialize the global resources in the main post processing component
 			// if this fails, return
-			c_post_processing_main::Instance().InitializeResources_Base(pDevice, pParameters);
-
-			YELO_ASSERT_DISPLAY(c_post_processing_main::Instance().IsReady(), "The main post processing component failed to initialise it's resources");
-
-			if(!c_post_processing_main::Instance().IsReady())
-				return;
-
-			// initialise the subsystems
-			for (auto& subsystem : g_postprocess_subsystems)
-			{
-				subsystem.m_component->InitializeResources_Base(pDevice, pParameters);
-				subsystem.is_ready = subsystem.m_component->IsReady();
-			}
-
-			// create the quad buffers
-			c_quad_manager::Instance().InitializeResources_Base(pDevice, pParameters);
+			return;
 		}
 
 		/*!
@@ -169,8 +150,7 @@ namespace Yelo
 		 * 
 		 * Performs device lost logic on all subsystems.
 		 */
-		void		OnLostDevice()
-		{
+		void		OnLostDevice() {
 			// run device lost logic for all components
 			for (auto& subsystem : g_postprocess_subsystems)
 			{
@@ -195,35 +175,9 @@ namespace Yelo
 		 * 
 		 * Performs device reset logic on all subsystems.
 		 */
-		void		OnResetDevice(D3DPRESENT_PARAMETERS* pParameters)
-		{
-			if(CMDLINE_GET_PARAM(no_os_gfx).ParameterSet())
-				return;
+		void		OnResetDevice(D3DPRESENT_PARAMETERS* pParameters) {
+			return;
 
-			// run device reset logic for the main system resources
-			c_post_processing_main::Instance().OnResetDevice_Base(pParameters);
-
-			if(c_post_processing_main::Instance().IsUnloaded())
-				return;
-
-			YELO_ASSERT_DISPLAY(c_post_processing_main::Instance().IsReady(), "The main post processing component failed to be reset");
-
-			if(!c_post_processing_main::Instance().IsReady())
-				return;
-
-			// run device reset logic for normal components
-			for (auto& subsystem : g_postprocess_subsystems)
-			{
-				subsystem.m_component->OnResetDevice_Base(pParameters);
-				subsystem.is_ready = subsystem.m_component->IsReady();
-			}
-
-			// update the ready states of cache components
-			for (auto& cache_subsystem : g_postprocess_cache_subsystems)
-				g_postprocess_subsystems[cache_subsystem.component_index].is_ready = cache_subsystem.m_component->IsReady();
-
-			// create the quad buffers
-			c_quad_manager::Instance().OnResetDevice_Base(pParameters);
 		}
 
 		void		Render() {}
@@ -234,8 +188,7 @@ namespace Yelo
 		 * 
 		 * Releases all resources allocated by the subsystems. This is called when the game is closed.
 		 */
-		void		Release()
-		{
+		void Release() {
 			// release normal component resources
 			for (auto& subsystem : g_postprocess_subsystems)
 				subsystem.m_component->ReleaseResources_Base();
@@ -259,8 +212,8 @@ namespace Yelo
 		 * \see
 		 * IPostProcessingCacheComponent
 		 */
-		void		InitializeForNewMap()
-		{
+		void InitializeForNewMap() {
+			return;
 			if(CMDLINE_GET_PARAM(no_os_gfx).ParameterSet())
 				return;
 
@@ -276,8 +229,7 @@ namespace Yelo
 				return;
 
 			// runs resource initialization for the cache components
-			for(int i = 0; i < NUMBEROF(g_postprocess_cache_subsystems); i++)
-			{
+			for(int i = 0; i < NUMBEROF(g_postprocess_cache_subsystems); i++) {
 				g_postprocess_cache_subsystems[i].m_component->InitializeResources_Cache();
 				g_postprocess_subsystems[g_postprocess_cache_subsystems[i].component_index].is_ready = g_postprocess_cache_subsystems[i].m_component->IsReady();
 			}
@@ -298,8 +250,7 @@ namespace Yelo
 		 * \see
 		 * IPostProcessingCacheComponents
 		 */
-		void		DisposeFromOldMap()
-		{
+		void DisposeFromOldMap() {
 			// release all cache component resources
 			for(int i = 0; i < NUMBEROF(g_postprocess_cache_subsystems); i++)
 				g_postprocess_cache_subsystems[i].m_component->ReleaseResources_Cache();

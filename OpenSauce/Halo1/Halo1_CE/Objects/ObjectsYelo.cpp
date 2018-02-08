@@ -84,10 +84,8 @@ namespace Yelo
 #include "Objects/Objects.Damage.inl"
 #include "Objects/Objects.Scripting.inl"
 
-namespace Yelo
-{
-	namespace Objects
-	{
+namespace Yelo {
+	namespace Objects {
 		s_object_type_definition** ObjectTypeDefinitions()							PTR_IMP_GET(object_type_definitions);
 		s_widget_type_definition*  WidgetTypeDefinitions()							PTR_IMP_GET(widget_type_definitions);
 
@@ -119,8 +117,7 @@ namespace Yelo
 		
 #include <YeloLib/Halo1/render/render_objects_upgrades.inl>
 
-		static void InitializeScripting()
-		{
+		static void InitializeScripting() {
 			Scripting::InitializeScriptFunctionWithParams(Enums::_hs_function_objects_distance_to_object, scripting_objects_distance_to_object_evaluate);
 
 			Scripting::InitializeScriptFunctionWithParams(Enums::_hs_function_object_data_get_real, scripting_object_data_get_real_evaluate);
@@ -141,16 +138,15 @@ namespace Yelo
 			Scripting::InitializeScriptFunctionWithParams(Enums::_hs_function_vehicle_remapper_enabled, scripting_vehicle_remapper_enabled_evaluate);
 		}
 		
-		bool PLATFORM_API ShouldKillChildObject(const s_object_datum* object_datum)
-		{
-			if(object_datum->object.VerifyType(s_unit_datum::k_object_types_mask))
-			{
+		bool PLATFORM_API ShouldKillChildObject(const s_object_datum* object_datum) {
+
+			if(object_datum->object.VerifyType(s_unit_datum::k_object_types_mask)) {
 				auto& unit_datum = *CAST_PTR(const s_unit_datum*, object_datum);
-				if(unit_datum.unit.vehicle_seat_index != NONE)
-				{
+
+				if(unit_datum.unit.vehicle_seat_index != NONE) {
 					auto* seat_extension_definition = GetSeatExtensionDefinition(unit_datum.object.parent_object_index, unit_datum.unit.vehicle_seat_index);
-					if(seat_extension_definition)
-					{
+
+					if(seat_extension_definition) {
 						return !TEST_FLAG(seat_extension_definition->flags, Flags::_unit_seat_extensions_flags_prevent_death_when_unit_dies);
 					}
 				}
@@ -159,12 +155,10 @@ namespace Yelo
 			return true;
 		}
 
-		API_FUNC_NAKED static void ObjectDepleteBodyKillChildHook()
-		{
+		API_FUNC_NAKED static void ObjectDepleteBodyKillChildHook() {
 			static const uintptr_t RETN_ADDRESS = GET_FUNC_PTR(OBJECT_DEPLETE_BODY_KILL_CHILD_RETN);
 
-			_asm
-			{
+			_asm {
 				push	eax
 				push	ecx
 				push	edx
@@ -186,26 +180,18 @@ namespace Yelo
 			};
 		}
 
-		void PLATFORM_API ObjectsUpdate()
-		{
+		void PLATFORM_API ObjectsUpdate() {
 			AI::ObjectsUpdate();
 			Units::ObjectsUpdate();
 
 			blam::objects_update();
 		}
 
-		void Initialize()
-		{
+		void Initialize() {
 			c_settings_objects::Register(Settings::Manager());
 
-#if !PLATFORM_DISABLE_UNUSED_CODE
-			Memory::WriteRelativeJmp(&Objects::Update, GET_FUNC_VPTR(OBJECTS_UPDATE_HOOK), false);
-#endif
-
-#if PLATFORM_IS_USER
 			if(!CMDLINE_GET_PARAM(no_os_gfx).ParameterSet())
 				render_objects_mods::Initialize();
-#endif
 
 			Weapon::Initialize();
 			Equipment::Initialize();
@@ -219,8 +205,7 @@ namespace Yelo
 			Memory::WriteRelativeJmp(&ObjectDepleteBodyKillChildHook, GET_FUNC_VPTR(OBJECT_DEPLETE_BODY_KILL_CHILD_HOOK), true);
 		}
 
-		void Dispose()
-		{
+		void Dispose() {
 			Units::Dispose();
 
 			Weapon::Dispose();
@@ -228,89 +213,37 @@ namespace Yelo
 			c_settings_objects::Unregister(Settings::Manager());
 		}
 
-		static void ObjectsUpdateIgnorePlayerPvs(bool use_fix)
-		{
-#if PLATFORM_IS_USER
-			typedef Memory::s_memory_change_data<GET_FUNC_VPTR(OBJECTS_UPDATE__OBJECT_IN_PLAYER_PVS_NOP1), 1+1+sizeof(uintptr_t)> 
-				nop1_t;
-			typedef Memory::s_memory_change_data<GET_FUNC_VPTR(OBJECTS_UPDATE__OBJECT_IN_PLAYER_PVS_NOP2), 2> 
-				nop2_t;
+		static void ObjectsUpdateIgnorePlayerPvs(bool use_fix) {
+			typedef Memory::s_memory_change_data<GET_FUNC_VPTR(OBJECTS_UPDATE__OBJECT_IN_PLAYER_PVS_NOP1), 1+1+sizeof(uintptr_t)> nop1_t;
+			typedef Memory::s_memory_change_data<GET_FUNC_VPTR(OBJECTS_UPDATE__OBJECT_IN_PLAYER_PVS_NOP2), 2> nop2_t;
 
-			if(use_fix)
-			{
+			if(use_fix) {
 				nop1_t::MemoryApplyNopCodes();
 				nop2_t::MemoryApplyNopCodes();
 			}
-			else
-			{
+			else {
 				nop1_t::MemoryApplyUndo();
 				nop2_t::MemoryApplyUndo();
 			}
-#endif
-		}
-		static void UseBipedJumpPenalty(bool use_fix)
-		{
-			using namespace TagGroups;
-
-			const size_t k_game_globals_player_stun_offset = 
-				FIELD_OFFSET(s_game_globals_player_information, stun);
-			const size_t k_game_globals_player_stun_turning_penalty_offset = 
-				k_game_globals_player_stun_offset + 
-				FIELD_OFFSET(s_game_globals_player_information::_stun, turning_penalty);
-			const size_t k_game_globals_player_stun_jumping_penalty_offset = 
-				k_game_globals_player_stun_offset + 
-				FIELD_OFFSET(s_game_globals_player_information::_stun, jumping_penalty);
-
-			BOOST_STATIC_ASSERT( k_game_globals_player_stun_turning_penalty_offset == 0x84 );
-			BOOST_STATIC_ASSERT( k_game_globals_player_stun_jumping_penalty_offset == 0x88 );
-			*CAST_PTR(size_t*, GET_FUNC_VPTR(BIPED_JUMP_MOD_STUN_PENALTY_FIELD_REF)) = 
-				use_fix
-				? k_game_globals_player_stun_jumping_penalty_offset
-				: k_game_globals_player_stun_turning_penalty_offset; // stock code uses turning penalty for whatever reason
-		}
-		void InitializeForNewMap()
-		{
-			bool objects_update_ignore_player_pvs = blam::global_scenario_get()->type == Enums::_scenario_type_main_menu && 
-				TEST_FLAG(Scenario::GetYelo()->flags, Flags::_project_yellow_game_updates_ignore_player_pvs_hack_bit);
-			ObjectsUpdateIgnorePlayerPvs(objects_update_ignore_player_pvs);
-
-			bool use_jump_penalty_fix = TEST_FLAG(Scenario::GetYeloGlobals()->flags, Flags::_project_yellow_globals_force_game_to_use_stun_jumping_penalty_bit);
-			UseBipedJumpPenalty(use_jump_penalty_fix);
-
-			Units::InitializeForNewMap();
 		}
 
-		void DisposeFromOldMap()
-		{
-			Units::DisposeFromOldMap();
-		}
+		void InitializeForNewMap() { Units::InitializeForNewMap(); }
 
-		void PLATFORM_API Update()
-		{
+		void DisposeFromOldMap() { Units::DisposeFromOldMap(); }
+
+		void PLATFORM_API Update() {
 			static const uintptr_t OBJECTS_GARBAGE_COLLECTION = GET_FUNC_PTR(OBJECTS_GARBAGE_COLLECTION);
-			_asm {
-				call	OBJECTS_GARBAGE_COLLECTION
-			}
-
-			// Do custom code here:
+			_asm { call	OBJECTS_GARBAGE_COLLECTION }
 		}
 
-		void InitializeForYeloGameState(bool enabled)
-		{
+		void InitializeForYeloGameState(bool enabled) {
 			size_t* omp_allocation_size = GET_PTR2(object_memory_pool_allocation_size);
-//			*omp_allocation_size = Enums::k_object_memory_pool_allocation_size;
-//			if(enabled) *omp_allocation_size += Enums::k_game_state_allocation_size_object_memory_pool_upgrade;
-
 			Units::InitializeForYeloGameState(enabled);
 		}
 
-		bool VehicleRemapperEnabled()
-		{
-			return c_settings_objects::Instance()->m_vehicle_remapper_enabled;
-		}
+		bool VehicleRemapperEnabled() { return c_settings_objects::Instance()->m_vehicle_remapper_enabled; }
 
-		void VehicleRemapperEnable(bool enabled)
-		{
+		void VehicleRemapperEnable(bool enabled) {
 			// jnz eip+2+10
 			static const byte k_enable_code[] = { Enums::_x86_opcode_jnz_short, 0x0A };
 			// nop, nop
@@ -320,10 +253,8 @@ namespace Yelo
 		}
 	};
 
-	namespace blam
-	{
-		s_object_data* object_get(datum_index object_index)
-		{
+	namespace blam {
+		s_object_data* object_get(datum_index object_index) {
 			return Objects::ObjectHeader()[object_index]->_object;
 		}
 	};

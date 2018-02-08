@@ -7,8 +7,6 @@
 #include "Common/Precompile.hpp"
 #include "Interface/OpenSauceUI.hpp"
 
-#if !PLATFORM_IS_DEDI
-
 #include <YeloLib/configuration/c_configuration_file_factory.hpp>
 #include <YeloLib/Halo1/cache/shared_cache_files.hpp>
 #include <BlamLib/Halo1/game/game_globals.hpp>
@@ -53,10 +51,7 @@
 #include "Interface/OpenSauceUI/GwenUI/ControlBuilders/c_control_builder_gwen_pointer.hpp"
 #include "Interface/OpenSauceUI/GwenUI/ControlBuilders/c_control_builder_gwen_progressbar.hpp"
 
-namespace Yelo
-{
-	namespace Interface { namespace OpenSauceUI
-	{
+namespace Yelo { namespace Interface { namespace OpenSauceUI {
 		static bool g_ui_package_present;
 		static c_packed_file g_ui_package;
 
@@ -67,8 +62,7 @@ namespace Yelo
 
 		static std::unique_ptr<Screen::c_screen_display_manager> g_screen_display_manager;
 
-		void Initialize()
-		{
+		void Initialize() {
 			g_ui_package_present = true;
 
 			// Determine whether the opensauce ui package is present
@@ -78,10 +72,7 @@ namespace Yelo
 
 			g_ui_package_present &= (file_open_success == Enums::_file_io_open_error_none);
 
-			if(!g_ui_package_present)
-			{
-				return;
-			}
+			if(!g_ui_package_present) { return; }
 
 			// Load the UI package and initialise the canvas, display manager and control factory
 			g_ui_package.OpenFile("UI_OpenSauceUI_PAK", true);
@@ -107,8 +98,7 @@ namespace Yelo
 			g_control_factory.AddControl("ProgressBar", std::make_unique<GwenUI::ControlBuilders::c_control_builder_gwen_progressbar>());
 		}
 
-		void Dispose()
-		{
+		void Dispose() {
 			Keystone::DetachWindowsMessageHandler(&g_control_input);
 
 			g_screen_display_manager.reset();
@@ -117,15 +107,12 @@ namespace Yelo
 			g_ui_package.CloseFile();
 		}
 
-		void Update()
-		{
-			if(!g_ui_package_present)
-			{
+		void Update() {
+			if(!g_ui_package_present) {
 				return;
 			}
 
-			if(g_screen_display_manager->ScreenActive())
-			{
+			if(g_screen_display_manager->ScreenActive()) {
 				g_control_input.Update();
 			}
 
@@ -136,43 +123,30 @@ namespace Yelo
 			bool is_main_menu_cache =	Yelo::Cache::CacheFileGlobals()->cache_header.cache_type == Enums::_shared_cache_type_main_menu;
 
 			_enum game_state = Flags::_osui_game_state_in_game;
-			if(is_loading)
-			{
+			if(is_loading) {
 				game_state = Flags::_osui_game_state_loading;
 			}
 			// Pause menu if the cache isn't a main menu but we are in a menu
-			else if(!is_main_menu_cache && in_menu)
-			{
+			else if(!is_main_menu_cache && in_menu) {
 				game_state = Flags::_osui_game_state_pause_menu;
 			}
 			// In game if the cache isn't a main menu and we aren't in a menu
-			else if(!is_main_menu_cache && !in_menu)
-			{
+			else if(!is_main_menu_cache && !in_menu) {
 				game_state = Flags::_osui_game_state_in_game;
 			}
 			// In the main menu if the cache is a main menu and we are in a menu
-			else if(is_main_menu_cache && in_menu)
-			{
+			else if(is_main_menu_cache && in_menu) {
 				game_state = Flags::_osui_game_state_main_menu;
 			}
 			g_screen_display_manager->SetGameState((Flags::osui_game_state)game_state);
 			g_screen_display_manager->Update();
 		}
 
-		bool IsUIAvailable()
-		{
-			return g_ui_package_present;
-		}
+		bool IsUIAvailable() { return g_ui_package_present; }
 
-		void ShowScreen(const uint32 screen_id)
-		{
-			g_screen_display_manager->ShowScreen(screen_id);
-		}
+		void ShowScreen(const uint32 screen_id) { g_screen_display_manager->ShowScreen(screen_id); }
 
-		void HideScreen(const uint32 screen_id)
-		{
-			g_screen_display_manager->HideScreen(screen_id);
-		}
+		void HideScreen(const uint32 screen_id) { g_screen_display_manager->HideScreen(screen_id); }
 
 		////////////////////////////////////////////////////////////////////////////////////////////////////
 		/// <summary>	Adds a screen controller to the display manager. </summary>
@@ -185,24 +159,14 @@ namespace Yelo
 		/// <param name="screen_flags">   	The screen flags. </param>
 		/// <param name="toggle_key">	  	(Optional) The screens toggle key. </param>
 		template<typename ControllerType>
-		static void AddScreenController(const uint32 screen_id
-			, cstring definition_name
-			, const Flags::osui_game_state loaded_states
-			, const Flags::osui_game_state active_states
-			, const Flags::osui_screen_flags screen_flags
-			, const Enums::key_code toggle_key = Enums::k_number_of_keys)
-		{
+		static void AddScreenController(const uint32 screen_id,  cstring definition_name, const Flags::osui_game_state loaded_states, const Flags::osui_game_state active_states
+			, const Flags::osui_screen_flags screen_flags, const Enums::key_code toggle_key = Enums::k_number_of_keys){
 			// Get the screen definition from the ui package
 			Definitions::c_screen_definition screen_definition;
 			Screen::c_screen_definition_registry::GetScreenDefinition(g_ui_package, definition_name, screen_definition);
 
 			// Create the controller and add it to the display manager
-			g_screen_display_manager->AddScreenController(screen_id
-				, loaded_states
-				, active_states
-				, screen_flags
-				, toggle_key
-				, std::make_shared<ControllerType>(screen_definition));
+			g_screen_display_manager->AddScreenController(screen_id, loaded_states, active_states, screen_flags, toggle_key, std::make_shared<ControllerType>(screen_definition));
 		}
 
 		////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -212,8 +176,7 @@ namespace Yelo
 		/// <param name="presentation_parameters">
 		/// 	[in,out] If non-null, the device's presentation parameters.
 		/// </param>
-		void LoadUI(IDirect3DDevice9* device, D3DPRESENT_PARAMETERS* presentation_parameters)
-		{
+		void LoadUI(IDirect3DDevice9* device, D3DPRESENT_PARAMETERS* presentation_parameters) {
 			// Update the mouse bounds and initial position
 			g_control_input.SetMouseBounds(0, presentation_parameters->BackBufferWidth, 0, presentation_parameters->BackBufferHeight);
 			g_control_input.SetMousePosition(presentation_parameters->BackBufferWidth / 2, presentation_parameters->BackBufferHeight / 2);
@@ -262,63 +225,33 @@ namespace Yelo
 		}
 
 		/// <summary>	Unloads the OpenSauce user interface. </summary>
-		void UnloadUI()
-		{
+		void UnloadUI() {
 			// Delete the screen controllers, canvas and mouse
 			g_screen_display_manager->ClearScreenControllers();
 			g_mouse_pointer->DestroyMouse(g_control_input);
 			g_canvas->Release(g_control_input);
 		}
 
-		void Initialize3D(IDirect3DDevice9* device, D3DPRESENT_PARAMETERS* presentation_parameters)
-		{
-			if(!g_ui_package_present)
-			{
-				return;
-			}
+		void Initialize3D(IDirect3DDevice9* device, D3DPRESENT_PARAMETERS* presentation_parameters) {
+			if(!g_ui_package_present) { return; }
 
 			LoadUI(device, presentation_parameters);
 		}
 
-		void OnLostDevice()
-		{
-			if(!g_ui_package_present)
-			{
-				return;
-			}
+		void OnLostDevice() {
+			if(!g_ui_package_present) { return; }
 
 			UnloadUI();
 		}
 
-		void OnResetDevice(D3DPRESENT_PARAMETERS* presentation_parameters)
-		{
-			if(!g_ui_package_present)
-			{
-				return;
-			}
+		void OnResetDevice(D3DPRESENT_PARAMETERS* presentation_parameters) {
+			if(!g_ui_package_present) { return; }
 
 			LoadUI(DX9::Direct3DDevice(), presentation_parameters);
 		}
 
-		void Render()
-		{
-			if(!g_ui_package_present)
-			{
-				return;
-			}
+		void Render() { if(g_ui_package_present) { g_canvas->Draw(); } }
 
-			g_canvas->Draw();
-		}
-
-		void Release()
-		{
-			if(!g_ui_package_present)
-			{
-				return;
-			}
-
-			UnloadUI();
-		}
+		void Release() { if(g_ui_package_present) { UnloadUI(); } }
 	};};
 };
-#endif

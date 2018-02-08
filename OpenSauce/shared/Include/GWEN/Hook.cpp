@@ -5,8 +5,6 @@
 */
 #include "Common/Precompile.hpp"
 
-#if !PLATFORM_IS_DEDI
-
 #include "Gwen/Hook.h"
 
 #ifdef GWEN_HOOKSYSTEM
@@ -16,20 +14,13 @@ using namespace Gwen::Hook;
 
 std::list<BaseHook*>	g_HookList;
 
-void Gwen::Hook::AddHook( BaseHook* pHook )
-{
-	g_HookList.push_back( pHook );
-}
+void Gwen::Hook::AddHook( BaseHook* pHook ) { g_HookList.push_back( pHook ); }
 
 void Gwen::Hook::RemoveHook( BaseHook* pHook )
 {
 	g_HookList.remove( pHook );
 }
 
-HookList & Gwen::Hook::GetHookList()
-{
-	return g_HookList;
-}
+HookList & Gwen::Hook::GetHookList() { return g_HookList; }
 
-#endif
 #endif

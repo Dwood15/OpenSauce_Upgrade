@@ -9,22 +9,16 @@
 
 struct IDirect3DVertexDeclaration9;
 
-namespace Yelo
-{
-	namespace TagGroups
-	{
-		struct bitmap_data;
-	};
+namespace Yelo {
+	namespace TagGroups { struct bitmap_data; };
 
-	namespace Enums
-	{
+	namespace Enums {
 		enum {
 			k_rasterizer_maximum_texture_stages = 4,
 		};
 	};
 
-	namespace blam
-	{
+	namespace blam {
 		bool PLATFORM_API rasterizer_set_texture_bitmap_data(_enum stage, TagGroups::s_bitmap_data* bitmap);
 	};
 
@@ -32,8 +26,7 @@ namespace Yelo
 	//////////////////////////////////////////////////////////////////////////
 	// rasterizer_dx9_shaders_vdecl9
 
-	namespace Enums
-	{
+	namespace Enums {
 		enum {
 			_vsdecl_environment, // _rasterizer_vertex_type_environment_uncompressed
 			_vsdecl_environment_c, // _rasterizer_vertex_type_environment_compressed
@@ -59,10 +52,8 @@ namespace Yelo
 		};
 	};
 
-	namespace DX9
-	{
-		struct s_vertex_shader_declaration
-		{
+	namespace DX9 {
+		struct s_vertex_shader_declaration {
 			IDirect3DVertexDeclaration9* decl;
 			long_enum format; // D3DFVF
 			long_enum processing_method; // D3DUSAGE

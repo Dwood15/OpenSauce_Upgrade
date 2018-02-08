@@ -18,36 +18,28 @@
 
 #define D3DFVF_VERTEXFORMAT2D ( D3DFVF_XYZRHW | D3DFVF_DIFFUSE | D3DFVF_TEX1 )
 
-struct FontData
-{
+struct FontData {
 	ID3DXFont*	pFont;
 	int			iSpaceWidth;
 };
 
-namespace Yelo
-{
-	namespace Interface { namespace OpenSauceUI { namespace GwenUI
-	{
-		c_gwen_renderer_halo::c_gwen_renderer_halo(IDirect3DDevice9* pDevice, c_packed_file& ui_package)
-			: m_texture_loader(ui_package)
+namespace Yelo {
+	namespace Interface { namespace OpenSauceUI { namespace GwenUI {
+		c_gwen_renderer_halo::c_gwen_renderer_halo(IDirect3DDevice9* pDevice, c_packed_file& ui_package) : m_texture_loader(ui_package)
 		{
 			m_pDevice = pDevice;
 			m_iVertNum = 0;
 
 			// Reset the vertex values
-			for ( int i = 0; i < MaxVerts; i++ )
-			{
+			for ( int i = 0; i < MaxVerts; i++ ) {
 				m_pVerts[ i ].z = 0.5f;
 				m_pVerts[ i ].rhw = 1.0f;
 			}
 		}
 
-		c_gwen_renderer_halo::~c_gwen_renderer_halo()
-		{
-		}
+		c_gwen_renderer_halo::~c_gwen_renderer_halo() { }
 
-		void c_gwen_renderer_halo::Begin()
-		{
+		void c_gwen_renderer_halo::Begin() {
 			// Set the device state for rendering the UI
 			m_pCurrentTexture = nullptr;
 			m_pDevice->SetTexture( 0, NULL );
@@ -71,32 +63,25 @@ namespace Yelo
 			m_pDevice->SetTextureStageState( 1, D3DTSS_COLOROP, D3DTOP_DISABLE );
 		}
 
-		void c_gwen_renderer_halo::End()
-		{
+		void c_gwen_renderer_halo::End() {
 			// Draw any remaining faces and remove the UI texture from the device
 			Flush();
 			m_pDevice->SetTexture( 0, 0 );
 			m_pCurrentTexture = NULL;
 		}
 
-		void c_gwen_renderer_halo::Flush()
-		{
+		void c_gwen_renderer_halo::Flush() {
 			// Draw any remaining triangles
-			if ( m_iVertNum > 0 )
-			{
+			if ( m_iVertNum > 0 )  {
 				m_pDevice->SetFVF( D3DFVF_VERTEXFORMAT2D );
 				m_pDevice->DrawPrimitiveUP( D3DPT_TRIANGLELIST, m_iVertNum / 3, &m_pVerts[0], sizeof( VertexFormat ) );
 				m_iVertNum = 0;
 			}
 		}
 
-		void c_gwen_renderer_halo::AddVert( int x, int y )
-		{
+		void c_gwen_renderer_halo::AddVert( int x, int y ) {
 			// If the max vertex count is reached, draw the current batch of triangles
-			if ( m_iVertNum >= MaxVerts - 1 )
-			{
-				Flush();
-			}
+			if ( m_iVertNum >= MaxVerts - 1 ) { Flush(); }
 
 			// Add the vertex to the list
 			m_pVerts[ m_iVertNum ].x = ( float ) x;
@@ -105,13 +90,9 @@ namespace Yelo
 			m_iVertNum++;
 		}
 
-		void c_gwen_renderer_halo::AddVert( int x, int y, float u, float v )
-		{
+		void c_gwen_renderer_halo::AddVert( int x, int y, float u, float v ) {
 			// If the max vertex count is reached, draw the current batch of triangles
-			if ( m_iVertNum >= MaxVerts - 1 )
-			{
-				Flush();
-			}
+			if ( m_iVertNum >= MaxVerts - 1 ) { Flush(); }
 			
 			// Add the textured vertex to the list
 			m_pVerts[ m_iVertNum ].x = -0.5f + ( float ) x;
@@ -122,11 +103,9 @@ namespace Yelo
 			m_iVertNum++;
 		}
 
-		void c_gwen_renderer_halo::DrawFilledRect( Gwen::Rect rect )
-		{
+		void c_gwen_renderer_halo::DrawFilledRect( Gwen::Rect rect ) {
 			// If a texture is in use, draw the triangles that use it then remove it from the device
-			if ( m_pCurrentTexture != NULL )
-			{
+			if ( m_pCurrentTexture != NULL ) {
 				Flush();
 				m_pDevice->SetTexture( 0, NULL );
 				m_pCurrentTexture = NULL;
@@ -142,13 +121,9 @@ namespace Yelo
 			AddVert( rect.x, rect.y + rect.h );
 		}
 
-		void c_gwen_renderer_halo::SetDrawColor( Gwen::Color color )
-		{
-			m_Color = D3DCOLOR_ARGB( color.a, color.r, color.g, color.b );
-		}
+		void c_gwen_renderer_halo::SetDrawColor( Gwen::Color color ) { m_Color = D3DCOLOR_ARGB( color.a, color.r, color.g, color.b ); }
 
-		void c_gwen_renderer_halo::LoadFont( Gwen::Font* font )
-		{
+		void c_gwen_renderer_halo::LoadFont( Gwen::Font* font ) { 
 			m_FontList.push_back( font );
 			// Scale the font according to canvas
 			font->realsize = font->size * Scale();

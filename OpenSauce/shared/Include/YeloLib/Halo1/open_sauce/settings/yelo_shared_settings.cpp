@@ -12,10 +12,8 @@
 #include <YeloLib/files/files.hpp>
 #include <YeloLib/Halo1/open_sauce/settings/c_settings_cheape.hpp>
 
-namespace Yelo
-{
-	namespace Settings
-	{
+namespace Yelo {
+	namespace Settings {
 		cstring K_USER_FILENAME_XML = "OS_Settings.User.xml";
 		cstring K_SERVER_FILENAME_XML = "OS_Settings.Server.xml";
 		cstring K_EDITOR_FILENAME_XML = "OS_Settings.Editor.xml";
@@ -28,7 +26,7 @@ namespace Yelo
 			char OpenSauceProfilePath[MAX_PATH];
 			char ReportsPath[MAX_PATH];
 			char WorkingDirectoryPath[MAX_PATH];
-		}Internal;
+		} Internal;
 
 		cstring CommonAppDataPath()		{ return Internal.CommonAppDataPath; }
 		cstring UserProfilePath()		{ return Internal.UserProfilePath; }
@@ -38,23 +36,13 @@ namespace Yelo
 		cstring OpenSauceProfilePath()	{ return Internal.OpenSauceProfilePath; }
 		cstring ReportsPath()			{ return Internal.ReportsPath; }
 		cstring WorkingDirectoryPath()	{ return Internal.WorkingDirectoryPath; }
+		cstring PlatformUserMapsPath() { return UserProfileMapsPath(); }
 
-		cstring PlatformUserMapsPath()
-		{
-#if PLATFORM_IS_EDITOR
-			return Settings::c_settings_cheape::Profile().GetMapsPath();
-#else
-			return UserProfileMapsPath();
-#endif
-		}
-
-		void SharedInitialize(cstring profile_path)
-		{
+		void SharedInitialize(cstring profile_path) {
 			SHGetFolderPath(nullptr, CSIDL_COMMON_APPDATA, nullptr, 0, Internal.CommonAppDataPath);
 			PathAppendA(Internal.CommonAppDataPath, "Kornner Studios\\Halo CE\\");
 
-			if(profile_path[0] == '\0')
-			{
+			if(profile_path[0] == '\0') {
 				SHGetFolderPath(nullptr, CSIDL_PERSONAL, nullptr, 0, Internal.UserProfilePath);
 				PathAppendA(Internal.UserProfilePath, "My Games\\Halo CE\\");
 				profile_path = Internal.UserProfilePath;
@@ -83,14 +71,11 @@ namespace Yelo
 				strcat_s(Internal.WorkingDirectoryPath, sizeof(Internal.WorkingDirectoryPath), "\\");
 		}
 
-		void SharedDispose()
-		{
-		}
+		void SharedDispose() { }
 
 		//////////////////////////////////////////////////////////////////////////
 
-		bool PlayerProfileRead(cstring profile_name, _Out_ byte profile[Enums::k_player_profile_buffer_size])
-		{
+		bool PlayerProfileRead(cstring profile_name, _Out_ byte profile[Enums::k_player_profile_buffer_size]) {
 			bool success = false;
 			memset(profile, 0, Enums::k_player_profile_buffer_size);
 
@@ -99,8 +84,7 @@ namespace Yelo
 			success = success&& k_errnone == strcat_s(blam_path, profile_name);
 			success = success&& k_errnone == strcat_s(blam_path, "\\blam.sav");
 
-			if (success && FileIO::PathExists(blam_path))
-			{
+			if (success && FileIO::PathExists(blam_path)) {
 				FILE* file = nullptr;
 				fopen_s(&file, blam_path, "rb");
 
@@ -112,15 +96,13 @@ namespace Yelo
 			return success;
 		}
 
-		bool GetSettingsFilePath(cstring filename, _Out_ char file_path[MAX_PATH])
-		{
+		bool GetSettingsFilePath(cstring filename, _Out_ char file_path[MAX_PATH]) {
 			sprintf_s(file_path, MAX_PATH, "%s%s", Internal.OpenSauceProfilePath, filename);
 
 			return PathFileExistsA(file_path) != FALSE;
 		}
 
-		FILE* CreateReport(cstring filename, bool append, bool text, bool shared)
-		{
+		FILE* CreateReport(cstring filename, bool append, bool text, bool shared) {
 			FILE* file = nullptr;
 			bool success = false;
 
@@ -134,8 +116,7 @@ namespace Yelo
 			if(text)mode = append ? "at" : "wt";
 			else	mode = append ? "ab" : "wb";
 
-			if (success)
-			{
+			if (success) {
 				if (!shared)
 					success = k_errnone == fopen_s(&file, path, mode);
 				else
@@ -145,8 +126,7 @@ namespace Yelo
 			return file;
 		}
 
-		FILE* CreateUnicodeReport(wcstring filename, bool append, bool shared)
-		{
+		FILE* CreateUnicodeReport(wcstring filename, bool append, bool shared) {
 			FILE* file = nullptr;
 			bool success = false;
 
@@ -169,8 +149,7 @@ namespace Yelo
 			return file;
 		}
 
-		FILE* OpenSettings(cstring filename, bool text, bool open_for_writing)
-		{
+		FILE* OpenSettings(cstring filename, bool text, bool open_for_writing) {
 			FILE* file = nullptr;
 			bool success = false;
 
@@ -189,8 +168,7 @@ namespace Yelo
 			return file;
 		}
 
-		void ReplaceEnvironmentVariable(std::string& parse_string, const char* variable, const char* value)
-		{
+		void ReplaceEnvironmentVariable(std::string& parse_string, const char* variable, const char* value) {
 			if(!variable || !value)
 				return;
 
@@ -199,8 +177,8 @@ namespace Yelo
 			while((offset = parse_string.find(variable, 0)) != std::string::npos)
 				parse_string.replace(offset, var_len, value);
 		}
-		void ParseEnvironmentVariables(std::string& parse_string)
-		{
+
+		void ParseEnvironmentVariables(std::string& parse_string) {
 			ReplaceEnvironmentVariable(parse_string, "$(CommonAppData)", Settings::CommonAppDataPath());
 			ReplaceEnvironmentVariable(parse_string, "$(UserProfile)", Settings::UserProfilePath());
 			ReplaceEnvironmentVariable(parse_string, "$(UserSavedProfiles)", Settings::UserSavedProfilesPath());

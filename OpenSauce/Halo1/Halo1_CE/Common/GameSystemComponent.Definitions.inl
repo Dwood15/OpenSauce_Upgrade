@@ -36,24 +36,18 @@
 #define BOOST_PP_FILENAME_1 "Common/GameSystemComponents.GameStateYelo.inl"
 ??=include BOOST_PP_ITERATE()
 
-#if PLATFORM_IS_USER
-	#define BOOST_PP_ITERATION_LIMITS (1, 12)
-	#define BOOST_PP_FILENAME_1 "Common/GameSystemComponents.Render.inl"
-	??=include BOOST_PP_ITERATE()
-#endif
+
+#define BOOST_PP_ITERATION_LIMITS (1, 12)
+#define BOOST_PP_FILENAME_1 "Common/GameSystemComponents.Render.inl"
+??=include BOOST_PP_ITERATE()
+
 
 #define BOOST_PP_ITERATION_LIMITS (1, 8)
 #define BOOST_PP_FILENAME_1 "Common/GameSystemComponents.Game.inl"
 ??=include BOOST_PP_ITERATE()
 
-#if PLATFORM_IS_USER
-	#define BOOST_PP_ITERATION_LIMITS (1, 4)
-	#define BOOST_PP_FILENAME_1 "Common/GameSystemComponents.Interface.inl"
-	??=include BOOST_PP_ITERATE()
-#endif
-
-#define BOOST_PP_ITERATION_LIMITS (1, 5)
-#define BOOST_PP_FILENAME_1 "Common/GameSystemComponents.Networking.inl"
+#define BOOST_PP_ITERATION_LIMITS (1, 4)
+#define BOOST_PP_FILENAME_1 "Common/GameSystemComponents.Interface.inl"
 ??=include BOOST_PP_ITERATE()
 
 #define BOOST_PP_ITERATION_LIMITS (1, 1)
@@ -62,25 +56,3 @@
 
 // Reset __GS_COMPONENT so 'callers' of this include don't have to
 #undef __GS_COMPONENT
-
-/*
-#if		BOOST_PP_ITERATION() == 1
-#	include "Common/GameSystemComponent.IterationRoundBegin.inl"
-#	if		__GS_COMPONENT == __GS_COMPONENT_LIFECYCLE
-#	elif	__GS_COMPONENT == __GS_COMPONENT_MAP_LIFECYCLE
-#	elif	__GS_COMPONENT == __GS_COMPONENT_GAMESTATE_LIFECYCLE
-#	elif	__GS_COMPONENT == __GS_COMPONENT_DX9_LIFECYCLE
-#	elif	__GS_COMPONENT == __GS_COMPONENT_BSP_LIFECYCLE
-#	endif
-#	include "Common/GameSystemComponent.IterationRoundEnd.inl"
-#elif	BOOST_PP_ITERATION() == 2
-#	include "Common/GameSystemComponent.IterationRoundBegin.inl"
-#	if		__GS_COMPONENT == __GS_COMPONENT_LIFECYCLE
-#	elif	__GS_COMPONENT == __GS_COMPONENT_MAP_LIFECYCLE
-#	elif	__GS_COMPONENT == __GS_COMPONENT_GAMESTATE_LIFECYCLE
-#	elif	__GS_COMPONENT == __GS_COMPONENT_DX9_LIFECYCLE
-#	elif	__GS_COMPONENT == __GS_COMPONENT_BSP_LIFECYCLE
-#	endif
-#	include "Common/GameSystemComponent.IterationRoundEnd.inl"
-#endif
-*/

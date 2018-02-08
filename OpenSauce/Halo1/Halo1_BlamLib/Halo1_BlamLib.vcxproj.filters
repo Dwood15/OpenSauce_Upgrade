@@ -1028,9 +1028,6 @@
     <ClCompile Include="..\..\shared\Include\blamlib\Halo1\hs\hs_scenario_definitions.cpp">
       <Filter>hs</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\shared\Include\blamlib\Halo1\interface\first_person_weapons.cpp">
-      <Filter>interface</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\shared\Include\blamlib\math\real_math.cpp">
       <Filter>math</Filter>
     </ClCompile>

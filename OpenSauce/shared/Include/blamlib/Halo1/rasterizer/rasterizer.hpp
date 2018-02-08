@@ -17,12 +17,9 @@
 	#include <blamlib/Halo1/rasterizer/dx9/rasterizer_dx9_render_targets.hpp>
 #endif
 
-namespace Yelo
-{
-	namespace Enums
-	{
-		enum rasterizer_target_render
-		{
+namespace Yelo {
+	namespace Enums {
+		enum rasterizer_target_render {
 			_rasterizer_target_render_d3d,
 			_rasterizer_target_render_primary,
 			_rasterizer_target_render_secondary,
@@ -31,10 +28,8 @@ namespace Yelo
 		};
 	};
 
-	namespace Rasterizer
-	{
-		struct s_rasterizer_config
-		{
+	namespace Rasterizer {
+		struct s_rasterizer_config {
 			const BOOL linear_texture_addressing;
 			const BOOL linear_texture_addressing_zoom;
 			const BOOL linear_texture_addressing_sun;
@@ -65,8 +60,7 @@ namespace Yelo
 		s_rasterizer_config* RasterizerConfig(); // defined in the project implementation
 
 
-		struct s_rasterizer_globals
-		{
+		struct s_rasterizer_globals {
 			bool initialized;
 			PAD8;
 			UNKNOWN_TYPE(int16);
@@ -96,8 +90,7 @@ namespace Yelo
 		s_rasterizer_globals* RasterizerGlobals(); // defined in the project implementation
 
 
-		struct s_rasterizer_window_parameters
-		{
+		struct s_rasterizer_window_parameters {
 			_enum rasterizer_target;
 			int16 window_index;
 			UNKNOWN_TYPE(bool); // mirror rendering related
@@ -110,8 +103,7 @@ namespace Yelo
 		}; BOOST_STATIC_ASSERT( sizeof(s_rasterizer_window_parameters) == 0x258 );
 
 
-		struct s_rasterizer_debug_options
-		{
+		struct s_rasterizer_debug_options {
 			bool fps;
 			PAD8;
 			int16 stats;

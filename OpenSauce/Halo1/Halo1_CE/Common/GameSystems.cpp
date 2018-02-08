@@ -193,12 +193,9 @@ namespace Yelo
 		}
 #endif
 
-		static void PLATFORM_API InitializeOnStartup()
-		{
+		static void PLATFORM_API InitializeOnStartup() {
 			s_project_component* components;
 			const int32 component_count = GetProjectComponents(components);
-
-			Settings::InitializeSettings();
 
 			for(Yelo::int32 x = 0; x <= component_count; x++)
 				components[x].Initialize();

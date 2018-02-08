@@ -30,9 +30,7 @@ DEFINE_HOOK_BLOCK_POSTPROCESS(render_objects) = {
 DEFINE_HOOK_PROCESS(func_gbuffer_render_structure_preprocess, DX9::c_gbuffer_system::render_progress::StructurePreProcess);
 DEFINE_HOOK_PROCESS(func_gbuffer_render_structure_postprocess, DX9::c_gbuffer_system::render_progress::StructurePostProcess);
 
-DEFINE_HOOK_BLOCK_PREPROCESS(render_structure) = {
-	GET_HOOK_PROCESS(func_gbuffer_render_structure_preprocess).FunctionHook,
-};
+DEFINE_HOOK_BLOCK_PREPROCESS(render_structure) = { GET_HOOK_PROCESS(func_gbuffer_render_structure_preprocess).FunctionHook };
 DEFINE_HOOK_BLOCK_POSTPROCESS(render_structure) = {
 	GET_HOOK_PROCESS(func_gbuffer_render_structure_postprocess).FunctionHook,
 };

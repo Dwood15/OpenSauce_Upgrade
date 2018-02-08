@@ -400,7 +400,6 @@
     <ClCompile Include="..\..\shared\Include\blamlib\Halo1\hs\hs_threads.cpp" />
     <ClCompile Include="..\..\shared\Include\blamlib\Halo1\hs\hs_types.cpp" />
     <ClCompile Include="..\..\shared\Include\blamlib\Halo1\hs\object_lists.cpp" />
-    <ClCompile Include="..\..\shared\Include\blamlib\Halo1\interface\first_person_weapons.cpp" />
     <ClCompile Include="..\..\shared\Include\blamlib\Halo1\interface\map_list.cpp" />
     <ClCompile Include="..\..\shared\Include\blamlib\Halo1\main\main.cpp" />
     <ClCompile Include="..\..\shared\Include\blamlib\Halo1\memory\byte_swapping.cpp" />

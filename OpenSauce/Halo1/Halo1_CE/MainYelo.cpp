@@ -77,41 +77,32 @@ namespace Yelo
 	};
 };
 
-bool WINAPI DllMain(HMODULE hModule, DWORD dwReason, PVOID pvReserved)
-{
+bool WINAPI DllMain(HMODULE hModule, DWORD dwReason, PVOID pvReserved) {
 	static bool g_initialized = false;
 
-	if( dwReason == DLL_PROCESS_ATTACH )
-	{
+	if( dwReason == DLL_PROCESS_ATTACH) {
 		if(Yelo::Main::GetVersionResultCode() == Yelo::Enums::_version_result_code_invalid )
 			return false;
 	}
 
-	if(dwReason == DLL_PROCESS_ATTACH && !g_initialized)
-	{
+	if(dwReason == DLL_PROCESS_ATTACH && !g_initialized) {
 		Yelo::Main::YeloModuleHandle() = hModule;
 
-#if PLATFORM_IS_USER && defined(DX_WRAPPER)
-		if(!LoadDXProxy(&hModule))
-		{
+#if defined(DX_WRAPPER)
+		if(!LoadDXProxy(&hModule)) {
 			char error[128];
-			sprintf_s(error,
-				"Open Sauce failed to load DirectXInput."
-				"\n\n"
-				"Nothing left to do but crash now, good bye!");
+			sprintf_s(error, "Open Sauce failed to load DirectXInput.\n\nNothing left to do but crash now, good bye!");
 			Yelo::PrepareToDropError(error);
 			return false;
 		}
 #endif
 
-		if(Yelo::Main::IsYeloEnabled())
-		{
+		if(Yelo::Main::IsYeloEnabled()) {
 			Yelo::Main::InsertHooks();
 		}
 		g_initialized = true;
 	}
-	else if(dwReason == DLL_PROCESS_DETACH && g_initialized)
-	{
+	else if(dwReason == DLL_PROCESS_DETACH && g_initialized) {
 		// component disposal occurs in GameSystems.cpp
 
 #ifdef API_DEBUG_MEMORY

@@ -67,8 +67,4 @@ namespace Yelo {
 		}; BOOST_STATIC_ASSERT( sizeof(s_first_person_weapons) == (0x1EA0 * Enums::k_maximum_number_of_local_players));
 		s_first_person_weapons*		FirstPersonWeapons();
 	};
-
-	namespace blam {
-		void PLATFORM_API first_person_weapons_initialize_for_new_map();
-	};
 };
