@@ -29,10 +29,6 @@ namespace Yelo
 
 	namespace Animations
 	{
-#if PLATFORM_IS_EDITOR
-		extern s_animation_list equipment_animation_list;
-		extern s_animation_list projectile_animation_list;
-#endif
 	};
 
 	namespace TagGroups

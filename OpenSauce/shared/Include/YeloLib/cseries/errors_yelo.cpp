@@ -6,7 +6,7 @@
 #include "Common/Precompile.hpp"
 #include <YeloLib/cseries/errors_yelo.hpp>
 
-#if PLATFORM_IS_EDITOR || defined(API_DEBUG)
+#if defined(API_DEBUG)
 #include <YeloLib/Halo1/open_sauce/settings/yelo_shared_settings.hpp>
 
 namespace Yelo
@@ -89,7 +89,6 @@ namespace Yelo
 };
 #endif
 
-#if !PLATFORM_IS_EDITOR
 #include <blamlib/Halo1/cseries/errors.hpp>
 
 namespace Yelo
@@ -106,4 +105,3 @@ namespace Yelo
 		proc_error error = Yelo::Debug::Error;
 	};
 };
-#endif

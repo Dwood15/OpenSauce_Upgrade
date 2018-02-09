@@ -69,20 +69,6 @@ namespace Yelo
 
 			bool ReadItemData(uint32 position, void* buffer, size_t buffer_size);
 
-#if PLATFORM_IS_EDITOR && PLATFORM_TYPE == PLATFORM_TOOL
-		private:
-			int32 AddItemName(cstring item_name);
-			int32 AddNewItem(cstring item_name);
-			int32 GetItemIndex(cstring item_name) const;
-		public:
-			int32 AddItem(cstring item_name, void* item_buffer, int32 item_buffer_size);
-			int32 GetItemDataOffset(int32 item_index);
-
-			static void DeleteForCopy(cstring file);
-
-			void PreprocessForSave();
-			void Save();
-#endif
 		}; BOOST_STATIC_ASSERT( sizeof(s_data_file) == 0x40 );
 
 		// build_cache_file_globals (tools) and cache_file_globals (runtime) share the same ordering of the s_data_file instances, so I wrap them in this fake struct
@@ -93,11 +79,6 @@ namespace Yelo
 			Cache::s_data_file bitmaps;
 
 			s_data_file& Get(Enums::data_file_reference_type data_file);
-
-#if PLATFORM_TYPE == PLATFORM_TOOL
-			void Save();
-			void PreprocessForSave();
-#endif
 		}; BOOST_STATIC_ASSERT( sizeof(s_data_file_globals) == 0xC0 );
 	};
 };

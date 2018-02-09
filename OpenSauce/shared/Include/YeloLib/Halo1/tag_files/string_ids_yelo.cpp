@@ -9,7 +9,7 @@
 
 #include <YeloLib/Halo1/tag_files/string_id_yelo.hpp>
 
-#if PLATFORM_IS_EDITOR || defined(API_DEBUG)
+#if defined(API_DEBUG)
 	struct string_id_yelo_kv_pair
 	{
 		Yelo::string_id key;

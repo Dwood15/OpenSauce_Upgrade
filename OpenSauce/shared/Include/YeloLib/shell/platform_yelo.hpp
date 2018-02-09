@@ -2,7 +2,7 @@
 	Yelo: Open Sauce SDK
 
 	See license\OpenSauce\OpenSauce for specific license information
-*/
+	*/
 #pragma once
 
 //////////////////////////////////////////////////////////////////////////
@@ -51,19 +51,19 @@
 
 
 #if !defined(PLATFORM_TYPE)
-	#if defined(PLATFORM_TYPE_CLIENT)
-		#define PLATFORM_TYPE PLATFORM_GAME_CLIENT
-	#elif defined(PLATFORM_TYPE_DEDI)
-		#define PLATFORM_TYPE PLATFORM_GAME_DEDI
-	#elif defined(PLATFORM_TYPE_GUERILLA)
-		#define PLATFORM_TYPE PLATFORM_GUERILLA
-	#elif defined(PLATFORM_TYPE_TOOL)
-		#define PLATFORM_TYPE PLATFORM_TOOL
-	#elif defined(PLATFORM_TYPE_SAPIEN)
-		#define PLATFORM_TYPE PLATFORM_SAPIEN
-	#else
-		#error PLATFORM_TYPE not defined. Step 1: Bash head on keyboard. Step 2: Repeat. Are you selecting a build config that is just vanilla Debug or Release?
-	#endif
+#if defined(PLATFORM_TYPE_CLIENT)
+#define PLATFORM_TYPE PLATFORM_GAME_CLIENT
+#elif defined(PLATFORM_TYPE_DEDI)
+#define PLATFORM_TYPE PLATFORM_GAME_DEDI
+#elif defined(PLATFORM_TYPE_GUERILLA)
+#define PLATFORM_TYPE PLATFORM_GUERILLA
+#elif defined(PLATFORM_TYPE_TOOL)
+#define PLATFORM_TYPE PLATFORM_TOOL
+#elif defined(PLATFORM_TYPE_SAPIEN)
+#define PLATFORM_TYPE PLATFORM_SAPIEN
+#else
+#error PLATFORM_TYPE not defined. Step 1: Bash head on keyboard. Step 2: Repeat. Are you selecting a build config that is just vanilla Debug or Release?
+#endif
 #endif
 
 
@@ -74,18 +74,12 @@
 // [editor_value]	: value for use in Editor (ie, HEK) builds
 //
 //////////////////////////////////////////////////////////////////////////
-#if PLATFORM_IS_EDITOR
-	#define PLATFORM_ENGINE_VALUE(game_value, editor_value) editor_value
-#else
-	#define PLATFORM_ENGINE_VALUE(game_value, editor_value) game_value
-#endif
+#define PLATFORM_ENGINE_VALUE(game_value, editor_value) game_value
 
 
 // Current platform runs on tag files
-#define PLATFORM_USES_TAG_FILES		(PLATFORM_IS_EDITOR==TRUE)
 // Current platform runs on cache files
 #define PLATFORM_USES_CACHE_FILES	(PLATFORM_IS_EDITOR==FALSE)
-
 
 // TODO: this needs to be relocated. Had to put it here when we migrated to static libs, since the static libs and DLL code all reference it
 #define ASSERTS_ENABLED

@@ -1,121 +1,91 @@
 /*
 	Yelo: Open Sauce SDK
-		Halo 1 (CE) Edition
+	Halo 1 (CE) Edition
 
 	See license\OpenSauce\Halo1_CheApe for specific license information
-*/
+	*/
 #pragma once
 
 // NOTE: it is not advisable to actually use the ARRAY variants with types which define their own destructors
 
 // BLAM_* variants directly use the engine's normal C memory functions for the target platform, sans any special ops (eg, auto-nulling)
 
-#if PLATFORM_IS_EDITOR
-	#include <blamlib/Halo1/cseries/debug_memory.hpp>
 
-	#define YELO_MALLOC(size, fill_with_garbage)	Yelo::blam::debug_malloc( (size), fill_with_garbage, __FILE__, __LINE__)
-	#define YELO_NEW_ARRAY(type, count)				Yelo::blam::debug_new_array<type>( (count), false, __FILE__, __LINE__)
-	#define YELO_NEW(type)							Yelo::blam::debug_new<type>(false, __FILE__, __LINE__)
+#define YELO_MALLOC(size, fill_with_garbage)	malloc( size )
+#define YELO_NEW_ARRAY(type, count)				new type[count]
+#define YELO_NEW(type)							new type
 
-	// Nulls [ptr] before returning
-	#define YELO_FREE(ptr)							Yelo::blam::debug_free_with_null( (ptr), __FILE__, __LINE__)
-	// Nulls [ptr] before returning
-	#define YELO_DELETE(ptr)						Yelo::blam::debug_delete( (ptr), __FILE__, __LINE__ )
-	// Nulls [ptr] before returning
-	#define YELO_DELETE_ARRAY(ptr)					Yelo::blam::debug_delete_array( (ptr), __FILE__, __LINE__ )
+#define YELO_FREE(ptr)							Yelo::Memory::FreeWithNull(ptr)
+#define YELO_DELETE(ptr)						Yelo::Memory::DeleteWithNull(ptr)
+#define YELO_DELETE_ARRAY(ptr)					Yelo::Memory::DeleteArrayWithNull(ptr)
 
-	#define YELO_REALLOC(ptr, new_size)				Yelo::blam::debug_realloc( (ptr), (new_size), __FILE__, __LINE__)
-	#define YELO_RENEW_ARRAY(type, ptr, count)		Yelo::blam::debug_renew_array<type>( (ptr), (count), __FILE__, __LINE__)
-	#define YELO_RENEW(type, ptr)					Yelo::blam::debug_renew<type>( (ptr), __FILE__, __LINE__)
+#define YELO_REALLOC(ptr, new_size)				realloc(ptr, new_size)
+//#define YELO_RENEW_ARRAY(type, ptr, count)
+//#define YELO_RENEW(type, ptr)
 
-	#define BLAM_MALLOC(size)						YELO_MALLOC(size, false)
-	#define BLAM_FREE(ptr)							Yelo::blam::debug_free( (ptr), __FILE__, __LINE__)
-	#define BLAM_REALLOC(ptr, new_size)				YELO_REALLOC(ptr, new_size)
-#else
-	#define YELO_MALLOC(size, fill_with_garbage)	malloc( size )
-	#define YELO_NEW_ARRAY(type, count)				new type[count]
-	#define YELO_NEW(type)							new type
+#define BLAM_MALLOC(size)						Yelo::blam::system_malloc( (size) )
+#define BLAM_FREE(ptr)							Yelo::blam::system_free( (ptr) )
+#define BLAM_REALLOC(ptr, new_size)				Yelo::blam::system_realloc( (ptr), (new_size))
 
-	#define YELO_FREE(ptr)							Yelo::Memory::FreeWithNull(ptr)
-	#define YELO_DELETE(ptr)						Yelo::Memory::DeleteWithNull(ptr)
-	#define YELO_DELETE_ARRAY(ptr)					Yelo::Memory::DeleteArrayWithNull(ptr)
-
-	#define YELO_REALLOC(ptr, new_size)				realloc(ptr, new_size)
-	//#define YELO_RENEW_ARRAY(type, ptr, count)
-	//#define YELO_RENEW(type, ptr)
-
-	#define BLAM_MALLOC(size)						Yelo::blam::system_malloc( (size) )
-	#define BLAM_FREE(ptr)							Yelo::blam::system_free( (ptr) )
-	#define BLAM_REALLOC(ptr, new_size)				Yelo::blam::system_realloc( (ptr), (new_size))
-#endif
 
 #if defined(YELO_MALLOC)
-	#define YELO_NEW_CTOR(type, ...)				new ( YELO_NEW(type) ) type(__VA_ARGS__)
+#define YELO_NEW_CTOR(type, ...)				new ( YELO_NEW(type) ) type(__VA_ARGS__)
 
-	#define YELO_MALLOC_UNIQUE(size, fill_with_garbage)			\
-		std::unique_ptr<void,	Yelo::Memory::memory_deleter<void>>			( YELO_MALLOC(size, fill_with_garbage) )
-	#define YELO_NEW_ARRAY_UNIQUE(type, count)					\
-		std::unique_ptr<type[],	Yelo::Memory::memory_array_deleter<type>>	( YELO_NEW_ARRAY(type, count) )
-	#define YELO_NEW_UNIQUE(type)								\
-		std::unique_ptr<type,	Yelo::Memory::memory_deleter<type>>			( YELO_NEW(type) )
-	#define YELO_NEW_UNIQUE_CTOR(type, ...)						\
-		std::unique_ptr<type,	Yelo::Memory::memory_deleter<type>>			(std::move( YELO_NEW_CTOR(type, __VA_ARGS__) ))
+#define YELO_MALLOC_UNIQUE(size, fill_with_garbage)			\
+	std::unique_ptr<void, Yelo::Memory::memory_deleter<void>>(YELO_MALLOC(size, fill_with_garbage))
+#define YELO_NEW_ARRAY_UNIQUE(type, count)					\
+	std::unique_ptr<type[], Yelo::Memory::memory_array_deleter<type>>(YELO_NEW_ARRAY(type, count))
+#define YELO_NEW_UNIQUE(type)								\
+	std::unique_ptr<type, Yelo::Memory::memory_deleter<type>>(YELO_NEW(type))
+#define YELO_NEW_UNIQUE_CTOR(type, ...)						\
+	std::unique_ptr<type, Yelo::Memory::memory_deleter<type>>(std::move(YELO_NEW_CTOR(type, __VA_ARGS__)))
 #endif
 
-namespace Yelo
-{
-	namespace Memory
-	{
+namespace Yelo {
+	namespace Memory {
 		// Nulls [pointer] before returning
 		template<typename T>
-		void FreeWithNull(T*& pointer)
-		{
+		void FreeWithNull(T*& pointer) {
 			if (pointer != nullptr)
 				free(pointer, file, line);
 
-			pointer = nullptr;
+			pointer=nullptr;
 		}
 		// Nulls [pointer] before returning
 		template<typename T>
-		void DeleteWithNull(T*& pointer)
-		{
-			if (pointer != nullptr)
-			{
+		void DeleteWithNull(T*& pointer) {
+			if (pointer != nullptr) {
 				pointer->~T();
 				delete pointer;
 			}
 
-			pointer = nullptr;
+			pointer=nullptr;
 		}
 		// Nulls [pointer] before returning
 		template<typename T>
-		void DeleteArrayWithNull(T*& pointer)
-		{
+		void DeleteArrayWithNull(T*& pointer) {
 			if (pointer != nullptr)
 				delete[] pointer;
 
-			pointer = nullptr;
+			pointer=nullptr;
 		}
 
 #if defined(YELO_MALLOC_UNIQUE)
 		// Primarily a deleter for std::unique_ptr
 		template<typename T>
-		struct memory_deleter
-		{
-			inline void operator()(T* ptr) const	{ YELO_DELETE(ptr); }
+		struct memory_deleter {
+			inline void operator()(T* ptr) const { YELO_DELETE(ptr); }
 		};
 		template<typename T>
-		struct memory_array_deleter
-		{
-			inline void operator()(T* ptr) const	{ YELO_DELETE_ARRAY(ptr); }
+		struct memory_array_deleter {
+			inline void operator()(T* ptr) const { YELO_DELETE_ARRAY(ptr); }
 		};
 
 		// based on http://blogs.msdn.com/b/vcblog/archive/2008/08/28/the-mallocator.aspx
 		// TODO: needs to be updated to comply with C++11
 		// http://en.cppreference.com/w/cpp/concept/Allocator
 		template<typename T>
-		struct memory_stl_allocator
-		{
+		struct memory_stl_allocator {
 			typedef T         value_type;
 			typedef size_t    size_type;
 			typedef ptrdiff_t difference_type;
@@ -163,9 +133,9 @@ namespace Yelo
 
 
 			void construct(pointer const p, const_reference t) const {
-				void* const pv = CAST(void*, p);
+				void* const pv=CAST(void*, p);
 
-				new (pv) T(t);
+				new (pv)T(t);
 			}
 
 			void destroy(pointer const p) const {
@@ -189,7 +159,7 @@ namespace Yelo
 					throw std::length_error(__FUNCTION__ " - Integer overflow.");
 				}
 
-				void * const pv = YELO_MALLOC(n * sizeof(T), false);
+				void * const pv=YELO_MALLOC(n * sizeof(T), false);
 
 				// Allocators should throw std::bad_alloc in the case of memory allocation failure.
 				if (pv == nullptr)
@@ -209,7 +179,7 @@ namespace Yelo
 			}
 
 			// Allocators are not required to be assignable
-			memory_stl_allocator& operator=(const memory_stl_allocator&) = delete;
+			memory_stl_allocator& operator=(const memory_stl_allocator&)=delete;
 		};
 #endif
 	};

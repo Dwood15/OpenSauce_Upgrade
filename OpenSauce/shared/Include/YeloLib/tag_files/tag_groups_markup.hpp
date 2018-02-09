@@ -31,11 +31,8 @@
 #define TAG_BLOCK(name, block_type)			Yelo::tag_block name
 // Used for blocks which need to allow non-const access
 #define TAG_TBLOCK_(name, block_type)		Yelo::TagBlock<block_type> name
-#if !PLATFORM_IS_EDITOR
-	#define TAG_TBLOCK(name, block_type)	Yelo::TagBlock<const block_type> name
-#else
-	#define TAG_TBLOCK(name, block_type)	Yelo::TagBlock<block_type> name
-#endif
+
+#define TAG_TBLOCK(name, block_type)	Yelo::TagBlock<const block_type> name
 
 // [arg2] = units
 // [arg3] = documentation
@@ -45,11 +42,5 @@
 
 #define TAG_PAD(type, count)				Yelo::byte BOOST_JOIN(pad, __COUNTER__)[sizeof(type)*(count)]
 
-
-#if PLATFORM_IS_EDITOR
-	#define TAG_BLOCK_GET_ELEMENT(block_ptr, index, type)	\
-		CAST_PTR(type*, Yelo::blam::tag_block_get_element(block_ptr, index))
-#else
-	#define TAG_BLOCK_GET_ELEMENT(block_ptr, index, type)	\
-		&(block_ptr->Elements<type>()[index])
-#endif
+#define TAG_BLOCK_GET_ELEMENT(block_ptr, index, type)	\
+&(block_ptr->Elements<type>()[index])

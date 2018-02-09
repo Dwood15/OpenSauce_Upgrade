@@ -100,12 +100,6 @@
     <Filter Include=".zlib\contrib\minizip">
       <UniqueIdentifier>{7ca274bf-65d7-4318-a2b0-e2e8ad6a050a}</UniqueIdentifier>
     </Filter>
-    <Filter Include="_Resources">
-      <UniqueIdentifier>{481b5378-6faf-472e-b7e7-0c936916af1a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="_Resources\OpenSauceIDE">
-      <UniqueIdentifier>{54ab6590-d1e6-4e02-908f-1f365dc3a105}</UniqueIdentifier>
-    </Filter>
     <Filter Include="render\lightmaps">
       <UniqueIdentifier>{6c494c0b-df0a-4dbf-a6bf-7846870854ca}</UniqueIdentifier>
     </Filter>
@@ -157,9 +151,6 @@
       <Filter>cache</Filter>
     </ClInclude>
     <ClInclude Include="..\..\shared\Include\YeloLib\Halo1\cache\shared_cache_file_definitions.hpp">
-      <Filter>cache</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\shared\Include\YeloLib\Halo1\cache\cache_file_builder_yelo.hpp">
       <Filter>cache</Filter>
     </ClInclude>
     <ClInclude Include="..\..\shared\Include\YeloLib\Halo1\cache\cache_file_memory.hpp">
@@ -498,9 +489,6 @@
     <ClInclude Include="..\..\shared\Include\YeloLib\cseries\enum_wrappers.hpp">
       <Filter>cseries</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\shared\Include\YeloLib\Halo1\open_sauce\settings\c_settings_cheape.hpp">
-      <Filter>open_sauce\settings</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\shared\Include\YeloLib\configuration\property_tree\property_tree_logging.hpp">
       <Filter>configuration\property_tree</Filter>
     </ClInclude>
@@ -585,9 +573,6 @@
       <Filter>cache</Filter>
     </ClCompile>
     <ClCompile Include="..\..\shared\Include\YeloLib\Halo1\cache\data_file_yelo.cpp">
-      <Filter>cache</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\shared\Include\YeloLib\Halo1\cache\cache_file_builder_yelo.cpp">
       <Filter>cache</Filter>
     </ClCompile>
     <ClCompile Include="..\..\shared\Include\YeloLib\Halo1\cache\cache_file_memory.cpp">
@@ -830,9 +815,6 @@
     <ClCompile Include="..\..\shared\Include\YeloLib\cryptography\TEA.cpp">
       <Filter>cryptography</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\shared\Include\YeloLib\Halo1\open_sauce\settings\c_settings_cheape.cpp">
-      <Filter>open_sauce\settings</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\shared\Include\YeloLib\configuration\property_tree\property_tree_logging.cpp">
       <Filter>configuration\property_tree</Filter>
     </ClCompile>
@@ -955,61 +937,5 @@
       <Filter>.zlib\contrib\minizip</Filter>
     </Text>
     <Text Include="Halo1_Readme.txt" />
-  </ItemGroup>
-  <ItemGroup>
-    <Xml Include="..\..\shared\Halo1\CheApe\effect_postprocess.xml">
-      <Filter>_Resources\OpenSauceIDE</Filter>
-    </Xml>
-    <Xml Include="..\..\shared\Halo1\CheApe\effect_postprocess_collection.xml">
-      <Filter>_Resources\OpenSauceIDE</Filter>
-    </Xml>
-    <Xml Include="..\..\shared\Halo1\CheApe\equipment_hud_interface_definition.xml">
-      <Filter>_Resources\OpenSauceIDE</Filter>
-    </Xml>
-    <Xml Include="..\..\shared\Halo1\CheApe\model_animations_yelo.xml">
-      <Filter>_Resources\OpenSauceIDE</Filter>
-    </Xml>
-    <Xml Include="..\..\shared\Halo1\CheApe\multilingual_unicode_string_list.xml">
-      <Filter>_Resources\OpenSauceIDE</Filter>
-    </Xml>
-    <Xml Include="..\..\shared\Halo1\CheApe\project_yellow.xml">
-      <Filter>_Resources\OpenSauceIDE</Filter>
-    </Xml>
-    <Xml Include="..\..\shared\Halo1\CheApe\project_yellow_globals.xml">
-      <Filter>_Resources\OpenSauceIDE</Filter>
-    </Xml>
-    <Xml Include="..\..\shared\Halo1\CheApe\project_yellow_globals_cv.xml">
-      <Filter>_Resources\OpenSauceIDE</Filter>
-    </Xml>
-    <Xml Include="..\..\shared\Halo1\CheApe\project_yellow_includes.xml">
-      <Filter>_Resources\OpenSauceIDE</Filter>
-    </Xml>
-    <Xml Include="..\..\shared\Halo1\CheApe\project_yellow_scripting.xml">
-      <Filter>_Resources\OpenSauceIDE</Filter>
-    </Xml>
-    <Xml Include="..\..\shared\Halo1\CheApe\project_yellow_shared.xml">
-      <Filter>_Resources\OpenSauceIDE</Filter>
-    </Xml>
-    <Xml Include="..\..\shared\Halo1\CheApe\shader_model_extension.xml">
-      <Filter>_Resources\OpenSauceIDE</Filter>
-    </Xml>
-    <Xml Include="..\..\shared\Halo1\CheApe\shader_postprocess.xml">
-      <Filter>_Resources\OpenSauceIDE</Filter>
-    </Xml>
-    <Xml Include="..\..\shared\Halo1\CheApe\shader_postprocess_collection.xml">
-      <Filter>_Resources\OpenSauceIDE</Filter>
-    </Xml>
-    <Xml Include="..\..\shared\Halo1\CheApe\shader_postprocess_globals.xml">
-      <Filter>_Resources\OpenSauceIDE</Filter>
-    </Xml>
-    <Xml Include="..\..\shared\Halo1\CheApe\string_id_yelo.xml">
-      <Filter>_Resources\OpenSauceIDE</Filter>
-    </Xml>
-    <Xml Include="..\..\shared\Halo1\CheApe\tag_database.xml">
-      <Filter>_Resources\OpenSauceIDE</Filter>
-    </Xml>
-    <Xml Include="..\..\shared\Halo1\CheApe\text_value_pair_definition.xml">
-      <Filter>_Resources\OpenSauceIDE</Filter>
-    </Xml>
   </ItemGroup>
 </Project>

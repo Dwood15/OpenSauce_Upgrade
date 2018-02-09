@@ -20,10 +20,6 @@
 #include <blamlib/Halo1/tag_files/tag_groups.hpp>
 #include <YeloLib/Halo1/cache/cache_files_yelo.hpp>
 
-#if PLATFORM_IS_EDITOR
-#include <YeloLib/Halo1/open_sauce/settings/c_settings_cheape.hpp>
-#endif
-
 namespace Yelo
 {
 	namespace Cache
@@ -36,11 +32,8 @@ namespace Yelo
 
 		cstring MapsDirectory()
 		{
-#if PLATFORM_IS_EDITOR
-			return Settings::c_settings_cheape::Profile().GetMapsPath();
-#else
 			return K_MAP_FILES_DIRECTORY;
-#endif
+
 		}
 
 		bool DontLoadExternalData()

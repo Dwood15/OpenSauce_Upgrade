@@ -2027,9 +2027,6 @@
     <None Include="Memory\1.10\_EngineLayout.Networking.inl">
       <Filter>_Resources\1.10</Filter>
     </None>
-    <None Include="Memory\1.10\_EngineLayout.Objects.inl">
-      <Filter>_Resources\1.10</Filter>
-    </None>
     <None Include="Memory\1.10\_EngineLayout.Rasterizer.DX9.inl">
       <Filter>_Resources\1.10</Filter>
     </None>
@@ -2038,42 +2035,6 @@
     </None>
     <None Include="Memory\1.10\_EngineLayout.Scenario.inl">
       <Filter>_Resources\1.10</Filter>
-    </None>
-    <None Include="Memory\1.10\Pointers\HaloCE_110_Dedi.Game.EngineFunctions.inl">
-      <Filter>_Resources\1.10\Pointers\Server</Filter>
-    </None>
-    <None Include="Memory\1.10\Pointers\HaloCE_110_Dedi.Game.HS.inl">
-      <Filter>_Resources\1.10\Pointers\Server</Filter>
-    </None>
-    <None Include="Memory\1.10\Pointers\HaloCE_110_Dedi.Game.inl">
-      <Filter>_Resources\1.10\Pointers\Server</Filter>
-    </None>
-    <None Include="Memory\1.10\Pointers\HaloCE_110_Dedi.Networking.inl">
-      <Filter>_Resources\1.10\Pointers\Server</Filter>
-    </None>
-    <None Include="Memory\1.10\Pointers\HaloCE_110_Dedi.Objects.inl">
-      <Filter>_Resources\1.10\Pointers\Server</Filter>
-    </None>
-    <None Include="Memory\1.10\Pointers\HaloCE_110_Dedi.OpenSauce.inl">
-      <Filter>_Resources\1.10\Pointers\Server</Filter>
-    </None>
-    <None Include="Memory\1.10\Pointers\HaloCE_110_Dedi.Scenario.inl">
-      <Filter>_Resources\1.10\Pointers\Server</Filter>
-    </None>
-    <None Include="Memory\1.10\Pointers\HaloCE_110_Dedi.TagGroups.inl">
-      <Filter>_Resources\1.10\Pointers\Server</Filter>
-    </None>
-    <None Include="Memory\1.10\Pointers\HaloCE_110_Dedi_Manual.Game.HS.inl">
-      <Filter>_Resources\1.10\Pointers\Server</Filter>
-    </None>
-    <None Include="Memory\1.10\Pointers\HaloCE_110_Dedi_Manual.Game.inl">
-      <Filter>_Resources\1.10\Pointers\Server</Filter>
-    </None>
-    <None Include="Memory\1.10\Pointers\HaloCE_110_Dedi_Manual.Networking.inl">
-      <Filter>_Resources\1.10\Pointers\Server</Filter>
-    </None>
-    <None Include="Memory\1.10\Pointers\HaloCE_110_Dedi_Manual.TagGroups.inl">
-      <Filter>_Resources\1.10\Pointers\Server</Filter>
     </None>
     <None Include="Memory\1.10\Pointers\HaloCE_110_Runtime.Game.EngineFunctions.inl">
       <Filter>_Resources\1.10\Pointers\Runtime</Filter>
@@ -2221,9 +2182,6 @@
     </Filter>
     <Filter Include="Interface\OpenSauceUI\ScreenDefinitions">
       <UniqueIdentifier>{dc17517c-5dcb-4061-9bb0-3a41ed40d7b2}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="_Resources\1.10\Pointers\Server">
-      <UniqueIdentifier>{4c16552a-33bf-4a67-ad05-a94e1feda2ee}</UniqueIdentifier>
     </Filter>
     <Filter Include="_Resources\1.10\Pointers\Runtime">
       <UniqueIdentifier>{4a7890ee-7d49-4ab9-a526-5e244aebd305}</UniqueIdentifier>

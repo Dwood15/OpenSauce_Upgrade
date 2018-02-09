@@ -5,7 +5,7 @@
 */
 #pragma once
 
-#if PLATFORM_IS_EDITOR || defined(API_DEBUG)
+#if defined(API_DEBUG)
 
 namespace Yelo
 {

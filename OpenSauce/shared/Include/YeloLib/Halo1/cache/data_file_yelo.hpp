@@ -59,23 +59,5 @@ namespace Yelo
 
 			bool TryAndFind(std::string& bitmaps_path, std::string& sounds_path, std::string& locale_path);
 		};
-
-#if PLATFORM_IS_EDITOR && PLATFORM_TYPE == PLATFORM_TOOL
-		class c_data_files : public c_data_files_name_utils
-		{
-		public:
-			// Initialize the data file system to either use a mod-set or the stock 
-			// data files.
-			// NOTE: [maps_path] will be modified if [using_mod_sets] is true!
-			void InitializeForCache(bool using_mod_sets, cstring mod_name, char maps_path[MAX_PATH]);
-
-		private:
-			void CopyStockDataFile(cstring maps_path, Enums::data_file_type df_type);
-		public:
-			// Copy the stock data files that come with the game. These copies will then be used as 
-			// the base input data files for the cache being built
-			void CopyStock();
-		};
-#endif
 	};
 };

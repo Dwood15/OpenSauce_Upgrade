@@ -198,11 +198,7 @@ namespace Yelo
 					// Force the unit to it's idle animation state so that it can then exit the seat
 					blam::unit_animation_set_state(unit_index, Enums::_unit_animation_state_idle);
 
-#if PLATFORM_IS_EDITOR
-					blam::unit_try_and_exit_seat(unit_index, true);
-#else
 					blam::unit_try_and_exit_seat(unit_index);
-#endif
 				}
 			}
 		}

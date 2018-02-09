@@ -48,23 +48,8 @@ namespace Yelo
 		// [data] is 'const' as this doesn't modify the pointer, but the data which it points to.
 		void UpdateTypeHolderDataFromPtr(const TypeHolder& data, const Enums::hs_type type, void* ptr);
 
-#if PLATFORM_IS_EDITOR
-		void ScriptingBlockClear(
-			TAG_TBLOCK(& script_block, TagGroups::s_scripting_definitions));
-		////////////////////////////////////////////////////////////////////////////////////////////////////
-		/// <summary>	Copy the scripting definitions CheApe loaded into the tool code from the memory map. </summary>
-		///
-		/// <param name="script_block"></param>
-		/// <param name="only_internals">
-		/// 	Copy definitions that are part of the stock OpenSauce source code definitions that are part of the stock
-		/// 	OpenSauce source code only, else copy only the user's definitions.
-		/// </param>
-		void ScriptingBlockAddDefinitions(
-			TAG_TBLOCK(& script_block, TagGroups::s_scripting_definitions), bool only_internals);
-#else
 		// currently defined in Halo1_CE's ScriptLibrary.cpp
 		bool DefinitionsMatch(const TagGroups::s_scripting_definitions& data);
-#endif
 	};
 };
 

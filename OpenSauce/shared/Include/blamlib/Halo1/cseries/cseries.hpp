@@ -24,36 +24,7 @@ namespace Yelo
 
 #define YELO_ASSERT_ENABLED TRUE
 
-#if PLATFORM_IS_EDITOR
-	#define __YELO_ASSERT_PROLOGUE() ExitProcess(NONE)
-
-	#define YELO_ASSERT(expression)															\
-		if( !(expression) )																	\
-		{																					\
-			Yelo::blam::display_assert( #expression , __FILE__, __LINE__, true);			\
-			__YELO_ASSERT_PROLOGUE();														\
-		}
-	#define YELO_ASSERT_WARN(expression)													\
-		if( !(expression) )																	\
-		{																					\
-			Yelo::blam::display_assert( #expression , __FILE__, __LINE__, false);			\
-		}
-
-	#define YELO_ASSERT_DISPLAY(expression, format, ...)													\
-		if( !(expression) )																					\
-		{																									\
-			sprintf_s(Yelo::blam::g_display_assert_buffer, format, __VA_ARGS__);							\
-			Yelo::blam::display_assert(Yelo::blam::g_display_assert_buffer, __FILE__, __LINE__, true);		\
-			__YELO_ASSERT_PROLOGUE();																		\
-		}
-
-	#define YELO_ASSERT_CASE_UNREACHABLE()										\
-		default: Yelo::blam::display_assert(nullptr, __FILE__, __LINE__, true);	\
-			__YELO_ASSERT_PROLOGUE();											\
-			__assume(false);													\
-			break;
-
-#elif !PLATFORM_IS_EDITOR && defined(API_DEBUG) && defined(ASSERTS_ENABLED)
+#if defined(API_DEBUG) && defined(ASSERTS_ENABLED)
 	#define __YELO_ASSERT_PROLOGUE() __noop
 
 	#define YELO_ASSERT(expression)															\
@@ -82,14 +53,6 @@ namespace Yelo
 			__YELO_ASSERT_PROLOGUE();														\
 			__assume(false);																\
 			break;
-#else
-	#undef YELO_ASSERT_ENABLED
-	#define YELO_ASSERT_ENABLED FALSE
-
-	#define YELO_ASSERT(expression)							__noop;
-	#define YELO_ASSERT_WARN(expression)					__noop;
-	#define YELO_ASSERT_DISPLAY(expression, format, ...)	__noop;
-	#define YELO_ASSERT_CASE_UNREACHABLE()					default: __assume(false); break;
 #endif
 
 // used to be in cseries_yelo_base, but wanted to make use of YELO_ASSERT_ENABLED to disable API

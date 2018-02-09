@@ -130,7 +130,6 @@
     <ClInclude Include="..\..\shared\Include\YeloLib\Halo1\memory\constant_pool.hpp" />
     <ClInclude Include="..\..\shared\Include\YeloLib\Halo1\objects\objects_yelo.hpp" />
     <ClInclude Include="..\..\shared\Include\YeloLib\Halo1\open_sauce\project_yellow_scenario.hpp" />
-    <ClInclude Include="..\..\shared\Include\YeloLib\Halo1\open_sauce\settings\c_settings_cheape.hpp" />
     <ClInclude Include="..\..\shared\Include\YeloLib\Halo1\render\lightmaps\c_lightmap_manager.hpp" />
     <ClInclude Include="..\..\shared\Include\YeloLib\Halo1\render\sky\c_sky_manager.hpp" />
     <ClInclude Include="..\..\shared\Include\YeloLib\Halo1\time\interpolation\c_interp_base.hpp" />
@@ -185,7 +184,6 @@
     <ClInclude Include="..\..\shared\Include\YeloLib\cseries\pc_crashreport.hpp" />
     <ClInclude Include="..\..\shared\Include\YeloLib\files\files.hpp" />
     <ClInclude Include="..\..\shared\Include\YeloLib\Halo1\cache\cache_files_yelo.hpp" />
-    <ClInclude Include="..\..\shared\Include\YeloLib\Halo1\cache\cache_file_builder_yelo.hpp" />
     <ClInclude Include="..\..\shared\Include\YeloLib\Halo1\cache\cache_file_memory.hpp" />
     <ClInclude Include="..\..\shared\Include\YeloLib\Halo1\cache\cache_file_memory_gestalt_definitions.hpp" />
     <ClInclude Include="..\..\shared\Include\YeloLib\Halo1\cache\cache_file_memory_layout_table_definitions.hpp" />
@@ -310,7 +308,6 @@
     <ClCompile Include="..\..\shared\Include\YeloLib\Halo1\objects\objects_yelo.cpp" />
     <ClCompile Include="..\..\shared\Include\YeloLib\Halo1\render\lightmaps\c_lightmap_manager.cpp" />
     <ClCompile Include="..\..\shared\Include\YeloLib\Halo1\open_sauce\project_yellow_scenario.cpp" />
-    <ClCompile Include="..\..\shared\Include\YeloLib\Halo1\open_sauce\settings\c_settings_cheape.cpp" />
     <ClCompile Include="..\..\shared\Include\YeloLib\Halo1\units\c_unit_seat_damage_manager.cpp" />
     <ClCompile Include="..\..\shared\Include\YeloLib\Halo1\units\c_unit_seat_boarding_manager.cpp" />
     <ClCompile Include="..\..\shared\Include\YeloLib\Halo1\units\units_yelo.cpp" />
@@ -379,7 +376,6 @@
     <ClCompile Include="..\..\shared\Include\YeloLib\cseries\pc_crashreport.cpp" />
     <ClCompile Include="..\..\shared\Include\YeloLib\files\files.cpp" />
     <ClCompile Include="..\..\shared\Include\YeloLib\Halo1\cache\cache_files_yelo.cpp" />
-    <ClCompile Include="..\..\shared\Include\YeloLib\Halo1\cache\cache_file_builder_yelo.cpp" />
     <ClCompile Include="..\..\shared\Include\YeloLib\Halo1\cache\cache_file_memory.cpp" />
     <ClCompile Include="..\..\shared\Include\YeloLib\Halo1\cache\data_file_yelo.cpp" />
     <ClCompile Include="..\..\shared\Include\YeloLib\Halo1\cache\shared_cache_files.cpp" />
@@ -474,30 +470,6 @@
     <Text Include="..\..\shared\Include\TinyXml\OpenSauce.Readme.txt" />
     <Text Include="..\..\shared\Include\zlib\contrib\minizip\OpenSauce.Readme.txt" />
     <Text Include="Halo1_Readme.txt" />
-  </ItemGroup>
-  <ItemGroup>
-    <Xml Include="..\..\shared\Halo1\CheApe\effect_postprocess.xml" />
-    <Xml Include="..\..\shared\Halo1\CheApe\effect_postprocess_collection.xml" />
-    <Xml Include="..\..\shared\Halo1\CheApe\equipment_hud_interface_definition.xml" />
-    <Xml Include="..\..\shared\Halo1\CheApe\model_animations_yelo.xml" />
-    <Xml Include="..\..\shared\Halo1\CheApe\multilingual_unicode_string_list.xml" />
-    <Xml Include="..\..\shared\Halo1\CheApe\project_yellow.xml" />
-    <Xml Include="..\..\shared\Halo1\CheApe\project_yellow_globals.xml" />
-    <Xml Include="..\..\shared\Halo1\CheApe\project_yellow_globals_cv.xml">
-      <SubType>Designer</SubType>
-    </Xml>
-    <Xml Include="..\..\shared\Halo1\CheApe\project_yellow_includes.xml" />
-    <Xml Include="..\..\shared\Halo1\CheApe\project_yellow_scripting.xml">
-      <SubType>Designer</SubType>
-    </Xml>
-    <Xml Include="..\..\shared\Halo1\CheApe\project_yellow_shared.xml" />
-    <Xml Include="..\..\shared\Halo1\CheApe\shader_model_extension.xml" />
-    <Xml Include="..\..\shared\Halo1\CheApe\shader_postprocess.xml" />
-    <Xml Include="..\..\shared\Halo1\CheApe\shader_postprocess_collection.xml" />
-    <Xml Include="..\..\shared\Halo1\CheApe\shader_postprocess_globals.xml" />
-    <Xml Include="..\..\shared\Halo1\CheApe\string_id_yelo.xml" />
-    <Xml Include="..\..\shared\Halo1\CheApe\tag_database.xml" />
-    <Xml Include="..\..\shared\Halo1\CheApe\text_value_pair_definition.xml" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <Import Project="$(OSRootDir)shared\config\msbuild\OpenSauceBuild.targets" />

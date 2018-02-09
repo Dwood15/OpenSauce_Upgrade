@@ -2,35 +2,29 @@
 	Yelo: Open Sauce SDK
 
 	See license\OpenSauce\OpenSauce for specific license information
-*/
+	*/
 #pragma once
 
-namespace Yelo
-{
-	namespace Enums
-	{
+namespace Yelo {
+	namespace Enums {
 		enum {
-			k_max_tag_name_length = 255,
+			k_max_tag_name_length=255,
 
-			k_tag_block_format_buffer_size = 512,
+			k_tag_block_format_buffer_size=512,
 
-			k_maximum_tags_per_tag_chain = 4,
-			k_maximum_children_per_tag = 16,
+			k_maximum_tags_per_tag_chain=4,
+			k_maximum_children_per_tag=16,
 		};
 	};
 
-// Halo1's editor allocates 256 characters for all tag_reference names, even if they're empty
-// Halo2's uses a managed constant pool for tag names so we don't want to allow write-access
-#if PLATFORM_IS_EDITOR && CHEAPE_PLATFORM == CHEAPE_PLATFORM_HALO1
-	typedef char* tag_reference_name_reference;
-#else
-	typedef const char* tag_reference_name_reference;
-#endif
+	// Halo1's editor allocates 256 characters for all tag_reference names, even if they're empty
+	// Halo2's uses a managed constant pool for tag names so we don't want to allow write-access
 
-	struct tag_reference
-	{
+	typedef const char* tag_reference_name_reference;
+
+	struct tag_reference {
 		enum {
-			k_debug_data_size = sizeof(tag_reference_name_reference) + sizeof(int32),
+			k_debug_data_size=sizeof(tag_reference_name_reference)+sizeof(int32),
 		};
 
 		// group tag identifier for this reference
@@ -50,27 +44,24 @@ namespace Yelo
 
 		void set(tag group_tag, cstring name);
 		template<typename T>
-		void set(cstring name)
-		{
+		void set(cstring name) {
 			this->set(T::k_group_tag, name);
 		}
 	};
 #if !defined(PLATFORM_USE_CONDENSED_TAG_INTERFACE)
-	BOOST_STATIC_ASSERT( sizeof(tag_reference) == 0x10 );
-	#define pad_tag_reference PAD32 PAD32 PAD32 PAD32
+	BOOST_STATIC_ASSERT(sizeof(tag_reference) == 0x10);
+#define pad_tag_reference PAD32 PAD32 PAD32 PAD32
 #else
 	BOOST_STATIC_ASSERT( sizeof(tag_reference) == 0x8 );
-	#define pad_tag_reference PAD32 PAD32
+#define pad_tag_reference PAD32 PAD32
 #endif
-	namespace blam
-	{
+	namespace blam {
 		// Clear the values of a tag reference so that it references no tag
 		void PLATFORM_API tag_reference_clear(tag_reference& reference);
 
 		void PLATFORM_API tag_reference_set(tag_reference& reference, tag group_tag, cstring name);
 		template<typename T>
-		void tag_reference_set(tag_reference& reference, cstring name)
-		{
+		void tag_reference_set(tag_reference& reference, cstring name) {
 			return tag_reference_set(reference, T::k_group_tag, name);
 		}
 
@@ -81,15 +72,14 @@ namespace Yelo
 		// non-standard overload of the above resolve()
 		bool tag_reference_resolve(_Inout_ tag_reference& reference, tag expected_group_tag);
 		template<typename T>
-		bool tag_reference_resolve(_Inout_ tag_reference& reference)
-		{
+		bool tag_reference_resolve(_Inout_ tag_reference& reference) {
 			return tag_reference_resolve(reference, T::k_group_tag);
 		}
 	};
 
 
 	struct tag_block {
-		enum { k_debug_data_size = sizeof(struct tag_block_definition*) };
+		enum { k_debug_data_size=sizeof(struct tag_block_definition*) };
 
 		// element count for this block
 		int32 count;
@@ -150,14 +140,13 @@ namespace Yelo
 #endif
 	};
 #if !defined(PLATFORM_USE_CONDENSED_TAG_INTERFACE)
-	BOOST_STATIC_ASSERT( sizeof(tag_block) == 0xC );
-	#define pad_tag_block PAD32 PAD32 PAD32
+	BOOST_STATIC_ASSERT(sizeof(tag_block) == 0xC);
+#define pad_tag_block PAD32 PAD32 PAD32
 #else
 	BOOST_STATIC_ASSERT( sizeof(tag_block) == 0x8 );
-	#define pad_tag_block PAD32 PAD32
+#define pad_tag_block PAD32 PAD32
 #endif
-	namespace blam
-	{
+	namespace blam {
 		// Get the address of a block element which exists at [element_index]
 		void* PLATFORM_API tag_block_get_element(tag_block* block, int32 element_index);
 		const void* PLATFORM_API tag_block_get_element(const tag_block* block, int32 element_index);
@@ -174,11 +163,10 @@ namespace Yelo
 	};
 
 
-	struct tag_data
-	{
+	struct tag_data {
 		enum {
-			k_debug_data_size = sizeof(long_flags) + sizeof(int32) +
-				sizeof(struct tag_block_definition*),
+			k_debug_data_size=sizeof(long_flags)+sizeof(int32)+
+			sizeof(struct tag_block_definition*),
 		};
 
 		// byte count of this data blob
@@ -205,32 +193,29 @@ namespace Yelo
 		// Just makes coding a little more cleaner
 		byte* Bytes() { return CAST_PTR(byte*, address); }
 
-		bool resize(int32 new_size = 0);
+		bool resize(int32 new_size=0);
 	};
 #if !defined(PLATFORM_USE_CONDENSED_TAG_INTERFACE)
-	BOOST_STATIC_ASSERT( sizeof(tag_data) == 0x14 );
-	#define pad_tag_data PAD32 PAD32 PAD32 PAD32 PAD32
+	BOOST_STATIC_ASSERT(sizeof(tag_data) == 0x14);
+#define pad_tag_data PAD32 PAD32 PAD32 PAD32 PAD32
 #else
 	BOOST_STATIC_ASSERT( sizeof(tag_data) == 0x8 );
-	#define pad_tag_data PAD32 PAD32
+#define pad_tag_data PAD32 PAD32
 #endif
-	namespace blam
-	{
+	namespace blam {
 		bool PLATFORM_API tag_data_resize(tag_data* data, int32 new_size);
 
 		void* PLATFORM_API tag_data_get_pointer(tag_data& data, int32 offset, int32 size);
 		template<typename T> inline
-		T* tag_data_get_pointer(tag_data& data, int32 offset, int32 index = 0)
-		{
-			return CAST_PTR(T*, tag_data_get_pointer(data, 
-				offset + (sizeof(T) * index), 
-				sizeof(T)) );
-		}
+			T* tag_data_get_pointer(tag_data& data, int32 offset, int32 index=0) {
+				return CAST_PTR(T*, tag_data_get_pointer(data,
+					offset + (sizeof(T)* index),
+					sizeof(T)));
+			}
 	};
 
 
-	namespace blam
-	{
+	namespace blam {
 		tag PLATFORM_API tag_get_group_tag(datum_index tag_index);
 
 		tag_block* PLATFORM_API tag_get_root_block(datum_index tag_index);
@@ -239,14 +224,12 @@ namespace Yelo
 
 		datum_index PLATFORM_API tag_loaded(tag group_tag, cstring name);
 		template<typename T> inline
-		datum_index tag_loaded(cstring name)
-		{
-			return tag_loaded(T::k_group_tag, name);
-		}
+			datum_index tag_loaded(cstring name) {
+				return tag_loaded(T::k_group_tag, name);
+			}
 
 		cstring PLATFORM_API tag_get_name(datum_index tag_index);
-		inline cstring tag_try_get_name(datum_index tag_index)
-		{
+		inline cstring tag_try_get_name(datum_index tag_index) {
 			return tag_index.IsNull()
 				? "<unspecified tag>"
 				: tag_get_name(tag_index);
@@ -255,42 +238,38 @@ namespace Yelo
 		bool PLATFORM_API tag_read_only(datum_index tag_index);
 
 #if PLATFORM_USES_CACHE_FILES
-	#define TAG_GET_RETURN_MODIFIER const
+#define TAG_GET_RETURN_MODIFIER const
 #else
-	#define TAG_GET_RETURN_MODIFIER
+#define TAG_GET_RETURN_MODIFIER
 #endif
 		// Get the tag definition's address by it's expected group tag and 
 		// it's tag handle [tag_index]
 		TAG_GET_RETURN_MODIFIER void* PLATFORM_API tag_get(tag group_tag, datum_index tag_index);
 		template<typename T> inline
-		TAG_GET_RETURN_MODIFIER T* tag_get(datum_index tag_index)
-		{
-			return CAST_PTR(TAG_GET_RETURN_MODIFIER T*, tag_get(T::k_group_tag, tag_index));
-		}
+			TAG_GET_RETURN_MODIFIER T* tag_get(datum_index tag_index) {
+				return CAST_PTR(TAG_GET_RETURN_MODIFIER T*, tag_get(T::k_group_tag, tag_index));
+			}
 #undef TAG_GET_RETURN_MODIFIER
 
 		datum_index PLATFORM_API tag_new(tag group_name, cstring name);
 		template<typename T> inline
-		datum_index tag_new(cstring name)
-		{
-			return tag_new(T::k_group_tag, name);
-		}
+			datum_index tag_new(cstring name) {
+				return tag_new(T::k_group_tag, name);
+			}
 
 		// Load a tag definition into memory.
 		// Returns the tag handle of the loaded tag definition
 		datum_index PLATFORM_API tag_load(tag group_tag, cstring name, long_flags file_flags);
 		template<typename T> inline
-		datum_index tag_load(cstring name, long_flags file_flags)
-		{
-			return tag_load(T::k_group_tag, name, file_flags);
-		}
+			datum_index tag_load(cstring name, long_flags file_flags) {
+				return tag_load(T::k_group_tag, name, file_flags);
+			}
 
 		datum_index PLATFORM_API tag_reload(tag group_tag, cstring name);
 		template<typename T> inline
-		datum_index tag_reload(cstring name)
-		{
-			return tag_reload(T::k_group_tag, name);
-		}
+			datum_index tag_reload(cstring name) {
+				return tag_reload(T::k_group_tag, name);
+			}
 
 		void PLATFORM_API tag_load_children(datum_index tag_index);
 
@@ -302,8 +281,7 @@ namespace Yelo
 	};
 
 
-	namespace TagGroups
-	{
+	namespace TagGroups {
 		// just an endian swap
 		void TagSwap(tag& x);
 
@@ -313,31 +291,27 @@ namespace Yelo
 		// Returns false if not, or tag_index is invalid.
 		bool TagIsInstanceOf(datum_index tag_index, tag group_tag);
 		template<typename T> inline
-		bool TagIsInstanceOf(datum_index tag_index)
-		{
-			return TagIsInstanceOf(tag_index, T::k_group_tag);
-		}
+			bool TagIsInstanceOf(datum_index tag_index) {
+				return TagIsInstanceOf(tag_index, T::k_group_tag);
+			}
 
 		// Returns the tag as non-const. Are you sure you want to be writing to tags at runtime?
 		template<typename T> inline
-		T* TagGetForModify(datum_index tag_index)
-		{
-			return CAST_QUAL(T*, blam::tag_get<T>(tag_index));
-		}
+			T* TagGetForModify(datum_index tag_index) {
+				return CAST_QUAL(T*, blam::tag_get<T>(tag_index));
+			}
 
 		// 'Unsafe' in that it returns the tag as non-const and doesn't do any bounds checking
 		// Useful when you're using tag_iterator and known you're getting some good input
 		template<typename T> inline
-		T* TagGetUnsafe(datum_index tag_index)
-		{
-			extern void* TagGetUnsafeImpl(datum_index tag_index);
+			T* TagGetUnsafe(datum_index tag_index) {
+				extern void* TagGetUnsafeImpl(datum_index tag_index);
 
-			return CAST_PTR(T*, TagGetUnsafeImpl(tag_index));
-		}
+				return CAST_PTR(T*, TagGetUnsafeImpl(tag_index));
+			}
 
 		// Union hack to use a group tag as a string
-		union group_tag_to_string
-		{
+		union group_tag_to_string {
 			struct {
 				tag group;
 				PAD8; // null terminator
@@ -347,8 +321,7 @@ namespace Yelo
 			group_tag_to_string& Terminate();
 			group_tag_to_string& TagSwap();
 
-			cstring ToString()
-			{
+			cstring ToString() {
 				return Terminate().TagSwap().str;
 			}
 		};
@@ -356,6 +329,6 @@ namespace Yelo
 		struct s_tag_iterator {
 			Memory::s_data_iterator instances_iterator;
 			tag group_tag_filter;
-		}; BOOST_STATIC_ASSERT( sizeof(s_tag_iterator) == 0x14 );
+		}; BOOST_STATIC_ASSERT(sizeof(s_tag_iterator) == 0x14);
 	};
 };
