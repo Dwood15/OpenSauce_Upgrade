@@ -6,23 +6,7 @@
 */
 #include "Common/GameSystemComponent.IterationRoundBegin.inl"
 
-#if		BOOST_PP_ITERATION() == 1 && PLATFORM_IS_DEDI
-#	if		__GS_COMPONENT == __GS_COMPONENT_LIFECYCLE
-#		define __GS_COMPONENT_INITIALIZE	Server::Initialize
-#		define __GS_COMPONENT_DISPOSE		Server::Dispose
-#	endif
-#elif	BOOST_PP_ITERATION() == 2 && PLATFORM_IS_DEDI
-#	if		__GS_COMPONENT == __GS_COMPONENT_LIFECYCLE
-#		define __GS_COMPONENT_INITIALIZE	Networking::HTTP::Server::Initialize
-#		define __GS_COMPONENT_DISPOSE		Networking::HTTP::Server::Dispose
-#		define __GS_COMPONENT_UPDATE		Networking::HTTP::Server::Update
-#	endif
-#elif	BOOST_PP_ITERATION() == 3 && PLATFORM_IS_DEDI
-#	if		__GS_COMPONENT == __GS_COMPONENT_LIFECYCLE
-#		define __GS_COMPONENT_INITIALIZE	Networking::HTTP::Server::MapDownload::Initialize
-#		define __GS_COMPONENT_DISPOSE		Networking::HTTP::Server::MapDownload::Dispose
-#	endif
-#elif	BOOST_PP_ITERATION() == 4
+#if		BOOST_PP_ITERATION() == 4
 #	if		__GS_COMPONENT == __GS_COMPONENT_LIFECYCLE
 #		define __GS_COMPONENT_INITIALIZE	Networking::HTTP::Client::Initialize
 #		define __GS_COMPONENT_DISPOSE		Networking::HTTP::Client::Dispose

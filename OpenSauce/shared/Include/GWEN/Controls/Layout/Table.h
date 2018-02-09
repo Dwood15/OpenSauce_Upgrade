@@ -2,10 +2,9 @@
 	GWEN
 	Copyright (c) 2010 Facepunch Studios
 	See license in Gwen.h
-*/
+	*/
 #pragma once
 
-#if !PLATFORM_IS_DEDI
 
 #ifndef GWEN_CONTROLS_LAYOUT_TABLE_H
 #define GWEN_CONTROLS_LAYOUT_TABLE_H
@@ -13,24 +12,19 @@
 #include "Gwen/Controls/Button.h"
 #include "Gwen/Utility.h"
 
-namespace Gwen
-{
-	namespace Controls
-	{
-		namespace Layout
-		{
+namespace Gwen {
+	namespace Controls {
+		namespace Layout {
 			class Table;
 
-			class GWEN_EXPORT TableRow : public Base
-			{
-					static const int MaxColumns = 16;
+			class GWEN_EXPORT TableRow : public Base {
+				static const int MaxColumns=16;
 
-					GWEN_CONTROL_INLINE( TableRow, Base )
-					{
-						SetEven( false );
+				GWEN_CONTROL_INLINE(TableRow, Base) {
+					SetEven(false);
 
-						for ( int i = 0; i < MaxColumns; i++ )
-						{ m_Columns[i] = NULL; }
+					for (int i=0; i < MaxColumns; i++)                                                                                                                                                                                                                                                                                                                      {
+ m_Columns[i] = NULL; }
 
 						m_ColumnCount = 0;
 					}
@@ -337,5 +331,4 @@ namespace Gwen
 		}
 	}
 }
-#endif
 #endif

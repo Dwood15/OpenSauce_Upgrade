@@ -5,12 +5,8 @@
 	See license\OpenSauce\Halo1_CE for specific license information
 */
 
-#if !PLATFORM_IS_DEDI
 #include "Memory/1.10/Pointers/HaloCE_110_Runtime.Game.EngineFunctions.inl"
 #include "Memory/1.10/Pointers/HaloCE_110_Runtime_Manual.Game.EngineFunctions.inl"
-#else
-#include "Memory/1.10/Pointers/HaloCE_110_Dedi.Game.EngineFunctions.inl"
-#endif
 
 ENGINE_PTR(const void*, gather_exception_data,	DUO_PTR(K_GATHER_EXCEPTION_DATA));
 FUNC_PTR(GATHER_EXCEPTION,						DUO_PTR(K_GATHER_EXCEPTION));

@@ -130,11 +130,6 @@
 		_hs_function_structure_bsp_set_lightmap_set,
 		_hs_function_structure_bsp_set_sky_set,
 		
-		_hs_function_ai_transform_actor,
-		_hs_function_ai_transform_actors,
-		_hs_function_ai_transform_actors_by_type,
-		_hs_function_ai_actor_is_transforming,
-
 		//////////////////////////////////////////////////////////////////////////
 		// everything after is runtime-only, ie not defined in the CheApe scripting definitions
 
@@ -185,8 +180,6 @@
 		_hs_global_pp_motion_blur_enabled,
 		_hs_global_pp_motion_blur_amount,
 
-		_hs_global_ai_transforms_enabled,
-		
 		_hs_global_rasterizer_model_normal_mapping,
 		_hs_global_rasterizer_model_detail_normal_mapping,
 		_hs_global_rasterizer_model_specular_lights,
@@ -195,10 +188,6 @@
 		_hs_global_rasterizer_environment_dlm_specular,
 		_hs_global_rasterizer_effect_depth_fade,
 		
-	// debug globals
-	#ifdef API_DEBUG
-	#endif
-
 		k_hs_global_enumeration_count,
 	};
 
@@ -213,25 +202,15 @@
 
 
 	HS_FUNCTION(physics_get_gravity, real, "");
-	HS_FUNCTION_WITH_PARAMS(physics_set_gravity, void, "", 
-			"gravity fraction", 1,
-		HS_TYPE(real)
-	);
+	HS_FUNCTION_WITH_PARAMS(physics_set_gravity, void, "", "gravity fraction", 1, HS_TYPE(real));
 	HS_FUNCTION(physics_constants_reset, void, "");
 
 
 	#include "Game/ScriptLibrary.Definitions.RuntimeData.inl"
 	
 
-	HS_FUNCTION_WITH_PARAMS(game_change_version_id, bool, "returns whether the change was successful or not", 
-			"<also-change-game-build-string> <version-string> ", 2,
-		HS_TYPE(bool),
-		HS_TYPE(string)
-	);
-	HS_FUNCTION_WITH_PARAMS(game_engine_data_get_integer, long, "", 
-			"<data-name>", 1,
-		HS_TYPE(string)
-	);
+	HS_FUNCTION_WITH_PARAMS(game_change_version_id, bool, "returns whether the change was successful or not", "<also-change-game-build-string> <version-string> ", 2, HS_TYPE(bool), HS_TYPE(string));
+	HS_FUNCTION_WITH_PARAMS(game_engine_data_get_integer, long, "", "<data-name>", 1, HS_TYPE(string));
 
 
 	HS_FUNCTION(machine_is_host, bool, "returns whether or not the local machine is the host");
@@ -330,18 +309,11 @@
 	HS_GLOBAL2(rasterizer_rt_display, short, &DX9::c_gbuffer_system::g_debug_index, nullptr);
 	HS_GLOBAL2(rasterizer_gbuffer_enabled, bool, &DX9::c_gbuffer_system::g_system_enabled, nullptr);
 
-	HS_GLOBAL2(pp_external_post_processes_enabled, bool, 
-		&Rasterizer::PostProcessing::Scripting::Globals::Enabled_External(), nullptr);
-	HS_GLOBAL2(pp_internal_post_processes_enabled, bool, 
-		&Rasterizer::PostProcessing::Scripting::Globals::Enabled_Internal(), nullptr);
-	HS_GLOBAL2(pp_fxaa_enabled, bool, 
-		&Rasterizer::PostProcessing::Scripting::Globals::Enabled_FXAA(), nullptr);
-	HS_GLOBAL2(pp_motion_blur_enabled, bool, 
-		&Rasterizer::PostProcessing::Scripting::Globals::Enabled_MotionBlur(), nullptr);
-	HS_GLOBAL2(pp_motion_blur_amount, real, 
-		&Rasterizer::PostProcessing::Scripting::Globals::MotionBlur_Amount(), nullptr);
-
-	HS_GLOBAL2(ai_transforms_enabled, bool, &AI::Transform::TransformsEnabled(), nullptr);
+	HS_GLOBAL2(pp_external_post_processes_enabled, bool, &Rasterizer::PostProcessing::Scripting::Globals::Enabled_External(), nullptr);
+	HS_GLOBAL2(pp_internal_post_processes_enabled, bool, &Rasterizer::PostProcessing::Scripting::Globals::Enabled_Internal(), nullptr);
+	HS_GLOBAL2(pp_fxaa_enabled, bool, &Rasterizer::PostProcessing::Scripting::Globals::Enabled_FXAA(), nullptr);
+	HS_GLOBAL2(pp_motion_blur_enabled, bool, &Rasterizer::PostProcessing::Scripting::Globals::Enabled_MotionBlur(), nullptr);
+	HS_GLOBAL2(pp_motion_blur_amount, real, &Rasterizer::PostProcessing::Scripting::Globals::MotionBlur_Amount(), nullptr);
 	
 	HS_GLOBAL2(rasterizer_model_normal_mapping, bool, &Rasterizer::ShaderExtension::Model::g_rasterizer_model_normal_mapping, nullptr);
 	HS_GLOBAL2(rasterizer_model_detail_normal_mapping, bool, &Rasterizer::ShaderExtension::Model::g_rasterizer_model_detail_normal_mapping, nullptr);
@@ -460,11 +432,6 @@
 		&GET_HS_FUNCTION(structure_bsp_set_lightmap_set),
 		&GET_HS_FUNCTION(structure_bsp_set_sky_set),
 		
-		&GET_HS_FUNCTION(ai_transform_actor),
-		&GET_HS_FUNCTION(ai_transform_actors),
-		&GET_HS_FUNCTION(ai_transform_actors_by_type),
-		&GET_HS_FUNCTION(ai_actor_is_transforming),
-
 		&GET_HS_FUNCTION(vehicle_remapper_enabled),
 
 		&GET_HS_FUNCTION(sv_httpserver_set_thread_count),
@@ -515,8 +482,6 @@
 		&GET_HS_GLOBAL(pp_motion_blur_enabled),
 		&GET_HS_GLOBAL(pp_motion_blur_amount),
 
-		&GET_HS_GLOBAL(ai_transforms_enabled),
-		
 		&GET_HS_GLOBAL(rasterizer_model_normal_mapping),
 		&GET_HS_GLOBAL(rasterizer_model_detail_normal_mapping),
 		&GET_HS_GLOBAL(rasterizer_model_specular_lights),

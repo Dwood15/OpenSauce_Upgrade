@@ -5,13 +5,8 @@
 	See license\OpenSauce\Halo1_CE for specific license information
 */
 
-#if !PLATFORM_IS_DEDI
 #include "Memory/1.10/Pointers/HaloCE_110_Runtime.Game.HS.inl"
 #include "Memory/1.10/Pointers/HaloCE_110_Runtime_Manual.Game.HS.inl"
-#else
-#include "Memory/1.10/Pointers/HaloCE_110_Dedi.Game.HS.inl"
-#include "Memory/1.10/Pointers/HaloCE_110_Dedi_Manual.Game.HS.inl"
-#endif
 
 //////////////////////////////////////////////////////////////////////////
 // Scripting.cpp

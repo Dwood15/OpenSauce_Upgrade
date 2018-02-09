@@ -5,10 +5,8 @@
 	See license\OpenSauce\Halo1_CE for specific license information
 */
 
-#if !PLATFORM_IS_DEDI
 #include "Memory/1.10/Pointers/HaloCE_110_Runtime.Rasterizer.inl"
 #include "Memory/1.10/Pointers/HaloCE_110_Runtime_Manual.Rasterizer.inl"
-#endif
 
 //////////////////////////////////////////////////////////////////////////
 // Rasterizer.cpp

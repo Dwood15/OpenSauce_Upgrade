@@ -5,8 +5,6 @@
 */
 #pragma once
 
-#if !PLATFORM_IS_DEDI
-
 #ifndef GWEN_CONTROLS_PROPERTY_COMBOBOX_H
 #define GWEN_CONTROLS_PROPERTY_COMBOBOX_H
 
@@ -70,5 +68,4 @@ namespace Gwen
 		}
 	}
 }
-#endif
 #endif

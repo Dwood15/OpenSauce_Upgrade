@@ -757,17 +757,6 @@
     <None Include="Game\Players.NetworkPlayerUnit.inl" />
     <None Include="Game\Players.Scripting.inl" />
     <None Include="Interface\GameUI_Hud.inl" />
-    <None Include="Memory\1.10\Pointers\HaloCE_110_Dedi.Game.EngineFunctions.inl" />
-    <None Include="Memory\1.10\Pointers\HaloCE_110_Dedi.Game.HS.inl" />
-    <None Include="Memory\1.10\Pointers\HaloCE_110_Dedi.Game.inl" />
-    <None Include="Memory\1.10\Pointers\HaloCE_110_Dedi.Networking.inl" />
-    <None Include="Memory\1.10\Pointers\HaloCE_110_Dedi.Objects.inl" />
-    <None Include="Memory\1.10\Pointers\HaloCE_110_Dedi.OpenSauce.inl" />
-    <None Include="Memory\1.10\Pointers\HaloCE_110_Dedi.Scenario.inl" />
-    <None Include="Memory\1.10\Pointers\HaloCE_110_Dedi.TagGroups.inl" />
-    <None Include="Memory\1.10\Pointers\HaloCE_110_Dedi_Manual.Game.HS.inl" />
-    <None Include="Memory\1.10\Pointers\HaloCE_110_Dedi_Manual.Game.inl" />
-    <None Include="Memory\1.10\Pointers\HaloCE_110_Dedi_Manual.Networking.inl" />
     <None Include="Memory\1.10\Pointers\HaloCE_110_Runtime.Game.EngineFunctions.inl" />
     <None Include="Memory\1.10\Pointers\HaloCE_110_Runtime.Game.HS.inl" />
     <None Include="Memory\1.10\Pointers\HaloCE_110_Runtime.Game.inl" />
@@ -781,7 +770,6 @@
     <None Include="Memory\1.10\Pointers\HaloCE_110_Runtime.Rasterizer.ShaderExtension.inl" />
     <None Include="Memory\1.10\Pointers\HaloCE_110_Runtime.Scenario.inl" />
     <None Include="Memory\1.10\Pointers\HaloCE_110_Runtime.TagGroups.inl" />
-    <None Include="Memory\1.10\Pointers\HaloCE_110_Dedi_Manual.TagGroups.inl" />
     <None Include="Memory\1.10\Pointers\HaloCE_110_Runtime_Manual.Game.EngineFunctions.inl" />
     <None Include="Memory\1.10\Pointers\HaloCE_110_Runtime_Manual.Game.HS.inl" />
     <None Include="Memory\1.10\Pointers\HaloCE_110_Runtime_Manual.Game.inl" />
@@ -798,7 +786,6 @@
     <None Include="Memory\1.10\_EngineLayout.Game.inl" />
     <None Include="Memory\1.10\_EngineLayout.Interface.inl" />
     <None Include="Memory\1.10\_EngineLayout.Networking.inl" />
-    <None Include="Memory\1.10\_EngineLayout.Objects.inl" />
     <None Include="Memory\1.10\_EngineLayout.OpenSauce.inl" />
     <None Include="Memory\1.10\_EngineLayout.Rasterizer.DX9.inl" />
     <None Include="Memory\1.10\_EngineLayout.Rasterizer.inl" />
