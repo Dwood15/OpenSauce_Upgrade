@@ -8,8 +8,7 @@
 #include <blamlib/tag_files/tag_groups_base.hpp>
 #include <YeloLib/tag_files/tag_groups_base_yelo.hpp>
 
-namespace Yelo
-{
+namespace Yelo {
 	namespace Enums {
 		enum {
 			k_protected_group_tag='prot', // HEK+: this overrides the scenario's group tag in the tag index.
@@ -97,5 +96,5 @@ namespace Yelo
 		datum_index PLATFORM_API tag_iterator_next(TagGroups::s_tag_iterator& iter);
 	};
 
-	namespace TagGroups { };
+	namespace TagGroups {};
 };

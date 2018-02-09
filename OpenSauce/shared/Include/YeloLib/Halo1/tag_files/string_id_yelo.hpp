@@ -46,12 +46,6 @@ namespace Yelo
 		static cstring GetString(string_id id);
 
 		static void FormatString(char* string);
-#if PLATFORM_IS_EDITOR
-		// Get the start of a string_id value that is pretending to be a tag name
-		static char* GetStringStart(tag_reference_name_reference name);
-
-		static tag_reference_definition* global_reference_definition;
-#endif
 	};
 #if TRUE//PLATFORM_IS_EDITOR // TODO: uncomment this when we finish 'runtime field size' support in the tag system
 	BOOST_STATIC_ASSERT( sizeof(string_id_yelo) == 0x14 );
@@ -70,13 +64,6 @@ namespace Yelo
 			tag_data documentation;
 			PAD_TYPE(tag_data);
 		};
-
-#if PLATFORM_IS_EDITOR
-		bool TagFieldIsStringId(const tag_field* field);
-		// Is the field a tag_string field to be treated as a string_id?
-		// TODO: when we encounter tag_strings which contain invalid string_id characters, we'll need to warn the user
-		bool TagFieldIsOldStringId(const tag_field* field);
-#endif
 	};
 
 	namespace _string_id

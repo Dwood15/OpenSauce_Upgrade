@@ -47,8 +47,7 @@
 //#define CHEAPE_PLATFORM CHEAPE_PLATFORM_
 
 // Set to zero to enable code blocks which are unused (eg, engine hooks which have no special code, yet, in OS)
-#define PLATFORM_DISABLE_UNUSED_CODE 1
-
+#define PLATFORM_DISABLE_UNUSED_CODE 0
 
 #if !defined(PLATFORM_TYPE)
 #if defined(PLATFORM_TYPE_CLIENT)

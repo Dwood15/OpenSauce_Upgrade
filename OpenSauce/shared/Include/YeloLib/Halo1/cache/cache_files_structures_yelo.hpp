@@ -120,20 +120,6 @@ namespace Yelo
 				uint32 tag_string_to_id_storage_header_offset;
 			}resources;
 
-#if PLATFORM_IS_EDITOR && PLATFORM_TYPE == PLATFORM_TOOL
-			void InitializeForNewMap();
-			void InitializeForCacheBuild(bool using_mod_sets, cstring mod_name, bool use_memory_upgrades);
-		public://private: // TODO: this should be private once the BCF code is rewritten
-			void InitializeBuildInfo(_enum stage, uint32 revision, const byte (&uuid_buffer)[Enums::k_uuid_buffer_size]);
-		public:
-			// Initializes the yelo header with the default build info settings
-			void InitializeBuildInfo();
-			// Initializes the build info with a scenario's yelo build info
-			void InitializeBuildInfo(const TagGroups::s_project_yellow_scenario_build_info& build_info);
-			// Initializes the minimum os build info
-			void InitializeMinimumBuildInfo(const byte major, const byte minor, const uint16 build);
-#endif
-
 			// Is there a yelo header present?
 			bool HasHeader() const;
 			bool TagVersioningIsValid() const;
