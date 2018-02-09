@@ -5,8 +5,6 @@
 */
 #pragma once
 
-#if !PLATFORM_IS_DEDI
-
 #ifndef GWEN_CONTROLS_PROPERTY_COLORSELECTOR_H
 #define GWEN_CONTROLS_PROPERTY_COLORSELECTOR_H
 
@@ -108,5 +106,4 @@ namespace Gwen
 		}
 	}
 }
-#endif
 #endif

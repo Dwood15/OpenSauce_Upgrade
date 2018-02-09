@@ -5,10 +5,9 @@
 	See license\OpenSauce\Halo1_CE for specific license information
 */
 
-#if !PLATFORM_IS_DEDI
 #include "Memory/1.10/Pointers/HaloCE_110_Runtime.Rasterizer.DX9.inl"
 #include "Memory/1.10/Pointers/HaloCE_110_Runtime_Manual.Rasterizer.DX9.inl"
-#endif
+
 
 //////////////////////////////////////////////////////////////////////////
 // DX9.cpp
