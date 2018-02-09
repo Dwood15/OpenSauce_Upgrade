@@ -1,9 +1,9 @@
 /*
 	Yelo: Open Sauce SDK
-		Halo 1 (CE) Edition
+	Halo 1 (CE) Edition
 
 	See license\OpenSauce\Halo1_CE for specific license information
-*/
+	*/
 #include "Common/Precompile.hpp"
 #include "Game/AI.hpp"
 
@@ -16,16 +16,13 @@
 #include "Objects/Objects.hpp"
 #include "Objects/Units.hpp"
 
-#include "Game/AI.Transform.inl"
 
-namespace Yelo
-{
-	namespace AI
-	{
+namespace Yelo {
+	namespace AI {
 #define __EL_INCLUDE_ID			__EL_INCLUDE_GAME
 #define __EL_INCLUDE_FILE_ID	__EL_GAME_AI
 #include "Memory/_EngineLayout.inl"
-		
+
 		s_ai_globals_data* AIGlobals()								DPTR_IMP_GET(ai_globals);
 		actor_data_t& Actors()										DPTR_IMP_GET_BYREF(actors);
 		swarm_data_t& Swarms()										DPTR_IMP_GET_BYREF(swarms);
@@ -40,129 +37,94 @@ namespace Yelo
 		ai_communication_reply_events_t& AICommunicationReplies()	DPTR_IMP_GET_BYREF(ai_communication_replies);
 		ai_conversation_data_t& AIConversations()					DPTR_IMP_GET_BYREF(ai_conversations);
 
-		API_FUNC_NAKED void ActorActionHandleVehicleExitHook()
-		{
-			static uintptr_t RETN_ADDRESS = GET_FUNC_PTR(ACTOR_ACTION_HANDLE_VEHICLE_EXIT_RETN);
+		API_FUNC_NAKED void ActorActionHandleVehicleExitHook() {
+			static uintptr_t RETN_ADDRESS=GET_FUNC_PTR(ACTOR_ACTION_HANDLE_VEHICLE_EXIT_RETN);
 
 			_asm
 			{
 				push	eax
-				push	edx
-				xor		ecx, ecx
-				mov		cl, [eax + 60h]
+					push	edx
+					xor		ecx, ecx
+					mov		cl, [eax + 60h]
 
-				push	ecx
-				push	eax
-				push	ebx
-				call	AI::ActorPropShouldCauseExitVehicle
-				add		esp, 0Ch
+					push	ecx
+					push	eax
+					push	ebx
+					call	AI::ActorPropShouldCauseExitVehicle
+					add		esp, 0Ch
 
-				mov		cl, al
-				pop		edx
-				pop		eax
+					mov		cl, al
+					pop		edx
+					pop		eax
 
-				test    cl, cl
+					test    cl, cl
 
-				jmp		RETN_ADDRESS
+					jmp		RETN_ADDRESS
 			};
 		}
 
-		API_FUNC_NAKED void PropStatusRefreshHook()
-		{
-			static uintptr_t RETN_ADDRESS = GET_FUNC_PTR(PROP_STATUS_REFRESH_RETN);
+		API_FUNC_NAKED void PropStatusRefreshHook() {
+			static uintptr_t RETN_ADDRESS=GET_FUNC_PTR(PROP_STATUS_REFRESH_RETN);
 
 			_asm
 			{
 				push	ecx
-				mov		cl, al
-				push	ecx
+					mov		cl, al
+					push	ecx
 
-				push	ebp
-				call	AI::ActorShouldIgnoreSeatedProp
-				add		esp, 4
-				
-				pop		ecx
-				or		cl, al
-				mov		[ebp + 133h], cl
-				pop		ecx
+					push	ebp
+					call	AI::ActorShouldIgnoreSeatedProp
+					add		esp, 4
 
-				jmp		RETN_ADDRESS
+					pop		ecx
+					or		cl, al
+					mov[ebp + 133h], cl
+					pop		ecx
+
+					jmp		RETN_ADDRESS
 			}
 		}
 
-		API_FUNC_NAKED void ActorInputUpdateHook()
-		{
-			static uintptr_t RETN_ADDRESS = GET_FUNC_PTR(ACTOR_INPUT_UPDATE_RETN);
+		API_FUNC_NAKED void ActorInputUpdateHook() {
+			static uintptr_t RETN_ADDRESS=GET_FUNC_PTR(ACTOR_INPUT_UPDATE_RETN);
 
 			_asm
 			{
 				push	eax
 
-				push	ebx
-				call	AI::ActorShouldPanicAboutMountedUnit
-				add		esp, 4
+					push	ebx
+					call	AI::ActorShouldPanicAboutMountedUnit
+					add		esp, 4
 
-				mov		byte ptr [esi+1B4h], al
+					mov		byte ptr[esi + 1B4h], al
 
-				pop		eax
-				jmp		RETN_ADDRESS
+					pop		eax
+					jmp		RETN_ADDRESS
 			}
 		}
 
-		void Initialize()
-		{
-#if !PLATFORM_DISABLE_UNUSED_CODE
-			Memory::CreateHookRelativeCall(&AI::Update, GET_FUNC_VPTR(AI_UPDATE_HOOK), Enums::_x86_opcode_retn);
-#endif
+		void Initialize() {
 			Memory::WriteRelativeJmp(&ActorActionHandleVehicleExitHook, GET_FUNC_VPTR(ACTOR_ACTION_HANDLE_VEHICLE_EXIT_HOOK), true);
 			Memory::WriteRelativeJmp(&PropStatusRefreshHook, GET_FUNC_VPTR(PROP_STATUS_REFRESH_HOOK), true);
 			Memory::WriteRelativeJmp(&ActorInputUpdateHook, GET_FUNC_VPTR(ACTOR_INPUT_UPDATE_HOOK), true);
-
-			Transform::Initialize();
 		}
 
-		void Dispose()
-		{
-		}
+		void Dispose() { }
 
-		void InitializeForNewGameState()
-		{
-			Transform::InitializeForNewGameState();
-		}
-		
-		void InitializeForNewMap()
-		{
-			Transform::InitializeForNewMap();
-		}
+		void InitializeForNewGameState() { }
 
-		void DisposeFromOldMap()
-		{
-			Transform::DisposeFromOldMap();
-		}
+		void InitializeForNewMap() { }
 
-		void PLATFORM_API Update()
-		{
+		void DisposeFromOldMap() { }
 
-		}
+		void PLATFORM_API Update() { }
 
-		void HandleGameStateLifeCycle(_enum life_state)
-		{
-			Transform::HandleGameStateLifeCycle(life_state);
-		}
+		void HandleGameStateLifeCycle(_enum life_state) { }
 
-		void ObjectsUpdate()
-		{
+		void ObjectsUpdate() {
 			Objects::c_object_iterator iter(Enums::_object_type_mask_unit);
-
-			for(auto object_index : iter)
-			{
-				Transform::UnitUpdate(object_index.index);
-			}
 		}
 
-		void UnitDamageAftermath(const datum_index object_index, const Objects::s_damage_data* damage_data)
-		{
-			Transform::UnitDamaged(object_index, damage_data);
-		}
+		void UnitDamageAftermath(const datum_index object_index, const Objects::s_damage_data* damage_data) { }
 	};
 };

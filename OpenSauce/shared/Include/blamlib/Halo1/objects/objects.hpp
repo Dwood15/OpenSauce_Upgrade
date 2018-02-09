@@ -1,9 +1,9 @@
 /*
 	Yelo: Open Sauce SDK
-		Halo 1 (CE) Edition
+	Halo 1 (CE) Edition
 
 	See license\OpenSauce\Halo1_CE for specific license information
-*/
+	*/
 #pragma once
 
 #include <blamlib/Halo1/memory/data.hpp>
@@ -11,30 +11,25 @@
 #include <blamlib/Halo1/objects/object_types.hpp>
 #include <blamlib/Halo1/scenario/scenario.hpp> // for object names
 
-namespace Yelo
-{
-	namespace TagGroups
-	{
+namespace Yelo {
+	namespace TagGroups {
 		struct model_animation_graph;
 
 		struct s_object_definition;
 	};
 
-	namespace Enums
-	{
+	namespace Enums {
 		enum networked_datum : long_enum;
 
 		enum {
 			// Stock game state allocation size for the object memory pool
 			// When running in editor tools, this and the max number of objects is increased by 5x
-			k_object_memory_pool_allocation_size = 0x200000,
+			k_object_memory_pool_allocation_size=0x200000,
 		};
 	};
 
-	namespace Flags
-	{
-		enum object_header_flags : byte_flags
-		{
+	namespace Flags {
+		enum object_header_flags : byte_flags {
 			_object_header_active_bit,
 			_object_header_visible_bit,
 			_object_header_newly_created_bit, // true until after the first call to the 
@@ -45,8 +40,7 @@ namespace Yelo
 			_object_header_unk7_bit,
 		};
 
-		enum objects_find_flags : long_flags
-		{
+		enum objects_find_flags : long_flags {
 			_objects_find_collideable_bit,
 			_objects_find_noncollideable_bit,
 		};
@@ -56,8 +50,7 @@ namespace Yelo
 		struct s_object_placement_data;
 		struct s_object_data;
 
-		struct s_object_header_datum : Memory::s_datum_base
-		{
+		struct s_object_header_datum : Memory::s_datum_base {
 			Flags::object_header_flags flags;
 			byte_enum object_type;
 			uint16 cluster_index;
@@ -88,18 +81,16 @@ namespace Yelo
 				struct s_biped_datum* _biped;
 				struct s_vehicle_datum* _vehicle;
 			};
-		}; BOOST_STATIC_ASSERT( sizeof(s_object_header_datum) == 0xC );
+		}; BOOST_STATIC_ASSERT(sizeof(s_object_header_datum) == 0xC);
 		typedef Memory::DataArray<	s_object_header_datum, 2048> object_header_data_t;
 
-		struct s_objects_pool_data
-		{
+		struct s_objects_pool_data {
 			Memory::s_memory_pool header;
 
 			byte data[Enums::k_object_memory_pool_allocation_size];
 		};
 
-		struct s_object_globals_data
-		{
+		struct s_object_globals_data {
 			bool object_is_being_placed;
 			bool object_marker_initialized;
 			bool garbage_collect_now;
@@ -119,16 +110,14 @@ namespace Yelo
 				datum_index pvs_activating_object_index;
 				int16 pvs_activating_cluster_index;
 			};
-		}; BOOST_STATIC_ASSERT( sizeof(s_object_globals_data) == 0x98 );
+		}; BOOST_STATIC_ASSERT(sizeof(s_object_globals_data) == 0x98);
 
-		struct s_object_name_list_data
-		{
+		struct s_object_name_list_data {
 			std::array<datum_index, Enums::k_maximum_object_names_per_scenario> object_name_to_datum_table;
 		};
 
-		struct s_object_iterator
-		{
-			enum { k_signature = 0x86868686 };
+		struct s_object_iterator {
+			enum { k_signature=0x86868686 };
 
 			long_flags type_mask;						// object types to iterate
 			Flags::object_header_flags ignore_flags;	// When any of these bits are set, the object is skipped
@@ -137,12 +126,11 @@ namespace Yelo
 			datum_index object_index;
 			tag signature;
 
-			void SetEndHack()		{ signature = Memory::s_data_iterator::k_end_hack_signature; }
-			bool IsEndHack() const	{ return signature == Memory::s_data_iterator::k_end_hack_signature; }
+			void SetEndHack() { signature=Memory::s_data_iterator::k_end_hack_signature; }
+			bool IsEndHack() const { return signature == Memory::s_data_iterator::k_end_hack_signature; }
 		};
 
-		struct s_object_marker
-		{
+		struct s_object_marker {
 			int16 node_index;
 			PAD16;
 			real_matrix4x3 matrix;
@@ -157,10 +145,9 @@ namespace Yelo
 
 		TagGroups::s_object_definition const* GetObjectDefinition(datum_index object_index);
 		template<typename TObjectDefinition> inline
-		TObjectDefinition const* GetObjectDefinition(datum_index object_index)
-		{
-			return CAST_PTR(TObjectDefinition const*, GetObjectDefinition(object_index));
-		}
+			TObjectDefinition const* GetObjectDefinition(datum_index object_index) {
+				return CAST_PTR(TObjectDefinition const*, GetObjectDefinition(object_index));
+			}
 
 		TagGroups::model_animation_graph const* GetObjectAnimations(datum_index object_index);
 
@@ -168,8 +155,7 @@ namespace Yelo
 		bool ObjectIsEnemy(datum_index object_index, datum_index object_index_to_test);
 	};
 
-	namespace blam
-	{
+	namespace blam {
 		using namespace Yelo::Objects;
 
 		datum_index object_index_from_name_index(int16 name_index);
@@ -180,16 +166,16 @@ namespace Yelo
 
 		// precondition: [object_index] is a valid object index, everything else can be null
 		// Recomputes the node matrices and reconnects the object to the map after updating the position data
-		void PLATFORM_API object_set_position(datum_index object_index, 
-			__in_opt real_point3d* new_position = nullptr, __in_opt real_vector3d* new_forward = nullptr, __in_opt real_vector3d* new_up = nullptr);
+		void PLATFORM_API object_set_position(datum_index object_index,
+											  __in_opt real_point3d* new_position=nullptr, __in_opt real_vector3d* new_forward=nullptr, __in_opt real_vector3d* new_up=nullptr);
 
-		void PLATFORM_API object_set_position_network(datum_index object_index, 
-			real_point3d* new_position);
+		void PLATFORM_API object_set_position_network(datum_index object_index,
+													  real_point3d* new_position);
 
-		void PLATFORM_API object_translate(datum_index object_index, 
-			const real_point3d& new_position, __in_opt const s_scenario_location* new_location = nullptr);
+		void PLATFORM_API object_translate(datum_index object_index,
+										   const real_point3d& new_position, __in_opt const s_scenario_location* new_location=nullptr);
 
-		void PLATFORM_API object_placement_data_new(s_object_placement_data& data, datum_index object_definition_index, datum_index owner_object_index = datum_index::null);
+		void PLATFORM_API object_placement_data_new(s_object_placement_data& data, datum_index object_definition_index, datum_index owner_object_index=datum_index::null);
 
 		datum_index PLATFORM_API object_new(s_object_placement_data& data);
 
@@ -200,7 +186,7 @@ namespace Yelo
 
 		void PLATFORM_API object_delete(datum_index object_index);
 
-		void PLATFORM_API object_reconnect_to_map(datum_index object_index, __in_opt s_scenario_location* location_reference = nullptr);
+		void PLATFORM_API object_reconnect_to_map(datum_index object_index, __in_opt s_scenario_location* location_reference=nullptr);
 
 		void PLATFORM_API object_disconnect_from_map(datum_index object_index);
 
@@ -216,8 +202,8 @@ namespace Yelo
 		real_point3d& PLATFORM_API object_get_origin(datum_index object_index, __out real_point3d& return_origin);
 
 		// Get the orientation of [object_index]. Takes the parent object (if there is one) into account.
-		void PLATFORM_API object_get_orientation(datum_index object_index, 
-			__out_opt real_vector3d* return_forward, __out_opt real_vector3d* return_up);
+		void PLATFORM_API object_get_orientation(datum_index object_index,
+												 __out_opt real_vector3d* return_forward, __out_opt real_vector3d* return_up);
 
 		// Get the scenario location of [object_index]
 		s_scenario_location& PLATFORM_API object_get_location(datum_index object_index, __out s_scenario_location& return_location);
@@ -226,8 +212,7 @@ namespace Yelo
 
 		s_object_data* PLATFORM_API object_try_and_get_and_verify_type(datum_index object_index, long_flags expected_types);
 		template<typename T>
-		T* object_try_and_get_and_verify_type(datum_index object_index)
-		{
+		T* object_try_and_get_and_verify_type(datum_index object_index) {
 			return CAST_PTR(T*, object_try_and_get_and_verify_type(object_index, T::k_object_types_mask));
 		}
 
@@ -235,9 +220,9 @@ namespace Yelo
 
 		s_object_data* PLATFORM_API object_iterator_next(s_object_iterator& iter);
 
-		int16 PLATFORM_API objects_in_sphere(Flags::objects_find_flags find_flags, long_flags object_type_flags, 
-			const s_scenario_location& location, const real_point3d& center, real radius, 
-			datum_index object_indices[], int16 maximum_object_indices);
+		int16 PLATFORM_API objects_in_sphere(Flags::objects_find_flags find_flags, long_flags object_type_flags,
+											 const s_scenario_location& location, const real_point3d& center, real radius,
+											 datum_index object_indices[], int16 maximum_object_indices);
 
 		// Loads the predicted resources defined in [object_index]'s tag definition (if they're not already loaded)
 		void PLATFORM_API object_definition_predict(datum_index object_index);
@@ -246,7 +231,7 @@ namespace Yelo
 
 		// Sets the scale of an object over a duration of time (game ticks)
 		void PLATFORM_API objects_scripting_set_scale(datum_index object_index, real scale, int32 ticks);
-		
+
 		real PLATFORM_API object_get_level_of_detail_pixels(datum_index object_index);
 
 		void PLATFORM_API object_render_state_refresh(datum_index object_render_state_index, datum_index object_index, real level_of_detail_pixels, byte arg4);
@@ -258,51 +243,43 @@ namespace Yelo
 		s_object_data* object_get(datum_index object_index);
 		s_object_data* object_get_and_verify_type(datum_index object_index, long_flags expected_types);
 		template<typename T> inline
-		T* object_get_and_verify_type(datum_index object_index)
-		{
-			return CAST_PTR(T*, object_get_and_verify_type(object_index, T::k_object_types_mask));
-		}
+			T* object_get_and_verify_type(datum_index object_index) {
+				return CAST_PTR(T*, object_get_and_verify_type(object_index, T::k_object_types_mask));
+			}
 
 		void PLATFORM_API object_destroy(const datum_index object_index);
 	};
 
-	namespace Objects
-	{
+	namespace Objects {
 		class c_object_iterator {
 			s_object_iterator m_state;
 			s_object_data* m_object;
 
 			c_object_iterator(const void* endHackDummy)
-				: m_object(nullptr)
-			{
+				: m_object(nullptr) {
 				m_state.SetEndHack();
 			}
 		public:
-			c_object_iterator(long_flags type_mask, Flags::object_header_flags ignore_flags = (Flags::object_header_flags)0)
-				: m_object(nullptr)
-			{
+			c_object_iterator(long_flags type_mask, Flags::object_header_flags ignore_flags=(Flags::object_header_flags)0)
+				: m_object(nullptr) {
 				blam::object_iterator_new(m_state, type_mask, ignore_flags);
 			}
 
-			static c_object_iterator all()
-			{
+			static c_object_iterator all() {
 				return c_object_iterator(Enums::_object_type_mask_all);
 			}
 
-			s_object_data* Next()
-			{
-				return m_object = blam::object_iterator_next(m_state);
+			s_object_data* Next() {
+				return m_object=blam::object_iterator_next(m_state);
 			}
 
 			bool operator!=(const c_object_iterator& other) const;
 
-			c_object_iterator& operator++()
-			{
+			c_object_iterator& operator++() {
 				Next();
 				return *this;
 			}
-			Memory::DataArrayIteratorResult<s_object_data> operator*() const
-			{
+			Memory::DataArrayIteratorResult<s_object_data> operator*() const {
 				return Memory::DataArrayIteratorResult<s_object_data>(m_state.object_index, m_object);
 			}
 

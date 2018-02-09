@@ -2,15 +2,12 @@
 	Yelo: Open Sauce SDK
 
 	See license\OpenSauce\OpenSauce for specific license information
-*/
+	*/
 #pragma once
 
-namespace Yelo
-{
-	namespace Enums
-	{
-		enum game_state_life_cycle
-		{
+namespace Yelo {
+	namespace Enums {
+		enum game_state_life_cycle {
 			_game_state_life_cycle_before_save,
 			_game_state_life_cycle_before_load,
 			_game_state_life_cycle_after_load,
@@ -20,7 +17,7 @@ namespace Yelo
 
 		enum {
 			// How much additional memory, if any, we allocate for the objects pool
-			k_game_state_allocation_size_object_memory_pool_upgrade = 0x10000,
+			k_game_state_allocation_size_object_memory_pool_upgrade=0x10000,
 			// 0x42974 bytes available in game state allocation for Clients.
 			// Dedis should have a little bit more (since they don't alloc a few render based things) 
 			// but to keep things simple we'll limit both sides of the spectrum to the same size.
@@ -30,16 +27,14 @@ namespace Yelo
 			// Why? Because the game state is saved to file when the player saves the game or dumps a core. 
 			// So if there's a project component which requires serialization, we'd want to allocate its 
 			// memory in the game state, not anywhere else.
-			k_game_state_allocation_maximum_size_for_yelo = 0x42970
-				- k_game_state_allocation_size_object_memory_pool_upgrade,
+			k_game_state_allocation_maximum_size_for_yelo=0x42970
+			- k_game_state_allocation_size_object_memory_pool_upgrade,
 		};
-		BOOST_STATIC_ASSERT( k_game_state_allocation_maximum_size_for_yelo >= 0 );
+		BOOST_STATIC_ASSERT(k_game_state_allocation_maximum_size_for_yelo >= 0);
 	};
 
-	namespace GameState
-	{
-		struct s_yelo_header_data
-		{
+	namespace GameState {
+		struct s_yelo_header_data {
 			PAD8; // since the unused 32 bytes in s_header_data is more than likely a tag_string, we don't want to touch what is actually the first char (we want it to stay zero)
 			struct {
 				bool initialized : 1;
@@ -53,7 +48,7 @@ namespace Yelo
 			}version;
 			byte unit_grenade_types_count;			// 0x6
 			PAD8;
-		}; BOOST_STATIC_ASSERT( sizeof(s_yelo_header_data) <= 0x20 );
+		}; BOOST_STATIC_ASSERT(sizeof(s_yelo_header_data) <= 0x20);
 
 
 		// Are OS-modified game states in effect?
@@ -62,12 +57,10 @@ namespace Yelo
 
 		// Allocate an object of type [T] [count] times inside the game state memory and return its address.
 		// Note: Also updates the game state's cpu allocation size by adding 'sizeof([T]) * count'
-		template<typename T> inline
-		T* GameStateMalloc(const bool k_update_allocation_crc = true, const size_t count = 1)
-		{
+		template<typename T> inline T* GameStateMalloc(const bool k_update_allocation_crc=true, const size_t count=1) {
 			extern void* GameStateMalloc(const bool k_update_allocation_crc, const size_t size_of);
 
-			return CAST_PTR(T*, GameStateMalloc(k_update_allocation_crc, sizeof(T) * count));
+			return CAST_PTR(T*, GameStateMalloc(k_update_allocation_crc, sizeof(T)* count));
 		}
 	};
 };

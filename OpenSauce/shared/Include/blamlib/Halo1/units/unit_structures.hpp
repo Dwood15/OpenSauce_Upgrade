@@ -2,7 +2,7 @@
 	Yelo: Open Sauce SDK
 
 	See license\OpenSauce\OpenSauce for specific license information
-*/
+	*/
 #pragma once
 
 #include <blamlib/Halo1/game/game_globals.hpp>
@@ -12,13 +12,10 @@
 #include <blamlib/Halo1/units/unit_definitions.hpp>
 #include <blamlib/Halo1/units/unit_dialogue.hpp>
 
-namespace Yelo
-{
-	namespace Enums
-	{
-		enum unit_animation_state : sbyte
-		{
-			_unit_animation_state_invalid = NONE,
+namespace Yelo {
+	namespace Enums {
+		enum unit_animation_state : sbyte {
+			_unit_animation_state_invalid=NONE,
 
 			_unit_animation_state_idle,
 			_unit_animation_state_gesture,
@@ -68,7 +65,7 @@ namespace Yelo
 			_unit_animation_state,
 
 			// custom unit animation states
-			_unit_animation_state_yelo_seat_boarding = _unit_animation_state,
+			_unit_animation_state_yelo_seat_boarding=_unit_animation_state,
 			_unit_animation_state_yelo_seat_ejecting,
 			_unit_animation_state_yelo_unit_mounted,
 			_unit_animation_state_yelo_unit_transforming,
@@ -76,8 +73,7 @@ namespace Yelo
 			_unit_animation_state_yelo,
 		};
 
-		enum unit_replacement_animation_state : sbyte
-		{
+		enum unit_replacement_animation_state : sbyte {
 			_unit_replacement_animation_state_none,
 			_unit_replacement_animation_state_disarm,
 			_unit_replacement_animation_state_weapon_drop,
@@ -87,12 +83,11 @@ namespace Yelo
 			_unit_replacement_animation_state_weapon_reload2,
 			_unit_replacement_animation_state_melee,
 			_unit_replacement_animation_state_throw_grenade,
-			
+
 			k_number_of_unit_replacement_animation_states
 		};
 
-		enum unit_overlay_animation_state : sbyte
-		{
+		enum unit_overlay_animation_state : sbyte {
 			_unit_overlay_animation_state_none,
 			_unit_overlay_animation_state_fire_1,
 			_unit_overlay_animation_state_fire_2,
@@ -104,14 +99,12 @@ namespace Yelo
 			k_number_of_unit_overlay_animation_states
 		};
 
-		enum unit_camo_regrowth : _enum
-		{
+		enum unit_camo_regrowth : _enum {
 			_unit_camo_regrowth_off,
 			_unit_camo_regrowth_on, // they fired their weapon, requiring active_camo_regrowth_rate to be applied
 		};
 
-		enum unit_throwing_grenade_state : byte_enum
-		{
+		enum unit_throwing_grenade_state : byte_enum {
 			_unit_throwing_grenade_state_none, // ie, no grenade
 			_unit_throwing_grenade_state_begin,
 			_unit_throwing_grenade_state_in_hand,
@@ -119,18 +112,15 @@ namespace Yelo
 		};
 	};
 
-	namespace Flags
-	{
-		enum
-		{
+	namespace Flags {
+		enum {
 			_unit_animation_unk0_bit,
 			_unit_animation_unk1_bit,
 			_unit_animation_unk2_bit,
 			_unit_animation_unk3_bit,
 		};
 
-		enum
-		{
+		enum {
 			_unit_unk0_bit,
 			_unit_unk1_bit,
 			_unit_unk2_bit,
@@ -161,15 +151,13 @@ namespace Yelo
 			_unit_possessed_bit,
 			_unit_desires_flashlight_on_bit,
 			_unit_desires_flashlight_off_bit,
-//			_unit_30_bit,
-//			_unit_31_bit,
+			//			_unit_30_bit,
+			//			_unit_31_bit,
 		};
 	};
 
-	namespace Objects
-	{
-		struct s_unit_datum_animation_data
-		{
+	namespace Objects {
+		struct s_unit_datum_animation_data {
 			word_flags flags;							// 0x298
 			UNKNOWN_TYPE(int16);						// 0x29A animation index, weapon type
 			UNKNOWN_TYPE(int16);						// 0x29C animation index
@@ -195,14 +183,12 @@ namespace Yelo
 			real_rectangle2d looking_bounds;			// 0x2B8
 			real_rectangle2d aiming_bounds;				// 0x2C8
 			PAD64;										// 0x2D8
-		}; BOOST_STATIC_ASSERT( sizeof(s_unit_datum_animation_data) == 0x48 );
+		}; BOOST_STATIC_ASSERT(sizeof(s_unit_datum_animation_data) == 0x48);
 
-		struct s_unit_data
-		{
+		struct s_unit_data {
 			// These values are also used in determining assists
 			// These values would be checked in the killed unit's data.
-			struct s_recent_damage
-			{
+			struct s_recent_damage {
 				int32 game_tick;				// the last game tick damage was dealt
 				real damage;					// total (read: additive) damage the responsible object has done
 				datum_index responsible_unit;
@@ -370,22 +356,19 @@ namespace Yelo
 
 			byte* GetZoomLevel();
 			byte* GetDesiredZoomLevel();
-		}; BOOST_STATIC_ASSERT( sizeof(s_unit_data) == (Enums::k_object_size_unit - Enums::k_object_size_object) );
+		}; BOOST_STATIC_ASSERT(sizeof(s_unit_data) == (Enums::k_object_size_unit - Enums::k_object_size_object));
 
 
-		struct s_unit_datum
-		{
-			enum { k_object_types_mask = Enums::_object_type_mask_unit };
+		struct s_unit_datum {
+			enum { k_object_types_mask=Enums::_object_type_mask_unit };
 
 			s_object_data object;
 			s_unit_data unit;
-		}; BOOST_STATIC_ASSERT( sizeof(s_unit_datum) == Enums::k_object_size_unit );
+		}; BOOST_STATIC_ASSERT(sizeof(s_unit_datum) == Enums::k_object_size_unit);
 	};
 
-	namespace blam
-	{
-		bool PLATFORM_API unit_animation_state_interruptable(const Objects::s_unit_datum_animation_data& animation,
-			_enum next_animation_state);
+	namespace blam {
+		bool PLATFORM_API unit_animation_state_interruptable(const Objects::s_unit_datum_animation_data& animation, _enum next_animation_state);
 
 		bool PLATFORM_API unit_animation_busy(const Objects::s_unit_datum_animation_data& animation);
 

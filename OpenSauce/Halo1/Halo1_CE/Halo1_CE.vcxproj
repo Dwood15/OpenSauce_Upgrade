@@ -728,7 +728,6 @@
     <None Include="Common\GameSystemComponents.Scripting.inl" />
     <None Include="Common\GameSystemComponents.Startup.inl" />
     <None Include="Common\GameSystemComponents.Tags.inl" />
-    <None Include="Game\AI.Transform.inl" />
     <None Include="Game\CameraFov.inl" />
     <None Include="Game\Campaign.inl" />
     <None Include="Game\ScriptLibrary.Definitions.HTTPServer.inl" />

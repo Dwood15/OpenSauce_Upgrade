@@ -1,9 +1,9 @@
 /*
 	Yelo: Open Sauce SDK
-		Halo 1 (CE) Edition
+	Halo 1 (CE) Edition
 
 	See license\OpenSauce\Halo1_CE for specific license information
-*/
+	*/
 #pragma once
 
 #include <blamlib/Halo1/ai/ai_scenario_definitions.hpp>
@@ -15,20 +15,17 @@
 
 #include <YeloLib/tag_files/tag_groups_base_yelo.hpp>
 
-namespace Yelo
-{
-	namespace Enums
-	{
+namespace Yelo {
+	namespace Enums {
 		enum {
-			k_maximum_skies_per_scenario = 32,
-			k_maximum_structure_bsps_per_scenario = 16,
+			k_maximum_skies_per_scenario=32,
+			k_maximum_structure_bsps_per_scenario=16,
 
 			// How much OS-upgrades [k_maximum_structure_bsps_per_scenario]
-			k_maximum_structure_bsps_per_scenario_upgrade = k_maximum_structure_bsps_per_scenario * 2,
+			k_maximum_structure_bsps_per_scenario_upgrade=k_maximum_structure_bsps_per_scenario * 2,
 		};
 
-		enum scenario_netgame_type
-		{
+		enum scenario_netgame_type {
 			_scenario_netgame_type_none,
 			_scenario_netgame_type_ctf,
 			_scenario_netgame_type_slayer,
@@ -48,8 +45,7 @@ namespace Yelo
 			_scenario_netgame_type
 		};
 
-		enum scenario_netgame_flag_type
-		{
+		enum scenario_netgame_flag_type {
 			_scenario_netgame_flag_ctf_flag,
 			_scenario_netgame_flag_ctf_vehicle,
 			_scenario_netgame_flag_oddball_ball_spawn,
@@ -64,10 +60,8 @@ namespace Yelo
 		};
 	};
 
-	namespace TagGroups
-	{
-		struct scenario_starting_profile
-		{
+	namespace TagGroups {
+		struct scenario_starting_profile {
 			TAG_FIELD(tag_string, name);
 			TAG_FIELD(real_fraction, starting_health_damage);
 			TAG_FIELD(real_fraction, starting_shield_damage);
@@ -78,10 +72,9 @@ namespace Yelo
 			}weapons[2];
 			TAG_FIELD(byte, grenade_counts[Enums::k_unit_grenade_types_count_yelo]);
 			TAG_PAD(int32, 5);
-		}; BOOST_STATIC_ASSERT( sizeof(scenario_starting_profile) == 0x68 );
+		}; BOOST_STATIC_ASSERT(sizeof(scenario_starting_profile) == 0x68);
 
-		struct scenario_player
-		{
+		struct scenario_player {
 			TAG_FIELD(real_point3d, position);
 			TAG_FIELD(angle, facing);
 			TAG_FIELD(int16, team_designator);
@@ -89,10 +82,9 @@ namespace Yelo
 			TAG_ENUM(game_types, Enums::scenario_netgame_type)[4];
 
 			TAG_PAD(int32, 6);
-		}; BOOST_STATIC_ASSERT( sizeof(scenario_player) == 0x34 );
+		}; BOOST_STATIC_ASSERT(sizeof(scenario_player) == 0x34);
 
-		struct scenario_trigger_volume
-		{
+		struct scenario_trigger_volume {
 			// _scenario_trigger_volume_type_? = 0
 			// _scenario_trigger_volume_type_? = 1
 			TAG_FIELD(_enum, type); // This is actually treated as a skip-4 field in Halo1's defs
@@ -103,20 +95,18 @@ namespace Yelo
 			TAG_FIELD(real_vector3d, up);
 			TAG_FIELD(real_point3d, position);
 			TAG_FIELD(real_vector3d, transform);
-		}; BOOST_STATIC_ASSERT( sizeof(scenario_trigger_volume) == 0x60 );
+		}; BOOST_STATIC_ASSERT(sizeof(scenario_trigger_volume) == 0x60);
 
-		struct scenario_netpoint
-		{
+		struct scenario_netpoint {
 			TAG_FIELD(real_point3d, position);
 			TAG_FIELD(angle, facing_degrees);
 			TAG_ENUM(type, Enums::scenario_netgame_flag_type);
 			TAG_FIELD(int16, team_index);
 			TAG_FIELD(tag_reference, weapon_group, 'itmc');
 			TAG_PAD(int32, 28);
-		}; BOOST_STATIC_ASSERT( sizeof(scenario_netpoint) == 0x94 );
+		}; BOOST_STATIC_ASSERT(sizeof(scenario_netpoint) == 0x94);
 
-		struct scenario_netgame_equipment
-		{
+		struct scenario_netgame_equipment {
 			TAG_FIELD(long_flags, flags);
 			TAG_ENUM(game_types, Enums::scenario_netgame_type)[4];
 			TAG_FIELD(int16, team_index);
@@ -127,29 +117,26 @@ namespace Yelo
 			TAG_FIELD(angle, facing_degrees);
 			TAG_FIELD(tag_reference, item_collection, 'itmc');
 			TAG_PAD(int32, 12);
-		}; BOOST_STATIC_ASSERT( sizeof(scenario_netgame_equipment) == 0x90 );
+		}; BOOST_STATIC_ASSERT(sizeof(scenario_netgame_equipment) == 0x90);
 
-		struct scenario_starting_equipment
-		{
+		struct scenario_starting_equipment {
 			TAG_FIELD(long_flags, flags);
 			TAG_ENUM(game_types, Enums::scenario_netgame_type)[4];
 			TAG_PAD(int32, 12);
 			TAG_FIELD(tag_reference, item_collections, 'itmc')[6];
 			TAG_PAD(int32, 12);
-		}; BOOST_STATIC_ASSERT( sizeof(scenario_starting_equipment) == 0xCC );
+		}; BOOST_STATIC_ASSERT(sizeof(scenario_starting_equipment) == 0xCC);
 
 
-		struct scenario_cutscene_flag
-		{
+		struct scenario_cutscene_flag {
 			PAD32;
 			TAG_FIELD(tag_string, name);
 			TAG_FIELD(real_point3d, position);
 			TAG_FIELD(real_euler_angles2d, facing);
 			TAG_PAD(int32, 9);
-		}; BOOST_STATIC_ASSERT( sizeof(scenario_cutscene_flag) == 0x5C );
+		}; BOOST_STATIC_ASSERT(sizeof(scenario_cutscene_flag) == 0x5C);
 
-		struct scenario_cutscene_camera_point
-		{
+		struct scenario_cutscene_camera_point {
 			PAD32;
 			TAG_FIELD(tag_string, name);
 			PAD32;
@@ -157,10 +144,9 @@ namespace Yelo
 			TAG_FIELD(real_euler_angles3d, orientation);
 			TAG_FIELD(angle, field_of_view);
 			TAG_PAD(int32, 9);
-		}; BOOST_STATIC_ASSERT( sizeof(scenario_cutscene_camera_point) == 0x68 );
+		}; BOOST_STATIC_ASSERT(sizeof(scenario_cutscene_camera_point) == 0x68);
 
-		struct s_scenario_cutscene_title
-		{
+		struct s_scenario_cutscene_title {
 			PAD32;
 			TAG_FIELD(tag_string, name);
 			PAD32;
@@ -176,10 +162,9 @@ namespace Yelo
 			TAG_FIELD(real, up_time);
 			TAG_FIELD(real, fade_out_time);
 			TAG_PAD(int32, 4);
-		}; BOOST_STATIC_ASSERT( sizeof(s_scenario_cutscene_title) == 0x60 );
+		}; BOOST_STATIC_ASSERT(sizeof(s_scenario_cutscene_title) == 0x60);
 
-		struct s_scenario_bsp_lightmap_set
-		{
+		struct s_scenario_bsp_lightmap_set {
 			TAG_FIELD(tag_string, name);
 			TAG_PAD(int32, 1);
 			TAG_FIELD(tag_reference, standard_lightmap, 'bitm');
@@ -189,42 +174,37 @@ namespace Yelo
 			TAG_PAD(tag_block, 2);
 		};
 
-		struct s_scenario_bsp_sky_set_sky
-		{
+		struct s_scenario_bsp_sky_set_sky {
 			PAD16;
 			TAG_FIELD(int16, sky_index);
 			TAG_FIELD(tag_reference, sky);
 		};
 
-		struct s_scenario_bsp_sky_set
-		{
+		struct s_scenario_bsp_sky_set {
 			TAG_FIELD(tag_string, name);
-			TAG_TBLOCK(skies,				s_scenario_bsp_sky_set_sky);
+			TAG_TBLOCK(skies, s_scenario_bsp_sky_set_sky);
 		};
 
-		struct s_scenario_bsp_modifier
-		{
+		struct s_scenario_bsp_modifier {
 			PAD16;
 			TAG_FIELD(int16, bsp_index);
-			TAG_TBLOCK(lightmap_sets,		s_scenario_bsp_lightmap_set);
-			TAG_TBLOCK(sky_sets,			s_scenario_bsp_sky_set);
+			TAG_TBLOCK(lightmap_sets, s_scenario_bsp_lightmap_set);
+			TAG_TBLOCK(sky_sets, s_scenario_bsp_sky_set);
 			TAG_PAD(tag_block, 3);
 		};
 
 		struct structure_bsp_header;
-		struct scenario_structure_bsp_reference
-		{
+		struct scenario_structure_bsp_reference {
 			int32 cache_offset;
 			TAG_FIELD(int32, bsp_data_size);
 			structure_bsp_header* header;
 			PAD32;
 			TAG_FIELD(tag_reference, structure_bsp, 'sbsp');
-		}; BOOST_STATIC_ASSERT( sizeof(scenario_structure_bsp_reference) == 0x20 ); // max count: 32
+		}; BOOST_STATIC_ASSERT(sizeof(scenario_structure_bsp_reference) == 0x20); // max count: 32
 
 
-		struct scenario
-		{
-			enum { k_group_tag = 'scnr' };
+		struct scenario {
+			enum { k_group_tag='scnr' };
 
 			TAG_FIELD(tag_reference, _dont_use);
 			TAG_FIELD(tag_reference, _wont_use);
@@ -240,8 +220,8 @@ namespace Yelo
 			TAG_PAD(tag_data, 1);
 			TAG_PAD(int32, 34); // 136
 			TAG_PAD(tag_block,
-				1 + // predicted_resource_block
-				1); // scenario_function
+					1 + // predicted_resource_block
+					1); // scenario_function
 			TAG_PAD(tag_data, 1); // editor_scenario_data
 			TAG_PAD(tag_block, 1); // editor_comment_definition
 			TAG_PAD(tag_block, 1); // Halo2. scenario_environment_object
@@ -277,9 +257,9 @@ namespace Yelo
 			TAG_TBLOCK(sound_scenery_palette, scenario_object_palette_entry);
 
 			TAG_PAD(tag_block,
-				1 + // Halo2. s_scenario_light
-				1   // Halo2. scenario_object_palette_entry
-				);
+					1 + // Halo2. s_scenario_light
+					1   // Halo2. scenario_object_palette_entry
+					);
 
 			TAG_PAD(int32, 15); // 60
 
@@ -291,29 +271,29 @@ namespace Yelo
 			TAG_TBLOCK_(netgame_equipment, scenario_netgame_equipment);
 			TAG_TBLOCK(starting_equipment, scenario_starting_equipment);
 			TAG_PAD(tag_block,
-				1 + // scenario_bsp_switch_trigger_volume
-				1 + // scenario_decal
-				1 + // scenario_decal_palette_entry
-				1   // scenario_detail_object_collection_palette_entry
-				);
+					1 + // scenario_bsp_switch_trigger_volume
+					1 + // scenario_decal
+					1 + // scenario_decal_palette_entry
+					1   // scenario_detail_object_collection_palette_entry
+					);
 
 			TAG_PAD(int32, 9); // 36
 
 			TAG_PAD(tag_block,
-				1 + // Halo2. style_palette_entry
-				1 + // Halo2. squad_group_definition
-				1 + // Halo2. squad_definition
-				1   // Halo2. zone_definition
-				);
+					1 + // Halo2. style_palette_entry
+					1 + // Halo2. squad_group_definition
+					1 + // Halo2. squad_definition
+					1   // Halo2. zone_definition
+					);
 			TAG_PAD(tag_block,
-				1 + // actor_palette_entry
-				1 + // encounter_definition
-				1 + // ai_command_list_definition
-				1 + // ai_animation_reference_definition
-				1 + // ai_script_reference_definition
-				1 + // ai_recording_reference_definition
-				1   // ai_conversation
-				);
+					1 + // actor_palette_entry
+					1 + // encounter_definition
+					1 + // ai_command_list_definition
+					1 + // ai_animation_reference_definition
+					1 + // ai_script_reference_definition
+					1 + // ai_recording_reference_definition
+					1   // ai_conversation
+					);
 
 			TAG_FIELD(tag_data, hs_syntax_data);
 			TAG_FIELD(tag_data, hs_string_data);
@@ -322,7 +302,7 @@ namespace Yelo
 			TAG_TBLOCK(globals, hs_global_internal);
 			TAG_TBLOCK(references, hs_tag_reference);
 			TAG_TBLOCK(source_files, hs_source_file);
-			
+
 			TAG_PAD(tag_block, 1); // Halo2. cs_script_data
 			TAG_PAD(tag_block, 1);
 
@@ -339,9 +319,9 @@ namespace Yelo
 			TAG_TBLOCK(structure_bsps, scenario_structure_bsp_reference);
 
 			// Get the tag reference we redefined for users to reference yelo definitions
-			tag_reference& GetYeloReferenceHack()				{ return _dont_use; }
-			tag_reference const& GetYeloReferenceHack() const	{ return _dont_use; }
+			tag_reference& GetYeloReferenceHack() { return _dont_use; }
+			tag_reference const& GetYeloReferenceHack() const { return _dont_use; }
 
-		}; BOOST_STATIC_ASSERT( sizeof(scenario) == 0x5B0 );
+		}; BOOST_STATIC_ASSERT(sizeof(scenario) == 0x5B0);
 	};
 };
