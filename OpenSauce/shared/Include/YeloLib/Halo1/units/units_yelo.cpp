@@ -199,7 +199,7 @@ namespace Yelo {
 			biped_datum->biped.melee_cause_damage_time=melee_animation_length - melee_damage_keyframe;
 		}
 
-		void UnitCanEnterSeatMultiteam(const datum_index unit_index, const datum_index, const int16 target_seat_index, _Out_opt_ datum_index* return_unit_in_seat, bool& result) {
+		void UnitCanEnterSeatMultiteam(const datum_index unit_index, const datum_index target_unit_index, const int16 target_seat_index, _Out_opt_ datum_index* return_unit_in_seat, bool& result) {
 			datum_index unit_in_seat=datum_index::null;
 
 			auto unit=blam::object_get_and_verify_type<s_unit_datum>(unit_index);

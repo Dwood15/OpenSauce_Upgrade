@@ -1,9 +1,9 @@
 /*
 	Yelo: Open Sauce SDK
-		Halo 1 (CE) Edition
+	Halo 1 (CE) Edition
 
 	See license\OpenSauce\Halo1_CE for specific license information
-*/
+	*/
 #include "Common/Precompile.hpp"
 #include "Game/GameState.hpp"
 
@@ -50,7 +50,7 @@ namespace Yelo {
 #include "Game/GameState.Procs.inl"
 #include "Game/GameState.MemoryUpgrades.inl"
 #if !PLATFORM_IS_DEDI
-	#include "Game/GameState.ServerList.inl"
+#include "Game/GameState.ServerList.inl"
 #endif
 
 		s_main_globals* MainGlobals()								PTR_IMP_GET2(main_globals);
@@ -74,43 +74,42 @@ namespace Yelo {
 		bool DevmodeEnabled()											PTR_IMP_GET(devmode_enabled);
 
 
-		static bool g_yelo_game_state_enabled;
 
-		bool YeloGameStateEnabled() { return g_yelo_game_state_enabled; }
+
+		bool YeloGameStateEnabled() { return false; }
 		static void InitializeForYeloGameState() { }
 
 		API_FUNC_NAKED static void PLATFORM_API InitializeForNewGameStateHook() {
 			__asm {
 				pop		esi
-				pop		ebx
-				pop		ecx
-				jmp		GameState::InitializeForNewGameState
+					pop		ebx
+					pop		ecx
+					jmp		GameState::InitializeForNewGameState
 			}
 		}
 
 		API_FUNC_NAKED static void PLATFORM_API InitializeForNewMapHook() {
 			__asm {
 				pop		ecx
-				jmp		GameState::InitializeForNewMap
+					jmp		GameState::InitializeForNewMap
 			}
 		}
 
 		static void InitializeForDebug() {
-			*GameState::DeveloperMode() = Enums::k_developer_mode_level_debug_output; // make console messages appear
+			*GameState::DeveloperMode()=Enums::k_developer_mode_level_debug_output; // make console messages appear
 
 			// increment the game build by one so all games (hosted or browsed) aren't
 			// from the normal, non-Yelo, game pool.
-			BuildNumber::GameBuildString()[Enums::k_game_build_string_build_offset+1] += 7;
+			BuildNumber::GameBuildString()[Enums::k_game_build_string_build_offset + 1]+=7;
 		}
 
 		void Initialize() {
 			InitializeProcs();
 			MemoryUpgradesInitialize();
-			InitializeForYeloGameState(g_yelo_game_state_enabled = true);
-
+			
 			InitializeForDebug();
 
-			*TransportDumping() = false;
+			*TransportDumping()=false;
 
 			EventLogInitialize();
 
@@ -118,7 +117,7 @@ namespace Yelo {
 			Memory::WriteRelativeJmp(&InitializeForNewMapHook, GET_FUNC_VPTR(GAME_INITIALIZE_FOR_NEW_MAP_HOOK), true);
 			Memory::CreateHookRelativeCall(&DisposeFromOldMap, GET_FUNC_VPTR(GAME_DISPOSE_FROM_OLD_MAP_HOOK), Enums::_x86_opcode_ret);
 
-			ServerListInitialize();
+			//ServerListInitialize();
 		}
 
 		void Dispose() {
@@ -127,14 +126,14 @@ namespace Yelo {
 		}
 
 		void* GameStateMalloc(const bool k_update_allocation_crc, const size_t size_of) {
-			s_game_state_globals* gsg = GameStateGlobals();
+			s_game_state_globals* gsg=GameStateGlobals();
 
-			byte* base_addr = CAST_PTR(byte*, gsg->base_address) + gsg->cpu_allocation_size;
+			byte* base_addr=CAST_PTR(byte*, gsg->base_address) + gsg->cpu_allocation_size;
 
 			// Debug check that we don't allocate more memory than the game state has available
 			YELO_ASSERT_DISPLAY((base_addr + size_of) <= blam::physical_memory_map_get_tag_cache_address(), "Bit off more game-state than the game could chew!");
 
-			gsg->cpu_allocation_size += size_of;
+			gsg->cpu_allocation_size+=size_of;
 			// If the allocation crc is updated, game states won't be loadable by stock games
 			if (k_update_allocation_crc)
 				Memory::CRC(gsg->header->allocation_crc, &size_of, sizeof(size_of));
@@ -144,22 +143,22 @@ namespace Yelo {
 
 		void Update(real delta_time) {
 			Main::s_project_component* components;
-			const int32 component_count = Main::GetProjectComponents(components);
+			const int32 component_count=Main::GetProjectComponents(components);
 
-			for(int32 x = 0; x <= component_count; x++)
-				if( components[x].Update != nullptr )
-					components[x].Update(delta_time);
+			for (int32 x=0; x <= component_count; x++)
+			if (components[x].Update != nullptr)
+				components[x].Update(delta_time);
 		}
 
 		static void InitializeForNewMapPrologue() {
 			Physics()->Reset(); // Reset the physics constants on each new map load since these are engine globals, not game state globals.
 
-			s_yelo_header_data& yelo_header = GameStateGlobals()->header->yelo;
-			const TagGroups::s_game_globals* game_globals = GameState::GlobalGameGlobals();
-			
-			yelo_header.flags.initialized = true;
-			yelo_header.unit_grenade_types_count = Enums::k_unit_grenade_types_count;
-			yelo_header.flags.game_state_upgrades_on = YeloGameStateEnabled();
+			s_yelo_header_data& yelo_header=GameStateGlobals()->header->yelo;
+			const TagGroups::s_game_globals* game_globals=GameState::GlobalGameGlobals();
+
+			yelo_header.flags.initialized=true;
+			yelo_header.unit_grenade_types_count=Enums::k_unit_grenade_types_count;
+			yelo_header.flags.game_state_upgrades_on=YeloGameStateEnabled();
 
 			Random::InitializeSeed(GameGlobals()->options.game_random_seed);
 
@@ -170,25 +169,25 @@ namespace Yelo {
 			InitializeForNewMapPrologue();
 
 			Main::s_project_map_component* components;
-			const int32 component_count = Main::GetProjectComponents(components);
+			const int32 component_count=Main::GetProjectComponents(components);
 
-			for(int32 x = 0; x <= component_count; x++)
-				if( components[x].InitializeForNewMap != nullptr )
-					components[x].InitializeForNewMap();
+			for (int32 x=0; x <= component_count; x++)
+			if (components[x].InitializeForNewMap != nullptr)
+				components[x].InitializeForNewMap();
 
 			InitializeForNewMapEpilogue();
 		}
 		static void DisposeFromOldMapPrologue() { }
-	
+
 		void PLATFORM_API DisposeFromOldMap() {
 			DisposeFromOldMapPrologue();
 
 			Main::s_project_map_component* components;
-			const int32 component_count = Main::GetProjectComponents(components);
+			const int32 component_count=Main::GetProjectComponents(components);
 
-			for(int32 x = component_count; x >= 0; x--)
-				if( components[x].DisposeFromOldMap != nullptr )
-					components[x].DisposeFromOldMap();
+			for (int32 x=component_count; x >= 0; x--)
+			if (components[x].DisposeFromOldMap != nullptr)
+				components[x].DisposeFromOldMap();
 		}
 
 		void PLATFORM_API InitializeForNewBSP() { }
@@ -197,16 +196,15 @@ namespace Yelo {
 		void PLATFORM_API InitializeForNewGameState() { }
 
 		void InitializeForYeloGameState(bool enabled) { }
-		static void HandleGameStateLifeCycle(Enums::game_state_life_cycle life_cycle)
-		{
-			YELO_ASSERT_DISPLAY( IN_RANGE_ENUM(life_cycle, Enums::k_number_of_game_state_life_cycles), "What fucking life cycle is this shit?");
+		static void HandleGameStateLifeCycle(Enums::game_state_life_cycle life_cycle) {
+			YELO_ASSERT_DISPLAY(IN_RANGE_ENUM(life_cycle, Enums::k_number_of_game_state_life_cycles), "What fucking life cycle is this shit?");
 
 			Main::s_project_game_state_component* components;
-			const int32 component_count = Main::GetProjectComponents(components);
+			const int32 component_count=Main::GetProjectComponents(components);
 
-			for(int32 x = 0; x <= component_count; x++)
-				if( components[x].HandleGameStateLifeCycle != nullptr )
-					components[x].HandleGameStateLifeCycle(life_cycle);
+			for (int32 x=0; x <= component_count; x++)
+			if (components[x].HandleGameStateLifeCycle != nullptr)
+				components[x].HandleGameStateLifeCycle(life_cycle);
 		}
 		void PLATFORM_API HandleBeforeSaveLifeCycle() { HandleGameStateLifeCycle(Enums::_game_state_life_cycle_before_save); }
 		void PLATFORM_API HandleBeforeLoadLifeCycle() { HandleGameStateLifeCycle(Enums::_game_state_life_cycle_before_load); }
@@ -214,23 +212,23 @@ namespace Yelo {
 
 		static void DataArrayInfoDumpToConsole(cstring data_array_name) {
 			std::string name(data_array_name);
-			const Memory::s_data_array* array = nullptr;
+			const Memory::s_data_array* array=nullptr;
 
-				 if (!name.compare("part"))			array = &Effects::Particles().Header;
-			else if (!name.compare("partsys"))		array = &Effects::ParticleSystems().Header;
-			else if (!name.compare("partsysparts"))	array = &Effects::ParticleSystemParticles().Header;
-			else if (!name.compare("effe"))			array = &Effects::Effects().Header;
-			else if (!name.compare("effelocs"))		array = &Effects::EffectLocations().Header;
-			else if (!name.compare("cont"))			array = &Effects::Contrails().Header;
-			else if (!name.compare("contpoints"))	array = &Effects::ContrailPoints().Header;
-			else if (!name.compare("lightvol"))		array = &Objects::LightVolumes().Header;
-			else if (!name.compare("obje"))			array = &Objects::ObjectHeader().Header;
+			if (!name.compare("part"))			array=&Effects::Particles().Header;
+			else if (!name.compare("partsys"))		array=&Effects::ParticleSystems().Header;
+			else if (!name.compare("partsysparts"))	array=&Effects::ParticleSystemParticles().Header;
+			else if (!name.compare("effe"))			array=&Effects::Effects().Header;
+			else if (!name.compare("effelocs"))		array=&Effects::EffectLocations().Header;
+			else if (!name.compare("cont"))			array=&Effects::Contrails().Header;
+			else if (!name.compare("contpoints"))	array=&Effects::ContrailPoints().Header;
+			else if (!name.compare("lightvol"))		array=&Objects::LightVolumes().Header;
+			else if (!name.compare("obje"))			array=&Objects::ObjectHeader().Header;
 			else return; // user gave an unrecognized name
 
-			int active_count = array->NumberOfValidDatums();
-			float active_percentage = CAST(float, active_count);
-			active_percentage /= array->max_datum;
-			active_percentage *= 100.f;
+			int active_count=array->NumberOfValidDatums();
+			float active_percentage=CAST(float, active_count);
+			active_percentage/=array->max_datum;
+			active_percentage*=100.f;
 			blam::console_response_printf(false, "%3.2f full; %d / %d", active_percentage, active_count, array->max_datum);
 		}
 
