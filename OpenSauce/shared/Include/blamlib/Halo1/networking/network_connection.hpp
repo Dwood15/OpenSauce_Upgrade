@@ -1,6 +1,6 @@
 /*
 	Yelo: Open Sauce SDK
-		Halo 1 (CE) Edition
+	Halo 1 (CE) Edition
 
 	See license\OpenSauce\Halo1_CE for specific license information
 */
@@ -13,12 +13,10 @@
 #include <blamlib/Halo1/memory/bitstream.hpp>
 #include <blamlib/Halo1/memory/circular_queue.hpp>
 
-namespace Yelo
-{
-	namespace Enums 
-	{
+namespace Yelo {
+	namespace Enums {
 		enum {
-			k_maximum_network_machine_count = k_multiplayer_maximum_players / k_maximum_number_of_local_players,
+			k_maximum_network_machine_count=k_multiplayer_maximum_players / k_maximum_number_of_local_players,
 		};
 
 		// profile offset: 0xFC0
@@ -34,8 +32,7 @@ namespace Yelo
 
 		// engine fails to properly convert 'connection type' enum (which matches the UI setting list)
 		// to this class enum, which maps to a
-		enum network_connection_class : long_enum
-		{								//  gBitRatesPerConnectionClass
+		enum network_connection_class : long_enum {								//  gBitRatesPerConnectionClass
 			_network_connection_class_0, // 35,000
 			_network_connection_class_1, // 70,000
 			_network_connection_class_2, // 140,000
@@ -50,30 +47,26 @@ namespace Yelo
 		};
 	};
 
-	namespace Flags
-	{
-		enum network_connection_flags
-		{
+	namespace Flags {
+		enum network_connection_flags {
 			_connection_create_server_bit,
 			_connection_create_clientside_client_bit,
 			_connection_create_serverside_client_bit,
 		};
 	};
 
-	namespace Networking
-	{
+	namespace Networking {
 		struct s_network_server_connection;
 
-		struct s_message_stream
-		{
-			enum { k_protocol_bits = 0x2880 };
+		struct s_message_stream {
+			enum { k_protocol_bits=0x2880 };
 
 			Memory::s_bitstream bitstream;
 			bool empty;
 			byte buffer[k_protocol_bits / BIT_COUNT(byte)]; // 0x1D
 			PAD24;
 			PAD32;
-		}; BOOST_STATIC_ASSERT( sizeof(s_message_stream) == 0x534 );
+		}; BOOST_STATIC_ASSERT(sizeof(s_message_stream) == 0x534);
 
 		struct s_connection_message // made up name, nothing to verify name with
 		{
@@ -85,18 +78,16 @@ namespace Yelo
 			int32 data_size_in_bits;
 			byte* header_buffer;
 			byte* data_buffer;
-		}; BOOST_STATIC_ASSERT( sizeof(s_connection_message) == 0x20 );
-		struct s_connection_prioritization_buffer
-		{
+		}; BOOST_STATIC_ASSERT(sizeof(s_connection_message) == 0x20);
+		struct s_connection_prioritization_buffer {
 			int32 numMessages;				// 0xA78
 			s_connection_message* messages;	// 0xA7C
 			UNKNOWN_TYPE(uint32);			// 0xA80, I've only seen this as 0xE0
 			DWORD time_of_last_flush;		// 0xA84, initialize by GetTickCount
-		}; BOOST_STATIC_ASSERT( sizeof(s_connection_prioritization_buffer) == 0x10 );
+		}; BOOST_STATIC_ASSERT(sizeof(s_connection_prioritization_buffer) == 0x10);
 
 
-		struct s_network_connection
-		{
+		struct s_network_connection {
 			typedef void (PLATFORM_API* proc_connection_reject)(s_transport_endpoint* ep, long_enum rejection_code);
 
 			s_transport_endpoint* reliable_endpoint;
@@ -111,15 +102,14 @@ namespace Yelo
 			UNUSED_TYPE(int32);
 			s_network_server_connection* server_connection;
 			bool is_local_connection; PAD24;
-		}; BOOST_STATIC_ASSERT( sizeof(s_network_connection) == 0xA9C );
-		
-		struct s_network_server_connection
-		{
+		}; BOOST_STATIC_ASSERT(sizeof(s_network_connection) == 0xA9C);
+
+		struct s_network_server_connection {
 			s_network_connection connection;
 			s_transport_endpoint_set* endpoint_set;
 			s_network_connection* client_list[Enums::k_maximum_network_machine_count];
 			UNKNOWN_TYPE(bool);
 			bool has_local_connection; PAD16;
-		}; BOOST_STATIC_ASSERT( sizeof(s_network_server_connection) == 0xAE4 );
+		}; BOOST_STATIC_ASSERT(sizeof(s_network_server_connection) == 0xAE4);
 	};
 };

@@ -30,10 +30,7 @@ namespace Yelo
 		{
 		public:
 			Configuration::c_configuration_value<bool> m_check_yelo_files_first;
-		#if !PLATFORM_IS_DEDI
 			Configuration::c_configuration_value<std::string> m_mainmenu_scenario;
-		#endif
-
 			c_settings_container();
 			
 		protected:
