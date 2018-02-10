@@ -154,25 +154,7 @@ namespace Yelo
 
 			texture_cache_open();
 			sound_cache_open();
-#if PLATFORM_USES_CACHE_FILES
 			scenario_index = cache_file_tags_load(scenario_name);
-#else
-			scenario_index = tag_load<TagGroups::scenario>(scenario_name, 0);
-			if (scenario_index.IsNull())
-				return datum_index::null;
-
-			datum_index game_globals_index = tag_load<TagGroups::s_game_globals>(Scenario::K_GAME_GLOBALS_TAG_NAME, 0);
-			if (game_globals_index.IsNull())
-			{
-				YELO_WARN("couldn't load game globals (get new tags)");
-				return datum_index::null;
-			}
-
-			blam_global_scenario = tag_get<TagGroups::scenario>(scenario_index);
-			blam_global_game_globals = tag_get<TagGroups::s_game_globals>(game_globals_index);
-			ui_load_tags_for_scenario(scenario_index);
-#endif
-
 			Scenario::ProjectYellowInitializeForNewMap();
 
 			return scenario_index;
@@ -185,35 +167,22 @@ namespace Yelo
 
 			Scenario::ProjectYellowDisposeFromOldMap();
 
-#if PLATFORM_USES_CACHE_FILES
 			cache_file_tags_unload();
-#else
-			if (!Scenario::ScenarioIndex().IsNull())
-			{
-				tag_groups_dispose_from_old_map();
-			}
-#endif
+
 		}
 
 		void scenario_structure_bsp_unload(scenario_structure_bsp_reference* reference)
 		{
-#if PLATFORM_USES_CACHE_FILES
 			cache_file_structure_bsp_unload(reference);
-#else
-			tag_unload(reference->structure_bsp.tag_index);
-#endif
+
 			reference->structure_bsp.tag_index = datum_index::null;
 		}
 
 		bool scenario_structure_bsp_load(scenario_structure_bsp_reference* reference)
 		{
 			bool loaded = false;
-
-#if PLATFORM_USES_CACHE_FILES
 			loaded = cache_file_structure_bsp_load(reference);
-#else
-			loaded = tag_reference_resolve(&reference->structure_bsp);
-#endif
+
 			return loaded;
 		}
 	};

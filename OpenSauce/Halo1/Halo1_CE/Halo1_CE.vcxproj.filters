@@ -687,15 +687,6 @@
     <ClCompile Include="Networking\Server.cpp">
       <Filter>Networking</Filter>
     </ClCompile>
-    <ClCompile Include="Networking\VersionCheck.cpp">
-      <Filter>Networking</Filter>
-    </ClCompile>
-    <ClCompile Include="Networking\VersionCheckClient.cpp">
-      <Filter>Networking</Filter>
-    </ClCompile>
-    <ClCompile Include="Networking\VersionCheckDedi.cpp">
-      <Filter>Networking</Filter>
-    </ClCompile>
     <ClCompile Include="Networking\HTTP\BanManager.cpp">
       <Filter>Networking\HTTP</Filter>
     </ClCompile>
@@ -709,18 +700,6 @@
       <Filter>Networking\HTTP</Filter>
     </ClCompile>
     <ClCompile Include="Networking\HTTP\HTTPClient.cpp">
-      <Filter>Networking\HTTP</Filter>
-    </ClCompile>
-    <ClCompile Include="Networking\HTTP\HTTPServer.cpp">
-      <Filter>Networking\HTTP</Filter>
-    </ClCompile>
-    <ClCompile Include="Networking\HTTP\MapDownloadClient.cpp">
-      <Filter>Networking\HTTP</Filter>
-    </ClCompile>
-    <ClCompile Include="Networking\HTTP\MapDownloadClientDisplay.cpp">
-      <Filter>Networking\HTTP</Filter>
-    </ClCompile>
-    <ClCompile Include="Networking\HTTP\MapDownloadServer.cpp">
       <Filter>Networking\HTTP</Filter>
     </ClCompile>
     <ClCompile Include="Networking\MessageDefinitions.cpp">
@@ -1213,9 +1192,6 @@
     <ClCompile Include="Interface\OpenSauceUI\GwenUI\ControlBuilders\c_control_builder_gwen_pointer.cpp">
       <Filter>Interface\OpenSauceUI\GwenUI\ControlBuilders</Filter>
     </ClCompile>
-    <ClCompile Include="Interface\OpenSauceUI\Screen\c_screen_controller_mapdownload.cpp">
-      <Filter>Interface\OpenSauceUI\Screen</Filter>
-    </ClCompile>
     <ClCompile Include="Interface\OpenSauceUI\GwenUI\ControlBuilders\c_control_builder_gwen_progressbar.cpp">
       <Filter>Interface\OpenSauceUI\GwenUI\ControlBuilders</Filter>
     </ClCompile>
@@ -1512,15 +1488,6 @@
     <ClInclude Include="Networking\Server.hpp">
       <Filter>Networking</Filter>
     </ClInclude>
-    <ClInclude Include="Networking\VersionCheck.hpp">
-      <Filter>Networking</Filter>
-    </ClInclude>
-    <ClInclude Include="Networking\VersionCheckClient.hpp">
-      <Filter>Networking</Filter>
-    </ClInclude>
-    <ClInclude Include="Networking\VersionCheckDedi.hpp">
-      <Filter>Networking</Filter>
-    </ClInclude>
     <ClInclude Include="Networking\HTTP\BanManager.hpp">
       <Filter>Networking\HTTP</Filter>
     </ClInclude>
@@ -1537,15 +1504,6 @@
       <Filter>Networking\HTTP</Filter>
     </ClInclude>
     <ClInclude Include="Networking\HTTP\HTTPServer.hpp">
-      <Filter>Networking\HTTP</Filter>
-    </ClInclude>
-    <ClInclude Include="Networking\HTTP\MapDownloadClient.hpp">
-      <Filter>Networking\HTTP</Filter>
-    </ClInclude>
-    <ClInclude Include="Networking\HTTP\MapDownloadClientDisplay.hpp">
-      <Filter>Networking\HTTP</Filter>
-    </ClInclude>
-    <ClInclude Include="Networking\HTTP\MapDownloadServer.hpp">
       <Filter>Networking\HTTP</Filter>
     </ClInclude>
     <ClInclude Include="Networking\MDP.hpp">
@@ -1823,9 +1781,6 @@
     <None Include="Game\ScriptLibrary.Definitions.HTTPServer.inl">
       <Filter>Game\Impl\ScriptLibrary</Filter>
     </None>
-    <None Include="Game\ScriptLibrary.Definitions.HTTPServer.MapDownload.inl">
-      <Filter>Game\Impl\ScriptLibrary</Filter>
-    </None>
     <None Include="Game\ScriptLibrary.Definitions.Numbers.inl">
       <Filter>Game\Impl\ScriptLibrary</Filter>
     </None>
@@ -2010,9 +1965,6 @@
       <Filter>Interface\OpenSauceUI\ScreenDefinitions</Filter>
     </None>
     <None Include="Resources\OpenSauceUI\MainMenuDefinition.json">
-      <Filter>Interface\OpenSauceUI\ScreenDefinitions</Filter>
-    </None>
-    <None Include="Resources\OpenSauceUI\MapDownloadDefinition.json">
       <Filter>Interface\OpenSauceUI\ScreenDefinitions</Filter>
     </None>
     <None Include="Memory\1.10\_EngineLayout.Rasterizer.ShaderExtension.inl">

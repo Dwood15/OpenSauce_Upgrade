@@ -66,16 +66,8 @@
 
 	#include "Memory/FunctionInterface.hpp"
 
-	#include "Networking/VersionCheck.hpp"
 //////////////////////////////////////////////////////////////////////////
 
-#if PLATFORM_IS_DEDI
-	#include "Networking/Server.hpp"
-	#include "Networking/HTTP/HTTPServer.hpp"
-	#include "Networking/HTTP/MapDownloadServer.hpp"
-#else
-	#include "Networking/HTTP/MapDownloadClient.hpp"
-#endif
 	#include "Networking/HTTP/HTTPClient.hpp"
 
 //#define API_YELO_NO_PROJECT_COMPONENTS

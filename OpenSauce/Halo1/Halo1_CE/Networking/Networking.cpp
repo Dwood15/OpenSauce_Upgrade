@@ -93,13 +93,9 @@ namespace Yelo
 
 		//////////////////////////////////////////////////////////////////////////
 		// Player Hooks (join/leave)
-		static void OnPlayerJoin(s_network_game_player* player)
-		{
-		}
+		static void OnPlayerJoin(s_network_game_player* player) { }
 
-		static void OnPlayerExit(s_network_game_player* player)
-		{
-		}
+		static void OnPlayerExit(s_network_game_player* player) { }
 
 		#pragma region OnPlayerJoinDelegate
 		API_FUNC_NAKED static void PLATFORM_API OnPlayerJoinDelegate(s_network_game* network_game_data)
@@ -168,10 +164,8 @@ namespace Yelo
 			// NOTE: Uncomment these if you wish to detect
 			// when players enter and leave
 #if !PLATFORM_DISABLE_UNUSED_CODE
-			Memory::WriteRelativeCall(OnPlayerJoinDelegate, 
-				GET_FUNC_VPTR(NETWORK_GAME_SERVER_ADD_PLAYER_TO_GAME__HOOK_ADD_PLAYER));
-			Memory::WriteRelativeCall(OnPlayerExitDelegate, 
-				GET_FUNC_VPTR(CLIENT_MACHINE_CLEANUP__HOOK_REMOVE_PLAYER));
+			Memory::WriteRelativeCall(OnPlayerJoinDelegate, GET_FUNC_VPTR(NETWORK_GAME_SERVER_ADD_PLAYER_TO_GAME__HOOK_ADD_PLAYER));
+			Memory::WriteRelativeCall(OnPlayerExitDelegate,  GET_FUNC_VPTR(CLIENT_MACHINE_CLEANUP__HOOK_REMOVE_PLAYER));
 #endif
 		}
 

@@ -103,9 +103,6 @@
     <Filter Include="text">
       <UniqueIdentifier>{2346af16-87e4-4109-a469-12b87f7a330d}</UniqueIdentifier>
     </Filter>
-    <Filter Include="tool">
-      <UniqueIdentifier>{3242736d-15d8-4406-a2f8-b68672111781}</UniqueIdentifier>
-    </Filter>
     <Filter Include="units">
       <UniqueIdentifier>{6c81b11c-76d0-410a-91fe-b8c92e669610}</UniqueIdentifier>
     </Filter>
@@ -780,9 +777,6 @@
     <ClInclude Include="..\..\shared\Include\blamlib\Halo1\text\text_group.hpp">
       <Filter>text</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\shared\Include\blamlib\Halo1\tool\tool.hpp">
-      <Filter>tool</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\shared\Include\blamlib\Halo1\units\biped_definitions.hpp">
       <Filter>units</Filter>
     </ClInclude>
@@ -835,9 +829,6 @@
       <Filter>cache</Filter>
     </ClInclude>
     <ClInclude Include="..\..\shared\Include\blamlib\Halo1\tag_files\tag_files_structures.hpp">
-      <Filter>tag_files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\shared\Include\blamlib\Halo1\tag_files\tag_group_saving.hpp">
       <Filter>tag_files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\shared\Include\blamlib\Halo1\shell\shell.hpp">
@@ -948,9 +939,6 @@
     <ClInclude Include="..\..\shared\Include\blamlib\Halo1\hs\hs_types_traits.hpp">
       <Filter>hs</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\shared\Include\blamlib\Halo1\tag_files\tag_groups_structures_macros.hpp">
-      <Filter>tag_files</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\shared\Include\blamlib\Halo1\hs\hs_threads.hpp">
       <Filter>hs</Filter>
     </ClInclude>
@@ -1046,19 +1034,7 @@
     <ClCompile Include="..\..\shared\Include\blamlib\Halo1\tag_files\tag_files.cpp">
       <Filter>tag_files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\shared\Include\blamlib\Halo1\tag_files\tag_group_loading.cpp">
-      <Filter>tag_files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\shared\Include\blamlib\Halo1\tag_files\tag_group_verification.cpp">
-      <Filter>tag_files</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\shared\Include\blamlib\Halo1\tag_files\tag_groups.cpp">
-      <Filter>tag_files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\shared\Include\blamlib\Halo1\tag_files\tag_groups_field_scan.cpp">
-      <Filter>tag_files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\shared\Include\blamlib\Halo1\tag_files\tag_groups_system.cpp">
       <Filter>tag_files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\shared\Include\blamlib\Halo1\units\unit_structures.cpp">
@@ -1078,9 +1054,6 @@
     </ClCompile>
     <ClCompile Include="..\..\shared\Include\blamlib\Halo1\rasterizer\dx9\rasterizer_dx9_render_targets.cpp">
       <Filter>rasterizer\dx9</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\shared\Include\blamlib\Halo1\tag_files\tag_group_saving.cpp">
-      <Filter>tag_files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\shared\Include\blamlib\Halo1\cache\cache_files.cpp">
       <Filter>cache</Filter>

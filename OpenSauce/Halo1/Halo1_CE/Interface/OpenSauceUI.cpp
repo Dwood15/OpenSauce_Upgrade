@@ -31,7 +31,6 @@
 #include "Interface/OpenSauceUI/Screen/c_screen_display_manager.hpp"
 #include "Interface/OpenSauceUI/Screen/c_screen_controller_mainmenu.hpp"
 #include "Interface/OpenSauceUI/Screen/c_screen_controller_mainmenubottombar.hpp"
-#include "Interface/OpenSauceUI/Screen/c_screen_controller_mapdownload.hpp"
 #include "Interface/OpenSauceUI/Screen/c_screen_controller_ingame.hpp"
 
 #include "Interface/OpenSauceUI/GwenUI/c_canvas_gwen.hpp"
@@ -202,12 +201,6 @@ namespace Yelo { namespace Interface { namespace OpenSauceUI {
 				, Flags::_osui_game_state_main_menu
 				, Flags::_osui_game_state_main_menu
 				, Flags::_osui_screen_flags_always_visible);
-
-			AddScreenController<Screen::c_screen_controller_mapdownload>(K_SCREEN_MAP_DOWNLOAD
-				, "MapDownload"
-				, (Flags::osui_game_state)(Flags::_osui_game_state_all)
-				, (Flags::osui_game_state)(Flags::_osui_game_state_all)
-				, Flags::_osui_screen_flags_is_modal);
 
 			AddScreenController<Screen::c_screen_controller_ingame>(K_SCREEN_IN_GAME
 				, "InGame"

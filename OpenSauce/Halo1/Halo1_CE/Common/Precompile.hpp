@@ -24,13 +24,10 @@
 #define _USE_MATH_DEFINES // hurrrrrrrrrr, i like math!
 #include <math.h>
 #include <d3dx9math.h>
+#include <d3dx9.h>
 
-#if !PLATFORM_IS_DEDI
-	#include <d3dx9.h>
-
-	#define DIRECTINPUT_VERSION 0x0800
-	#include <Dinput.h>
-#endif
+#define DIRECTINPUT_VERSION 0x0800
+#include <Dinput.h>
 
 #include <vld.h>
 
@@ -112,9 +109,6 @@
 	#undef GSI_UNICODE
 #pragma warning( suppress : 4550)
 	#include <GameSpyOpen/ghttp/ghttp.h>
-	
-	#define YELO_VERSION_CHECK_ENABLE
-
 #endif
 //////////////////////////////////////////////////////////////////////////
 

@@ -59,25 +59,6 @@
     <GameSpy>
       <NoUpdateCheck>true</NoUpdateCheck>
     </GameSpy>
-    <MapDownload>
-      <Enabled>true</Enabled>
-    </MapDownload>
-    <VersionCheck>
-      <Version>
-        <Major></Major>
-        <Minor></Minor>
-        <Build></Build>
-      </Version>
-      <Date>
-        <Day></Day>
-        <Month></Month>
-        <Year></Year>
-      </Date>
-      <ServerList>
-        <Version>1</Version>
-        <Server>http://os.halomods.com/Halo1/CE/Halo1_CE_Version.xml</Server>
-      </ServerList>
-    </VersionCheck>
   </Networking>
   <Objects>
     <VehicleRemapperEnabled>true</VehicleRemapperEnabled>

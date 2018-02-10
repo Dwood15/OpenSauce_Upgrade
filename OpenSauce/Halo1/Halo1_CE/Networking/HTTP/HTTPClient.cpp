@@ -12,8 +12,6 @@
 
 #include "Networking/HTTP/HTTP.hpp"
 #include "Networking/HTTP/HTTPServer.hpp"
-#include "Networking/HTTP/MapDownloadClient.hpp"
-#include "Networking/VersionCheck.hpp"
 
 namespace Yelo
 {
@@ -106,19 +104,13 @@ namespace Yelo
 			proc_http_complete_callback		CompletedCallback;
 			proc_http_cancelled_callback	CancelledCallback;
 		};
-
+		
 #ifdef DEBUG
 #define HTTP_COMPONENT_CLIENT(id, initialize, dispose, update, comp_callback, canc_callback){ id, initialize, dispose, update, comp_callback, canc_callback }
 #else
 #define HTTP_COMPONENT_CLIENT(id, initialize, dispose, update, comp_callback, canc_callback){ initialize, dispose, update, comp_callback, canc_callback }
 #endif
-		static s_http_component g_http_components[] =
-		{
-#if !PLATFORM_IS_DEDI
-			HTTP_COMPONENT_CLIENT("MapDownloadClient", MapDownload::Initialize, MapDownload::Dispose, MapDownload::Update, MapDownload::RequestCompleted_Callback, MapDownload::RequestCancelled_Callback),
-#endif
-			HTTP_COMPONENT_CLIENT("VersionChecker", nullptr, nullptr, nullptr, Networking::VersionCheck::RequestCompleted_Callback, Networking::VersionCheck::RequestCancelled_Callback),
-		};BOOST_STATIC_ASSERT(NUMBEROF(g_http_components) == Enums::_http_client_component);
+		static s_http_component * g_http_components = NULL;
 
 #define K_HTTP_CLIENT_HEADER K_HTTP_CLIENT_ID "/" BOOST_STRINGIZE(K_OPENSAUCE_VERSION_BUILD_MAJ) "." BOOST_STRINGIZE(K_OPENSAUCE_VERSION_BUILD_MIN) "." BOOST_STRINGIZE(K_OPENSAUCE_VERSION_BUILD)
 
@@ -188,9 +180,6 @@ namespace Yelo
 
 			ghttpStartup();
 
-			for (auto& component : g_http_components)
-				if (component.Initialize)
-					component.Initialize();
 		}
 
 		/*!
@@ -199,12 +188,7 @@ namespace Yelo
 		 * 
 		 * Disposes the client http components then cleans up the GHTTP service.
 		 */
-		void		Dispose()
-		{
-			for(int i = 0; i < NUMBEROF(g_http_components); i++)
-				if(g_http_components[i].Dispose)
-					g_http_components[i].Dispose();
-
+		void		Dispose() {
 			ghttpCleanup();
 
 			CloseHandle(g_request_index_mutex);
@@ -221,7 +205,7 @@ namespace Yelo
 		 */
 		void		Update(real delta)
 		{
-			for(int i = 0; i < NUMBEROF(g_http_components); i++)
+			for(int i = 0; i < 0; i++)
 				if(g_http_components[i].Update)
 					g_http_components[i].Update(delta);
 

@@ -149,12 +149,6 @@
 		_hs_function_sv_httpserver_ban_ip,
 		_hs_function_sv_httpserver_unban_ip,
 
-		_hs_function_sv_mapdownload_start_server,
-		_hs_function_sv_mapdownload_stop_server,
-		_hs_function_sv_mapdownload_set_part_definitions_path,
-		_hs_function_sv_mapdownload_set_host,
-		_hs_function_sv_mapdownload_reload_map_part_definitions,
-
 		_hs_function_data_array_info,
 
 	// debug functions
@@ -220,7 +214,6 @@
 	#include "Game/ScriptLibrary.Definitions.Numbers.inl"
 	#include "Game/ScriptLibrary.Definitions.Postprocessing.inl"
 	#include "Game/ScriptLibrary.Definitions.HTTPServer.inl"
-	#include "Game/ScriptLibrary.Definitions.HTTPServer.MapDownload.inl"
 
 	HS_FUNCTION_WITH_PARAMS(display_scripted_ui_widget, bool, "", 
 			"<name>", 1,
@@ -447,12 +440,6 @@
 		&GET_HS_FUNCTION(sv_httpserver_banlist_file),
 		&GET_HS_FUNCTION(sv_httpserver_ban_ip),
 		&GET_HS_FUNCTION(sv_httpserver_unban_ip),
-
-		&GET_HS_FUNCTION(sv_mapdownload_start_server),
-		&GET_HS_FUNCTION(sv_mapdownload_stop_server),
-		&GET_HS_FUNCTION(sv_mapdownload_set_part_definitions_path),
-		&GET_HS_FUNCTION(sv_mapdownload_set_host),
-		&GET_HS_FUNCTION(sv_mapdownload_reload_map_part_definitions),
 
 		&GET_HS_FUNCTION(data_array_info),
 

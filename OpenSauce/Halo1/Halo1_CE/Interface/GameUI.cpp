@@ -140,7 +140,7 @@ namespace Yelo
 			Hud::Initialize();
 
 			Memory::WriteRelativeCall(GameUI::Update, GET_FUNC_VPTR(HUD_UPDATE_CALL));
-			Memory::WriteRelativeCall(GameUI::FirstPersonWeaponsUpdate, GET_FUNC_VPTR(FIRST_PERSON_WEAPONS_UPDATE_CALL));
+			//Memory::WriteRelativeCall(GameUI::FirstPersonWeaponsUpdate, GET_FUNC_VPTR(FIRST_PERSON_WEAPONS_UPDATE_CALL));
 			FirstPersonWeaponSetStateHookCreateHook();
 		}
 

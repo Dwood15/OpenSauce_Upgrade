@@ -88,7 +88,7 @@
   <ItemDefinitionGroup Condition=" '$(Configuration.Contains(Debug))' ">
     <ClCompile>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
-      <MultiProcessorCompilation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</MultiProcessorCompilation>
+      <MultiProcessorCompilation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</MultiProcessorCompilation>
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
@@ -346,13 +346,10 @@
     <ClInclude Include="..\..\shared\Include\blamlib\Halo1\tag_files\tag_files_structures.hpp" />
     <ClInclude Include="..\..\shared\Include\blamlib\Halo1\tag_files\tag_groups.hpp" />
     <ClInclude Include="..\..\shared\Include\blamlib\Halo1\tag_files\tag_groups_structures.hpp" />
-    <ClInclude Include="..\..\shared\Include\blamlib\Halo1\tag_files\tag_groups_structures_macros.hpp" />
     <ClInclude Include="..\..\shared\Include\blamlib\Halo1\tag_files\tag_group_loading.hpp" />
-    <ClInclude Include="..\..\shared\Include\blamlib\Halo1\tag_files\tag_group_saving.hpp" />
     <ClInclude Include="..\..\shared\Include\blamlib\Halo1\tag_files\tag_group_verification.hpp" />
     <ClInclude Include="..\..\shared\Include\blamlib\Halo1\text\draw_string.hpp" />
     <ClInclude Include="..\..\shared\Include\blamlib\Halo1\text\text_group.hpp" />
-    <ClInclude Include="..\..\shared\Include\blamlib\Halo1\tool\tool.hpp" />
     <ClInclude Include="..\..\shared\Include\blamlib\Halo1\units\bipeds.hpp" />
     <ClInclude Include="..\..\shared\Include\blamlib\Halo1\units\biped_definitions.hpp" />
     <ClInclude Include="..\..\shared\Include\blamlib\Halo1\units\biped_structures.hpp" />
@@ -410,11 +407,6 @@
     <ClCompile Include="..\..\shared\Include\blamlib\Halo1\tag_files\files_windows.cpp" />
     <ClCompile Include="..\..\shared\Include\blamlib\Halo1\tag_files\tag_files.cpp" />
     <ClCompile Include="..\..\shared\Include\blamlib\Halo1\tag_files\tag_groups.cpp" />
-    <ClCompile Include="..\..\shared\Include\blamlib\Halo1\tag_files\tag_groups_field_scan.cpp" />
-    <ClCompile Include="..\..\shared\Include\blamlib\Halo1\tag_files\tag_groups_system.cpp" />
-    <ClCompile Include="..\..\shared\Include\blamlib\Halo1\tag_files\tag_group_loading.cpp" />
-    <ClCompile Include="..\..\shared\Include\blamlib\Halo1\tag_files\tag_group_saving.cpp" />
-    <ClCompile Include="..\..\shared\Include\blamlib\Halo1\tag_files\tag_group_verification.cpp" />
     <ClCompile Include="..\..\shared\Include\blamlib\Halo1\units\unit_structures.cpp" />
     <ClCompile Include="..\..\shared\Include\blamlib\math\real_math.cpp" />
     <ClCompile Include="..\..\shared\Include\blamlib\memory\data_base.cpp" />

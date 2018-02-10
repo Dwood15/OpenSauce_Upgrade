@@ -22,10 +22,6 @@
 #include "Game/EngineFunctions.hpp"
 #include "Game/GameState.hpp"
 
-#if !PLATFORM_IS_DEDI
-#include "Networking/HTTP/MapDownloadClient.hpp"
-#endif
-
 namespace Yelo {
 #define __EL_INCLUDE_ID			__EL_INCLUDE_TAGGROUPS
 #define __EL_INCLUDE_FILE_ID	__EL_TAGGROUPS_CACHE_FILES
@@ -39,10 +35,8 @@ namespace Yelo {
 		map_list_data_t* MultiplayerMaps()	PTR_IMP_GET2(multiplayer_maps);
 
 		static void MapListInitializeHooks() {
-			Memory::WriteRelativeJmp(blam::map_list_initialize,
-									 GET_FUNC_VPTR(MULTIPLAYER_MAP_LIST_INITIALIZE), true);
-			Memory::WriteRelativeJmp(blam::map_list_dispose,
-									 GET_FUNC_VPTR(MULTIPLAYER_MAP_LIST_DISPOSE), true);
+			Memory::WriteRelativeJmp(blam::map_list_initialize, GET_FUNC_VPTR(MULTIPLAYER_MAP_LIST_INITIALIZE), true);
+			Memory::WriteRelativeJmp(blam::map_list_dispose, GET_FUNC_VPTR(MULTIPLAYER_MAP_LIST_DISPOSE), true);
 		}
 	};
 
@@ -191,12 +185,7 @@ namespace Yelo {
 					}
 					Engine::GatherException(map_path, 0x89, 0x7E, 1);
 				}
-			} else if (!result && !exception_on_fail) {
-#if !PLATFORM_IS_DEDI
-				// insert map download here as this is probably only reached on multiplayer
-				Networking::HTTP::Client::MapDownload::AddMapForDownload(relative_map_name);
-#endif
-			}
+			} else if (!result && !exception_on_fail) { }
 
 			return result;
 		}

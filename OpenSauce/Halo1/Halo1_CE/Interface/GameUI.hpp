@@ -60,8 +60,7 @@ namespace Yelo
 		void Dispose();
 		void PLATFORM_API Update();
 
-		void PLATFORM_API FirstPersonWeaponsUpdate();
-
+		//void PLATFORM_API FirstPersonWeaponsUpdate();
 
 		// Predicate to use for determining when to send a message to players
 		typedef bool (API_FUNC* proc_send_hud_chat_predicate)(Players::s_player_datum* player, 

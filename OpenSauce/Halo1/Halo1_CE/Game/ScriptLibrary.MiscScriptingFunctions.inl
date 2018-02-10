@@ -301,12 +301,6 @@ static void InitializeMiscFunctions() {
 	YELO_INIT_SCRIPT_FUNCTION_WITH_PARAMS_DEDI(Enums::_hs_function_sv_httpserver_ban_ip, Networking::HTTP::Server::BanManager::HTTPServerBanIP);
 	YELO_INIT_SCRIPT_FUNCTION_WITH_PARAMS_DEDI(Enums::_hs_function_sv_httpserver_unban_ip, Networking::HTTP::Server::BanManager::HTTPServerUnbanIP);
 
-	YELO_INIT_SCRIPT_FUNCTION_DEDI(Enums::_hs_function_sv_mapdownload_start_server, Networking::HTTP::Server::MapDownload::MapDownloadStartServer);
-	YELO_INIT_SCRIPT_FUNCTION_DEDI(Enums::_hs_function_sv_mapdownload_stop_server, Networking::HTTP::Server::MapDownload::MapDownloadStopServer);
-	YELO_INIT_SCRIPT_FUNCTION_WITH_PARAMS_DEDI(Enums::_hs_function_sv_mapdownload_set_part_definitions_path, Networking::HTTP::Server::MapDownload::MapDownloadSetPartDefinitionsPath);
-	YELO_INIT_SCRIPT_FUNCTION_WITH_PARAMS_DEDI(Enums::_hs_function_sv_mapdownload_set_host, Networking::HTTP::Server::MapDownload::MapDownloadSetHost);
-	YELO_INIT_SCRIPT_FUNCTION_DEDI(Enums::_hs_function_sv_mapdownload_reload_map_part_definitions, Networking::HTTP::Server::MapDownload::MapDownloadReloadMapPartDefinitions);
-
 	// Depreceated
 	Scripting::NullifyScriptFunctionWithParams(Enums::_hs_function_scenario_faux_zones_reset);
 	Scripting::NullifyScriptFunctionWithParams(Enums::_hs_function_scenario_faux_zone_current_switch_variant);

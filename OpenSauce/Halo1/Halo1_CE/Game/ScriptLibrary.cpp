@@ -32,7 +32,6 @@
 #if PLATFORM_IS_DEDI
 #include "Networking/HTTP/HTTPServer.hpp"
 #include "Networking/HTTP/BanManager.hpp"
-#include "Networking/HTTP/MapDownloadServer.hpp"
 #endif
 
 namespace Yelo

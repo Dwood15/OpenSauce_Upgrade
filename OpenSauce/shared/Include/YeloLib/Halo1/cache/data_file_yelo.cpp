@@ -94,7 +94,7 @@ namespace Yelo
 		{
 			BuildNames(mod_name);
 
-			m_maps_path.environment = Cache::MapsDirectory();
+			m_maps_path.environment = Cache::K_MAP_FILES_DIRECTORY;
 			m_maps_path.user_profile = Settings::PlatformUserMapsPath();
 			m_maps_path.final = nullptr;
 		}

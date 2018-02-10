@@ -22,7 +22,6 @@
 #include "Rasterizer/PostProcessing/FXAA/c_system_fxaa.hpp"
 #include "Rasterizer/PostProcessing/Generic/Internal/c_system_internal.hpp"
 #include "Rasterizer/PostProcessing/Generic/External/c_system_external.hpp"
-#include "Networking/HTTP/MapDownloadClient.hpp"
 #include "Networking/GameSpyApi.hpp"
 #include "TagGroups/CacheFiles.hpp"
 #include "Game/Camera.hpp"
@@ -309,11 +308,7 @@ namespace Yelo
 					property.Set(control, Control::s_interface_value(!Networking::GameSpy::c_settings_gamespy::Instance()->m_no_update_check));
 				});
 
-			AddDynamicProperty(K_CHK_INTERNET_MAP_DOWNLOADING_ENABLED_ID, K_PROPERTY_CHECKED_ID,
-				[](Control::i_control& control, Control::i_property_interface& property)
-				{
-					property.Set(control, Control::s_interface_value(Networking::HTTP::Client::MapDownload::c_settings_mapdownload::Instance()->m_enabled));
-				});
+			AddDynamicProperty(K_CHK_INTERNET_MAP_DOWNLOADING_ENABLED_ID, K_PROPERTY_CHECKED_ID, [](Control::i_control& control, Control::i_property_interface& property)	{ });
 
 
 			AddDynamicProperty(K_CHK_MAP_FILES_CHECK_FOR_YELO_FIRST_ENABLED_ID, K_PROPERTY_CHECKED_ID,
@@ -487,11 +482,7 @@ namespace Yelo
 					Networking::GameSpy::c_settings_gamespy::Instance()->m_no_update_check = !event_data.m_bool;
 				});
 
-			AttachEvent(K_CHK_INTERNET_MAP_DOWNLOADING_ENABLED_ID, K_EVENT_CHECKCHANGED_ID, K_CHK_INTERNET_MAP_DOWNLOADING_TOGGLE_EVENT_ID, nullptr,
-				[](const Control::s_interface_value& event_data, void* userdata)
-				{
-					Networking::HTTP::Client::MapDownload::c_settings_mapdownload::Instance()->m_enabled = event_data.m_bool;
-				});
+			AttachEvent(K_CHK_INTERNET_MAP_DOWNLOADING_ENABLED_ID, K_EVENT_CHECKCHANGED_ID, K_CHK_INTERNET_MAP_DOWNLOADING_TOGGLE_EVENT_ID, nullptr, [](const Control::s_interface_value& event_data, void* userdata) { });
 
 
 			AttachEvent(K_CHK_MAP_FILES_CHECK_FOR_YELO_FIRST_ENABLED_ID, K_EVENT_CHECKCHANGED_ID, K_CHK_MAP_FILES_CHECK_FOR_YELO_FIRST_TOGGLE_EVENT_ID, nullptr,

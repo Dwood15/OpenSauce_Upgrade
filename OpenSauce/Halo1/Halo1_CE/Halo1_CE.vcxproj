@@ -443,7 +443,6 @@
     <ClCompile Include="Interface\OpenSauceUI\Screen\c_screen_controller_ingame.cpp" />
     <ClCompile Include="Interface\OpenSauceUI\Screen\c_screen_controller_mainmenu.cpp" />
     <ClCompile Include="Interface\OpenSauceUI\Screen\c_screen_controller_mainmenubottombar.cpp" />
-    <ClCompile Include="Interface\OpenSauceUI\Screen\c_screen_controller_mapdownload.cpp" />
     <ClCompile Include="Interface\OpenSauceUI\Screen\c_screen_definition_reader.cpp" />
     <ClCompile Include="Interface\OpenSauceUI\Screen\c_screen_display_manager.cpp" />
     <ClCompile Include="Interface\UIWidgets.cpp" />
@@ -452,18 +451,11 @@
     <ClCompile Include="Networking\GameSpyApi.cpp" />
     <ClCompile Include="Networking\Networking.cpp" />
     <ClCompile Include="Networking\Server.cpp" />
-    <ClCompile Include="Networking\VersionCheck.cpp" />
-    <ClCompile Include="Networking\VersionCheckClient.cpp" />
-    <ClCompile Include="Networking\VersionCheckDedi.cpp" />
     <ClCompile Include="Networking\HTTP\BanManager.cpp" />
     <ClCompile Include="Networking\HTTP\c_file_downloader.cpp" />
     <ClCompile Include="Networking\HTTP\c_xml_downloader.cpp" />
     <ClCompile Include="Networking\HTTP\HTTP.cpp" />
     <ClCompile Include="Networking\HTTP\HTTPClient.cpp" />
-    <ClCompile Include="Networking\HTTP\HTTPServer.cpp" />
-    <ClCompile Include="Networking\HTTP\MapDownloadClient.cpp" />
-    <ClCompile Include="Networking\HTTP\MapDownloadClientDisplay.cpp" />
-    <ClCompile Include="Networking\HTTP\MapDownloadServer.cpp" />
     <ClCompile Include="Networking\MessageDefinitions.cpp" />
     <ClCompile Include="Networking\MessageDeltas.cpp" />
     <ClCompile Include="Objects\Equipment.cpp" />
@@ -619,18 +611,12 @@
     <ClInclude Include="Networking\GameSpyApi.hpp" />
     <ClInclude Include="Networking\Networking.hpp" />
     <ClInclude Include="Networking\Server.hpp" />
-    <ClInclude Include="Networking\VersionCheck.hpp" />
-    <ClInclude Include="Networking\VersionCheckClient.hpp" />
-    <ClInclude Include="Networking\VersionCheckDedi.hpp" />
     <ClInclude Include="Networking\HTTP\BanManager.hpp" />
     <ClInclude Include="Networking\HTTP\c_file_downloader.hpp" />
     <ClInclude Include="Networking\HTTP\c_xml_downloader.hpp" />
     <ClInclude Include="Networking\HTTP\HTTP.hpp" />
     <ClInclude Include="Networking\HTTP\HTTPClient.hpp" />
     <ClInclude Include="Networking\HTTP\HTTPServer.hpp" />
-    <ClInclude Include="Networking\HTTP\MapDownloadClient.hpp" />
-    <ClInclude Include="Networking\HTTP\MapDownloadClientDisplay.hpp" />
-    <ClInclude Include="Networking\HTTP\MapDownloadServer.hpp" />
     <ClInclude Include="Networking\MDP.hpp" />
     <ClInclude Include="Networking\MessageDefinitions.hpp" />
     <ClInclude Include="Networking\MessageDeltaDefinitions.hpp" />
@@ -731,7 +717,6 @@
     <None Include="Game\CameraFov.inl" />
     <None Include="Game\Campaign.inl" />
     <None Include="Game\ScriptLibrary.Definitions.HTTPServer.inl" />
-    <None Include="Game\ScriptLibrary.Definitions.HTTPServer.MapDownload.inl" />
     <None Include="Game\ScriptLibrary.Definitions.Numbers.inl" />
     <None Include="Game\ScriptLibrary.Definitions.Objects.inl" />
     <None Include="Game\ScriptLibrary.Definitions.Players.inl" />
@@ -814,7 +799,6 @@
     <None Include="Resources\OpenSauceUI\MainMenuBottomBarDefinition.json">
       <FileType>Document</FileType>
     </None>
-    <None Include="Resources\OpenSauceUI\MapDownloadDefinition.json" />
     <None Include="TagGroups\CacheFiles.CRC.inl" />
     <None Include="TagGroups\CacheFiles.DataFiles.inl" />
     <None Include="TagGroups\CacheFiles.MapList.inl" />
