@@ -12,9 +12,7 @@
  * \brief
  * Determines the unit definition override for a player in Free For All games
  */
-static datum_index PlayerFindUnitDefinitionOverride(const s_player_datum* player, datum_index unit_definition_index,
-	const TAG_TBLOCK(& player_units, TagGroups::s_network_game_player_unit))
-{
+static datum_index PlayerFindUnitDefinitionOverride(const s_player_datum* player, datum_index unit_definition_index, const TAG_TBLOCK(& player_units, TagGroups::s_network_game_player_unit)) {
 	// NOTE: currently don't override FFA players
 	return unit_definition_index;
 }

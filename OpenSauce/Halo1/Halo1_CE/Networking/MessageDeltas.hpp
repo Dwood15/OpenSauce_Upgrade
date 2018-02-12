@@ -45,14 +45,8 @@ namespace Yelo
 		bool EnableNetworkingSteroids();
 
 #ifndef YELO_NO_NETWORK
-		inline bool ClientSendMessageToServer(
-			size_t data_size_in_bits,
-			bool unbuffered = false, bool flush_queue = false, int32 buffer_priority = Enums::k_message_highest_priority)
-		{
-			return Networking::ClientSendMessageToServer(
-				PacketBufferSent(), data_size_in_bits,
-				Enums::_network_messsage_type_message_delta, 
-				unbuffered, flush_queue, buffer_priority);
+		inline bool ClientSendMessageToServer(size_t data_size_in_bits, bool unbuffered = false, bool flush_queue = false, int32 buffer_priority = Enums::k_message_highest_priority) {
+			return Networking::ClientSendMessageToServer(PacketBufferSent(), data_size_in_bits, Enums::_network_messsage_type_message_delta, unbuffered, flush_queue, buffer_priority);
 		}
 
 		inline bool SvSendMessageToMachine(int32 machine_index, 

@@ -118,10 +118,8 @@
 
 #define DUO_PTR(name) (name) , (name)
 
-namespace Yelo
-{
-	namespace Enums
-	{
+namespace Yelo {
+	namespace Enums {
 		enum x86_opcode : byte {
 			// push imm16\32
 			_x86_opcode_push_imm = 0x68,
@@ -162,32 +160,26 @@ namespace Yelo
 		BOOST_STATIC_ASSERT( sizeof(Enums::x86_opcode_twobyte)==2 );
 	};
 
-	namespace Memory
-	{
-		struct Opcode
-		{
-			struct s_call
-			{
+	namespace Memory {
+		struct Opcode {
+			struct s_call {
 				byte Op;
 				uint32 Address;
 			};
 
-			struct s_call_ret : s_call
-			{
+			struct s_call_ret : s_call {
 				byte Ret;
 				uint16 Count;
 			};
 
 			// absolute call opcode
-			struct s_call_abs
-			{
+			struct s_call_abs {
 				uint16 Op;
 				uint32 Address;
 			};
 
 			// absolute call opcode with return
-			struct s_call_abs_ret : s_call_abs
-			{
+			struct s_call_abs_ret : s_call_abs {
 				byte Ret;
 				uint16 Count;
 			};
@@ -212,10 +204,7 @@ namespace Yelo
 		/// <param name="src">   	Buffer to copy from. </param>
 		///
 		/// <returns>	not FALSE if it succeeds, FALSE if it fails. </returns>
-		BOOL WriteMemory(void* address, const T (&src)[size])
-		{
-			return WriteMemory(address, src, sizeof(T) * size);
-		}
+		BOOL WriteMemory(void* address, const T (&src)[size]) { return WriteMemory(address, src, sizeof(T) * size); }
 		////////////////////////////////////////////////////////////////////////////////////////////////////
 		/// <summary>	Overwrites a range of foreign memory with a specific byte. </summary>
 		///

@@ -76,10 +76,7 @@ namespace Yelo
 		};
 #endif
 
-		struct s_network_yelo_settings {
-			bool gs_no_update_check;
-			PAD24;
-		}g_network_yelo_settings;
+		struct s_network_yelo_settings { bool gs_no_update_check; PAD24; }g_network_yelo_settings;
 
 		s_update_client_globals* UpdateClientGlobals()						PTR_IMP_GET2(update_client_globals);
 		s_update_server_globals* UpdateServerGlobals()						PTR_IMP_GET2(update_server_globals);
@@ -175,11 +172,8 @@ namespace Yelo
 			GameSpy::Dispose();
 		}
 
-		static API_FUNC_NAKED bool NetworkConnectionWrite(const s_network_connection& connection,
-			const void* data, size_t data_size_in_bits,
-			const void* header, size_t header_size_in_bits,
-			BOOL unbuffered, BOOL flush_queue, int32 buffer_priority)
-		{
+		static API_FUNC_NAKED bool NetworkConnectionWrite(const s_network_connection& connection, const void* data, size_t data_size_in_bits,
+			const void* header, size_t header_size_in_bits, BOOL unbuffered, BOOL flush_queue, int32 buffer_priority) {
 			static const uintptr_t CALL_ADDR = GET_FUNC_PTR(NETWORK_CONNECTION_WRITE);
 
 			API_FUNC_NAKED_START()
@@ -201,40 +195,25 @@ namespace Yelo
 				pop		edi
 			API_FUNC_NAKED_END(8)
 		}
-		bool ConnectionWrite(const s_network_connection& connection, 
-			const void* data, size_t data_size_in_bits,
-			const void* header, size_t header_size_in_bits,
-			bool unbuffered, bool flush_queue, int32 buffer_priority)
-		{
-			return NetworkConnectionWrite(connection, 
-				data, data_size_in_bits, 
-				header, header_size_in_bits, 
-				unbuffered, flush_queue, buffer_priority);
+		bool ConnectionWrite(const s_network_connection& connection, const void* data, size_t data_size_in_bits, const void* header, size_t header_size_in_bits,
+			bool unbuffered, bool flush_queue, int32 buffer_priority) {
+			return NetworkConnectionWrite(connection, data, data_size_in_bits, header, header_size_in_bits, unbuffered, flush_queue, buffer_priority);
 		}
 
-		bool ClientSendMessageToServer(
-			const void* data, size_t data_size_in_bits, 
-			Enums::network_messsage_type message_type, 
-			bool unbuffered, bool flush_queue, int32 buffer_priority)
-		{
+		bool ClientSendMessageToServer(const void* data, size_t data_size_in_bits, Enums::network_messsage_type message_type, bool unbuffered, bool flush_queue, int32 buffer_priority) {
 			s_network_game_client* client = NetworkGameClient();
 			const s_network_connection& client_connection = *client->connection;
 			long_flags flags = client_connection.flags;
 
-			if(!TEST_FLAG(flags, Flags::_connection_create_server_bit))
-			{
+			if(!TEST_FLAG(flags, Flags::_connection_create_server_bit)) {
 				Enums::network_messsage_type header = Enums::_network_messsage_type_message_delta;
-				return ConnectionWrite(client_connection, 
-					data, data_size_in_bits,
-					&message_type, 1,
-					unbuffered, flush_queue, buffer_priority);
+				return ConnectionWrite(client_connection, data, data_size_in_bits, &message_type, 1, unbuffered, flush_queue, buffer_priority);
 			}
 
 			return false;
 		}
 
-		API_FUNC_NAKED bool ServerSendRejectionMessage(s_network_game_player& rejected_player, Enums::transport_rejection_code code)
-		{
+		API_FUNC_NAKED bool ServerSendRejectionMessage(s_network_game_player& rejected_player, Enums::transport_rejection_code code) {
 			static const uintptr_t CALL_ADDR = GET_FUNC_PTR(NETWORK_GAME_SERVER_SEND_REJECTION_MESSAGE);
 
 			API_FUNC_NAKED_START()
@@ -262,8 +241,7 @@ not_a_server:
 			API_FUNC_NAKED_END(2)
 		}
 
-		API_FUNC_NAKED bool ServerHoldupNewClient(s_network_client_machine& client_machine)
-		{
+		API_FUNC_NAKED bool ServerHoldupNewClient(s_network_client_machine& client_machine) {
 			static const uintptr_t CALL_ADDR = GET_FUNC_PTR(NETWORK_GAME_SERVER_SEND_REJECTION_MESSAGE);
 
 			API_FUNC_NAKED_START()
@@ -279,12 +257,8 @@ not_a_server:
 			API_FUNC_NAKED_END(1)
 		}
 
-		API_FUNC_NAKED bool SvSendMessageToMachine(int32 machine_index, 
-			const void* data, size_t data_size_in_bits, 
-			Enums::network_messsage_type message_type, 
-			BOOL unbuffered, BOOL flush_queue, BOOL write_to_local_connection, 
-			int32 buffer_priority)
-		{
+		API_FUNC_NAKED bool SvSendMessageToMachine(int32 machine_index, const void* data, size_t data_size_in_bits, Enums::network_messsage_type message_type, 
+			BOOL unbuffered, BOOL flush_queue, BOOL write_to_local_connection, int32 buffer_priority) {
 			static const uintptr_t CALL_ADDR = GET_FUNC_PTR(NETWORK_GAME_SERVER_SEND_MESSAGE_TO_MACHINE);
 
 			API_FUNC_NAKED_START()
@@ -307,13 +281,8 @@ not_a_server:
 			API_FUNC_NAKED_END(8)
 		}
 
-		API_FUNC_NAKED bool SvSendMessageToAll(
-			const void* data, size_t data_size_in_bits, 
-			Enums::network_messsage_type message_type, 
-			BOOL unbuffered, BOOL flush_queue, BOOL write_to_local_connection, 
-			int32 buffer_priority, 
-			BOOL ingame_only)
-		{
+		API_FUNC_NAKED bool SvSendMessageToAll(const void* data, size_t data_size_in_bits, Enums::network_messsage_type message_type, BOOL unbuffered, BOOL flush_queue, BOOL write_to_local_connection, 
+			int32 buffer_priority, BOOL ingame_only) {
 			static const uintptr_t CALL_ALL_MACHINES = GET_FUNC_PTR(NETWORK_GAME_SERVER_SEND_MESSAGE_TO_ALL_MACHINES);
 			static const uintptr_t CALL_ALL_MACHINES_INGAME = GET_FUNC_PTR(NETWORK_GAME_SERVER_SEND_MESSAGE_TO_ALL_MACHINES_INGAME);
 
@@ -344,13 +313,13 @@ cleanup:
 			API_FUNC_NAKED_END(8)
 		}
 
-		Enums::network_game_generic_state GetNetworkGameState()
-		{
-			if (GameState::IsClient())		return CAST(Enums::network_game_generic_state,
-				NetworkGameClient()->state - Enums::_network_game_client_state_pregame);
-			else if (GameState::IsServer()) return CAST(Enums::network_game_generic_state,
-				NetworkGameServer()->state - Enums::_network_game_server_state_pregame);
-
+		Enums::network_game_generic_state GetNetworkGameState() {
+			if (GameState::IsClient()) {
+				return CAST(Enums::network_game_generic_state, NetworkGameClient()->state - Enums::_network_game_client_state_pregame);
+			}
+			else if (GameState::IsServer()) {
+				return CAST(Enums::network_game_generic_state, NetworkGameServer()->state - Enums::_network_game_server_state_pregame);
+			}
 			return Enums::_network_game_generic_state_unknown;
 		}
 	};
