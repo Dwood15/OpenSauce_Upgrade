@@ -59,22 +59,25 @@ namespace Yelo
 		typedef Memory::DataArray<s_action_update, Enums::k_multiplayer_maximum_players>
 			update_client_queues_data_t;
 
+		struct s_saved_action_collection {
+			Players::s_player_action actions[Enums::k_maximum_number_of_local_players];
+		}; BOOST_STATIC_ASSERT(sizeof(s_saved_action_collection) == Enums::k_maximum_number_of_local_players * sizeof(Players::s_player_action));
+
 		struct s_update_client_globals
 		{
-			bool initialized;
-			PAD24;
-			uint32 current_update_id;
-			PAD32;
-			struct {
-				Players::s_player_action actions[Enums::k_maximum_number_of_local_players];
-			}saved_action_collection;
-			uint32 ticks_to_apply_action_to;
-			PAD32;
-			int32 current_local_player;
+			bool initialized; //0x0
+			PAD24; //0x1
+			uint32 current_update_id; //0x4
+			PAD32; //0x8
+			s_saved_action_collection saved_action_collection; //0xC
+			uint32 ticks_to_apply_action_to; //0xC + sizeof(s_s_a_c) * max local players
+			PAD32; //0x10 + 0x20 * max local players
+			int32 current_local_player; //0x14 + you get the idea
 
-			update_client_queues_data_t* queue_data;
-			byte queue_data_buffer[0x308][128];
+			update_client_queues_data_t * queue_data; //0x18 + ygti
+			byte queue_data_buffer[0x308][128]; //0x1C + ygti
 		}; BOOST_STATIC_ASSERT( sizeof(s_update_client_globals) == 0x1843C );
+
 		s_update_client_globals* UpdateClientGlobals();
 	};
 };

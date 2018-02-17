@@ -16,7 +16,8 @@ namespace Yelo
 		struct s_oddball_globals
 		{
 			int32 score_to_win;
-			int32 team_score[Enums::k_multiplayer_maximum_players];
+			int32 team_score[Enums::
+			k_multiplayer_maximum_players];
 			int32 individual_score[Enums::k_multiplayer_maximum_players];
 			int32 undocumented1[Enums::k_multiplayer_maximum_players];
 			datum_index current_ball_owners[Enums::k_multiplayer_maximum_players]; // player_index

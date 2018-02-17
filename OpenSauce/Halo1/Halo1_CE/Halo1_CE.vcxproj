@@ -76,7 +76,7 @@
       <ExpandAttributedSource Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExpandAttributedSource>
       <EnableParallelCodeGeneration Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Yes</EnableParallelCodeGeneration>
       <EnableEnhancedInstructionSet Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NoExtensions</EnableEnhancedInstructionSet>
-      <DebugInformationFormat Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EditAndContinue</DebugInformationFormat>
+      <DebugInformationFormat Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">ProgramDatabase</DebugInformationFormat>
       <CreateHotpatchableImage Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</CreateHotpatchableImage>
     </ClCompile>
     <Link>
@@ -715,27 +715,6 @@
     <Text Include="Halo1_CE_Readme.txt" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\..\..\shared\bin\mmbbq_3.0.2\HaloCE\1_09_Client\Game.lua" />
-    <None Include="..\..\..\shared\bin\mmbbq_3.0.2\HaloCE\1_09_Client\Game_EngineFunctions.lua" />
-    <None Include="..\..\..\shared\bin\mmbbq_3.0.2\HaloCE\1_09_Client\Game_HS.lua" />
-    <None Include="..\..\..\shared\bin\mmbbq_3.0.2\HaloCE\1_09_Client\Interface.lua" />
-    <None Include="..\..\..\shared\bin\mmbbq_3.0.2\HaloCE\1_09_Client\Networking.lua" />
-    <None Include="..\..\..\shared\bin\mmbbq_3.0.2\HaloCE\1_09_Client\Objects.lua" />
-    <None Include="..\..\..\shared\bin\mmbbq_3.0.2\HaloCE\1_09_Client\OpenSauce.lua" />
-    <None Include="..\..\..\shared\bin\mmbbq_3.0.2\HaloCE\1_09_Client\Rasterizer.lua" />
-    <None Include="..\..\..\shared\bin\mmbbq_3.0.2\HaloCE\1_09_Client\Rasterizer_DX9.lua" />
-    <None Include="..\..\..\shared\bin\mmbbq_3.0.2\HaloCE\1_09_Client\Rasterizer_ShaderDraw.lua" />
-    <None Include="..\..\..\shared\bin\mmbbq_3.0.2\HaloCE\1_09_Client\Rasterizer_ShaderExtension.lua" />
-    <None Include="..\..\..\shared\bin\mmbbq_3.0.2\HaloCE\1_09_Client\Scenario.lua" />
-    <None Include="..\..\..\shared\bin\mmbbq_3.0.2\HaloCE\1_09_Client\TagGroups.lua" />
-    <None Include="..\..\..\shared\bin\mmbbq_3.0.2\HaloCE\1_09_Server\Game.lua" />
-    <None Include="..\..\..\shared\bin\mmbbq_3.0.2\HaloCE\1_09_Server\Game_EngineFunctions.lua" />
-    <None Include="..\..\..\shared\bin\mmbbq_3.0.2\HaloCE\1_09_Server\Game_HS.lua" />
-    <None Include="..\..\..\shared\bin\mmbbq_3.0.2\HaloCE\1_09_Server\Networking.lua" />
-    <None Include="..\..\..\shared\bin\mmbbq_3.0.2\HaloCE\1_09_Server\Objects.lua" />
-    <None Include="..\..\..\shared\bin\mmbbq_3.0.2\HaloCE\1_09_Server\OpenSauce.lua" />
-    <None Include="..\..\..\shared\bin\mmbbq_3.0.2\HaloCE\1_09_Server\Scenario.lua" />
-    <None Include="..\..\..\shared\bin\mmbbq_3.0.2\HaloCE\1_09_Server\TagGroups.lua" />
     <None Include="Common\GameSystemComponent.Definitions.inl" />
     <None Include="Common\GameSystemComponent.IterationRoundBegin.inl" />
     <None Include="Common\GameSystemComponent.IterationRoundEnd.inl" />
@@ -857,32 +836,6 @@
     <None Include="TagGroups\CacheFiles.YeloFiles.inl" />
     <None Include="Memory\_EngineLayout.inl" />
     <None Include="Halo1_CE.def" />
-    <None Include="Memory\1.08\_EngineLayout.Game.EngineFunctions.inl" />
-    <None Include="Memory\1.08\_EngineLayout.Game.HS.inl" />
-    <None Include="Memory\1.08\_EngineLayout.Game.inl" />
-    <None Include="Memory\1.08\_EngineLayout.Interface.inl" />
-    <None Include="Memory\1.08\_EngineLayout.Networking.inl" />
-    <None Include="Memory\1.08\_EngineLayout.Objects.inl" />
-    <None Include="Memory\1.08\_EngineLayout.OpenSauce.inl" />
-    <None Include="Memory\1.08\_EngineLayout.Rasterizer.DX9.inl" />
-    <None Include="Memory\1.08\_EngineLayout.Rasterizer.inl" />
-    <None Include="Memory\1.08\_EngineLayout.Rasterizer.ShaderDraw.inl" />
-    <None Include="Memory\1.08\_EngineLayout.Rasterizer.ShaderExtension.inl" />
-    <None Include="Memory\1.08\_EngineLayout.Scenario.inl" />
-    <None Include="Memory\1.08\_EngineLayout.TagGroups.inl" />
-    <None Include="Memory\1.09\_EngineLayout.Game.EngineFunctions.inl" />
-    <None Include="Memory\1.09\_EngineLayout.Game.HS.inl" />
-    <None Include="Memory\1.09\_EngineLayout.Game.inl" />
-    <None Include="Memory\1.09\_EngineLayout.Interface.inl" />
-    <None Include="Memory\1.09\_EngineLayout.Networking.inl" />
-    <None Include="Memory\1.09\_EngineLayout.Objects.inl" />
-    <None Include="Memory\1.09\_EngineLayout.OpenSauce.inl" />
-    <None Include="Memory\1.09\_EngineLayout.Rasterizer.DX9.inl" />
-    <None Include="Memory\1.09\_EngineLayout.Rasterizer.inl" />
-    <None Include="Memory\1.09\_EngineLayout.Rasterizer.ShaderDraw.inl" />
-    <None Include="Memory\1.09\_EngineLayout.Rasterizer.ShaderExtension.inl" />
-    <None Include="Memory\1.09\_EngineLayout.Scenario.inl" />
-    <None Include="Memory\1.09\_EngineLayout.TagGroups.inl" />
     <None Include="Rasterizer\PostProcessing\MotionBlur\MotionBlurDefinitions.inl" />
     <None Include="Rasterizer\PostProcessing\Bloom\BloomDefinitions.inl" />
     <None Include="Rasterizer\PostProcessing\Generic\PostProcessingGeneric_EvaluateRuntimeValue.inl" />

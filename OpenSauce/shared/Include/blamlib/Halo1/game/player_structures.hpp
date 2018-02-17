@@ -13,20 +13,15 @@
 #include <blamlib/Halo1/networking/player_update_server.hpp>
 #include <blamlib/Halo1/game/players.hpp>
 
-namespace Yelo
-{
-	namespace Objects
-	{
+namespace Yelo {
+	namespace Objects {
 		struct s_unit_datum;
 	};
 };
 
-namespace Yelo
-{
-	namespace Players
-	{
-		union u_player_multiplayer_stats
-		{
+namespace Yelo {
+	namespace Players {
+		union u_player_multiplayer_stats {
 			PAD64;
 
 			struct s_ctf {
@@ -56,8 +51,7 @@ namespace Yelo
 		}; BOOST_STATIC_ASSERT( sizeof(u_player_multiplayer_stats) == 8 );
 
 		// Special yelo data used for player datums when running as a server
-		struct s_player_yelo_server_data
-		{
+		struct s_player_yelo_server_data {
 			enum { k_max_struct_size = 0x38 };
 
 			struct _rcon_access {
@@ -74,10 +68,8 @@ namespace Yelo
 
 		}; BOOST_STATIC_ASSERT( sizeof(s_player_yelo_server_data) <= s_player_yelo_server_data::k_max_struct_size );
 
-		struct s_player_datum : Memory::s_datum_base
-		{
-			struct s_game_engine_state_message
-			{
+		struct s_player_datum : Memory::s_datum_base {
+			struct s_game_engine_state_message {
 				int32 message_index;
 				datum_index message_player_index; // player to use in the message?
 
@@ -197,6 +189,6 @@ namespace Yelo
 			long_flags combined_pvs[16];						// 0x18 combined pvs of all players in the game 
 			//BIT_VECTOR_SIZE_IN_DWORDS(512)
 			long_flags combined_pvs_local[16];					// 0x58 combined pvs of all local players
-		}; BOOST_STATIC_ASSERT( sizeof(s_players_globals_data) == 0x98 );
+		}; BOOST_STATIC_ASSERT( sizeof(s_players_globals_data) == 0x90 + (sizeof(datum_index) * 2 * Enums::k_maximum_number_of_local_players));
 	};
 };

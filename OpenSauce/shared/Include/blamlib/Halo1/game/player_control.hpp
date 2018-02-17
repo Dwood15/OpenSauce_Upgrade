@@ -8,17 +8,13 @@
 
 #include <blamlib/Halo1/game/game_configuration.hpp>
 
-namespace Yelo
-{
-	namespace TagGroups
-	{
+namespace Yelo {
+	namespace TagGroups {
 		struct s_unit_camera;
 	};
 
-	namespace Players
-	{
-		struct s_player_control
-		{
+	namespace Players {
+		struct s_player_control {
 			datum_index unit_index;									// 0x0
 			long_flags control_flags;								// 0x4
 			PAD16; // unknown field									// 0x8
@@ -39,17 +35,15 @@ namespace Yelo
 			PAD32; // unknown field									// 0x3C
 		}; BOOST_STATIC_ASSERT( sizeof(s_player_control) == 0x40 );
 
-		struct s_player_control_globals_data
-		{
-			long_flags action_flags[2]; // see "action_test" script functions
-			PAD32; // TODO: document the fields in the first 12 bytes of this struct
-			long_flags flags; // FLAG(0) = camera control
+		struct s_player_control_globals_data {
+			long_flags action_flags[2]; // see "action_test" script functions 0x0
+			PAD32; //0x8 // TODO: document the fields in the first 12 bytes of this struct
+			long_flags flags; //0xC // FLAG(0) = camera control
 
-			s_player_control local_players[Enums::k_maximum_number_of_local_players];
-		}; BOOST_STATIC_ASSERT( sizeof(s_player_control_globals_data) == 0x50 );
+			s_player_control local_players[Enums::k_maximum_number_of_local_players]; //0x10
+		}; BOOST_STATIC_ASSERT( sizeof(s_player_control_globals_data) == (0x10 + sizeof(s_player_control) * Enums::k_maximum_number_of_local_players));
 
-		struct s_unit_camera_info
-		{
+		struct s_unit_camera_info {
 			datum_index unit_index;
 			int16 seat_index;
 			PAD16;
@@ -60,8 +54,7 @@ namespace Yelo
 		s_player_control_globals_data*	PlayerControlGlobals();
 	};
 
-	namespace blam
-	{
+	namespace blam {
 		void PLATFORM_API player_control_get_unit_camera_info(const int16 player_index, Players::s_unit_camera_info& camera_info);
 	};
 };

@@ -88,11 +88,8 @@ namespace Yelo
 	};
 
 
-	struct tag_block
-	{
-		enum {
-			k_debug_data_size = sizeof(struct tag_block_definition*),
-		};
+	struct tag_block {
+		enum { k_debug_data_size = sizeof(struct tag_block_definition*) };
 
 		// element count for this block
 		int32 count;
@@ -118,16 +115,14 @@ namespace Yelo
 #if PLATFORM_IS_EDITOR
 		size_t get_element_size() const;
 
-		struct s_iterator_result
-		{
+		struct s_iterator_result {
 			void* address;
 			int32 index;
 
 			s_iterator_result(void* ptr, int32 i) : address(ptr), index(i) {}
 		};
 		// NOTE: Design assumes there's no concurrent element changing (adding or removing)
-		struct s_iterator
-		{
+		struct s_iterator {
 			byte* m_address;
 			int32 m_element_index;
 			size_t m_element_size;
@@ -138,18 +133,15 @@ namespace Yelo
 				, m_element_size(element_size)
 			{
 			}
-			bool operator!=(const s_iterator& other) const
-			{
+			bool operator!=(const s_iterator& other) const {
 				return m_address != other.m_address;
 			}
-			s_iterator& operator++()
-			{
+			s_iterator& operator++() {
 				m_address += m_element_size;
 				++m_element_index;
 				return *this;
 			}
-			s_iterator_result operator*() const
-			{
+			s_iterator_result operator*() const {
 				return s_iterator_result(m_address, m_element_index);
 			}
 		};

@@ -43,33 +43,26 @@ namespace Yelo
 	namespace Enums
 	{
 		enum {
-			k_maximum_simultaneous_tag_instances =				0x00001400, // 5120
-			k_maximum_simultaneous_tag_instances_upgrade = 
-				CAST(uint32, Yelo::Enums::k_maximum_simultaneous_tag_instances * K_MEMORY_UPGRADE_INCREASE_AMOUNT),
+			k_maximum_simultaneous_tag_instances =	0x00001400, // 5120
+			k_maximum_simultaneous_tag_instances_upgrade = CAST(uint32, Yelo::Enums::k_maximum_simultaneous_tag_instances * K_MEMORY_UPGRADE_INCREASE_AMOUNT),
 
-			k_tag_base_address =				// 0x40440000
-				k_physical_memory_base_address + 
-				k_game_state_allocation_size,
+							// 0x40440000
+			k_tag_base_address = k_physical_memory_base_address + k_game_state_allocation_size,
 
-			k_tag_allocation_size =				0x01700000,
-			k_tag_allocation_size_upgrade = 
-				CAST(uint32, Enums::k_tag_allocation_size * K_MEMORY_UPGRADE_INCREASE_AMOUNT),
+			k_tag_allocation_size =	0x01700000,
+			k_tag_allocation_size_upgrade = CAST(uint32, Enums::k_tag_allocation_size * K_MEMORY_UPGRADE_INCREASE_AMOUNT),
 
 			// Highest Tag Memory Address
-			k_tag_max_address =					// 0x41B40000
-				k_tag_base_address + 
-				k_tag_allocation_size,
-			k_tag_max_address_upgrade = 
-				k_tag_base_address + k_tag_allocation_size_upgrade,
+			
+			k_tag_max_address =	k_tag_base_address + k_tag_allocation_size, // 0x41B40000
 
+			k_tag_max_address_upgrade = k_tag_base_address + k_tag_allocation_size_upgrade,
 
 			k_multiplayer_maximum_additional_players = 0,
 
-			k_multiplayer_maximum_players_upgrade = 
-				k_multiplayer_maximum_players + k_multiplayer_maximum_additional_players,
+			k_multiplayer_maximum_players_upgrade = k_multiplayer_maximum_players + k_multiplayer_maximum_additional_players,
 
-			k_maximum_network_machine_count_upgrade = 
-				k_maximum_network_machine_count + k_multiplayer_maximum_additional_players,
+			k_maximum_network_machine_count_upgrade = k_maximum_network_machine_count + k_multiplayer_maximum_additional_players,
 
 			//////////////////////////////////////////////////////////////////////////
 			// effects upgrades
