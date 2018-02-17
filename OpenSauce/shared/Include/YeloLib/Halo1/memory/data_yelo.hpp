@@ -22,8 +22,7 @@ namespace Yelo {
 			datum_index::index_t GetAbsoluteIndex() const { return index.index; }
 		};
 
-		template<typename DatumT, size_t MaxDatumCount,
-			size_t MaxDatumCountUpgrade=MaxDatumCount>
+		template<typename DatumT, size_t MaxDatumCount, size_t MaxDatumCountUpgrade=MaxDatumCount>
 		class DataArray {
 			typedef DataArray<DatumT, MaxDatumCount, MaxDatumCountUpgrade> DataArrayT;
 

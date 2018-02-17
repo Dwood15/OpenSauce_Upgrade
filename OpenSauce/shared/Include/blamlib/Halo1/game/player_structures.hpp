@@ -80,17 +80,17 @@ namespace Yelo {
 
 			int16 local_player_index;							// 0x2
 			wchar_t display_name[Enums::k_player_name_length+1];// 0x4
-			UNUSED_TYPE(int32);									// 0x1C
-			union {												// 0x20
+			UNUSED_TYPE(int32);									// 0x1C  0x18
+			union {												// 0x20  0x1C
 				int32 team_index;
 				argb_color color;
 			};
-			s_player_action_result nearest_object_action_result;// 0x24
-			game_ticks_t respawn_time;							// 0x2C
+			s_player_action_result nearest_object_action_result;// 0x24  0x20
+			game_ticks_t respawn_time;							// 0x2C  0x28
 			/*---------------*/
-			UNKNOWN_TYPE(int32);								// 0x30 respawn time growth related
-			datum_index slave_unit_index;						// 0x34
-			datum_index last_slave_unit_index;					// 0x38
+			UNKNOWN_TYPE(int32);								// 0x30  0x2C         //respawn time growth related
+			datum_index slave_unit_index;						// 0x34  0x30
+			datum_index last_slave_unit_index;					// 0x38  0x34
 			int16 cluster_index;								// 0x3C
 			bool weapon_swap_result;							// 0x3E
 			PAD8;

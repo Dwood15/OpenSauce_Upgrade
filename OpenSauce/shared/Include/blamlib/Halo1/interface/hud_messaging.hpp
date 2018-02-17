@@ -10,9 +10,9 @@ namespace Yelo
 {
 	namespace GameUI
 	{
-		struct s_hud_messaging : TStructImpl(1160)
-		{
-		};
+		struct s_hud_messaging : TStructImpl(0x488) { };
+		BOOST_STATIC_ASSERT(sizeof(s_hud_messaging) == 0x22 + 0x460 * Enums::k_maximum_number_of_local_players )
+		
 		s_hud_messaging*			HudMessaging();
 	};
 
