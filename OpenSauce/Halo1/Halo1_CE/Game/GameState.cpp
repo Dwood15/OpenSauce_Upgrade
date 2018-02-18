@@ -50,9 +50,6 @@ namespace Yelo
 
 #include "Game/GameState.Procs.inl"
 #include "Game/GameState.MemoryUpgrades.inl"
-#if !PLATFORM_IS_DEDI
-	#include "Game/GameState.ServerList.inl"
-#endif
 
 		s_main_globals* MainGlobals()								PTR_IMP_GET2(main_globals);
 		s_physical_memory_map_globals* PhysicalMemoryMapGlobals()	PTR_IMP_GET2(physical_memory_globals);
@@ -163,9 +160,6 @@ namespace Yelo
 
 			Memory::CreateHookRelativeCall(&DisposeFromOldBSP, GET_FUNC_VPTR(GAME_DISPOSE_FROM_OLD_BSP_HOOK), Enums::_x86_opcode_ret);
 
-#if !PLATFORM_IS_DEDI
-			ServerListInitialize();
-#endif
 		}
 
 		void Dispose()

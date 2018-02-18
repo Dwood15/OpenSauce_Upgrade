@@ -6,9 +6,8 @@
 */
 
 // This memory upgrade design can only work with a DLL override system
-#if defined(DX_WRAPPER) || PLATFORM_IS_DEDI
-	static void PhysicalMemoryReInitialize()
-	{
+#if defined(DX_WRAPPER) 
+	static void PhysicalMemoryReInitialize() {
 		static const uintptr_t INITIALIZE = GET_FUNC_PTR(PHYSICAL_MEMORY_INITIALIZE);
 
 		s_physical_memory_map_globals* globals = PhysicalMemoryMapGlobals();
@@ -28,9 +27,7 @@
 		PhysicalMemoryReInitialize();
 	}
 
-	static void MemoryUpgradesDispose()
-	{
-	}
+	static void MemoryUpgradesDispose() { }
 #else
 	DOC_TODO_DEBUG("Game state memory upgrades not implemented...");
 	static void MemoryUpgradesInitialize() {}

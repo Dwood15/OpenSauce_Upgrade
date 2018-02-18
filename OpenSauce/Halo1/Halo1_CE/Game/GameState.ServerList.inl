@@ -26,17 +26,7 @@ static BOOL PLATFORM_API ServerVersionIsValid(cstring server_version)
 
 static void SetVersionFromServer()
 {
-	Networking::s_gamespy_server* server = Networking::GsServerBrowserGlobals()->selected_server.server;
-	if(server)
-	{
-		const char* server_version = Networking::GameSpy::SBServerGetStringValue(server, "gamever", "");
 
-		// use the current version if the queried server_version is invalid as far as we know
-		if (server_version == nullptr || !BuildNumber::StringIsValid(server_version))
-			server_version = BOOST_PP_STRINGIZE(PLATFORM_VERSION_VALUE);
-
-		BuildNumber::ChangeAdvertisedVersion(server_version, false);
-	}
 }
 
 static void SetVersionToCurrent()
@@ -46,24 +36,12 @@ static void SetVersionToCurrent()
 
 static void* CreateNetworkServerHook()
 {
-	typedef void* (PLATFORM_API* create_network_game_t)();
-	static const create_network_game_t network_game_server_create =
-		CAST_PTR(create_network_game_t, GET_FUNC_VPTR(GAME_CREATE_NETWORK_SERVER));
 
-	SetVersionToCurrent();
-
-	return network_game_server_create();
 }
 
 static void* CreateNetworkClientHook()
 {
-	typedef void* (PLATFORM_API* create_network_game_t)();
-	static const create_network_game_t network_game_client_create = 
-		CAST_PTR(create_network_game_t, GET_FUNC_VPTR(GAME_CREATE_NETWORK_CLIENT));
 
-	SetVersionFromServer();
-
-	return network_game_client_create();
 }
 
 static void ServerListInitialize()

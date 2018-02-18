@@ -39,7 +39,6 @@
 #include "Game/ScriptLibrary.hpp"
 #include "Game/AI.hpp"
 #include "Memory/MemoryInterface.hpp"
-#include "Networking/Networking.hpp"
 #include "Scenario/Scenario.hpp"
 
 namespace Yelo

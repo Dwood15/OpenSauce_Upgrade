@@ -138,11 +138,6 @@ namespace Yelo
 			}
 		};
 
-		namespace Networking
-		{
-			#include "Game/EngineFunctions.Networking.inl"
-		};
-
 		namespace Objects
 		{
 			#include "Game/EngineFunctions.Objects.inl"
@@ -816,8 +811,8 @@ namespace Yelo
 		// hud_chat.c
 		void PLATFORM_API hud_chat_to_network(int32 player_number, long_enum chat_type, wcstring text)
 		{
-			Engine::Networking::EncodeHudChatNetworkData(player_number, chat_type, text);
 		}
+
 		API_FUNC_NAKED void PLATFORM_API hud_chat_display_message(wcstring message)
 		{
 			static const uintptr_t FUNCTION = Engine::GET_FUNC_PTR(KEYSTONE_CHAT_LOG_ADD_STRING);
@@ -1390,13 +1385,9 @@ namespace Yelo
 			return Engine::Objects::NewWithRole(data, role);
 		}
 
-		void PLATFORM_API object_delete_to_network(datum_index object_index)
-		{
-			Engine::Networking::EncodeObjectDeletionMessage(object_index);
-		}
+		void PLATFORM_API object_delete_to_network(datum_index object_index) { }
 
-		void PLATFORM_API object_delete(datum_index object_index)
-		{
+		void PLATFORM_API object_delete(datum_index object_index) {
 			Engine::Objects::Delete(object_index);
 		}
 
