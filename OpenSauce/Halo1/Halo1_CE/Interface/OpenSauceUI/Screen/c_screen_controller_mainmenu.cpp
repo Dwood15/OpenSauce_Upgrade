@@ -22,8 +22,6 @@
 #include "Rasterizer/PostProcessing/FXAA/c_system_fxaa.hpp"
 #include "Rasterizer/PostProcessing/Generic/Internal/c_system_internal.hpp"
 #include "Rasterizer/PostProcessing/Generic/External/c_system_external.hpp"
-#include "Networking/HTTP/MapDownloadClient.hpp"
-#include "Networking/GameSpyApi.hpp"
 #include "TagGroups/CacheFiles.hpp"
 #include "Game/Camera.hpp"
 

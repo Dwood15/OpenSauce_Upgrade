@@ -15,7 +15,6 @@
 #include "Settings/Settings.hpp"
 #include "Game/Camera.hpp"
 #include "Game/AI.hpp"
-#include "Networking/MessageDefinitions.hpp"
 
 // Includes for MiscScriptingFunctions.inl
 #include "Game/EngineFunctions.hpp"
@@ -24,16 +23,9 @@
 #include "Game/GameState.hpp"
 #include "Game/GameStateRuntimeData.hpp"
 #include "Interface/UIWidgets.hpp"
-#include "Networking/MessageDeltas.hpp"
 #include "Rasterizer/GBuffer.hpp"
 #include "Rasterizer/PostProcessing/PostProcessingScripting.hpp"
 #include "Rasterizer/ShaderExtension/ShaderExtension.hpp"
-
-#if PLATFORM_IS_DEDI
-#include "Networking/HTTP/HTTPServer.hpp"
-#include "Networking/HTTP/BanManager.hpp"
-#include "Networking/HTTP/MapDownloadServer.hpp"
-#endif
 
 namespace Yelo
 {

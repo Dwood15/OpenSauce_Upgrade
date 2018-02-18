@@ -30,7 +30,6 @@
 #include "Game/Effects.hpp" // for data_array_info only
 #include "Game/EngineFunctions.hpp"
 #include "Game/GameBuildNumber.hpp"
-#include "Networking/GameSpyApi.hpp"
 #include "Objects/Objects.hpp" // for data_array_info only
 #include "Objects/Units.hpp"
 #include "Rasterizer/PostProcessing/PostProcessing.hpp"

@@ -25,7 +25,6 @@
 #include "Game/Console.hpp"
 #include "Game/GameState.hpp"
 #include "Game/ScriptLibrary.hpp"
-#include "Networking/MDP.hpp"
 #include "Objects/Objects.hpp"
 
 // comment the following to just use the parameters as-is 
@@ -1105,17 +1104,6 @@ namespace Yelo
 		}
 		//////////////////////////////////////////////////////////////////////////
 		// main.c
-		API_FUNC_NAKED bool PLATFORM_API main_connect(cstring address, cstring password)
-		{
-			static const uintptr_t FUNCTION = Engine::GET_FUNC_PTR(MAIN_CONNECT);
-
-			API_FUNC_NAKED_START()
-				push	password
-				push	address
-				call	FUNCTION
-				add		esp, 4 * 2
-			API_FUNC_NAKED_END_NO_STACK_POP()
-		}
 		void PLATFORM_API main_menu_load()
 		{
 			static const uintptr_t FUNCTION = Engine::GET_FUNC_PTR(MAINMENU_LOAD);

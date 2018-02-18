@@ -70,15 +70,6 @@
     <Filter Include="Memory\Impl">
       <UniqueIdentifier>{c97dfd88-72d2-410c-b2c4-011e0aa342b5}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Networking">
-      <UniqueIdentifier>{086b2a14-5832-4c3e-ba54-5e776ad03b45}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Networking\HTTP">
-      <UniqueIdentifier>{220bb5c1-3185-4017-aea1-e1a110cadf81}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Networking\MessageDeltas">
-      <UniqueIdentifier>{be20e7d6-c377-44bd-8e0b-8de03096c2bb}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Objects">
       <UniqueIdentifier>{7fb6750b-7d66-4f32-b09c-5c15265c911f}</UniqueIdentifier>
     </Filter>
@@ -677,57 +668,6 @@
     </ClCompile>
     <ClCompile Include="Memory\MemoryInterface.cpp">
       <Filter>Memory</Filter>
-    </ClCompile>
-    <ClCompile Include="Networking\GameSpyApi.cpp">
-      <Filter>Networking</Filter>
-    </ClCompile>
-    <ClCompile Include="Networking\Networking.cpp">
-      <Filter>Networking</Filter>
-    </ClCompile>
-    <ClCompile Include="Networking\Server.cpp">
-      <Filter>Networking</Filter>
-    </ClCompile>
-    <ClCompile Include="Networking\VersionCheck.cpp">
-      <Filter>Networking</Filter>
-    </ClCompile>
-    <ClCompile Include="Networking\VersionCheckClient.cpp">
-      <Filter>Networking</Filter>
-    </ClCompile>
-    <ClCompile Include="Networking\VersionCheckDedi.cpp">
-      <Filter>Networking</Filter>
-    </ClCompile>
-    <ClCompile Include="Networking\HTTP\BanManager.cpp">
-      <Filter>Networking\HTTP</Filter>
-    </ClCompile>
-    <ClCompile Include="Networking\HTTP\c_file_downloader.cpp">
-      <Filter>Networking\HTTP</Filter>
-    </ClCompile>
-    <ClCompile Include="Networking\HTTP\c_xml_downloader.cpp">
-      <Filter>Networking\HTTP</Filter>
-    </ClCompile>
-    <ClCompile Include="Networking\HTTP\HTTP.cpp">
-      <Filter>Networking\HTTP</Filter>
-    </ClCompile>
-    <ClCompile Include="Networking\HTTP\HTTPClient.cpp">
-      <Filter>Networking\HTTP</Filter>
-    </ClCompile>
-    <ClCompile Include="Networking\HTTP\HTTPServer.cpp">
-      <Filter>Networking\HTTP</Filter>
-    </ClCompile>
-    <ClCompile Include="Networking\HTTP\MapDownloadClient.cpp">
-      <Filter>Networking\HTTP</Filter>
-    </ClCompile>
-    <ClCompile Include="Networking\HTTP\MapDownloadClientDisplay.cpp">
-      <Filter>Networking\HTTP</Filter>
-    </ClCompile>
-    <ClCompile Include="Networking\HTTP\MapDownloadServer.cpp">
-      <Filter>Networking\HTTP</Filter>
-    </ClCompile>
-    <ClCompile Include="Networking\MessageDefinitions.cpp">
-      <Filter>Networking\MessageDeltas</Filter>
-    </ClCompile>
-    <ClCompile Include="Networking\MessageDeltas.cpp">
-      <Filter>Networking\MessageDeltas</Filter>
     </ClCompile>
     <ClCompile Include="Objects\Equipment.cpp">
       <Filter>Objects</Filter>
@@ -1503,63 +1443,6 @@
     <ClInclude Include="Memory\MemoryInterface.hpp">
       <Filter>Memory</Filter>
     </ClInclude>
-    <ClInclude Include="Networking\GameSpyApi.hpp">
-      <Filter>Networking</Filter>
-    </ClInclude>
-    <ClInclude Include="Networking\Networking.hpp">
-      <Filter>Networking</Filter>
-    </ClInclude>
-    <ClInclude Include="Networking\Server.hpp">
-      <Filter>Networking</Filter>
-    </ClInclude>
-    <ClInclude Include="Networking\VersionCheck.hpp">
-      <Filter>Networking</Filter>
-    </ClInclude>
-    <ClInclude Include="Networking\VersionCheckClient.hpp">
-      <Filter>Networking</Filter>
-    </ClInclude>
-    <ClInclude Include="Networking\VersionCheckDedi.hpp">
-      <Filter>Networking</Filter>
-    </ClInclude>
-    <ClInclude Include="Networking\HTTP\BanManager.hpp">
-      <Filter>Networking\HTTP</Filter>
-    </ClInclude>
-    <ClInclude Include="Networking\HTTP\c_file_downloader.hpp">
-      <Filter>Networking\HTTP</Filter>
-    </ClInclude>
-    <ClInclude Include="Networking\HTTP\c_xml_downloader.hpp">
-      <Filter>Networking\HTTP</Filter>
-    </ClInclude>
-    <ClInclude Include="Networking\HTTP\HTTP.hpp">
-      <Filter>Networking\HTTP</Filter>
-    </ClInclude>
-    <ClInclude Include="Networking\HTTP\HTTPClient.hpp">
-      <Filter>Networking\HTTP</Filter>
-    </ClInclude>
-    <ClInclude Include="Networking\HTTP\HTTPServer.hpp">
-      <Filter>Networking\HTTP</Filter>
-    </ClInclude>
-    <ClInclude Include="Networking\HTTP\MapDownloadClient.hpp">
-      <Filter>Networking\HTTP</Filter>
-    </ClInclude>
-    <ClInclude Include="Networking\HTTP\MapDownloadClientDisplay.hpp">
-      <Filter>Networking\HTTP</Filter>
-    </ClInclude>
-    <ClInclude Include="Networking\HTTP\MapDownloadServer.hpp">
-      <Filter>Networking\HTTP</Filter>
-    </ClInclude>
-    <ClInclude Include="Networking\MDP.hpp">
-      <Filter>Networking\MessageDeltas</Filter>
-    </ClInclude>
-    <ClInclude Include="Networking\MessageDefinitions.hpp">
-      <Filter>Networking\MessageDeltas</Filter>
-    </ClInclude>
-    <ClInclude Include="Networking\MessageDeltaDefinitions.hpp">
-      <Filter>Networking\MessageDeltas</Filter>
-    </ClInclude>
-    <ClInclude Include="Networking\MessageDeltas.hpp">
-      <Filter>Networking\MessageDeltas</Filter>
-    </ClInclude>
     <ClInclude Include="Objects\Equipment.hpp">
       <Filter>Objects</Filter>
     </ClInclude>
@@ -1799,9 +1682,6 @@
     <None Include="Common\GameSystemComponents.Interface.inl">
       <Filter>Common\GameSystems</Filter>
     </None>
-    <None Include="Common\GameSystemComponents.Networking.inl">
-      <Filter>Common\GameSystems</Filter>
-    </None>
     <None Include="Common\GameSystemComponents.Misc.inl">
       <Filter>Common\GameSystems</Filter>
     </None>
@@ -1875,9 +1755,6 @@
       <Filter>Game\Impl\GameState</Filter>
     </None>
     <None Include="Game\EngineFunctions._Misc.inl">
-      <Filter>Game\Impl\EngineFunctions</Filter>
-    </None>
-    <None Include="Game\EngineFunctions.Networking.inl">
       <Filter>Game\Impl\EngineFunctions</Filter>
     </None>
     <None Include="Game\EngineFunctions.Objects.inl">
@@ -2024,9 +1901,6 @@
     <None Include="Memory\1.10\_EngineLayout.Game.HS.inl">
       <Filter>_Resources\1.10</Filter>
     </None>
-    <None Include="Memory\1.10\_EngineLayout.Networking.inl">
-      <Filter>_Resources\1.10</Filter>
-    </None>
     <None Include="Memory\1.10\_EngineLayout.Objects.inl">
       <Filter>_Resources\1.10</Filter>
     </None>
@@ -2124,9 +1998,6 @@
       <Filter>_Resources\1.10\Pointers\Runtime</Filter>
     </None>
     <None Include="Memory\1.10\Pointers\HaloCE_110_Runtime_Manual.Interface.inl">
-      <Filter>_Resources\1.10\Pointers\Runtime</Filter>
-    </None>
-    <None Include="Memory\1.10\Pointers\HaloCE_110_Runtime_Manual.Networking.inl">
       <Filter>_Resources\1.10\Pointers\Runtime</Filter>
     </None>
     <None Include="Memory\1.10\Pointers\HaloCE_110_Runtime_Manual.Objects.inl">

@@ -118,9 +118,7 @@
 #endif
 //////////////////////////////////////////////////////////////////////////
 
-#if !defined(_DEBUG)
-	#define YELO_NO_NETWORK
-#endif
+#define YELO_NO_NETWORK
 
 //#define API_DEBUG_MEMORY
 

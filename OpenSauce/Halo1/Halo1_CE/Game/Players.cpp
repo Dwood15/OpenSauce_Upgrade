@@ -21,7 +21,6 @@
 #include "Game/Scripting.hpp"
 #include "Game/ScriptLibrary.hpp"
 #include "Memory/MemoryInterface.hpp"
-#include "Networking/Networking.hpp"
 #include "Objects/Objects.hpp"
 #include "Objects/Units.hpp"
 #include "Scenario/Scenario.hpp"
