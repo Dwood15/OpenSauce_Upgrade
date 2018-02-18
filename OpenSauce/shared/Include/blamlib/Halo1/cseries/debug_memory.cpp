@@ -6,12 +6,9 @@
 #include "Common/Precompile.hpp"
 #include <blamlib/Halo1/cseries/debug_memory.hpp>
 
-namespace Yelo
-{
-	namespace Debug
-	{
-		struct s_debug_memory_header
-		{
+namespace Yelo {
+	namespace Debug {
+		struct s_debug_memory_header {
 			enum {
 				k_disposed_signature = '<BAD',
 				k_header_signature = '--->',
@@ -27,14 +24,12 @@ namespace Yelo
 			int32 marker;
 			uint32 checksum;
 
-			static size_t AllocationSize(size_t size)
-			{
+			static size_t AllocationSize(size_t size) {
 				return sizeof(s_debug_memory_header) + size + sizeof(tag); // header + size + footer
 			}
-		}; BOOST_STATIC_ASSERT( sizeof(s_debug_memory_header) == 0x20 );
+		}; static_assert( sizeof(s_debug_memory_header) == 0x20, "Debug Memory Header not right size");
 
-		struct s_debug_memory_globals
-		{
+		struct s_debug_memory_globals {
 			enum {
 				k_signature = 'SAFT',
 				k_maximum_files_with_pointers = 512,
@@ -48,8 +43,8 @@ namespace Yelo
 			s_debug_memory_header* last;
 			int32 next_marker;				// increments with each malloc and realloc, never decrements
 			tag footer;
-		}; BOOST_STATIC_ASSERT( sizeof(s_debug_memory_globals) == 0x20 );
-
+		}; static_assert( sizeof(s_debug_memory_globals) == 0x20, "debug_memory_globals sizeof failure!" );
+		
 		void BlamMemoryManagerDispose()
 		{
 			// TODO: check for possible memory leaks with s_debug_memory_globals

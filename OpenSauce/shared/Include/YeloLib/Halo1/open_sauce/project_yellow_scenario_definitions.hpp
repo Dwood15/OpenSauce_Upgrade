@@ -24,10 +24,8 @@ namespace Yelo
 		};
 	};
 
-	namespace Flags
-	{
-		enum project_yellow_flags : word_flags
-		{
+	namespace Flags {
+		enum project_yellow_flags : word_flags {
 			_project_yellow_dont_fix_ui_game_globals_bit,
 			_project_yellow_game_updates_ignore_player_pvs_hack_bit,
 
@@ -40,10 +38,9 @@ namespace Yelo
 			_project_yellow__first_runtime_bit =
 				_project_yellow_invalid_version_bit,
 		};
-		BOOST_STATIC_ASSERT(k_number_of_project_yellow_flags <= _project_yellow__first_runtime_bit);
+		static_assert(k_number_of_project_yellow_flags <= _project_yellow__first_runtime_bit, STATIC_ASSERT_FAIL);
 
-		enum project_yellow_gameplay_flags : long_flags
-		{
+		enum project_yellow_gameplay_flags : long_flags {
 			// don't allow MTV settings for this map, even if the user enables it
 			_project_yellow_gameplay_prohibit_multiteam_vehicles_bit,
 
@@ -51,19 +48,16 @@ namespace Yelo
 		};
 	};
 
-	namespace TagGroups
-	{
+	namespace TagGroups {
 		struct s_scripting_definitions;
 		struct s_project_yellow_scripted_ui_widget;
 		struct scenario;
 
-
-		struct s_project_yellow_scenario_build_info
-		{
+		struct s_project_yellow_scenario_build_info {
 			PAD16;
 			TAG_ENUM(build_stage, Enums::production_build_stage);
 			TAG_FIELD(uint32, revision);
-			time_t timestamp;			BOOST_STATIC_ASSERT(sizeof(time_t) == 0x8);
+			time_t timestamp;			static_assert(sizeof(time_t) == 0x8);
 			byte uuid_buffer[Enums::k_uuid_buffer_size];
 
 			TAG_PAD(int32, 4); // 16
@@ -75,8 +69,7 @@ namespace Yelo
 		//////////////////////////////////////////////////////////////////////////
 
 		// yelo for scenarios
-		struct project_yellow
-		{
+		struct project_yellow {
 			enum { 
 				k_group_tag = 'yelo',
 				k_version = 2,
@@ -84,11 +77,7 @@ namespace Yelo
 
 			// internal name of the cache's Yelo tag when the user doesn't supply a definition
 			static cstring k_default_name;
-
-#if !PLATFORM_IS_EDITOR
-			const 
-#endif
-				int16 version;
+			const int16 version;
 			TAG_FIELD(word_flags, flags, Flags::project_yellow_flags);
 
 
@@ -131,7 +120,7 @@ namespace Yelo
 			struct {
 				struct _networking_flags {
 					TAG_FLAG(unused);
-				}flags;	BOOST_STATIC_ASSERT( sizeof(_networking_flags) == sizeof(long_flags) );
+				}flags;	static_assert(sizeof(_networking_flags) == sizeof(long_flags), STATIC_ASSERT_FAIL);
 
 				TAG_PAD(int32, 5); // 20
 			}networking;

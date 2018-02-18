@@ -31,7 +31,7 @@ namespace Yelo {
 			k_physical_memory_map_allocation_size_upgrade = CAST(uint32, k_physical_memory_map_allocation_size * K_MEMORY_UPGRADE_INCREASE_AMOUNT),
 		};
 
-		BOOST_STATIC_ASSERT( k_physical_memory_map_allocation_size_upgrade >= k_physical_memory_map_allocation_size );
+		static_assert(k_physical_memory_map_allocation_size_upgrade >= k_physical_memory_map_allocation_size, STATIC_ASSERT_FAIL);
 	};
 
 
@@ -94,8 +94,8 @@ namespace Yelo {
 			k_hs_external_globals_count_upgrade = 1024 - k_maximum_hs_globals_per_scenario,
 		};
 
-		BOOST_STATIC_ASSERT( k_maximum_hs_syntax_nodes_per_scenario_upgrade >= k_maximum_hs_syntax_nodes_per_scenario );
-		BOOST_STATIC_ASSERT( k_maximum_hs_string_data_per_scenario_upgrade >= k_maximum_hs_string_data_per_scenario );
+		static_assert( k_maximum_hs_syntax_nodes_per_scenario_upgrade >= k_maximum_hs_syntax_nodes_per_scenario );
+		static_assert( k_maximum_hs_string_data_per_scenario_upgrade >= k_maximum_hs_string_data_per_scenario );
 	};
 
 
@@ -108,14 +108,13 @@ namespace Yelo {
 //				CAST(uint32, k_rasterizer_maximum_dynamic_triangles * K_MEMORY_UPGRADE_INCREASE_AMOUNT),
 		};
 
-//		BOOST_STATIC_ASSERT( k_rasterizer_maximum_dynamic_triangles_upgrade >= k_rasterizer_maximum_dynamic_triangles );
+//		static_assert( k_rasterizer_maximum_dynamic_triangles_upgrade >= k_rasterizer_maximum_dynamic_triangles );
 	};
 
 
 	//////////////////////////////////////////////////////////////////////////
 	// Render
-	namespace Enums
-	{
+	namespace Enums {
 		enum {
 			k_maximum_rendered_objects_upgrade = 
 				k_maximum_rendered_objects + k_maximum_rendered_objects_upgrade_amount,
@@ -128,8 +127,7 @@ namespace Yelo {
 
 	//////////////////////////////////////////////////////////////////////////
 	// Cache
-	namespace Enums
-	{
+	namespace Enums {
 		enum {
 			// Our upgraded max cache size.
 			k_max_cache_size_upgrade = 
@@ -139,8 +137,8 @@ namespace Yelo {
 				CAST(uint32, k_max_cache_vertex_y_index_buffer_size * K_MEMORY_UPGRADE_INCREASE_AMOUNT),
 		};
 
-		BOOST_STATIC_ASSERT( k_max_cache_size_upgrade >= k_max_cache_size );
-		BOOST_STATIC_ASSERT( k_max_cache_vertex_y_index_buffer_size_upgrade >= k_max_cache_vertex_y_index_buffer_size );
+		static_assert(k_max_cache_size_upgrade >= k_max_cache_size, STATIC_ASSERT_FAIL);
+		static_assert(k_max_cache_vertex_y_index_buffer_size_upgrade >= k_max_cache_vertex_y_index_buffer_size, STATIC_ASSERT_FAIL);
 	};
 };
 

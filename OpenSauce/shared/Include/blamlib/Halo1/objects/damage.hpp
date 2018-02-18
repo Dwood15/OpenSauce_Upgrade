@@ -59,7 +59,7 @@ namespace Yelo
 			Enums::material_type material;					// 0x4C
 			PAD16;											// 0x4E
 			UNKNOWN_TYPE(int32); // only seen this written to, and when it was it was set to a s_projectile_material_response_definition*
-		}; BOOST_STATIC_ASSERT( sizeof(s_damage_data) == 0x54 );
+		}; static_assert(sizeof(s_damage_data) == 0x54, STATIC_ASSERT_FAIL);
 	};
 
 	namespace blam

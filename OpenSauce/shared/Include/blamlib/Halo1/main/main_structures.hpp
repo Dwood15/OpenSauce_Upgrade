@@ -92,6 +92,6 @@ namespace Yelo
 			PAD32;
 
 			void QuitToMainMenu();
-		}; BOOST_STATIC_ASSERT( sizeof(s_main_globals) == 0x3A0 );
+		}; static_assert( sizeof(s_main_globals) == 0x3A0 );
 	};
 };

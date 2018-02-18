@@ -27,6 +27,6 @@ namespace Yelo
 			int16 cache_read_request_index;
 			PAD16;
 			TagGroups::s_sound_permutation* sound;
-		}; BOOST_STATIC_ASSERT( sizeof(s_sound_cache_datum) == 0x10 );
+		}; static_assert( sizeof(s_sound_cache_datum) == 0x10 );
 	};
 };

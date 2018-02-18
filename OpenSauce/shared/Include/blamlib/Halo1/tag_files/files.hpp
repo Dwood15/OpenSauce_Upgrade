@@ -59,7 +59,7 @@ namespace Yelo
 		void Verify() const;
 
 		static int __cdecl CompareProc(long_flags name_flags, const s_file_reference* lhs, const s_file_reference* rhs);
-	}; BOOST_STATIC_ASSERT( sizeof(s_file_reference) == 0x10C );
+	}; static_assert(sizeof(s_file_reference) == 0x10C, STATIC_ASSERT_FAIL);
 
 	namespace blam
 	{

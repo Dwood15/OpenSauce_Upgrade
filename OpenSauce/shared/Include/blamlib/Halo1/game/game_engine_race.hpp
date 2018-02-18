@@ -12,6 +12,6 @@ namespace Yelo
 	{
 		struct s_race_globals
 		{
-		}; //BOOST_STATIC_ASSERT( sizeof(s_race_globals) == 0x );
+		}; //static_assert( sizeof(s_race_globals) == 0x );
 	};
 };

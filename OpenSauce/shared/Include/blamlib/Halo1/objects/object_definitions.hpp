@@ -135,7 +135,7 @@ namespace Yelo
 				TAG_FLAG(invert);
 				TAG_FLAG(additive);
 				TAG_FLAG(always_active);
-			}flags; BOOST_STATIC_ASSERT( sizeof(_object_function_flags) == sizeof(long_flags) );
+			}flags; static_assert(sizeof(_object_function_flags) == sizeof(long_flags), STATIC_ASSERT_FAIL);
 
 			TAG_FIELD(real, period);
 			TAG_ENUM(period_scale, Enums::object_function_scalar);
@@ -170,7 +170,7 @@ namespace Yelo
 			real_fraction period_normal;		// 1f / period
 
 			TAG_FIELD(tag_string, usage);
-		}; BOOST_STATIC_ASSERT( sizeof(s_object_function_definition) == 0x168 );
+		}; static_assert( sizeof(s_object_function_definition) == 0x168 );
 
 		struct _object_definition
 		{
@@ -209,7 +209,7 @@ namespace Yelo
 			TAG_PAD(tag_block, 1); // object_function_definition
 			TAG_PAD(tag_block, 1); // object_change_color_definition
 			TAG_TBLOCK_(predicted_resources, predicted_resource); // predicted resources
-		}; BOOST_STATIC_ASSERT( sizeof(_object_definition) == 0x17C );
+		}; static_assert( sizeof(_object_definition) == 0x17C );
 
 
 		struct s_object_definition

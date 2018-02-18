@@ -8,20 +8,13 @@
 
 #include <blamlib/Halo1/interface/hud_definitions.hpp>
 
-namespace Yelo
-{
-	namespace Enums
-	{
-	};
+namespace Yelo { 
+	namespace Enums { };
 
-	namespace Flags
-	{
-	};
+	namespace Flags { };
 
-	namespace TagGroups
-	{
-		struct equipment_hud_interface_definition
-		{
+	namespace TagGroups {
+		struct equipment_hud_interface_definition {
 			enum { k_group_tag = 'eqhi' };
 
 			TAG_PAD(tag_reference, 1);
@@ -34,6 +27,6 @@ namespace Yelo
 
 			s_hud_absolute_placement placement;
 
-		}; //BOOST_STATIC_ASSERT( sizeof(equipment_hud_interface_definition) == 0x );
+		}; //static_assert( sizeof(equipment_hud_interface_definition) == 0x );
 	};
 };

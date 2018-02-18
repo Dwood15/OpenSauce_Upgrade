@@ -28,20 +28,17 @@ namespace Yelo
 	#define __YELO_ASSERT_PROLOGUE() ExitProcess(NONE)
 
 	#define YELO_ASSERT(expression)															\
-		if( !(expression) )																	\
-		{																					\
+		if( !(expression) )	{																\
 			Yelo::blam::display_assert( #expression , __FILE__, __LINE__, true);			\
 			__YELO_ASSERT_PROLOGUE();														\
 		}
 	#define YELO_ASSERT_WARN(expression)													\
-		if( !(expression) )																	\
-		{																					\
+		if( !(expression) ) {																\
 			Yelo::blam::display_assert( #expression , __FILE__, __LINE__, false);			\
 		}
 
 	#define YELO_ASSERT_DISPLAY(expression, format, ...)													\
-		if( !(expression) )																					\
-		{																									\
+		if( !(expression) )	{																									\
 			sprintf_s(Yelo::blam::g_display_assert_buffer, format, __VA_ARGS__);							\
 			Yelo::blam::display_assert(Yelo::blam::g_display_assert_buffer, __FILE__, __LINE__, true);		\
 			__YELO_ASSERT_PROLOGUE();																		\
@@ -94,8 +91,7 @@ namespace Yelo
 
 // used to be in cseries_yelo_base, but wanted to make use of YELO_ASSERT_ENABLED to disable API
 #if YELO_ASSERT_ENABLED
-namespace Yelo
-{
+namespace Yelo {
 	void Assert(cstring assertion, cstring message, cstring file, const int line, cstring function, bool halt = true);
 };
 #endif

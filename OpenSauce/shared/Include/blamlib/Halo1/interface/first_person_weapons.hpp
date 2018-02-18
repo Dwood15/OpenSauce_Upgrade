@@ -64,7 +64,7 @@ namespace Yelo {
 		};
 		struct s_first_person_weapons {
 			s_first_person_weapon local_players[Enums::k_maximum_number_of_local_players];
-		}; BOOST_STATIC_ASSERT( sizeof(s_first_person_weapons) == (0x1EA0 * Enums::k_maximum_number_of_local_players));
+		}; static_assert( sizeof(s_first_person_weapons) == (0x1EA0 * Enums::k_maximum_number_of_local_players));
 		s_first_person_weapons*		FirstPersonWeapons();
 	};
 

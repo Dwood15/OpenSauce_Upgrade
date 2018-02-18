@@ -131,7 +131,7 @@ namespace Yelo
 				TAG_FLAG(fixed_crouch_facing);
 				TAG_FLAG(crouch_when_in_line_of_fire);
 				TAG_FLAG(avoid_friends_line_of_fire);
-			}; BOOST_STATIC_ASSERT( sizeof(__flags) == sizeof(long_flags) );
+			}; static_assert( sizeof(__flags) == sizeof(long_flags) );
 
 			struct __more_flags
 			{
@@ -142,7 +142,7 @@ namespace Yelo
 				TAG_FLAG(pathfinding_ignores_danger);
 				TAG_FLAG(panic_in_groups);
 				TAG_FLAG(no_corpse_shooting);
-			}; BOOST_STATIC_ASSERT( sizeof(__more_flags) == sizeof(long_flags) );
+			}; static_assert( sizeof(__more_flags) == sizeof(long_flags) );
 
 			TAG_FIELD(__flags, flags);
 			TAG_FIELD(__more_flags, more_flags);
@@ -305,14 +305,14 @@ namespace Yelo
 			TAG_PAD(int32, 32);
 			TAG_FIELD(tag_reference, do_not_use_2, 'actr');
 			TAG_PAD(int32, 12);
-		}; BOOST_STATIC_ASSERT( sizeof(s_actor_definition) == 0x4F8 ); // max count: 1
+		}; static_assert( sizeof(s_actor_definition) == 0x4F8 ); // max count: 1
 
 		struct s_actor_variant_change_colors
 		{
 			TAG_FIELD(real_rgb_color, color_lower_bound);
 			TAG_FIELD(real_rgb_color, color_upper_bound);
 			TAG_PAD(int32, 2);
-		}; BOOST_STATIC_ASSERT( sizeof(s_actor_variant_change_colors) == 0x20 ); // max count: 4
+		}; static_assert( sizeof(s_actor_variant_change_colors) == 0x20 ); // max count: 4
 
 		struct s_actor_variant_definition
 		{
@@ -328,7 +328,7 @@ namespace Yelo
 				TAG_FLAG(super_active_camouflage);
 				TAG_FLAG(cannot_use_ranged_weapons);
 				TAG_FLAG(prefer_passenger_seat);
-			}; BOOST_STATIC_ASSERT( sizeof(__flags) == sizeof(long_flags) );
+			}; static_assert( sizeof(__flags) == sizeof(long_flags) );
 
 			TAG_FIELD(__flags, flags);
 			TAG_FIELD(tag_reference, actor_definition, 'actr');
@@ -464,6 +464,6 @@ namespace Yelo
 			TAG_PAD(int32, 4);
 			TAG_PAD(tag_block, 1);
 			TAG_TBLOCK(change_colors, s_actor_variant_change_colors);
-		}; BOOST_STATIC_ASSERT( sizeof(s_actor_variant_definition) == 0x238 ); // max count: 1		
+		}; static_assert( sizeof(s_actor_variant_definition) == 0x238 ); // max count: 1		
 	};
 };

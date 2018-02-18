@@ -18,14 +18,14 @@ namespace Yelo
 			int32 file_names_offset;
 			int32 file_index_table_offset;
 			int32 tag_count;
-		}; BOOST_STATIC_ASSERT( sizeof(s_data_file_header) == 0x10 );
+		}; static_assert( sizeof(s_data_file_header) == 0x10 );
 
 		struct s_data_file_item
 		{
 			int32 name_offset;
 			int32 size;
 			int32 data_offset;
-		}; BOOST_STATIC_ASSERT( sizeof(s_data_file_item) == 0xC );
+		}; static_assert( sizeof(s_data_file_item) == 0xC );
 
 		struct s_data_file
 		{
@@ -83,7 +83,7 @@ namespace Yelo
 			void PreprocessForSave();
 			void Save();
 #endif
-		}; BOOST_STATIC_ASSERT( sizeof(s_data_file) == 0x40 );
+		}; static_assert( sizeof(s_data_file) == 0x40 );
 
 		// build_cache_file_globals (tools) and cache_file_globals (runtime) share the same ordering of the s_data_file instances, so I wrap them in this fake struct
 		struct s_data_file_globals
@@ -98,6 +98,6 @@ namespace Yelo
 			void Save();
 			void PreprocessForSave();
 #endif
-		}; BOOST_STATIC_ASSERT( sizeof(s_data_file_globals) == 0xC0 );
+		}; static_assert( sizeof(s_data_file_globals) == 0xC0 );
 	};
 };

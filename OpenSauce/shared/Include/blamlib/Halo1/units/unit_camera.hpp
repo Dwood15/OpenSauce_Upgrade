@@ -14,7 +14,7 @@ namespace Yelo
 		{
 			TAG_FIELD(tag_reference, track, 'trak');
 			PAD32; PAD32; PAD32;
-		}; BOOST_STATIC_ASSERT(sizeof(s_unit_camera_track) == 0x1C);
+		}; static_assert(sizeof(s_unit_camera_track) == 0x1C, STATIC_ASSERT_FAIL);
 
 		struct s_unit_camera
 		{
@@ -23,6 +23,6 @@ namespace Yelo
 			TAG_FIELD(real, pitch_autolevel, "degrees");
 			TAG_FIELD(real_bounds, pitch_range, "degrees");
 			TAG_TBLOCK(camera_tracks, s_unit_camera_track);
-		}; BOOST_STATIC_ASSERT(sizeof(s_unit_camera) == 0x58);
+		}; static_assert(sizeof(s_unit_camera) == 0x58);
 	};
 };

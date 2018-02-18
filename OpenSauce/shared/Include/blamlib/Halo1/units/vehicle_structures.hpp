@@ -37,7 +37,7 @@ namespace Yelo
 			real_vector3d angular_velocity;
 			real_vector3d forward;
 			real_vector3d up;
-		}; BOOST_STATIC_ASSERT( sizeof(s_vehicle_datum_network_data) == 0x40 );
+		}; static_assert( sizeof(s_vehicle_datum_network_data) == 0x40 );
 
 		struct s_vehicle_data : TStructImpl(Enums::k_object_size_vehicle - Enums::k_object_size_unit)
 		{
@@ -86,6 +86,6 @@ namespace Yelo
 			enum { k_object_types_mask = FLAG(Enums::_object_type_vehicle) };
 
 			s_vehicle_data vehicle;
-		}; BOOST_STATIC_ASSERT( sizeof(s_vehicle_datum) == Enums::k_object_size_vehicle );
+		}; static_assert( sizeof(s_vehicle_datum) == Enums::k_object_size_vehicle );
 	};
 };

@@ -7,12 +7,9 @@
 
 #include <YeloLib/tag_files/tag_groups_base_yelo.hpp>
 
-namespace Yelo
-{
-	namespace Enums
-	{
-		enum equipment_yelo_type : _enum
-		{
+namespace Yelo {
+	namespace Enums {
+		enum equipment_yelo_type : _enum {
 			_equipment_yelo_type_none,
 
 			_equipment_yelo_type_armor_ability,
@@ -21,23 +18,17 @@ namespace Yelo
 			_equipment_yelo_type,
 		};
 
-		enum equipment_yelo_function_mode : _enum
-		{
+		enum equipment_yelo_function_mode : _enum {
 			_equipment_yelo_function_mode_none,
-
 			_equipment_yelo_function_mode,
 		};
 	};
 
-	namespace Flags
-	{
-		enum equipment_yelo_flags : word_flags
-		{
-		};
+	namespace Flags {
+		enum equipment_yelo_flags : word_flags { };
 	};
 
-	namespace TagGroups
-	{
+	namespace TagGroups {
 		struct s_equipment_yelo_armor_ability
 		{
 			struct s_tank {
@@ -73,6 +64,6 @@ namespace Yelo
 				TAG_FIELD(tag_reference, deactivate, 'effe', 'snd!');
 			}effects;
 
-		}; BOOST_STATIC_ASSERT( sizeof(s_equipment_yelo_definition) <= s_equipment_yelo_definition::k_max_definition_size );
+		}; static_assert(sizeof(s_equipment_yelo_definition) <= s_equipment_yelo_definition::k_max_definition_size, STATIC_ASSERT_FAIL);
 	};
 };

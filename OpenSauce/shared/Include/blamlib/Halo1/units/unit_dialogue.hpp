@@ -53,6 +53,6 @@ namespace Yelo
 			PAD16;
 			UNKNOWN_TYPE(int32); // haven't verified what is here yet
 			AI::s_ai_communication_packet ai_information;
-		}; BOOST_STATIC_ASSERT( sizeof(s_unit_speech) == 0x30 );
+		}; static_assert(sizeof(s_unit_speech) == 0x30, STATIC_ASSERT_FAIL);
 	};
 };

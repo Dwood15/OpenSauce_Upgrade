@@ -70,6 +70,6 @@ namespace Yelo
 			int16 port;
 
 			int32 unknown;
-		}; BOOST_STATIC_ASSERT( sizeof(s_transport_address) == 0x18 );
+		}; static_assert(sizeof(s_transport_address) == 0x18, STATIC_ASSERT_FAIL);
 	};
 };

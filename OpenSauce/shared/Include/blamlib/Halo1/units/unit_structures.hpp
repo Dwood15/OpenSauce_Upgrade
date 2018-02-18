@@ -195,7 +195,7 @@ namespace Yelo
 			real_rectangle2d looking_bounds;			// 0x2B8
 			real_rectangle2d aiming_bounds;				// 0x2C8
 			PAD64;										// 0x2D8
-		}; BOOST_STATIC_ASSERT( sizeof(s_unit_datum_animation_data) == 0x48 );
+		}; static_assert(sizeof(s_unit_datum_animation_data) == 0x48, STATIC_ASSERT_FAIL);
 
 		struct s_unit_data
 		{
@@ -370,7 +370,7 @@ namespace Yelo
 
 			byte* GetZoomLevel();
 			byte* GetDesiredZoomLevel();
-		}; BOOST_STATIC_ASSERT( sizeof(s_unit_data) == (Enums::k_object_size_unit - Enums::k_object_size_object) );
+		}; static_assert( sizeof(s_unit_data) == (Enums::k_object_size_unit - Enums::k_object_size_object) );
 
 
 		struct s_unit_datum
@@ -379,13 +379,12 @@ namespace Yelo
 
 			s_object_data object;
 			s_unit_data unit;
-		}; BOOST_STATIC_ASSERT( sizeof(s_unit_datum) == Enums::k_object_size_unit );
+		}; static_assert(sizeof(s_unit_datum) == Enums::k_object_size_unit, STATIC_ASSERT_FAIL);
 	};
 
 	namespace blam
 	{
-		bool PLATFORM_API unit_animation_state_interruptable(const Objects::s_unit_datum_animation_data& animation,
-			_enum next_animation_state);
+		bool PLATFORM_API unit_animation_state_interruptable(const Objects::s_unit_datum_animation_data& animation, _enum next_animation_state);
 
 		bool PLATFORM_API unit_animation_busy(const Objects::s_unit_datum_animation_data& animation);
 

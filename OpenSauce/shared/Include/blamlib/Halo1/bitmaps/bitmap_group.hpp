@@ -144,7 +144,7 @@ namespace Yelo
 			TAG_FIELD(real, top);
 			TAG_FIELD(real, bottom);
 			TAG_FIELD(real_point2d, registration_point);
-		}; BOOST_STATIC_ASSERT( sizeof(s_bitmap_group_sprite) == 0x20 ); // max count: 64
+		}; static_assert(sizeof(s_bitmap_group_sprite) == 0x20, STATIC_ASSERT_FAIL); // max count: 64
 
 		struct s_bitmap_group_sequence
 		{
@@ -153,7 +153,7 @@ namespace Yelo
 			TAG_FIELD(int16, bitmap_count);
 			TAG_PAD(int32, 4);
 			TAG_TBLOCK(sprites, s_bitmap_group_sprite);
-		}; BOOST_STATIC_ASSERT( sizeof(s_bitmap_group_sequence) == 0x40 ); // max count: 256
+		}; static_assert(sizeof(s_bitmap_group_sequence) == 0x40, STATIC_ASSERT_FAIL); // max count: 256
 
 		struct s_bitmap_data
 		{
@@ -168,7 +168,7 @@ namespace Yelo
 				TAG_FLAG16(orphan); // this bitmap and its pixel data are allocated outside of the tag system
 				TAG_FLAG16(cached); // _bitmap_cached_bit
 				TAG_FLAG16(in_data_file); // data is in the bitmaps data file, not the cache file
-			}; BOOST_STATIC_ASSERT( sizeof(_flags) == sizeof(word_flags) );
+			}; static_assert(sizeof(_flags) == sizeof(word_flags), STATIC_ASSERT_FAIL);
 
 			TAG_FIELD(tag, signature);
 			TAG_FIELD(int16, width, "pixels");
@@ -187,10 +187,9 @@ namespace Yelo
 			datum_index texture_cache_index;
 			void* hardware_format; // IDirect3DBaseTexture9*
 			void* base_address;
-		}; BOOST_STATIC_ASSERT( sizeof(s_bitmap_data) == 0x30 ); // max count: 2048
+		}; static_assert(sizeof(s_bitmap_data) == 0x30, STATIC_ASSERT_FAIL); // max count: 2048
 
-		struct s_bitmap_group
-		{
+		struct s_bitmap_group {
 			enum { k_group_tag = 'bitm' };
 
 			////////////////////////////////////////////////////////////////
@@ -271,13 +270,11 @@ namespace Yelo
 			TAG_TBLOCK(sequences, s_bitmap_group_sequence);
 			TAG_TBLOCK_(bitmaps, s_bitmap_data);
 
-			bool ResourcesAreSharable() const
-			{
-				return
-					!TEST_FLAG(flags, Flags::_bitmap_group_never_share_resources_yelo_bit) &&
+			bool ResourcesAreSharable() const {
+				return !TEST_FLAG(flags, Flags::_bitmap_group_never_share_resources_yelo_bit) &&
 					// it makes no sense to ever store lightmaps in a shared cache
 					usage != Enums::_bitmap_group_usage_light_map;
 			}
-		}; BOOST_STATIC_ASSERT( sizeof(s_bitmap_group) == 0x6C );
+		}; static_assert(sizeof(s_bitmap_group) == 0x6C, STATIC_ASSERT_FAIL);
 	};
 };

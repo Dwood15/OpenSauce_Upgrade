@@ -39,8 +39,7 @@ namespace ActionResults
 	{
 		// Example:
 		//player_handle_action_jmp_table_yelo[Enums::_player_action_result_yelo] = &JMPFunction;
-		static_assert(Enums::k_number_of_player_action_results_yelo == Enums::k_number_of_player_action_results,
-			"New player_action_results were defined, but I don't think you've added handlers for them yet");
+		static_assert(Enums::k_number_of_player_action_results_yelo == Enums::k_number_of_player_action_results, "New player_action_results were defined, but I don't think you've added handlers for them yet");
 	}
 
 	void Initialize()

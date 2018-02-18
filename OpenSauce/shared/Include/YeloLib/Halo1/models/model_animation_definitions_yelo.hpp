@@ -42,7 +42,7 @@ namespace Yelo
 		{
 			TAG_FIELD(tag_reference, stock_animation, 'antr');
 			TAG_PAD(tag_block, 13);
-		}; BOOST_STATIC_ASSERT( sizeof(model_animation_graph_yelo_definition) == 0xAC );
+		}; static_assert(sizeof(model_animation_graph_yelo_definition) == 0xAC, STATIC_ASSERT_FAIL);
 		struct model_animation_graph_yelo
 		{
 			enum { k_group_tag = 'magy' };

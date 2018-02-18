@@ -63,7 +63,7 @@ namespace Yelo
 			PAD32; // unknown field
 			datum_index actor_definition_index;
 			datum_index actor_variant_definition_index;
-		}; BOOST_STATIC_ASSERT( sizeof(s_actor_meta_data) == 0x5C );
+		}; static_assert(sizeof(s_actor_meta_data) == 0x5C, STATIC_ASSERT_FAIL);
 
 		struct s_actor_state_data
 		{
@@ -87,7 +87,7 @@ namespace Yelo
 			PAD8; // unknown field
 			PAD16;
 			byte action_data[132];
-		}; BOOST_STATIC_ASSERT( sizeof(s_actor_state_data) == 0xB4 );
+		}; static_assert( sizeof(s_actor_state_data) == 0xB4 );
 
 		struct s_actor_input_data
 		{
@@ -115,7 +115,7 @@ namespace Yelo
 			real unit_damage_shield;
 			real unit_damage_body_recent;
 			real unit_damage_shield_recent;
-		}; BOOST_STATIC_ASSERT( sizeof(s_actor_input_data) == 0xA8 );
+		}; static_assert( sizeof(s_actor_input_data) == 0xA8 );
 
 		struct s_actor_target_data
 		{
@@ -131,7 +131,7 @@ namespace Yelo
 			PAD8;
 			PAD8; // unknown field
 			PAD8; // unknown field
-		}; BOOST_STATIC_ASSERT( sizeof(s_actor_target_data) == 0x18 );
+		}; static_assert( sizeof(s_actor_target_data) == 0x18 );
 
 		struct s_actor_danger_zone_data
 		{
@@ -139,7 +139,7 @@ namespace Yelo
 			PAD16; // unknown field
 			PAD8; // unknown field
 			PAD8; // unknown field
-		}; BOOST_STATIC_ASSERT( sizeof(s_actor_danger_zone_data) == 0x6C );
+		}; static_assert( sizeof(s_actor_danger_zone_data) == 0x6C );
 
 		struct s_actor_stimulus_data
 		{
@@ -171,7 +171,7 @@ namespace Yelo
 			PAD8;
 			PAD16; // unknown field
 			PAD32; // unknown field
-		}; BOOST_STATIC_ASSERT( sizeof(s_actor_stimulus_data) == 0x64 );
+		}; static_assert( sizeof(s_actor_stimulus_data) == 0x64 );
 
 		struct s_actor_emotion_data
 		{
@@ -216,7 +216,7 @@ namespace Yelo
 			PAD32; // unknown field
 			PAD32; // unknown field
 			PAD32; // unknown field
-		}; BOOST_STATIC_ASSERT( sizeof(s_actor_emotion_data) == 0x68 );
+		}; static_assert( sizeof(s_actor_emotion_data) == 0x68 );
 
 		struct s_actor_firing_position_data
 		{
@@ -227,7 +227,7 @@ namespace Yelo
 			PAD16; // unknown field
 			PAD8; // unknown field
 			PAD8; // unknown field
-		}; BOOST_STATIC_ASSERT( sizeof(s_actor_firing_position_data) == 0x30 );
+		}; static_assert( sizeof(s_actor_firing_position_data) == 0x30 );
 
 		struct s_actor_orders_data
 		{
@@ -235,7 +235,7 @@ namespace Yelo
 			PAD16; // unknown field
 			PAD8; // unknown field
 			PAD8; // unknown field
-		}; BOOST_STATIC_ASSERT( sizeof(s_actor_orders_data) == 0x84 );
+		}; static_assert( sizeof(s_actor_orders_data) == 0x84 );
 
 		struct s_path
 		{
@@ -250,7 +250,7 @@ namespace Yelo
 			PAD(3, 16);															//	0x2C
 			PAD(4, 16);															//	0x3C
 			PAD(5, 16);															//	0x4C
-		}; BOOST_STATIC_ASSERT( sizeof(s_path) == 0x5C );
+		}; static_assert( sizeof(s_path) == 0x5C );
 
 		struct s_actor_control_direction_specification
 		{
@@ -260,7 +260,7 @@ namespace Yelo
 			PAD(1, 6);
 			PAD8; // unknown field												//	0xE
 			PAD8; // unknown field												//	0xF
-		}; BOOST_STATIC_ASSERT( sizeof(s_actor_control_direction_specification) == 0x10 );
+		}; static_assert( sizeof(s_actor_control_direction_specification) == 0x10 );
 
 		struct s_actor_control_data
 		{
@@ -405,7 +405,7 @@ namespace Yelo
 				real_vector3d  looking_vector;									//	0x2A8
 				datum_index	primary_trigger;									//	0x2B4
 			} output;
-		}; BOOST_STATIC_ASSERT( sizeof(s_actor_control_data) == 0x2B8 );
+		}; static_assert( sizeof(s_actor_control_data) == 0x2B8 );
 
 		struct s_actor_datum
 		{
@@ -442,7 +442,7 @@ namespace Yelo
 			s_actor_firing_position_data firing_positions;
 			s_actor_orders_data orders;
 			s_actor_control_data control;
-		}; BOOST_STATIC_ASSERT( sizeof(s_actor_datum) == 0x724 );
+		}; static_assert( sizeof(s_actor_datum) == 0x724 );
 
 		typedef Memory::DataArray<s_actor_datum, 256> actor_data_t;
 
@@ -455,7 +455,7 @@ namespace Yelo
 			UNKNOWN_TYPE(real_vector3d);// 0xC
 			datum_index unit_indices[Enums::k_maximum_number_of_units_per_swarm];
 			datum_index component_indices[Enums::k_maximum_number_of_units_per_swarm];
-		}; BOOST_STATIC_ASSERT( sizeof(s_swarm_datum) == 0x98 );
+		}; static_assert( sizeof(s_swarm_datum) == 0x98 );
 
 		typedef Memory::DataArray<	s_swarm_datum, Enums::k_maximum_number_of_active_swarms> swarm_data_t;
 

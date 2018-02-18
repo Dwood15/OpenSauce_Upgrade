@@ -18,7 +18,7 @@ namespace Yelo
 			UNKNOWN_TYPE(bool);
 			PAD8;
 			s_render_camera render_camera, rasterizer_camera;
-		}; BOOST_STATIC_ASSERT( sizeof(s_render_window) == 0xAC );
+		}; static_assert(sizeof(s_render_window) == 0xAC, STATIC_ASSERT_FAIL);
 		s_render_window * RenderWindow(); // defined in the implementing extension's code
 
 		struct s_render_fog
@@ -38,7 +38,7 @@ namespace Yelo
 			real opaque_depth; // copied from tag definition
 			const void* screen_layers_definition; // pointer to the tag definition data
 			UNKNOWN_TYPE(real);
-		}; BOOST_STATIC_ASSERT( sizeof(s_render_fog) == 0x50 );
+		}; static_assert(sizeof(s_render_fog) == 0x50, STATIC_ASSERT_FAIL);
 
 		struct s_render_globals
 		{
@@ -69,27 +69,20 @@ namespace Yelo
 				int32 count;
 				uint32 triangles[Enums::k_maximum_rendered_triangles];
 			}rendered_triangles;
-		}; BOOST_STATIC_ASSERT( sizeof(s_render_globals) == 0x9D298 );
+		}; static_assert(sizeof(s_render_globals) == 0x9D298, STATIC_ASSERT_FAIL);
 		s_render_globals* RenderGlobals(); // defined in the implementing extension's code
 
-		struct s_structure_render_globals
-		{
+		struct s_structure_render_globals {
 			bool render_bsp; PAD24;
 			int32 dynamic_triangle_buffer_index;
 			UNKNOWN_TYPE(bool); PAD24;
 			UNKNOWN_TYPE(real_vector3d);
-		}; BOOST_STATIC_ASSERT( sizeof(s_structure_render_globals) == 0x18 );
+		}; static_assert(sizeof(s_structure_render_globals) == 0x18, STATIC_ASSERT_FAIL);
 		s_structure_render_globals* StructureRenderGlobals(); // defined in the implementing extension's code
 	};
 
-	namespace blam
-	{
-		void PLATFORM_API render_window(const uint16 local_player_index
-			, void* render_camera
-			, void* render_frustum
-			, void* rasterizer_camera
-			, void* rasterizer_frustum
-			, void* rasterizer_target
-			, const bool is_mirror);
+	namespace blam {
+		void PLATFORM_API render_window(const uint16 local_player_index , void* render_camera , void* render_frustum, void* rasterizer_camera
+			, void* rasterizer_frustum, void* rasterizer_target, const bool is_mirror);
 	};
 };

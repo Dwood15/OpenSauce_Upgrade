@@ -20,8 +20,7 @@ namespace Yelo
 
 	namespace Networking
 	{
-		struct s_network_game_player
-		{
+		struct s_network_game_player {
 			wchar_t name[Enums::k_player_name_length+1];	// 0x0
 			int16 primary_color_index;	// 0x18
 			int16 icon_index;			// 0x1A
@@ -31,6 +30,6 @@ namespace Yelo
 			// we can use them safely for player operations in multiplayer code
 			sbyte team_index;			// 0x1E
 			sbyte player_list_index;	// 0x1F
-		}; BOOST_STATIC_ASSERT( sizeof(s_network_game_player) == 0x20 );
+		}; static_assert( sizeof(s_network_game_player) == 0x20 );
 	};
 };

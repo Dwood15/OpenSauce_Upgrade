@@ -31,26 +31,22 @@ namespace Yelo
 		};
 	};
 
-	namespace AI
-	{
-		struct s_encounter_actor_iterator
-		{
+	namespace AI {
+		struct s_encounter_actor_iterator {
 			datum_index encounter_index;
 			datum_index next_actor_index;
 			datum_index prev_actor_index;
 
-			void SetEndHack()
-			{
+			void SetEndHack() {
 				encounter_index = next_actor_index = prev_actor_index = datum_index::null;
 			}
-			bool IsEndHack() const
-			{
+
+			bool IsEndHack() const {
 				return next_actor_index.IsNull();
 			}
-		}; BOOST_STATIC_ASSERT( sizeof(s_encounter_actor_iterator) == 0xC );
+		}; static_assert(sizeof(s_encounter_actor_iterator) == 0xC, STATIC_ASSERT_FAIL);
 
-		struct s_encounter_datum : TStructImpl(108)
-		{
+		struct s_encounter_datum : TStructImpl(108) {
 			// 0x2 _enum team_index
 			// 0x4 int16 squad_base
 			// 0x6 int16 squad_count
@@ -102,13 +98,10 @@ namespace Yelo
 			// 0x64 datum_index follow_type_index
 			// 0x68 UNUSED32?
 		};
-		typedef Memory::DataArray<	s_encounter_datum, 
-									Enums::k_maximum_encounters_per_map> 
-			encounter_data_t;
+		typedef Memory::DataArray<	s_encounter_datum, Enums::k_maximum_encounters_per_map> encounter_data_t;
 
 
-		struct s_squad_datum
-		{
+		struct s_squad_datum {
 			long_flags required_locations[BIT_VECTOR_SIZE_IN_DWORDS(Enums::k_maximum_actor_starting_locations)];
 			long_flags unused_locations[BIT_VECTOR_SIZE_IN_DWORDS(Enums::k_maximum_actor_starting_locations)];
 			PAD32;						// Haven't checked what is here yet
@@ -123,13 +116,12 @@ namespace Yelo
 			UNKNOWN_TYPE(int16);		// 0x18, unit_count?
 			UNKNOWN_TYPE(int16);		// 0x1A, swarm_unit_count?
 			UNKNOWN_TYPE(real);			// 0x1C
-		}; BOOST_STATIC_ASSERT( sizeof(s_squad_datum) == 0x20 );
+		}; static_assert(sizeof(s_squad_datum) == 0x20, STATIC_ASSERT_FAIL);
 		typedef s_squad_datum squads_data_t[Enums::k_maximum_squads_per_map];
-		BOOST_STATIC_ASSERT( sizeof(squads_data_t) == 0x8000 );
+		static_assert(sizeof(squads_data_t) == 0x8000, STATIC_ASSERT_FAIL);
 
 
-		struct s_platoon_datum
-		{
+		struct s_platoon_datum {
 			bool start_in_defending_state;	// 0x0
 			PAD24;							// I believe this is padding
 			int16 original_count;			// 0x4
@@ -137,22 +129,19 @@ namespace Yelo
 			UNKNOWN_TYPE(int16);			// 0x8, swarm_unit_count?
 			PAD16;
 			UNKNOWN_TYPE(real);				// 0xC
-		}; BOOST_STATIC_ASSERT( sizeof(s_platoon_datum) == 0x10 );
+		}; static_assert(sizeof(s_platoon_datum) == 0x10, STATIC_ASSERT_FAIL);
 		typedef s_platoon_datum platoons_data_t[Enums::k_maximum_platoons_per_map];
-		BOOST_STATIC_ASSERT( sizeof(platoons_data_t) == 0x1000 );
+		static_assert(sizeof(platoons_data_t) == 0x1000, STATIC_ASSERT_FAIL);
 
 
-		struct s_ai_pursuit_datum : Memory::s_datum_base
-		{
+		struct s_ai_pursuit_datum : Memory::s_datum_base {
 			int16 firing_position_index;	// 0x2
 			int32 examined_game_time;		// 0x4
 			UNKNOWN_TYPE(int16);			// 0x8
 			int16 next_actor_index_index;	// 0xA
 			datum_index actor_indices[Enums::k_number_of_actor_indices_per_examined_pursuit_position];
 			datum_index next_pursuit_index;	// 0x24
-		}; BOOST_STATIC_ASSERT( sizeof(s_ai_pursuit_datum) == 0x28 );
-		typedef Memory::DataArray<	s_ai_pursuit_datum, 
-									Enums::k_maximum_examined_pursuit_positions_per_map> 
-			ai_pursuit_data_t;
+		}; static_assert(sizeof(s_ai_pursuit_datum) == 0x28, STATIC_ASSERT_FAIL);
+		typedef Memory::DataArray<	s_ai_pursuit_datum, Enums::k_maximum_examined_pursuit_positions_per_map> ai_pursuit_data_t;
 	};
 };

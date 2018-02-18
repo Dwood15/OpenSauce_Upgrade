@@ -54,12 +54,12 @@ namespace Yelo
 		struct s_squad_definition
 		{
 
-		}; //BOOST_STATIC_ASSERT( sizeof(s_squad_definition)==0x18 );
+		}; //static_assert( sizeof(s_squad_definition)==0x18, STATIC_ASSERT_FAIL );
 
 		struct s_platoon_definition
 		{
 
-		}; //BOOST_STATIC_ASSERT( sizeof(s_platoon_definition)==0x18 );
+		}; //static_assert( sizeof(s_platoon_definition)==0x18, STATIC_ASSERT_FAIL );
 
 		struct s_firing_position
 		{
@@ -68,7 +68,7 @@ namespace Yelo
 			int16 runtime_cluster_index;
 			PAD32;
 			int32 runtime_surface_index; // not valid if the encounter uses 3d firing positions
-		}; BOOST_STATIC_ASSERT( sizeof(s_firing_position)==0x18 );
+		}; static_assert(sizeof(s_firing_position) == 0x18, STATIC_ASSERT_FAIL);
 
 		struct s_encounter_definition
 		{
@@ -85,7 +85,7 @@ namespace Yelo
 			TAG_BLOCK(platoons, s_platoon_definition);
 			TAG_BLOCK(firing_positions, s_squad_definition);
 			TAG_BLOCK(starting_locations, scenario_player);
-		}; BOOST_STATIC_ASSERT( sizeof(s_encounter_definition)==0xB0 );
+		}; static_assert(sizeof(s_encounter_definition) == 0xB0, STATIC_ASSERT_FAIL);
 
 		struct s_ai_command
 		{
@@ -102,13 +102,13 @@ namespace Yelo
 			int16 object_name_index;
 			PAD16;
 			PAD32;
-		}; BOOST_STATIC_ASSERT( sizeof(s_ai_command)==0x20 );
+		}; static_assert(sizeof(s_ai_command) == 0x20, STATIC_ASSERT_FAIL);
 		struct s_ai_command_point
 		{
 			real_point3d position;
 			int32 runtime_surface_index;
 			PAD32;
-		}; BOOST_STATIC_ASSERT( sizeof(s_ai_command_point)==0x14 );
+		}; static_assert(sizeof(s_ai_command_point) == 0x14, STATIC_ASSERT_FAIL);
 		struct s_ai_command_list
 		{
 			tag_string name;
@@ -120,6 +120,6 @@ namespace Yelo
 			TAG_BLOCK(commands, s_ai_command);
 			TAG_BLOCK(points, s_ai_command_point);
 			TAG_PAD(tag_block, 2);
-		}; BOOST_STATIC_ASSERT( sizeof(s_ai_command_list)==0x60 );
+		}; static_assert(sizeof(s_ai_command_list) == 0x60, STATIC_ASSERT_FAIL);
 	};
 };

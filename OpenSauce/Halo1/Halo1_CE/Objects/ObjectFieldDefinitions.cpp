@@ -56,7 +56,7 @@ namespace Yelo
 			{
 				return Bsearch(name, list, _SizeOfArray, bsearch_proc);
 			}
-		}; BOOST_STATIC_ASSERT( sizeof(s_object_field_definition) == 0x10 );
+		}; static_assert(sizeof(s_object_field_definition) == 0x10, STATIC_ASSERT_FAIL);
 #define FIELD_INDEX_NAME(object_type, field_type, field_name)		\
 		_##object_type##_field_##field_type##_##field_name
 

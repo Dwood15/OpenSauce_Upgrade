@@ -44,12 +44,11 @@ namespace Yelo
 			datum_index object_index;
 			s_collision_model_test_result model_test;
 			s_collision_bsp_test_surface_result surface;
-		}; BOOST_STATIC_ASSERT( sizeof(s_collision_result) == 0x50 );
+		}; static_assert(sizeof(s_collision_result) == 0x50, STATIC_ASSERT_FAIL);
 	};
 
 	namespace blam
 	{
-		bool PLATFORM_API collision_test_vector(long_flags flags, real_point3d& location, real_vector3d& vector, 
-			datum_index object_index, Physics::s_collision_result& collision);
+		bool PLATFORM_API collision_test_vector(long_flags flags, real_point3d& location, real_vector3d& vector, datum_index object_index, Physics::s_collision_result& collision);
 	};
 };

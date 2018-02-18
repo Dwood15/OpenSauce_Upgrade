@@ -42,12 +42,12 @@ namespace Yelo
 			uint16 flags : bitfield_size<Flags::k_number_of_message_flags>::value;
 			uint16 type : bitfield_enum_size<Enums::k_number_of_message_types>::value;
 			uint16 size : bitfield_size<Enums::k_maximum_message_size>::value;
-		}; BOOST_STATIC_ASSERT( sizeof(s_message_header) == 0x2 );
+		}; static_assert(sizeof(s_message_header) == 0x2, STATIC_ASSERT_FAIL);
 
 		struct s_message_lowlevel_error
 		{
 			char error_string[128];
 			byte error;
-		}; BOOST_STATIC_ASSERT( sizeof(s_message_lowlevel_error) == 0x81 );
+		}; static_assert(sizeof(s_message_lowlevel_error) == 0x81, STATIC_ASSERT_FAIL);
 	};
 };

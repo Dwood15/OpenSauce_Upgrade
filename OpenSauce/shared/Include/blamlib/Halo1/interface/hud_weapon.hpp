@@ -21,23 +21,23 @@ namespace Yelo {
 			game_ticks_t first_render_times[Enums::k_number_of_weapon_hud_states];
 			datum_index weapon_index;
 			game_ticks_t grenades_first_render_time;
-		}; BOOST_STATIC_ASSERT( sizeof(s_hud_weapon_interface_weapon_state) == 0x28 );
+		}; static_assert( sizeof(s_hud_weapon_interface_weapon_state) == 0x28 );
 
 		struct s_hud_weapon_interface_crosshairs_state
 		{
 			game_ticks_t first_render_times[Enums::k_number_of_weapon_crosshair_types];
 			long_flags render_types_mask[BIT_VECTOR_SIZE_IN_DWORDS(Enums::k_number_of_weapon_crosshair_types)];
-		}; BOOST_STATIC_ASSERT( sizeof(s_hud_weapon_interface_crosshairs_state) == 0x50 );
+		}; static_assert( sizeof(s_hud_weapon_interface_crosshairs_state) == 0x50 );
 
 		struct s_local_player_hud_weapon_interface {
 			s_hud_weapon_interface_weapon_state weapon;
 			s_hud_weapon_interface_crosshairs_state crosshairs;
-		}; BOOST_STATIC_ASSERT(sizeof(s_local_player_hud_weapon_interface) == 0x78);
+		}; static_assert(sizeof(s_local_player_hud_weapon_interface) == 0x78);
 
 		struct s_hud_weapon_interface {
 			s_local_player_hud_weapon_interface local_players[Enums::k_maximum_number_of_local_players];
 			long_flags show_flags;
-		}; BOOST_STATIC_ASSERT(sizeof(s_hud_weapon_interface) == 0x4 + (sizeof(s_local_player_hud_weapon_interface) * Enums::k_maximum_number_of_local_players));
+		}; static_assert(sizeof(s_hud_weapon_interface) == 0x4 + (sizeof(s_local_player_hud_weapon_interface) * Enums::k_maximum_number_of_local_players));
 		s_hud_weapon_interface*		HudWeaponInterface();
 	};
 };

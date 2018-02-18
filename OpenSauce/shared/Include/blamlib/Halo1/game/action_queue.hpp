@@ -24,6 +24,6 @@ namespace Yelo
 			bool action_is_valid;					// 0x18
 			PAD24;
 			Players::s_player_action action;		// 0x1C
-		}; BOOST_STATIC_ASSERT( sizeof(s_action_queue) == 0x3C );
+		}; static_assert( sizeof(s_action_queue) == 0x3C );
 	};
 };

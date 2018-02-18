@@ -32,7 +32,7 @@ namespace Yelo
 			_build_cache_file_begin_dump_tag_group_allocation_stats_bit,
 
 			k_number_of_build_cache_file_begin_flags
-		}; BOOST_STATIC_ASSERT(k_number_of_build_cache_file_begin_flags <= BIT_COUNT(byte));
+		}; static_assert(k_number_of_build_cache_file_begin_flags <= BIT_COUNT(byte));
 	}
 
 	namespace Cache
@@ -91,11 +91,11 @@ namespace Yelo
 			byte padding[k_pad_size];
 
 			tag footer_signature;
-		}; BOOST_STATIC_ASSERT( sizeof(s_cache_header_xbox) == 0x800 );
+		}; static_assert( sizeof(s_cache_header_xbox) == 0x800 );
 
 		typedef s_cache_tag_instance
 			s_cache_tag_instance_xbox;
-		BOOST_STATIC_ASSERT( sizeof(s_cache_tag_instance_xbox) == 0x20 );
+		static_assert( sizeof(s_cache_tag_instance_xbox) == 0x20 );
 
 		struct s_cache_tag_header_xbox
 		{
@@ -108,7 +108,7 @@ namespace Yelo
 				void* base_address;
 			}vertices, indices;			// 0x10, 0x18
 			tag signature;				// 0x20
-		}; BOOST_STATIC_ASSERT( sizeof(s_cache_tag_header_xbox) == 0x24 );
+		}; static_assert( sizeof(s_cache_tag_header_xbox) == 0x24 );
 		//////////////////////////////////////////////////////////////////////////
 
 		s_build_cache_file_globals* BuildCacheFileGlobals();

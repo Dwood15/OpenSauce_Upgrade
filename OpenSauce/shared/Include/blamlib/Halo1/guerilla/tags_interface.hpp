@@ -20,7 +20,7 @@ namespace Yelo
 		field_information* fields;
 		tag_block* root_block;
 		tag group_tag;
-	}; BOOST_STATIC_ASSERT( sizeof(tag_information) == 0x14 );
+	}; static_assert( sizeof(tag_information) == 0x14 );
 
 	class field_information
 	{
@@ -32,12 +32,12 @@ namespace Yelo
 		tag_information* tag_info;
 		field_information* next_field;
 		field_information* parent_field;
-	}; BOOST_STATIC_ASSERT( sizeof(field_information) == 0x1C );
+	}; static_assert( sizeof(field_information) == 0x1C );
 	class block_information : public field_information
 	{
 	public:
 		int32 block_index;
 		field_information* first_child_field;
 		field_information* block_name_field;
-	}; BOOST_STATIC_ASSERT( sizeof(block_information) == 0x28 );
+	}; static_assert( sizeof(block_information) == 0x28 );
 };

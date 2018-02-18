@@ -34,7 +34,7 @@ namespace Yelo
 			};
 			byte_enum : BIT_COUNT(byte) - bitfield_enum_size<Enums::k_number_of_ai_index_types>::value;
 			byte_enum type : bitfield_enum_size<Enums::k_number_of_ai_index_types>::value;
-		}; BOOST_STATIC_ASSERT(sizeof(s_ai_index) == 4);
+		}; static_assert(sizeof(s_ai_index) == 4, STATIC_ASSERT_FAIL);
 
 		struct s_ai_index_actor_iterator
 		{
@@ -57,7 +57,7 @@ namespace Yelo
 				// However, ai_index_actor_iterator_new does set encounter_index to NONE if the ai_index.type is invalid
 				return encounter_index == NONE;
 			}
-		}; BOOST_STATIC_ASSERT( sizeof(s_ai_index_actor_iterator) == 0x18 );
+		}; static_assert(sizeof(s_ai_index_actor_iterator) == 0x18, STATIC_ASSERT_FAIL);
 	};
 
 	namespace blam

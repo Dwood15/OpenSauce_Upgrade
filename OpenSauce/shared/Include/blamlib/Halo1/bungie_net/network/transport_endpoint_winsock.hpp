@@ -30,6 +30,6 @@ namespace Yelo
 			int32 gamespy_log_column;
 			Enums::transport_rejection_code rejection_code;
 
-		}; BOOST_STATIC_ASSERT( sizeof(s_transport_endpoint) == 0x1C );
+		}; static_assert( sizeof(s_transport_endpoint) == 0x1C );
 	};
 };

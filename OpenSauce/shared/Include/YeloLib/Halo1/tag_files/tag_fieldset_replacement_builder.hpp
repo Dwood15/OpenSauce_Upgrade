@@ -154,8 +154,7 @@ namespace Yelo
 			c_tag_field_set_replacement_builder& InsertEnum(size_t expected_offset,
 				cstring name, string_list* enum_definition)
 			{
-				BOOST_STATIC_ASSERT(sizeof(TEnum)==sizeof(_enum)
-									);
+				static_assert(sizeof(TEnum)==sizeof(_enum), STATIC_ASSERT_FAIL);
 
 				return InsertEnum(expected_offset, 
 					sizeof(TEnum), name, enum_definition);
@@ -164,7 +163,7 @@ namespace Yelo
 			c_tag_field_set_replacement_builder& InsertFlags(size_t expected_offset,
 				cstring name, string_list* flags_definition)
 			{
-				BOOST_STATIC_ASSERT(sizeof(TFlags)==sizeof(byte_flags) || 
+				static_assert(sizeof(TFlags)==sizeof(byte_flags) || 
 									sizeof(TFlags)==sizeof(word_flags) ||
 									sizeof(TFlags)==sizeof(long_flags) );
 
@@ -175,7 +174,7 @@ namespace Yelo
 			c_tag_field_set_replacement_builder& InsertBlockIndex(size_t expected_offset,
 				cstring name, tag_block_definition* block_definition)
 			{
-				BOOST_STATIC_ASSERT(sizeof(TBlockIndex)==sizeof(int16) || 
+				static_assert(sizeof(TBlockIndex)==sizeof(int16) || 
 									sizeof(TBlockIndex)==sizeof(int32) );
 
 				return InsertBlockIndex(expected_offset, 

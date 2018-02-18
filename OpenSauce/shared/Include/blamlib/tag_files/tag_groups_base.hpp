@@ -56,10 +56,10 @@ namespace Yelo
 		}
 	};
 #if !defined(PLATFORM_USE_CONDENSED_TAG_INTERFACE)
-	BOOST_STATIC_ASSERT( sizeof(tag_reference) == 0x10 );
+	static_assert( sizeof(tag_reference) == 0x10 );
 	#define pad_tag_reference PAD32 PAD32 PAD32 PAD32
 #else
-	BOOST_STATIC_ASSERT( sizeof(tag_reference) == 0x8 );
+	static_assert( sizeof(tag_reference) == 0x8 );
 	#define pad_tag_reference PAD32 PAD32
 #endif
 	namespace blam
@@ -150,10 +150,10 @@ namespace Yelo
 #endif
 	};
 #if !defined(PLATFORM_USE_CONDENSED_TAG_INTERFACE)
-	BOOST_STATIC_ASSERT( sizeof(tag_block) == 0xC );
+	static_assert( sizeof(tag_block) == 0xC );
 	#define pad_tag_block PAD32 PAD32 PAD32
 #else
-	BOOST_STATIC_ASSERT( sizeof(tag_block) == 0x8 );
+	static_assert( sizeof(tag_block) == 0x8 );
 	#define pad_tag_block PAD32 PAD32
 #endif
 	namespace blam
@@ -208,10 +208,10 @@ namespace Yelo
 		bool resize(int32 new_size = 0);
 	};
 #if !defined(PLATFORM_USE_CONDENSED_TAG_INTERFACE)
-	BOOST_STATIC_ASSERT( sizeof(tag_data) == 0x14 );
+	static_assert( sizeof(tag_data) == 0x14 );
 	#define pad_tag_data PAD32 PAD32 PAD32 PAD32 PAD32
 #else
-	BOOST_STATIC_ASSERT( sizeof(tag_data) == 0x8 );
+	static_assert( sizeof(tag_data) == 0x8 );
 	#define pad_tag_data PAD32 PAD32
 #endif
 	namespace blam
@@ -356,6 +356,6 @@ namespace Yelo
 		struct s_tag_iterator {
 			Memory::s_data_iterator instances_iterator;
 			tag group_tag_filter;
-		}; BOOST_STATIC_ASSERT( sizeof(s_tag_iterator) == 0x14 );
+		}; static_assert( sizeof(s_tag_iterator) == 0x14 );
 	};
 };

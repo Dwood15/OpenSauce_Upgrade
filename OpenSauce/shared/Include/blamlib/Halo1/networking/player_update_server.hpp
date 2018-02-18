@@ -45,7 +45,7 @@ namespace Yelo
 			// 0x180 datum_index or int32
 			// 0x184 datum_index or int32
 			// 0x188, 0x40 byte structure
-		}; //BOOST_STATIC_ASSERT( sizeof(s_player_server_update) == 0xE0 );
+		}; //static_assert( sizeof(s_player_server_update) == 0xE0 );
 
 		struct update_server_queues_datum : TStructImpl(100)
 		{
@@ -63,7 +63,7 @@ namespace Yelo
 			uint32 current_update_id;
 			update_server_queues_data_t* queue_data;
 			byte queue_data_buffer[0x308][32];
-		}; BOOST_STATIC_ASSERT( sizeof(s_update_server_globals) == 0x610C );
+		}; static_assert( sizeof(s_update_server_globals) == 0x610C );
 		s_update_server_globals* UpdateServerGlobals();
 	};
 };

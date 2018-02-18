@@ -23,35 +23,28 @@
 	#define memcpy_s(dst, dst_size, src, src_size) (dst==memcpy(dst, src, src_size))
 #endif
 
-namespace Yelo
-{
-	namespace Memory
-	{
-		__declspec(noinline) BOOL WriteMemory(void* address, const void* src, size_t size)
-		{
+namespace Yelo {
+	namespace Memory {
+		__declspec(noinline) BOOL WriteMemory(void* address, const void* src, size_t size) {
 			return address == memcpy(address, src, size);
 		}
 
-		void WriteMemory(void* address, int value, size_t count)
-		{
+		void WriteMemory(void* address, int value, size_t count) {
 			memset(address, value, count);
 		}
 
 #pragma warning( push )
 #pragma warning( disable : 4311 ) // bitching about this typecast
 #pragma warning( disable : 4312 ) // bitching about typecast
-		__declspec(noinline) BOOL WriteMemory(void* address, void* value)
-		{
+		__declspec(noinline) BOOL WriteMemory(void* address, void* value) {
 			*CAST_PTR(uint32*, address) = CAST_PTR(uintptr_t, value);
 			return true;
 		}
 
-		__declspec(noinline) void CreateHookRelativeCall(void* hook, void* hook_address, byte end)
-		{
-			struct relative_call_bytes : Opcode::s_call
-			{
+		__declspec(noinline) void CreateHookRelativeCall(void* hook, void* hook_address, byte end) {
+			struct relative_call_bytes : Opcode::s_call {
 				byte End;
-			}; BOOST_STATIC_ASSERT(sizeof(relative_call_bytes) == 6);
+			}; static_assert(sizeof(relative_call_bytes) == 6, STATIC_ASSERT_FAIL);
 			// call near ....
 			// retn\nop
 			relative_call_bytes asm_bytes;
@@ -59,17 +52,14 @@ namespace Yelo
 			asm_bytes.Op = Enums::_x86_opcode_call_near;
 
 			// relative call to [hook]
-			asm_bytes.Address =  CAST_PTR(intptr_t, hook) -
-								(CAST_PTR(intptr_t, hook_address) + 
-								 sizeof(Opcode::s_call));
+			asm_bytes.Address = CAST_PTR(intptr_t, hook) - (CAST_PTR(intptr_t, hook_address) + sizeof(Opcode::s_call));
 
 			asm_bytes.End = end;
 
 			WriteMemory(hook_address, &asm_bytes, sizeof(asm_bytes));
 		}
 
-		__declspec(noinline) uintptr_t WriteRelativeJmp(void* to_address, void* jmp_address, bool write_opcode)
-		{
+		__declspec(noinline) uintptr_t WriteRelativeJmp(void* to_address, void* jmp_address, bool write_opcode) {
 			byte real_opcode = Enums::_x86_opcode_jmp_near; // jmp [function]
 			if (write_opcode)
 				WriteMemory(jmp_address, &real_opcode, sizeof(real_opcode));
@@ -86,8 +76,7 @@ namespace Yelo
 			return original;
 		}
 
-		__declspec(noinline) uintptr_t WriteRelativeCall(void* to_address, void* call_address, bool write_opcode)
-		{
+		__declspec(noinline) uintptr_t WriteRelativeCall(void* to_address, void* call_address, bool write_opcode) {
 			byte real_opcode = Enums::_x86_opcode_call_near; // call [function]
 			if (write_opcode)
 				WriteMemory(call_address, &real_opcode, sizeof(real_opcode));
@@ -105,12 +94,11 @@ namespace Yelo
 		}
 
 
-		void Write(Opcode::s_call& call, void* address)
-		{
+		void Write(Opcode::s_call& call, void* address) {
 			memcpy(address, &call, sizeof(call));
 		}
-		void WriteCall(void* call_buffer, void* address, const void* target)
-		{
+
+		void WriteCall(void* call_buffer, void* address, const void* target) {
 			Opcode::s_call* call = CAST_PTR(Opcode::s_call*, call_buffer);
 			Opcode::s_call* call_address = CAST_PTR(Opcode::s_call*, address);
 
@@ -124,35 +112,29 @@ namespace Yelo
 				);
 		}
 
-		void WriteCallRet(void* call_ret_buffer, void* address, const void* target)
-		{	
+		void WriteCallRet(void* call_ret_buffer, void* address, const void* target) {	
 			CAST_PTR(Opcode::s_call_ret*, call_ret_buffer)->Ret = 
 				CAST_PTR(Opcode::s_call_ret*, address)->Ret;						// copy the old
 			WriteCall(call_ret_buffer, address, target);
 			CAST_PTR(Opcode::s_call_ret*, address)->Ret = Enums::_x86_opcode_ret;	// set the new
 		}
-		void WriteCallRet(void* call_ret_buffer, void* address, const void* target, const uint16 count)
-		{
-			CAST_PTR(Opcode::s_call_ret*, call_ret_buffer)->Ret = 
-				CAST_PTR(Opcode::s_call_ret*, address)->Ret;						// copy the old
+
+		void WriteCallRet(void* call_ret_buffer, void* address, const void* target, const uint16 count) {
+			CAST_PTR(Opcode::s_call_ret*, call_ret_buffer)->Ret = CAST_PTR(Opcode::s_call_ret*, address)->Ret;						// copy the old
 			WriteCall(call_ret_buffer, address, target);
 			CAST_PTR(Opcode::s_call_ret*, address)->Ret = Enums::_x86_opcode_retn;	// set the new
-			CAST_PTR(Opcode::s_call_ret*, call_ret_buffer)->Count = 
-				CAST_PTR(Opcode::s_call_ret*, address)->Count;						// copy the old
+			CAST_PTR(Opcode::s_call_ret*, call_ret_buffer)->Count = CAST_PTR(Opcode::s_call_ret*, address)->Count;						// copy the old
 			CAST_PTR(Opcode::s_call_ret*, address)->Count = (count * 4);			// set the new
 		}
 
-		void WriteRet(Opcode::s_call_ret& call, void* address)
-		{
+		void WriteRet(Opcode::s_call_ret& call, void* address) {
 			memcpy(address, &call, sizeof(call) - sizeof(uint16)); // don't include the retn's count
 		}
-		void WriteRetn(Opcode::s_call_ret& call, void* address)
-		{
+		void WriteRetn(Opcode::s_call_ret& call, void* address) {
 			memcpy(address, &call, sizeof(call));
 		}
 
-		void WriteJmp(void* jmp_buffer, void* address, const void* target)
-		{
+		void WriteJmp(void* jmp_buffer, void* address, const void* target) {
 			Opcode::s_call* jmp = CAST_PTR(Opcode::s_call*, jmp_buffer);
 			Opcode::s_call* jmp_address = CAST_PTR(Opcode::s_call*, address);
 
@@ -166,8 +148,7 @@ namespace Yelo
 				);
 		}
 
-		void OverwriteJmp(void* jmp_buffer, void* address, const void* target)
-		{
+		void OverwriteJmp(void* jmp_buffer, void* address, const void* target) {
 			Opcode::s_call* jmp_address = CAST_PTR(Opcode::s_call*, address);
 
 			CAST_PTR(Opcode::s_call*, jmp_buffer)->Address = jmp_address->Address; // copy the old

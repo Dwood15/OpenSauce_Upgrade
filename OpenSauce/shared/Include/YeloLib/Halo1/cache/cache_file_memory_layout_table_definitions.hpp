@@ -78,7 +78,7 @@ namespace Yelo
 				TAG_FIELD(uint16, parent_offset);
 				TAG_ENUM(type, Enums::tag_block_child_type);
 				PAD16;
-			}; BOOST_STATIC_ASSERT( sizeof(s_tag_block_child_definition) == 8 );
+			}; static_assert(sizeof(s_tag_block_child_definition) == 8, STATIC_ASSERT_FAIL);
 
 			struct s_tag_block_child_instance
 			{
@@ -86,7 +86,7 @@ namespace Yelo
 
 				TAG_BLOCK_INDEX(s_tag_block_child_definition, definition_index);
 				TAG_BLOCK_INDEX(s_tag_allocation_definition, owner_block_index);
-			}; BOOST_STATIC_ASSERT( sizeof(s_tag_block_child_instance) == 4 );
+			}; static_assert(sizeof(s_tag_block_child_instance) == 4, STATIC_ASSERT_FAIL);
 
 			//////////////////////////////////////////////////////////////////////////
 			typedef TagBlock<s_tag_block_child_instance::block_index_t>

@@ -19,7 +19,7 @@ namespace Yelo
 			struct _flags {
 				TAG_FLAG16(invert);
 			}flags;
-		}; BOOST_STATIC_ASSERT( sizeof(s_effect_postprocess_effect_activation_control) == 0x4);
+		}; static_assert(sizeof(s_effect_postprocess_effect_activation_control) == 0x4, STATIC_ASSERT_FAIL);
 
 #if 0
 		struct s_effect_postprocess_effect_fade_control
@@ -31,7 +31,7 @@ namespace Yelo
 
 			TAG_FIELD(real_bounds, value_map);
 			PAD32;
-		}; BOOST_STATIC_ASSERT( sizeof(s_effect_postprocess_effect_fade_control) == 0x10);
+		}; static_assert( sizeof(s_effect_postprocess_effect_fade_control) == 0x10, STATIC_ASSERT_FAIL);
 #endif
 
 		struct s_effect_postprocess_generic_effect_instance
@@ -50,31 +50,28 @@ namespace Yelo
 			TAG_PAD(tag_block, 1);
 #endif
 			TAG_PAD(byte, 16);
-		}; BOOST_STATIC_ASSERT( sizeof(s_effect_postprocess_generic_effect_instance) == 0x74 );
+		}; static_assert( sizeof(s_effect_postprocess_generic_effect_instance) == 0x74 );
 
-		struct s_effect_postprocess_generic_exposed_parameter
-		{
+		struct s_effect_postprocess_generic_exposed_parameter {
 			TAG_FIELD(tag_string, exposed_name);
 			TAG_FIELD(tag_string, parameter_name);
 			TAG_FIELD(int32, shader_index);
 			TAG_FIELD(shader_variable_type, value_type);
 
-			struct
-			{
+			struct {
 				void* parameter_instance; //void* to avoid a problematic include
 			}runtime;
 
 			PAD32;
-		}; BOOST_STATIC_ASSERT( sizeof(s_effect_postprocess_generic_exposed_parameter) == 0x50);
+		}; static_assert(sizeof(s_effect_postprocess_generic_exposed_parameter) == 0x50, STATIC_ASSERT_FAIL);
 
-		struct s_effect_postprocess_generic : s_effect_postprocess_definition
-		{
+		struct s_effect_postprocess_generic : s_effect_postprocess_definition {
 			enum { k_group_tag = 'efpg' };
 
 			TAG_TBLOCK_(shaders, tag_reference);
 			TAG_TBLOCK_(shader_indices, int32);
 			TAG_TBLOCK_(exposed_parameters, s_effect_postprocess_generic_exposed_parameter);
 
-		}; BOOST_STATIC_ASSERT( sizeof(s_effect_postprocess_generic) == 0x24 + sizeof(s_effect_postprocess_definition));
+		}; static_assert(sizeof(s_effect_postprocess_generic) == 0x24 + sizeof(s_effect_postprocess_definition), STATIC_ASSERT_FAIL);
 	};
 };

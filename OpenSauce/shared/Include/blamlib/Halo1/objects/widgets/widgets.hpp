@@ -30,6 +30,6 @@ namespace Yelo
 			_enum type;
 			datum_index type_datum_index; // index to the type's data array (eg, antenna)
 			datum_index next_widget_index;
-		}; BOOST_STATIC_ASSERT( sizeof(s_widget_datum) == 0xC );
+		}; static_assert(sizeof(s_widget_datum) == 0xC, STATIC_ASSERT_FAIL);
 	};
 };

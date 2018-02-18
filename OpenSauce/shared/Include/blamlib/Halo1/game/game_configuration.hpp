@@ -36,5 +36,5 @@ namespace Yelo
 	/// <summary>	The integral type used to represent (relative) game timers. </summary>
 	/// <remarks>	Steps are in ticks. Generally used for countdowns </remarks>
 	typedef int16 game_time_t;
-	BOOST_STATIC_ASSERT(sizeof(game_time_t) == 0x2);
+	static_assert(sizeof(game_time_t) == 0x2);
 };

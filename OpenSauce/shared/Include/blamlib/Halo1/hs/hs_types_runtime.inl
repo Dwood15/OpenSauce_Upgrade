@@ -328,7 +328,7 @@ namespace Yelo
 		static s_hs_value_union hs_tag_reference_to_long(s_hs_value_union value)
 		{
 			// can just fall through as long as this is true
-			BOOST_STATIC_ASSERT(sizeof(value.int32) == sizeof(value.tag_index));
+			static_assert(sizeof(value.int32) == sizeof(value.tag_index));
 
 			return value;
 		}

@@ -67,8 +67,7 @@
 #endif
 
 #include <boost/preprocessor.hpp>
-#include <boost/static_assert.hpp>
-
+#define STATIC_ASSERT_FAIL "static assert failed"
 #include <boost/integer/static_log2.hpp>
 
 #include <boost/filesystem.hpp>

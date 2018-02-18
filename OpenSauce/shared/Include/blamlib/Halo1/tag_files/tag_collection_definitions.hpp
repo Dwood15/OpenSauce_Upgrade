@@ -13,13 +13,13 @@ namespace Yelo
 		struct s_tag_reference
 		{
 			TAG_FIELD(tag_reference, tag);
-		}; BOOST_STATIC_ASSERT( sizeof(s_tag_reference) == 0x10 ); // max count: 200
+		}; static_assert(sizeof(s_tag_reference) == 0x10, STATIC_ASSERT_FAIL); // max count: 200
 
 		struct s_tag_collection_definition
 		{
 			enum { k_group_tag = 'tagc' };
 
 			TAG_TBLOCK(tag_references, s_tag_reference);
-		}; BOOST_STATIC_ASSERT( sizeof(s_tag_collection_definition) == 0xC ); // max count: 1
+		}; static_assert(sizeof(s_tag_collection_definition) == 0xC, STATIC_ASSERT_FAIL); // max count: 1
 	};
 };

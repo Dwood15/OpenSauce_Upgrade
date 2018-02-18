@@ -162,21 +162,18 @@ namespace Yelo
 
 		}
 
-		void Dispose()
-		{
+		void Dispose() {
 			EventLogDispose();
 			MemoryUpgradesDispose();
 		}
 
-		void* GameStateMalloc(const bool k_update_allocation_crc, const size_t size_of)
-		{
+		void* GameStateMalloc(const bool k_update_allocation_crc, const size_t size_of) {
 			s_game_state_globals* gsg = GameStateGlobals();
 
 			byte* base_addr = CAST_PTR(byte*, gsg->base_address) + gsg->cpu_allocation_size;
 
 			// Debug check that we don't allocate more memory than the game state has available
-			YELO_ASSERT_DISPLAY((base_addr + size_of) <= blam::physical_memory_map_get_tag_cache_address(),
-				"Bit off more game-state than the game could chew!");
+			YELO_ASSERT_DISPLAY((base_addr + size_of) <= blam::physical_memory_map_get_tag_cache_address(), "Bit off more game-state than the game could chew!");
 
 			gsg->cpu_allocation_size += size_of;
 			// If the allocation crc is updated, game states won't be loadable by stock games
@@ -186,8 +183,7 @@ namespace Yelo
 			return base_addr;
 		}
 
-		void Update(real delta_time)
-		{
+		void Update(real delta_time) {
 			Main::s_project_component* components;
 			const int32 component_count = Main::GetProjectComponents(components);
 
@@ -196,14 +192,12 @@ namespace Yelo
 					components[x].Update(delta_time);
 		}
 
-		static void InitializeForNewMapPrologue()
-		{
+		static void InitializeForNewMapPrologue() {
 			Physics()->Reset(); // Reset the physics constants on each new map load since these are engine globals, not game state globals.
 
 			s_yelo_header_data& yelo_header = GameStateGlobals()->header->yelo;
 			const TagGroups::s_game_globals* game_globals = GameState::GlobalGameGlobals();
-			if(!yelo_header.flags.initialized)
-			{
+			if(!yelo_header.flags.initialized) {
 				yelo_header.flags.initialized = true;
 				yelo_header.unit_grenade_types_count = Enums::k_unit_grenade_types_count;
 			}
@@ -214,8 +208,7 @@ namespace Yelo
 
 			Objects::Units::InitializeForNewMapPrologue();
 		}
-		static void InitializeForNewMapEpilogue()
-		{
+		static void InitializeForNewMapEpilogue() {
 			// Update the gravity based on the scenario's yelo tag settings
 			if(!Scenario::GetYelo()->IsNull())
 			{
@@ -224,8 +217,7 @@ namespace Yelo
 					Physics()->SetGravityScale(gravity_scale);
 			}
 		}
-		void PLATFORM_API InitializeForNewMap()
-		{
+		void PLATFORM_API InitializeForNewMap() {
 			InitializeForNewMapPrologue();
 
 			Main::s_project_map_component* components;
@@ -237,11 +229,9 @@ namespace Yelo
 
 			InitializeForNewMapEpilogue();
 		}
-		static void DisposeFromOldMapPrologue()
-		{
-		}
-		void PLATFORM_API DisposeFromOldMap()
-		{
+		static void DisposeFromOldMapPrologue() { }
+
+		void PLATFORM_API DisposeFromOldMap() {
 			DisposeFromOldMapPrologue();
 
 			Main::s_project_map_component* components;
@@ -252,8 +242,7 @@ namespace Yelo
 					components[x].DisposeFromOldMap();
 		}
 
-		void PLATFORM_API InitializeForNewBSP()
-		{
+		void PLATFORM_API InitializeForNewBSP() {
 			Yelo::Main::s_project_bsp_component* components;
 			const int32 component_count = Yelo::Main::GetProjectComponents(components);
 
@@ -261,8 +250,7 @@ namespace Yelo
 				if (components[x].InitializeForNewBSP != nullptr)
 					components[x].InitializeForNewBSP();
 		}
-		void PLATFORM_API DisposeFromOldBSP()
-		{
+		void PLATFORM_API DisposeFromOldBSP() {
 			Yelo::Main::s_project_bsp_component* components;
 			const int32 component_count = Yelo::Main::GetProjectComponents(components);
 
@@ -271,8 +259,7 @@ namespace Yelo
 					components[x].DisposeFromOldBSP();
 		}
 
-		void PLATFORM_API InitializeForNewGameState()
-		{
+		void PLATFORM_API InitializeForNewGameState() {
 			Main::s_project_game_state_component* components;
 			const int32 component_count = Main::GetProjectComponents(components);
 
@@ -280,8 +267,8 @@ namespace Yelo
 				if( components[x].InitializeForNewGameState != nullptr )
 					components[x].InitializeForNewGameState();
 		}
-		void InitializeForYeloGameState(bool enabled)
-		{
+
+		void InitializeForYeloGameState(bool enabled) {
 			Main::s_project_game_state_component* components;
 			const int32 component_count = Main::GetProjectComponents(components);
 
@@ -289,8 +276,8 @@ namespace Yelo
 				if( components[x].InitializeForYeloGameState != nullptr )
 					components[x].InitializeForYeloGameState(enabled);
 		}
-		static void HandleGameStateLifeCycle(Enums::game_state_life_cycle life_cycle)
-		{
+
+		static void HandleGameStateLifeCycle(Enums::game_state_life_cycle life_cycle) {
 			YELO_ASSERT_DISPLAY( IN_RANGE_ENUM(life_cycle, Enums::k_number_of_game_state_life_cycles), "What fucking life cycle is this shit?");
 
 			Main::s_project_game_state_component* components;
@@ -300,22 +287,17 @@ namespace Yelo
 				if( components[x].HandleGameStateLifeCycle != nullptr )
 					components[x].HandleGameStateLifeCycle(life_cycle);
 		}
-		void PLATFORM_API HandleBeforeSaveLifeCycle()
-		{
+		void PLATFORM_API HandleBeforeSaveLifeCycle() {
 			HandleGameStateLifeCycle(Enums::_game_state_life_cycle_before_save);
 		}
-		void PLATFORM_API HandleBeforeLoadLifeCycle()
-		{
+		void PLATFORM_API HandleBeforeLoadLifeCycle() {
 			HandleGameStateLifeCycle(Enums::_game_state_life_cycle_before_load);
 		}
-		void PLATFORM_API HandleAfterLoadLifeCycle()
-		{
+		void PLATFORM_API HandleAfterLoadLifeCycle() {
 			HandleGameStateLifeCycle(Enums::_game_state_life_cycle_after_load);
 		}
 
-		static void DataArrayInfoDumpToConsole(cstring data_array_name)
-		{
-#if PLATFORM_IS_USER // no printing for dedis
+		static void DataArrayInfoDumpToConsole(cstring data_array_name) {
 			std::string name(data_array_name);
 			const Memory::s_data_array* array = nullptr;
 
@@ -334,22 +316,14 @@ namespace Yelo
 			float active_percentage = CAST(float, active_count);
 			active_percentage /= array->max_datum;
 			active_percentage *= 100.f;
-			blam::console_response_printf(false, "%3.2f full; %d / %d",
-				active_percentage, active_count, array->max_datum);
-#endif
+			blam::console_response_printf(false, "%3.2f full; %d / %d", active_percentage, active_count, array->max_datum);
 		}
 
-		void InitializeScripting()
-		{
-			Scripting::InitializeScriptFunction(Enums::_hs_function_physics_get_gravity, 
-				scripting_physics_get_gravity_evaluate);
-			Scripting::InitializeScriptFunctionWithParams(Enums::_hs_function_physics_set_gravity, 
-				scripting_physics_set_gravity_evaluate);
-			Scripting::InitializeScriptFunction(Enums::_hs_function_physics_constants_reset, 
-				scripting_physics_constants_reset_evaluate);
-
-			Scripting::InitializeScriptFunctionWithParams(Enums::_hs_function_data_array_info,
-				scripting_data_array_info_evaluate);
+		void InitializeScripting() {
+			Scripting::InitializeScriptFunction(Enums::_hs_function_physics_get_gravity, scripting_physics_get_gravity_evaluate);
+			Scripting::InitializeScriptFunctionWithParams(Enums::_hs_function_physics_set_gravity, scripting_physics_set_gravity_evaluate);
+			Scripting::InitializeScriptFunction(Enums::_hs_function_physics_constants_reset, scripting_physics_constants_reset_evaluate);
+			Scripting::InitializeScriptFunctionWithParams(Enums::_hs_function_data_array_info, scripting_data_array_info_evaluate);
 		}
 	};
 };

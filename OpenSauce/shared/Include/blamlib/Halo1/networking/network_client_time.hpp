@@ -21,6 +21,6 @@ namespace Yelo
 			int32 number_of_time_samples;
 			PAD32; // unknown
 			s_time_sample samples[TIME_SYNCH_SAMPLES];
-		}; BOOST_STATIC_ASSERT( sizeof(s_network_client_time) == 0x264 );
+		}; static_assert( sizeof(s_network_client_time) == 0x264 );
 	};
 };

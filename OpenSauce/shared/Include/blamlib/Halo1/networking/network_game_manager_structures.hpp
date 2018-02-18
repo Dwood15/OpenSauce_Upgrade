@@ -8,21 +8,16 @@
 
 #include <blamlib/Halo1/networking/network_game_manager.hpp>
 #include <blamlib/Halo1/saved_games/game_variant.hpp>
-
 #include <YeloLib/Halo1/open_sauce/blam_memory_upgrades.hpp>
 
-namespace Yelo
-{
-	namespace Networking
-	{
-		struct s_network_game_map
-		{
+namespace Yelo {
+	namespace Networking {
+		struct s_network_game_map {
 			int32 version;
 			char name[128];
-		}; BOOST_STATIC_ASSERT( sizeof(s_network_game_map) == 0x84 );
+		}; static_assert( sizeof(s_network_game_map) == 0x84 );
 
-		struct s_network_game
-		{
+		struct s_network_game {
 			wchar_t name[64];						// 0x0
 			s_network_game_map map;					// 0x80
 			GameEngine::s_game_variant game_variant;// 0x104
@@ -35,7 +30,7 @@ namespace Yelo
 			int32 network_game_random_seed;			// 0x3E4
 			int32 number_of_games_played;			// 0x3E8
 			int32 local_data;						// 0x3EC
-		}; BOOST_STATIC_ASSERT( sizeof(s_network_game) == 0x3F0 );
+		}; static_assert( sizeof(s_network_game) == 0x3F0 );
 
 		// For increased player counts game states
 		struct s_network_game_yelo : s_network_game

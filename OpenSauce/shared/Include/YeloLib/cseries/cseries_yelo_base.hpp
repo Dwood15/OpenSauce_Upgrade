@@ -13,6 +13,7 @@
 #include <YeloLib/cseries/handle_abi.hpp>
 
 #include <boost/integer/static_log2.hpp>
+#include "YeloLib/tag_files/tag_groups_markup.hpp"
 
 //#include <errno.h>
 extern const errno_t k_errnone;
@@ -105,7 +106,7 @@ namespace Yelo
 		#define TStructGetImpl(type, name, offset)										\
 			type Get##name()					{ return GetData<type, offset>(); }		\
 			type Get##name() const			{ return GetData<type, offset>(); }			\
-			BOOST_STATIC_ASSERT( ( offset + sizeof( type )) <= k_size );
+			static_assert((offset + sizeof(type)) <= k_size, STATIC_ASSERT_FAIL);
 		////////////////////////////////////////////////////////////////////////////////////////////////////
 		/// <summary>	Implement a by-address getter. </summary>
 		///
@@ -116,7 +117,7 @@ namespace Yelo
 			type* Get##name()				{ return GetDataPtr<type, offset>(); }		\
 			type const* Get##name() const	{ return GetDataPtr<type, offset>(); }		\
 			/*   ^ use const here, instead of before the type, in case [type] is defined as something like "int32*" */	\
-			BOOST_STATIC_ASSERT( ( offset + sizeof( type )) <= k_size );
+			static_assert((offset + sizeof(type)) <= k_size, STATIC_ASSERT_FAIL);
 
 		////////////////////////////////////////////////////////////////////////////////////////////////////
 		/// <summary>	Implement a by-value getter for fake TStruct sub-classes. </summary>
@@ -169,8 +170,7 @@ namespace Yelo
 	////////////////////////////////////////////////////////////////////////////////////////////////////
 	/// <summary>	Tests whether an ASCII string buffer begins with a null terminator </summary>
 	template<size_t kLength> inline
-	bool is_null_or_empty(const char (&array)[kLength])
-	{
+	bool is_null_or_empty(const char (&array)[kLength]) {
 		return array[0] == '\0';
 	}
 	////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -179,8 +179,7 @@ namespace Yelo
 	////////////////////////////////////////////////////////////////////////////////////////////////////
 	/// <summary>	Tests whether a wide string buffer begins with a null terminator </summary>
 	template<size_t kLength> inline
-	bool is_null_or_empty(const wchar_t (&array)[kLength])
-	{
+	bool is_null_or_empty(const wchar_t (&array)[kLength]) {
 		return array[0] == L'\0';
 	}
 
@@ -281,7 +280,7 @@ namespace Yelo
 		OVERRIDE_OPERATOR_MATH_BOOL(TTypeHolder, pointer, != );
 	};
 	typedef TTypeHolder<void> TypeHolder;
-	BOOST_STATIC_ASSERT( sizeof(TypeHolder) == 0x4 );
+	static_assert(sizeof(TypeHolder) == 0x4, STATIC_ASSERT_FAIL);
 
 	extern const TypeHolder k_null_as_type_holder;  ///< nullptr represented as a TypeHolder value
 	extern const TypeHolder k_none_as_type_holder;  ///< NONE represented as TypeHolder value

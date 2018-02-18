@@ -5,19 +5,15 @@
 */
 #pragma once
 
-namespace Yelo
-{
-	namespace Configuration
-	{
+namespace Yelo {
+	namespace Configuration {
 		////////////////////////////////////////////////////////////////////////////////////////////////////
 		/// <summary>	A singleton wrapper around a configuration container. </summary>
 		///
 		/// <typeparam name="ContainerType">	Type of the container. </typeparam>
 		/// <typeparam name="SingletonType">	Type of the singleton. </typeparam>
 		template<typename ContainerType, typename SingletonType>
-		class c_configuration_singleton
-			abstract
-		{
+		class c_configuration_singleton abstract {
 			static_assert(std::is_convertible<ContainerType, i_configuration_container>::value, "c_configuration_singleton can only be used with types that derive from i_configuration_container");
 
 #pragma region Static
@@ -44,8 +40,7 @@ namespace Yelo
 		protected:
 			std::unique_ptr<ContainerType> m_container;
 
-			c_configuration_singleton()
-			{
+			c_configuration_singleton() {
 				m_container = std::make_unique<ContainerType>();
 			}
 
@@ -54,8 +49,7 @@ namespace Yelo
 			/// <summary>	Gets the container as a referece. </summary>
 			///
 			/// <returns>	The container as a reference </returns>
-			ContainerType& Get() const
-			{
+			ContainerType& Get() const {
 				return *m_container;
 			}
 
@@ -63,8 +57,7 @@ namespace Yelo
 			/// <summary>	Gets a pointer to the container. </summary>
 			///
 			/// <returns>	The pointer to the wrapped container. </returns>
-			ContainerType* GetPtr() const
-			{
+			ContainerType* GetPtr() const {
 				return m_container.get();
 			}
 
@@ -72,8 +65,7 @@ namespace Yelo
 			/// <summary>	Member dereference operator. </summary>
 			///
 			/// <returns>	The dereferenced object. </returns>
-			ContainerType* operator->() const
-			{
+			ContainerType* operator->() const {
 				return GetPtr();
 			}
 #pragma endregion

@@ -44,6 +44,6 @@ namespace Yelo
 			tag signature;
 			bool initialized;
 			PAD24;
-		}; BOOST_STATIC_ASSERT(sizeof(s_byte_swap_definition) == 0x14);
+		}; static_assert(sizeof(s_byte_swap_definition) == 0x14);
 	};
 };

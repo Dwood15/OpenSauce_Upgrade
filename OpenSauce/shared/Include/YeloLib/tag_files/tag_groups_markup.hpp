@@ -53,3 +53,8 @@
 	#define TAG_BLOCK_GET_ELEMENT(block_ptr, index, type)	\
 		&(block_ptr->Elements<type>()[index])
 #endif
+
+
+//FUCK OFF\\
+
+#define STATIC_ASSERT_FAIL "static assert failure!"

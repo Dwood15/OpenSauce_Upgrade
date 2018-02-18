@@ -300,7 +300,7 @@ namespace Yelo
 				{ nullptr },
 				//_unit_animation_state_yelo_unit_transforming
 				{ nullptr },
-			}; BOOST_STATIC_ASSERT(NUMBEROF(g_animation_state_handlers) == (Enums::_unit_animation_state_yelo - Enums::_unit_animation_state));
+			}; static_assert(NUMBEROF(g_animation_state_handlers) == (Enums::_unit_animation_state_yelo - Enums::_unit_animation_state), STATIC_ASSERT_FAIL);
 
 			void PLATFORM_API AnimationStateDefinedKeyframe(const datum_index unit_index, const Enums::unit_animation_state state)
 			{
@@ -322,17 +322,14 @@ namespace Yelo
 				}
 			}
 
-			void PLATFORM_API AnimationStateFinalKeyframe(const datum_index unit_index, const Enums::unit_animation_state state)
-			{
+			void PLATFORM_API AnimationStateFinalKeyframe(const datum_index unit_index, const Enums::unit_animation_state state) {
 				auto& handler = g_animation_state_handlers[state - Enums::_unit_animation_state];
-				if(handler)
-				{
+				if(handler) {
 					handler(unit_index, Enums::_unit_animation_keyframe_final);
 				}
 			}
 
-			void SetAnimationStateKeyframeHandler(const Enums::unit_animation_state state, animation_state_keyframe_handler_t handler)
-			{
+			void SetAnimationStateKeyframeHandler(const Enums::unit_animation_state state, animation_state_keyframe_handler_t handler) {
 				g_animation_state_handlers[state - Enums::_unit_animation_state] = handler;
 			}
 		};};

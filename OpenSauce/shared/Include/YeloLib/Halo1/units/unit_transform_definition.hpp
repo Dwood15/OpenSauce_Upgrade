@@ -188,7 +188,7 @@ namespace Yelo
 			TAG_FIELD(real, shield_override);
 			TAG_FIELD(real, health_override);
 			TAG_PAD(tag_block, 2);
-		}; BOOST_STATIC_ASSERT(sizeof(actor_variant_transform_in_target) == 0xAC);
+		}; static_assert(sizeof(actor_variant_transform_in_target) == 0xAC, STATIC_ASSERT_FAIL);
 
 		struct actor_variant_transform_in_definition
 		{
@@ -196,7 +196,7 @@ namespace Yelo
 
 			TAG_TBLOCK(targets, actor_variant_transform_in_target);
 			TAG_PAD(tag_block, 2);
-		}; BOOST_STATIC_ASSERT(sizeof(actor_variant_transform_in_definition) == 0x24);
+		}; static_assert(sizeof(actor_variant_transform_in_definition) == 0x24, STATIC_ASSERT_FAIL);
 #pragma endregion
 		
 #pragma region actor_variant_transform_out_definition
@@ -206,7 +206,7 @@ namespace Yelo
 			TAG_FIELD(Enums::actor_variant_transform_out_damage_type, damage_type);
 			PAD16;
 			TAG_PAD(tag_block, 1);
-		}; BOOST_STATIC_ASSERT(sizeof(actor_variant_transform_out_instigator) == 0x20);
+		}; static_assert(sizeof(actor_variant_transform_out_instigator) == 0x20, STATIC_ASSERT_FAIL);
 
 		struct actor_variant_transform_out_attachment
 		{
@@ -219,7 +219,7 @@ namespace Yelo
 			TAG_FIELD(Enums::game_team, team_override);
 			TAG_FIELD(real_bounds, attachment_scale);
 			TAG_PAD(tag_block, 2);
-		}; BOOST_STATIC_ASSERT(sizeof(actor_variant_transform_out_attachment) == 0x78);
+		}; static_assert(sizeof(actor_variant_transform_out_attachment) == 0x78, STATIC_ASSERT_FAIL);
 
 		struct actor_variant_transform_out_definition
 		{
@@ -246,7 +246,7 @@ namespace Yelo
 			TAG_TBLOCK(attachments, actor_variant_transform_out_attachment);
 
 			TAG_PAD(tag_block, 2);
-		}; BOOST_STATIC_ASSERT(sizeof(actor_variant_transform_out_definition) == 0x94);
+		}; static_assert(sizeof(actor_variant_transform_out_definition) == 0x94, STATIC_ASSERT_FAIL);
 #pragma endregion
 
 #pragma region actor_variant_transform_collection_definition
@@ -263,14 +263,14 @@ namespace Yelo
 			TAG_FIELD(tag_reference, transform_in);
 			actor_variant_transform_in_definition* transform_in_ptr;
 			TAG_PAD(tag_block, 2);
-		}; BOOST_STATIC_ASSERT(sizeof(actor_variant_transform_collection_transform) == 0x74);
+		}; static_assert(sizeof(actor_variant_transform_collection_transform) == 0x74, STATIC_ASSERT_FAIL);
 
 		struct actor_variant_transform_collection_entry
 		{
 			TAG_FIELD(tag_reference, actor_variant);
 			TAG_TBLOCK_(transforms, actor_variant_transform_collection_transform);
 			TAG_PAD(tag_block, 2);
-		}; BOOST_STATIC_ASSERT(sizeof(actor_variant_transform_collection_entry) == 0x34);
+		}; static_assert(sizeof(actor_variant_transform_collection_entry) == 0x34, STATIC_ASSERT_FAIL);
 
 		struct actor_variant_transform_collection_definition
 		{
@@ -278,7 +278,7 @@ namespace Yelo
 
 			TAG_TBLOCK_(actor_variant_transforms, actor_variant_transform_collection_entry);
 			TAG_PAD(tag_block, 2);
-		}; BOOST_STATIC_ASSERT(sizeof(actor_variant_transform_collection_definition) == 0x24);
+		}; static_assert(sizeof(actor_variant_transform_collection_definition) == 0x24, STATIC_ASSERT_FAIL);
 #pragma endregion
 	};
 };

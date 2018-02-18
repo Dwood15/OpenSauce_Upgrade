@@ -68,7 +68,6 @@
 #endif
 
 #include <boost/preprocessor.hpp>
-#include <boost/static_assert.hpp>
 
 #include <boost/integer/static_log2.hpp>
 //////////////////////////////////////////////////////////////////////////
@@ -106,7 +105,7 @@
                 location += 11;							// YELO: UPDATE THIS LINE
 
 	*/
-//	BOOST_STATIC_ASSERT(false); // comment this out once the fix is applied
+//	static_assert(false); // comment this out once the fix is applied
 
 	// Just to make sure we're always using ASCII
 	#undef GSI_UNICODE

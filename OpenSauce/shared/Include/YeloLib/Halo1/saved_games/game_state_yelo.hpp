@@ -30,10 +30,9 @@ namespace Yelo
 			// Why? Because the game state is saved to file when the player saves the game or dumps a core. 
 			// So if there's a project component which requires serialization, we'd want to allocate its 
 			// memory in the game state, not anywhere else.
-			k_game_state_allocation_maximum_size_for_yelo = 0x42970
-				- k_game_state_allocation_size_object_memory_pool_upgrade,
+			k_game_state_allocation_maximum_size_for_yelo = 0x42970 - k_game_state_allocation_size_object_memory_pool_upgrade,
 		};
-		BOOST_STATIC_ASSERT( k_game_state_allocation_maximum_size_for_yelo >= 0 );
+		static_assert(k_game_state_allocation_maximum_size_for_yelo >= 0, STATIC_ASSERT_FAIL);
 	};
 
 	namespace GameState
@@ -53,7 +52,7 @@ namespace Yelo
 			}version;
 			byte unit_grenade_types_count;			// 0x6
 			PAD8;
-		}; BOOST_STATIC_ASSERT( sizeof(s_yelo_header_data) <= 0x20 );
+		}; static_assert(sizeof(s_yelo_header_data) <= 0x20, STATIC_ASSERT_FAIL);
 
 
 		// Are OS-modified game states in effect?
@@ -63,8 +62,7 @@ namespace Yelo
 		// Allocate an object of type [T] [count] times inside the game state memory and return its address.
 		// Note: Also updates the game state's cpu allocation size by adding 'sizeof([T]) * count'
 		template<typename T> inline
-		T* GameStateMalloc(const bool k_update_allocation_crc = true, const size_t count = 1)
-		{
+		T* GameStateMalloc(const bool k_update_allocation_crc = true, const size_t count = 1) {
 			extern void* GameStateMalloc(const bool k_update_allocation_crc, const size_t size_of);
 
 			return CAST_PTR(T*, GameStateMalloc(k_update_allocation_crc, sizeof(T) * count));

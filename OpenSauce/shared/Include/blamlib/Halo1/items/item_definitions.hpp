@@ -19,7 +19,7 @@ namespace Yelo
 				TAG_FLAG(maintains_z_up);
 				TAG_FLAG(destroyed_by_explosions);
 				TAG_FLAG(unaffected_by_gravity);
-			}flags; BOOST_STATIC_ASSERT( sizeof(_item_definition_flags) == sizeof(long_flags) );
+			}flags; static_assert( sizeof(_item_definition_flags) == sizeof(long_flags) );
 
 			int16 message_index;
 			int16 sort_order;
@@ -43,12 +43,12 @@ namespace Yelo
 				TAG_FIELD(tag_reference, detonating_effect, 'effe');
 				TAG_FIELD(tag_reference, effect, 'effe');
 			}detonation;
-		}; BOOST_STATIC_ASSERT( sizeof(_item_definition) == 0x18C );
+		}; static_assert( sizeof(_item_definition) == 0x18C );
 
 
 		struct s_item_definition : s_object_definition
 		{
 			_item_definition item;
-		}; BOOST_STATIC_ASSERT( sizeof(s_item_definition) == 0x308 );
+		}; static_assert( sizeof(s_item_definition) == 0x308 );
 	};
 };

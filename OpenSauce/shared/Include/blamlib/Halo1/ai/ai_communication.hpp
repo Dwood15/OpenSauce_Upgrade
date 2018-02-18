@@ -152,6 +152,6 @@ namespace Yelo
 			UNKNOWN_TYPE(int16); // 1A
 			bool broken; // 1C false = reformed
 			PAD24;
-		}; BOOST_STATIC_ASSERT( sizeof(s_ai_communication_packet) == 0x20 );
+		}; static_assert(sizeof(s_ai_communication_packet) == 0x20, STATIC_ASSERT_FAIL);
 	};
 };
