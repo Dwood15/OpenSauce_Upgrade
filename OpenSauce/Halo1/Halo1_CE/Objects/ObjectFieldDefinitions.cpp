@@ -14,7 +14,6 @@
 #include "Game/EngineFunctions.hpp"
 #include "Game/Scripting.hpp"
 #include "Game/ScriptLibrary.hpp"
-#include "Networking/Networking.hpp"
 #include "Objects/Objects.hpp"
 
 namespace Yelo

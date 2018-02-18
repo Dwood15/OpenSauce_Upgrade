@@ -52,10 +52,6 @@
 	??=include BOOST_PP_ITERATE()
 #endif
 
-#define BOOST_PP_ITERATION_LIMITS (1, 5)
-#define BOOST_PP_FILENAME_1 "Common/GameSystemComponents.Networking.inl"
-??=include BOOST_PP_ITERATE()
-
 #define BOOST_PP_ITERATION_LIMITS (1, 1)
 #define BOOST_PP_FILENAME_1 "Common/GameSystemComponents.Misc.inl"
 ??=include BOOST_PP_ITERATE()

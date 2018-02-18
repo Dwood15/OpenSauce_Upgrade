@@ -14,7 +14,7 @@ namespace Yelo
 {
 	namespace GameState
 	{
-#if !PLATFORM_IS_EDITOR
+
 		void s_main_globals::QuitToMainMenu()
 		{
 			map.switch_to_structure_bsp = NONE;
@@ -25,11 +25,10 @@ namespace Yelo
 		bool IsLocal()	{ return MainGlobals()->game_connection == Enums::_game_connection_local; }
 		bool IsServer() { return MainGlobals()->game_connection == Enums::_game_connection_network_server; }
 		bool IsClient() { return MainGlobals()->game_connection == Enums::_game_connection_network_client; }
-#endif
+
 	};
 
-	namespace Main
-	{
+	namespace Main {
 		cstring k_halo1_campaign_level_names[Enums::k_number_of_halo1_campaign_levels] = {
 			R"(levels\a10\a10)",
 			R"(levels\a30\a30)",
@@ -43,8 +42,7 @@ namespace Yelo
 			R"(levels\4d0\d40)",
 		};
 
-		const std::string& RegistryGetGameExePath()
-		{
+		const std::string& RegistryGetGameExePath() {
 			static std::string g_exe_path = std::string();
 			static bool initialized;
 
@@ -82,11 +80,9 @@ namespace Yelo
 	namespace blam
 	{
 		Enums::game_connection game_connection()	{ return GameState::MainGlobals()->game_connection; }
-
 		cstring main_get_map_name()					{ return GameState::MainGlobals()->scenario_tag_path; }
 
-		int16 PLATFORM_API main_get_campaign_level_from_name(cstring level_name)
-		{
+		int16 PLATFORM_API main_get_campaign_level_from_name(cstring level_name) {
 			char name[128] = { };
 
 			// NOTE: engine doesn't do this, but level_name is usually a scenario path
@@ -114,8 +110,7 @@ namespace Yelo
 			return NONE;
 		}
 
-		cstring PLATFORM_API main_get_campaign_level_name(_enum level_index)
-		{
+		cstring PLATFORM_API main_get_campaign_level_name(_enum level_index) {
 			if (level_index >= 0 && level_index < NUMBEROF(Main::k_halo1_campaign_level_names))
 				return Main::k_halo1_campaign_level_names[level_index];
 

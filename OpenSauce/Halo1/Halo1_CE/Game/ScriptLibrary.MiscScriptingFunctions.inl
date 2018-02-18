@@ -58,10 +58,6 @@ static void* scripting_machine_is_host()
 static void* scripting_machine_is_dedi()
 {
 	TypeHolder result; result.pointer = nullptr;
-
-	Networking::s_network_game_server* game_server = Networking::NetworkGameServer();
-	result.boolean = game_server != nullptr && game_server->IsDedi();
-
 	return result.pointer;
 }
 
@@ -346,50 +342,8 @@ static void InitializeMiscFunctions()
 		scripting_hex_string_to_long_evaluate);
 	//////////////////////////////////////////////////////////////////////////
 
-	YELO_INIT_SCRIPT_FUNCTION_WITH_PARAMS_USER(Enums::_hs_function_display_scripted_ui_widget, 
-		scripting_display_scripted_ui_widget_evaluate);
-	YELO_INIT_SCRIPT_FUNCTION_WITH_PARAMS_USER(Enums::_hs_function_play_bink_movie, 
-		scripting_play_bink_movie_evaluate);
-
-
-	YELO_INIT_SCRIPT_FUNCTION_WITH_PARAMS_DEDI(Enums::_hs_function_sv_httpserver_set_thread_count,
-		Networking::HTTP::Server::HTTPServerSetThreadCount);
-	YELO_INIT_SCRIPT_FUNCTION_WITH_PARAMS_DEDI(Enums::_hs_function_sv_httpserver_set_root,
-		Networking::HTTP::Server::HTTPServerSetRoot);
-	YELO_INIT_SCRIPT_FUNCTION_WITH_PARAMS_DEDI(Enums::_hs_function_sv_httpserver_set_throttle,
-		Networking::HTTP::Server::HTTPServerSetThrottle);
-	YELO_INIT_SCRIPT_FUNCTION_WITH_PARAMS_DEDI(Enums::_hs_function_sv_httpserver_set_ports,
-		Networking::HTTP::Server::HTTPServerSetPorts);
-	YELO_INIT_SCRIPT_FUNCTION_DEDI(Enums::_hs_function_sv_httpserver_show_config,
-		Networking::HTTP::Server::HTTPServerShowConfig);
-	YELO_INIT_SCRIPT_FUNCTION_DEDI(Enums::_hs_function_sv_httpserver_start,
-		Networking::HTTP::Server::HTTPServerStart);
-	YELO_INIT_SCRIPT_FUNCTION_DEDI(Enums::_hs_function_sv_httpserver_stop,
-		Networking::HTTP::Server::HTTPServerStop);
-
-	YELO_INIT_SCRIPT_FUNCTION_WITH_PARAMS_DEDI(Enums::_hs_function_sv_httpserver_log_enable,
-		Networking::HTTP::Server::HTTPServerLogEnable);
-	YELO_INIT_SCRIPT_FUNCTION_WITH_PARAMS_DEDI(Enums::_hs_function_sv_httpserver_set_connection_ban,
-		Networking::HTTP::Server::BanManager::HTTPServerSetConnectionBan);
-	YELO_INIT_SCRIPT_FUNCTION_DEDI(Enums::_hs_function_sv_httpserver_banlist,
-		Networking::HTTP::Server::BanManager::HTTPServerBanlist);
-	YELO_INIT_SCRIPT_FUNCTION_WITH_PARAMS_DEDI(Enums::_hs_function_sv_httpserver_banlist_file,
-		Networking::HTTP::Server::BanManager::HTTPServerBanlistFile);
-	YELO_INIT_SCRIPT_FUNCTION_WITH_PARAMS_DEDI(Enums::_hs_function_sv_httpserver_ban_ip,
-		Networking::HTTP::Server::BanManager::HTTPServerBanIP);
-	YELO_INIT_SCRIPT_FUNCTION_WITH_PARAMS_DEDI(Enums::_hs_function_sv_httpserver_unban_ip,
-		Networking::HTTP::Server::BanManager::HTTPServerUnbanIP);
-
-	YELO_INIT_SCRIPT_FUNCTION_DEDI(Enums::_hs_function_sv_mapdownload_start_server,
-		Networking::HTTP::Server::MapDownload::MapDownloadStartServer);
-	YELO_INIT_SCRIPT_FUNCTION_DEDI(Enums::_hs_function_sv_mapdownload_stop_server,
-		Networking::HTTP::Server::MapDownload::MapDownloadStopServer);
-	YELO_INIT_SCRIPT_FUNCTION_WITH_PARAMS_DEDI(Enums::_hs_function_sv_mapdownload_set_part_definitions_path,
-		Networking::HTTP::Server::MapDownload::MapDownloadSetPartDefinitionsPath);
-	YELO_INIT_SCRIPT_FUNCTION_WITH_PARAMS_DEDI(Enums::_hs_function_sv_mapdownload_set_host,
-		Networking::HTTP::Server::MapDownload::MapDownloadSetHost);
-	YELO_INIT_SCRIPT_FUNCTION_DEDI(Enums::_hs_function_sv_mapdownload_reload_map_part_definitions,
-		Networking::HTTP::Server::MapDownload::MapDownloadReloadMapPartDefinitions);
+	YELO_INIT_SCRIPT_FUNCTION_WITH_PARAMS_USER(Enums::_hs_function_display_scripted_ui_widget, scripting_display_scripted_ui_widget_evaluate);
+	YELO_INIT_SCRIPT_FUNCTION_WITH_PARAMS_USER(Enums::_hs_function_play_bink_movie,  scripting_play_bink_movie_evaluate);
 
 	// Depreceated
 	Scripting::NullifyScriptFunctionWithParams(Enums::_hs_function_scenario_faux_zones_reset);

@@ -25,7 +25,6 @@
 #include "Game/Console.hpp"
 #include "Game/GameState.hpp"
 #include "Game/ScriptLibrary.hpp"
-#include "Networking/MDP.hpp"
 #include "Objects/Objects.hpp"
 
 // comment the following to just use the parameters as-is 
@@ -137,11 +136,6 @@ namespace Yelo
 					add		esp, 4 * 1
 				}
 			}
-		};
-
-		namespace Networking
-		{
-			#include "Game/EngineFunctions.Networking.inl"
 		};
 
 		namespace Objects
@@ -817,8 +811,8 @@ namespace Yelo
 		// hud_chat.c
 		void PLATFORM_API hud_chat_to_network(int32 player_number, long_enum chat_type, wcstring text)
 		{
-			Engine::Networking::EncodeHudChatNetworkData(player_number, chat_type, text);
 		}
+
 		API_FUNC_NAKED void PLATFORM_API hud_chat_display_message(wcstring message)
 		{
 			static const uintptr_t FUNCTION = Engine::GET_FUNC_PTR(KEYSTONE_CHAT_LOG_ADD_STRING);
@@ -1105,17 +1099,6 @@ namespace Yelo
 		}
 		//////////////////////////////////////////////////////////////////////////
 		// main.c
-		API_FUNC_NAKED bool PLATFORM_API main_connect(cstring address, cstring password)
-		{
-			static const uintptr_t FUNCTION = Engine::GET_FUNC_PTR(MAIN_CONNECT);
-
-			API_FUNC_NAKED_START()
-				push	password
-				push	address
-				call	FUNCTION
-				add		esp, 4 * 2
-			API_FUNC_NAKED_END_NO_STACK_POP()
-		}
 		void PLATFORM_API main_menu_load()
 		{
 			static const uintptr_t FUNCTION = Engine::GET_FUNC_PTR(MAINMENU_LOAD);
@@ -1402,13 +1385,9 @@ namespace Yelo
 			return Engine::Objects::NewWithRole(data, role);
 		}
 
-		void PLATFORM_API object_delete_to_network(datum_index object_index)
-		{
-			Engine::Networking::EncodeObjectDeletionMessage(object_index);
-		}
+		void PLATFORM_API object_delete_to_network(datum_index object_index) { }
 
-		void PLATFORM_API object_delete(datum_index object_index)
-		{
+		void PLATFORM_API object_delete(datum_index object_index) {
 			Engine::Objects::Delete(object_index);
 		}
 

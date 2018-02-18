@@ -19,19 +19,16 @@
 
 // How much more memory we're adding.
 // 50%
-#define K_MEMORY_UPGRADE_INCREASE_AMOUNT (1.5f)
+#define K_MEMORY_UPGRADE_INCREASE_AMOUNT (1.0f)
 
-namespace Yelo
-{
+namespace Yelo {
 
 	//////////////////////////////////////////////////////////////////////////
 	// Game state memory
-	namespace Enums
-	{
+	namespace Enums {
 		enum {
 			// Our upgraded memory allocation size.
-			k_physical_memory_map_allocation_size_upgrade = 
-				CAST(uint32, k_physical_memory_map_allocation_size * K_MEMORY_UPGRADE_INCREASE_AMOUNT),
+			k_physical_memory_map_allocation_size_upgrade = CAST(uint32, k_physical_memory_map_allocation_size * K_MEMORY_UPGRADE_INCREASE_AMOUNT),
 		};
 
 		BOOST_STATIC_ASSERT( k_physical_memory_map_allocation_size_upgrade >= k_physical_memory_map_allocation_size );
@@ -40,8 +37,7 @@ namespace Yelo
 
 	//////////////////////////////////////////////////////////////////////////
 	// Game memory
-	namespace Enums
-	{
+	namespace Enums {
 		enum {
 			k_maximum_simultaneous_tag_instances =	0x00001400, // 5120
 			k_maximum_simultaneous_tag_instances_upgrade = CAST(uint32, Yelo::Enums::k_maximum_simultaneous_tag_instances * K_MEMORY_UPGRADE_INCREASE_AMOUNT),

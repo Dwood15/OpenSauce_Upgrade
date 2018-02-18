@@ -33,11 +33,6 @@
 	#include __EL_INCLUDE_FILE_MACRO(_EngineLayout.Interface.inl)
 
 //////////////////////////////////////////////////////////////////////////
-// Networking
-#elif BOOST_PP_ITERATION() == __EL_INCLUDE_NETWORKING
-	#include __EL_INCLUDE_FILE_MACRO(_EngineLayout.Networking.inl)
-
-//////////////////////////////////////////////////////////////////////////
 // Objects
 #elif BOOST_PP_ITERATION() == __EL_INCLUDE_OBJECTS
 	#include __EL_INCLUDE_FILE_MACRO(_EngineLayout.Objects.inl)

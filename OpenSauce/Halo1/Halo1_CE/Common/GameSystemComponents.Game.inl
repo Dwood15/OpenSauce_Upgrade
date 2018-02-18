@@ -23,8 +23,6 @@
 #	endif
 #elif	BOOST_PP_ITERATION() == 4
 #	if		__GS_COMPONENT == __GS_COMPONENT_LIFECYCLE
-#		define __GS_COMPONENT_INITIALIZE	Networking::Initialize
-#		define __GS_COMPONENT_DISPOSE		Networking::Dispose
 #	endif
 #elif	BOOST_PP_ITERATION() == 5
 #	if		__GS_COMPONENT == __GS_COMPONENT_LIFECYCLE
