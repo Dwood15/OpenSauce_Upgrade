@@ -490,7 +490,9 @@
       <SubType>Designer</SubType>
     </Xml>
     <Xml Include="..\..\shared\Halo1\CheApe\project_yellow_includes.xml" />
-    <Xml Include="..\..\shared\Halo1\CheApe\project_yellow_scripting.xml" />
+    <Xml Include="..\..\shared\Halo1\CheApe\project_yellow_scripting.xml">
+      <SubType>Designer</SubType>
+    </Xml>
     <Xml Include="..\..\shared\Halo1\CheApe\project_yellow_shared.xml" />
     <Xml Include="..\..\shared\Halo1\CheApe\shader_model_extension.xml" />
     <Xml Include="..\..\shared\Halo1\CheApe\shader_postprocess.xml" />
