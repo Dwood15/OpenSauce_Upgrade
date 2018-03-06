@@ -468,9 +468,6 @@
     <ClInclude Include="..\..\shared\Include\YeloLib\configuration\property_tree\c_property_tree_file_json.hpp">
       <Filter>configuration\property_tree</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\shared\Include\YeloLib\configuration\property_tree\c_property_tree_file_xml.hpp">
-      <Filter>configuration\property_tree</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\shared\Include\YeloLib\configuration\property_tree\c_property_tree_leaf.hpp">
       <Filter>configuration\property_tree</Filter>
     </ClInclude>
@@ -815,9 +812,6 @@
     <ClCompile Include="..\..\shared\Include\YeloLib\configuration\property_tree\c_property_tree_file_json.cpp">
       <Filter>configuration\property_tree</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\shared\Include\YeloLib\configuration\property_tree\c_property_tree_file_xml.cpp">
-      <Filter>configuration\property_tree</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\shared\Include\YeloLib\configuration\property_tree\c_property_tree_leaf.cpp">
       <Filter>configuration\property_tree</Filter>
     </ClCompile>
@@ -985,9 +979,6 @@
       <Filter>_Resources\OpenSauceIDE</Filter>
     </Xml>
     <Xml Include="..\..\shared\Halo1\CheApe\project_yellow_globals.xml">
-      <Filter>_Resources\OpenSauceIDE</Filter>
-    </Xml>
-    <Xml Include="..\..\shared\Halo1\CheApe\project_yellow_globals_cv.xml">
       <Filter>_Resources\OpenSauceIDE</Filter>
     </Xml>
     <Xml Include="..\..\shared\Halo1\CheApe\project_yellow_includes.xml">

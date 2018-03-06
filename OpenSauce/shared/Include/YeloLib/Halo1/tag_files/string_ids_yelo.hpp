@@ -50,7 +50,7 @@ namespace Yelo
 
 
 #include <YeloLib/Halo1/tag_files/string_ids.global.inl>
-		static_assert( _string_id_empty_string == 0 );
+		static_assert(_string_id_empty_string == 0, STATIC_ASSERT_FAIL);
 // NO CACHE STRINGS DEFINED IN CODE!
 #include <YeloLib/Halo1/tag_files/string_ids.gui.inl>
 #include <YeloLib/Halo1/tag_files/string_ids.gui_alert.inl>

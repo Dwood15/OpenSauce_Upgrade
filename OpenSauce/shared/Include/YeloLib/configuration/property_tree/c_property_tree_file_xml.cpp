@@ -23,8 +23,11 @@ namespace Yelo
 
 		void c_property_tree_file_xml::WritePropertyTree(const std::string& file_path, ptree& property_tree) 
 		{
-			xml_writer_settings<char> settings('\t', 1);
+			//xml_writer_settings<char> settings('\t', 1);
+			auto settings = xml_writer_settings<char>('\t', 1); // settings();
+
 			write_xml(file_path, property_tree, std::locale(), settings);
+//			write_xml(file_path, property_tree, std::locale(), settings);
 		}
 	};};
 };

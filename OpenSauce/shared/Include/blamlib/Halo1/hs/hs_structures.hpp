@@ -16,8 +16,8 @@ namespace Yelo
 			_hs_global_index_mask = _hs_global_index_is_external_mask - 1,
 		};
 
-		static_assert(0x8000 == _hs_global_index_is_external_mask);
-		static_assert(0x7FFF == _hs_global_index_mask);
+		static_assert(0x8000 == _hs_global_index_is_external_mask, STATIC_ASSERT_FAIL);
+		static_assert(0x7FFF == _hs_global_index_mask, STATIC_ASSERT_FAIL);
 	};
 
 	namespace Flags
@@ -91,7 +91,7 @@ namespace Yelo
 			const_iterator	const_end() const	{ return params + paramc; }
 			const_iterator	const_end()			{ return params + paramc; }
 
-		}; static_assert( sizeof(hs_function_definition) == 0x1C ); // size doesn't include [params]
+		}; static_assert(sizeof(hs_function_definition) == 0x1C, STATIC_ASSERT_FAIL); // size doesn't include [params]
 
 		// halo script accessible value
 		struct hs_global_definition
@@ -106,7 +106,7 @@ namespace Yelo
 			};
 			word_flags access;
 			PAD16;
-		}; static_assert( sizeof(hs_global_definition) == 0x10 );
+		}; static_assert(sizeof(hs_global_definition) == 0x10, STATIC_ASSERT_FAIL);
 
 
 		struct hs_syntax_node : Memory::s_datum_base
@@ -137,6 +137,6 @@ namespace Yelo
 			{
 				return !TEST_FLAG(flags, Flags::_hs_syntax_node_dont_gc_bit);
 			}
-		}; static_assert( sizeof(hs_syntax_node) == 0x14 );
+		}; static_assert(sizeof(hs_syntax_node) == 0x14, STATIC_ASSERT_FAIL);
 	};
 };

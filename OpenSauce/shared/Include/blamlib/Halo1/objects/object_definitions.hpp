@@ -170,7 +170,7 @@ namespace Yelo
 			real_fraction period_normal;		// 1f / period
 
 			TAG_FIELD(tag_string, usage);
-		}; static_assert( sizeof(s_object_function_definition) == 0x168 );
+		}; static_assert(sizeof(s_object_function_definition) == 0x168, STATIC_ASSERT_FAIL);
 
 		struct _object_definition
 		{
@@ -209,7 +209,7 @@ namespace Yelo
 			TAG_PAD(tag_block, 1); // object_function_definition
 			TAG_PAD(tag_block, 1); // object_change_color_definition
 			TAG_TBLOCK_(predicted_resources, predicted_resource); // predicted resources
-		}; static_assert( sizeof(_object_definition) == 0x17C );
+		}; static_assert(sizeof(_object_definition) == 0x17C, STATIC_ASSERT_FAIL);
 
 
 		struct s_object_definition

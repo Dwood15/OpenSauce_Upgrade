@@ -51,17 +51,16 @@ namespace Yelo
 				real amount;
 			}biped_prediction,								// 0x1EC
 			 vehicle_prediction;							// 0x1F4
-		}; static_assert( sizeof(s_player_client_update) == 0x114 );
+		}; static_assert(sizeof(s_player_client_update) == 0x114, STATIC_ASSERT_FAIL);
 
 		struct s_action_update : TStructImpl(40)
 		{
 		};
-		typedef Memory::DataArray<s_action_update, Enums::k_multiplayer_maximum_players>
-			update_client_queues_data_t;
+		typedef Memory::DataArray<s_action_update, Enums::k_multiplayer_maximum_players> update_client_queues_data_t;
 
 		struct s_saved_action_collection {
 			Players::s_player_action actions[Enums::k_maximum_number_of_local_players];
-		}; static_assert(sizeof(s_saved_action_collection) == Enums::k_maximum_number_of_local_players * sizeof(Players::s_player_action));
+		}; static_assert(sizeof(s_saved_action_collection) == Enums::k_maximum_number_of_local_players * sizeof(Players::s_player_action), STATIC_ASSERT_FAIL);
 
 		struct s_update_client_globals
 		{
@@ -76,7 +75,7 @@ namespace Yelo
 
 			update_client_queues_data_t * queue_data; //0x18 + ygti
 			byte queue_data_buffer[0x308][128]; //0x1C + ygti
-		}; static_assert( sizeof(s_update_client_globals) == 0x1843C );
+		}; static_assert(sizeof(s_update_client_globals) == 0x1843C, STATIC_ASSERT_FAIL);
 
 		s_update_client_globals* UpdateClientGlobals();
 	};

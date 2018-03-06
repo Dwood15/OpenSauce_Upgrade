@@ -26,7 +26,7 @@ namespace Yelo
 			_enum type;
 			int16 resource_index;
 			datum_index tag_index;
-		}; static_assert( sizeof(predicted_resource) == 0x8 ); // max count: 1024
+		}; static_assert(sizeof(predicted_resource) == 0x8, STATIC_ASSERT_FAIL); // max count: 1024
 	};
 
 	namespace blam

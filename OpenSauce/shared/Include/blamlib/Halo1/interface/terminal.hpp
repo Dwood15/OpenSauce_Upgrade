@@ -47,7 +47,7 @@ namespace Yelo
 				UNKNOWN_TYPE(int16); // index in [text]
 				PAD16;
 			}edit_text;
-		}; static_assert( sizeof(s_terminal_state) == 0x1C0 );
+		}; static_assert(sizeof(s_terminal_state) == 0x1C0, STATIC_ASSERT_FAIL);
 
 		struct s_terminal_globals
 		{

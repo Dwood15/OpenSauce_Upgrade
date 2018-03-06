@@ -19,7 +19,7 @@ namespace Yelo
 			real_fraction maximum_density;
 			real start_distance;
 			real opaque_distance;
-		}; static_assert( sizeof(s_sky_atmospheric_fog) == 0x20 );
+		}; static_assert(sizeof(s_sky_atmospheric_fog) == 0x20, STATIC_ASSERT_FAIL);
 
 		struct s_sky_definition
 		{
@@ -39,6 +39,6 @@ namespace Yelo
 				1 + // s_sky_shader_function
 				1 + // s_sky_animation
 				1); // s_sky_light
-		}; static_assert( sizeof(s_sky_definition) == 0xD0 );
+		}; static_assert(sizeof(s_sky_definition) == 0xD0, STATIC_ASSERT_FAIL);
 	};
 };

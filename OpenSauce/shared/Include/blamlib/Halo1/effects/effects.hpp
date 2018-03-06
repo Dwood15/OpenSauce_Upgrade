@@ -55,12 +55,9 @@ namespace Yelo
 			UNKNOWN_TYPE(real);
 			datum_index location_datum_indices[Enums::k_maximum_effect_locations_count];
 			byte particles_counts[Enums::k_maximum_effect_particles_per_event_count];
-		}; static_assert( sizeof(s_effect_datum) == 0xFC );
-		typedef Memory::DataArray<	s_effect_datum, 
-									Enums::k_maximum_number_of_effects_per_map,
-									Enums::k_maximum_number_of_effects_per_map_upgrade> 
-			effect_data_t;
+		}; static_assert(sizeof(s_effect_datum) == 0xFC, STATIC_ASSERT_FAIL);
 
+		typedef Memory::DataArray<	s_effect_datum, Enums::k_maximum_number_of_effects_per_map, Enums::k_maximum_number_of_effects_per_map_upgrade> effect_data_t;
 
 		//////////////////////////////////////////////////////////////////////////
 		// game-state: effect locations
@@ -70,10 +67,7 @@ namespace Yelo
 			int16 node_index;
 			datum_index next_location_index;
 			real_matrix4x3 node_matrix;
-		}; static_assert( sizeof(s_effect_location_datum) == 0x3C );
-		typedef Memory::DataArray<	s_effect_location_datum, 
-									Enums::k_maximum_number_of_effect_locations_per_map,
-									Enums::k_maximum_number_of_effect_locations_per_map_upgrade> 
-			effect_location_data_t;
+		}; static_assert(sizeof(s_effect_location_datum) == 0x3C, STATIC_ASSERT_FAIL);
+		typedef Memory::DataArray<	s_effect_location_datum, Enums::k_maximum_number_of_effect_locations_per_map, Enums::k_maximum_number_of_effect_locations_per_map_upgrade> effect_location_data_t;
 	};
 };

@@ -30,7 +30,7 @@ namespace Yelo
 			_halo1_campaign_level_d40,
 
 			k_number_of_halo1_campaign_levels,
-		}; static_assert( k_number_of_halo1_campaign_levels == k_maximum_number_of_campaign_levels );
+		}; static_assert(k_number_of_halo1_campaign_levels == k_maximum_number_of_campaign_levels, STATIC_ASSERT_FAIL);
 	};
 
 	namespace Main

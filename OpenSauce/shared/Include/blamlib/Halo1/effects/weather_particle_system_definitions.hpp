@@ -30,7 +30,7 @@ namespace Yelo
 				TAG_FLAG(interpolate_colors_in_hsv);
 				TAG_FLAG(_along_long_hue_path);
 				TAG_FLAG(random_rotation);
-			}; static_assert( sizeof(__flags) == sizeof(long_flags) );
+			}; static_assert(sizeof(__flags) == sizeof(long_flags), STATIC_ASSERT_FAIL);
 
 			TAG_FIELD(tag_string, name);
 			TAG_FIELD(__flags, flags);

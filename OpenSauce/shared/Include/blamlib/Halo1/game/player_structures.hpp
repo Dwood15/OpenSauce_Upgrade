@@ -48,7 +48,7 @@ namespace Yelo {
 				int16 laps;
 				int16 best_time;
 			}race;
-		}; static_assert( sizeof(u_player_multiplayer_stats) == 8 );
+		}; static_assert(sizeof(u_player_multiplayer_stats) == 8, STATIC_ASSERT_FAIL);
 
 		// Special yelo data used for player datums when running as a server
 		struct s_player_yelo_server_data {
@@ -66,7 +66,7 @@ namespace Yelo {
 				PAD16;
 			}voting;
 
-		}; static_assert( sizeof(s_player_yelo_server_data) <= s_player_yelo_server_data::k_max_struct_size );
+		}; static_assert(sizeof(s_player_yelo_server_data) <= s_player_yelo_server_data::k_max_struct_size, STATIC_ASSERT_FAIL);
 
 		struct s_player_datum : Memory::s_datum_base {
 			struct s_game_engine_state_message {
@@ -157,7 +157,7 @@ namespace Yelo {
 			datum_index GetVehicleIndex();
 			s_player_yelo_server_data& GetYeloServerData();
 #endif
-		}; static_assert( sizeof(s_player_datum) == 0x200 ); // 0x160 in Stubbs
+		}; static_assert(sizeof(s_player_datum) == 0x200, STATIC_ASSERT_FAIL); // 0x160 in Stubbs
 
 
 		struct s_team_datum : Memory::s_datum_base_aligned
@@ -167,7 +167,7 @@ namespace Yelo {
 			// nothing even uses this...this structure 
 			// could have no real fields...maybe use it 
 			// for our own evil deeds?
-		}; static_assert( sizeof(s_team_datum) == 0x40 ); // same size in Stubbs
+		}; static_assert(sizeof(s_team_datum) == 0x40, STATIC_ASSERT_FAIL); // same size in Stubbs
 
 
 		struct s_players_globals_data {
@@ -189,6 +189,6 @@ namespace Yelo {
 			long_flags combined_pvs[16];						// 0x18 combined pvs of all players in the game 
 			//BIT_VECTOR_SIZE_IN_DWORDS(512)
 			long_flags combined_pvs_local[16];					// 0x58 combined pvs of all local players
-		}; static_assert( sizeof(s_players_globals_data) == 0x90 + (sizeof(datum_index) * 2 * Enums::k_maximum_number_of_local_players));
+		}; static_assert(sizeof(s_players_globals_data) == 0x90 + (sizeof(datum_index)* 2 * Enums::k_maximum_number_of_local_players), STATIC_ASSERT_FAIL);
 	};
 };

@@ -50,7 +50,7 @@ namespace Yelo
 			TAG_PAD(tag_block, 1);
 #endif
 			TAG_PAD(byte, 16);
-		}; static_assert( sizeof(s_effect_postprocess_generic_effect_instance) == 0x74 );
+		}; static_assert(sizeof(s_effect_postprocess_generic_effect_instance) == 0x74, STATIC_ASSERT_FAIL);
 
 		struct s_effect_postprocess_generic_exposed_parameter {
 			TAG_FIELD(tag_string, exposed_name);

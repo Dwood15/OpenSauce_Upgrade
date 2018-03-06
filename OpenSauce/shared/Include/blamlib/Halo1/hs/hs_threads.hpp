@@ -68,7 +68,7 @@ namespace Yelo
 				///
 				/// <returns>	true if it allocation parameters would cause an overflow, false if they're good. </returns>
 				bool AllocationWouldOverflow(const byte* stack_base_address, size_t size, size_t alignment) const;
-			}; static_assert( sizeof(s_stack_frame) == 0x10 );
+			}; static_assert(sizeof(s_stack_frame) == 0x10, STATIC_ASSERT_FAIL);
 #include <PopPack.h>
 
 			Enums::hs_thread_type type;
@@ -116,28 +116,20 @@ namespace Yelo
 			/// </param>
 			///
 			/// <returns>	null if it fails, else a pointer to the requested memory. </returns>
-			void* StackAllocate(
-				size_t size, long_flags alignment_bit = Flags::k_alignment_32bit, _Out_opt_ int16* stack_offset = nullptr);
+			void* StackAllocate(size_t size, long_flags alignment_bit = Flags::k_alignment_32bit, _Out_opt_ int16* stack_offset = nullptr);
 
 			template<typename T>
-			T* StackAllocate(size_t count = 1,
-				long_flags alignment_bit = Flags::k_alignment_32bit, _Out_opt_ int16* stack_offset = nullptr)
-			{
+			T* StackAllocate(size_t count = 1, long_flags alignment_bit = Flags::k_alignment_32bit, _Out_opt_ int16* stack_offset = nullptr) {
 				return CAST_PTR(T*, StackAllocate(sizeof(T)* count, alignment_bit, stack_offset));
 			}
 
-			struct s_main_state
-			{
+			struct s_main_state {
 				datum_index thread_index;
 				const bool& runtime_is_enabled;
 
 				const TagGroups::hs_script* script;
 
-				s_main_state(datum_index this_thread_index, const bool& runtime_globals_enabled)
-					: thread_index(this_thread_index)
-					, runtime_is_enabled(runtime_globals_enabled)
-					, script(nullptr)
-				{
+				s_main_state(datum_index this_thread_index, const bool& runtime_globals_enabled) : thread_index(this_thread_index), runtime_is_enabled(runtime_globals_enabled), script(nullptr) {
 				}
 			};
 			void MainPrologue(const s_main_state& state);
@@ -146,20 +138,17 @@ namespace Yelo
 			void Main(datum_index this_thread_index, const bool& runtime_globals_enabled,
 				_Out_opt_ bool& return_delete_thread);
 
-		}; static_assert( sizeof(s_hs_thread_datum) == 0x218 );
+		}; static_assert(sizeof(s_hs_thread_datum) == 0x218, STATIC_ASSERT_FAIL);
 	};
 };
 
 #define YELO_HS_RUNTIME_ASSERT(expression, thread, explanation)										\
-	YELO_ASSERT_DISPLAY(expression, "a problem occurred while executing the script %s: %s (%s)",	\
-		thread->GetDescriptionString(), explanation, #expression)
+	YELO_ASSERT_DISPLAY(expression, "a problem occurred while executing the script %s: %s (%s)", thread->GetDescriptionString(), explanation, #expression)
 #define YELO_HS_THREAD_VALID_STACK(thread)															\
-	YELO_HS_RUNTIME_ASSERT(thread->ValidThread(), thread,											\
-		"corrupted stack.")
+	YELO_HS_RUNTIME_ASSERT(thread->ValidThread(), thread, "corrupted stack.")
 
 #if PLATFORM_IS_EDITOR || YELO_ASSERT_ENABLED
-	#define YELO_HS_THREAD_SCRIPT_ERROR(expression, thread, explanation)							\
-		( !(expression) && !(thread)->ScriptError(explanation, #expression) )
+	#define YELO_HS_THREAD_SCRIPT_ERROR(expression, thread, explanation) ( !(expression) && !(thread)->ScriptError(explanation, #expression) )
 #else
 	#define YELO_HS_THREAD_SCRIPT_ERROR(expression, thread, explanation) false
 #endif

@@ -39,7 +39,7 @@ namespace Yelo {
 			game_ticks_t hud_background_element; //0x0
 			game_ticks_t health_panel_background_element; //0x4
 			game_ticks_t motion_sensor_elements; //0x8
-		}; static_assert(sizeof(s_first_render_time) == (sizeof(game_ticks_t) * 0x3)); //0xC
+		}; static_assert(sizeof(s_first_render_time) == (sizeof(game_ticks_t)* 0x3), STATIC_ASSERT_FAIL); //0xC
 
 		struct s_hud_unit_interface_unit {
 			real shields; //0x0
@@ -55,13 +55,13 @@ namespace Yelo {
 			word_flags active_sound_elements;
 			PAD16;
 			datum_index sound_elements[Enums::k_maximum_number_of_hud_sounds]; // sound cache index
-		}; static_assert( sizeof(s_hud_unit_interface_unit) == 0x58 );
+		}; static_assert(sizeof(s_hud_unit_interface_unit) == 0x58, STATIC_ASSERT_FAIL);
 
 		struct s_hud_unit_interface
 		{
 			s_hud_unit_interface_unit units[Enums::k_maximum_number_of_local_players]; // 0x0
 			long_flags flags; // 0x58, unit_interface_flags
-		}; static_assert(sizeof(s_hud_unit_interface) == 0x4 + (sizeof(s_hud_unit_interface_unit) * Enums::k_maximum_number_of_local_players)); //should be == 0x5c
+		}; static_assert(sizeof(s_hud_unit_interface) == 0x4 + (sizeof(s_hud_unit_interface_unit)* Enums::k_maximum_number_of_local_players), STATIC_ASSERT_FAIL); //should be == 0x5c
 		s_hud_unit_interface*		HudUnitInterface();
 	};
 };

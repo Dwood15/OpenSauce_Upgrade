@@ -27,7 +27,7 @@ namespace Yelo
 			TAG_FIELD(tag_data, event_stream);
 
 			inline byte_enum ToRecordedAnimationVersion() const { return CAST(byte_enum, version) - 1; }
-		}; static_assert( sizeof(recorded_animation_definition) == 0x40 );
+		}; static_assert(sizeof(recorded_animation_definition) == 0x40, STATIC_ASSERT_FAIL);
 	};
 
 	namespace Scripting

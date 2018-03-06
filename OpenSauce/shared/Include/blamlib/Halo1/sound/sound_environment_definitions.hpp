@@ -29,6 +29,6 @@ namespace Yelo
 			real density;
 			real hf_reference;
 			PAD128;
-		}; static_assert( sizeof(sound_environment) == 0x48 );
+		}; static_assert(sizeof(sound_environment) == 0x48, STATIC_ASSERT_FAIL);
 	};
 };

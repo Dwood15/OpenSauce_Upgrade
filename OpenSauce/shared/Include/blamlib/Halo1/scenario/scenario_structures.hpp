@@ -18,13 +18,13 @@ namespace Yelo {
 			UNKNOWN_TYPE(real_vector3d); //0x10
 			UNKNOWN_TYPE(real_rgb_color); //0x1C
 			UNKNOWN_TYPE(real); //0x28
-		}; static_assert( sizeof(s_scenario_player_atmospheric_fog) == 0x2C );
+		}; static_assert(sizeof(s_scenario_player_atmospheric_fog) == 0x2C, STATIC_ASSERT_FAIL);
 
 		struct s_scenario_player_environment_sound {
 			bool copy_environment_tag;  //0x0
 			PAD24; // never seen this set to true //0x1
 			TagGroups::sound_environment environment[Enums::k_maximum_number_of_local_players]; //0x4
-		};	static_assert(sizeof(s_scenario_player_environment_sound) == (0x4 + (sizeof(TagGroups::sound_environment) * Enums::k_maximum_number_of_local_players)));
+		};	static_assert(sizeof(s_scenario_player_environment_sound) == (0x4 + (sizeof(TagGroups::sound_environment) * Enums::k_maximum_number_of_local_players)), STATIC_ASSERT_FAIL);
 
 		struct s_scenario_globals
 		{
@@ -32,6 +32,6 @@ namespace Yelo {
 			PAD16;								//0x2
 			s_scenario_player_atmospheric_fog player_fog[Enums::k_maximum_number_of_local_players]; //0x4
 			s_scenario_player_environment_sound sound;
-		}; 	static_assert(sizeof(s_scenario_globals) == ( 0x4 + (Enums::k_maximum_number_of_local_players * sizeof(s_scenario_player_atmospheric_fog) + sizeof(s_scenario_player_environment_sound))));
+		}; 	static_assert(sizeof(s_scenario_globals) == (0x4 + (Enums::k_maximum_number_of_local_players * sizeof(s_scenario_player_atmospheric_fog)+sizeof(s_scenario_player_environment_sound))), STATIC_ASSERT_FAIL);
 	};
 };

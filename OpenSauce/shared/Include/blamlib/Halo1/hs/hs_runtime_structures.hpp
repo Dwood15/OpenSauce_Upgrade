@@ -24,7 +24,7 @@ namespace Yelo
 			word_flags yelo_flags;
 
 			s_hs_value_union value;
-		}; static_assert( sizeof(s_hs_globals_datum) == 0x8 );
+		}; static_assert(sizeof(s_hs_globals_datum) == 0x8, STATIC_ASSERT_FAIL);
 
 		struct s_hs_runtime_globals
 		{
@@ -33,6 +33,6 @@ namespace Yelo
 			int16 executing_thread_index;
 			bool run_game_scripts;
 			PAD8;
-		}; static_assert( sizeof(s_hs_runtime_globals) == 0x8 );
+		}; static_assert(sizeof(s_hs_runtime_globals) == 0x8, STATIC_ASSERT_FAIL);
 	};
 };

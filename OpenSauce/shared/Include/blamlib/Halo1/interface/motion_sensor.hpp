@@ -35,7 +35,7 @@ namespace Yelo {
 		struct s_blip : s_custom_blip {
 			Enums::blip_type type; // set to _blip_type_none when not used
 			byte_enum size;	// a la object's size (tiny, large, etc)
-		}; static_assert(sizeof(s_blip) == 0x4);
+		}; static_assert(sizeof(s_blip) == 0x4, STATIC_ASSERT_FAIL);
 
 		struct s_team_data {
 			s_blip object_blips[Enums::k_max_custom_blips];			// objects belonging to just this team
@@ -50,12 +50,12 @@ namespace Yelo {
 			UNKNOWN_TYPE(real); // related to calculations with objects and facing angle of the player
 			sbyte active_object_blips_count;
 			PAD24;
-		}; static_assert(sizeof(s_team_data) == 0x84);
+		}; static_assert(sizeof(s_team_data) == 0x84, STATIC_ASSERT_FAIL);
 
 		struct s_local_player {
 			s_team_data nearby_team_objects[Enums::k_number_of_game_teams];
 			datum_index nearby_object_indexes[Enums::k_max_custom_blips];
-		}; static_assert(sizeof(s_local_player) == 0x568);
+		}; static_assert(sizeof(s_local_player) == 0x568, STATIC_ASSERT_FAIL);
 
 		struct s_motion_sensor {
 			s_local_player local_players[Enums::k_maximum_number_of_local_players];
@@ -66,7 +66,7 @@ namespace Yelo {
 				PAD8; // actually boolean, but you don't need to worry about this value!
 				PAD8;
 			}update_data;
-		}; static_assert( sizeof(s_motion_sensor) == 0x570 );
+		}; static_assert(sizeof(s_motion_sensor) == 0x570, STATIC_ASSERT_FAIL);
 		s_motion_sensor*			MotionSensor();
 	};
 };

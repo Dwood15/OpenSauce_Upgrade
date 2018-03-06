@@ -21,7 +21,7 @@ namespace Yelo
 			real_point3d position;
 			real_vector3d transitional_velocity;
 			real_vector3d angular_velocity;
-		}; static_assert( sizeof(s_equipment_datum_network_data) == 0x24 );
+		}; static_assert(sizeof(s_equipment_datum_network_data) == 0x24, STATIC_ASSERT_FAIL);
 
 		struct s_equipment_data
 		{
@@ -38,7 +38,7 @@ namespace Yelo
 			UNKNOWN_TYPE(bool);									// 0x26C probably delta_valid
 			PAD24;
 			s_equipment_datum_network_data update_delta;		// 0x270
-		}; static_assert( sizeof(s_equipment_data) == (Enums::k_object_size_equipment - Enums::k_object_size_item) );
+		}; static_assert(sizeof(s_equipment_data) == (Enums::k_object_size_equipment - Enums::k_object_size_item), STATIC_ASSERT_FAIL);
 
 
 		struct s_equipment_datum : s_item_datum
@@ -46,6 +46,6 @@ namespace Yelo
 			enum { k_object_types_mask = FLAG(Enums::_object_type_equipment) };
 
 			s_equipment_data equipment;
-		}; static_assert( sizeof(s_equipment_datum) == Enums::k_object_size_equipment );
+		}; static_assert(sizeof(s_equipment_datum) == Enums::k_object_size_equipment, STATIC_ASSERT_FAIL);
 	};
 };

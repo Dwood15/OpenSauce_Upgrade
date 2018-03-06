@@ -15,7 +15,7 @@ namespace Yelo
 			TAG_FIELD(real_vector3d, position);
 			TAG_FIELD(real_quaternion, orientation);
 			TAG_PAD(int32, 8);
-		}; static_assert( sizeof(s_camera_track_control_point) == 0x3C ); // max count: 16
+		}; static_assert(sizeof(s_camera_track_control_point) == 0x3C, STATIC_ASSERT_FAIL); // max count: 16
 
 		struct s_camera_track_definition
 		{
@@ -29,6 +29,6 @@ namespace Yelo
 			TAG_FIELD(__flags, flags);
 			TAG_TBLOCK(control_points, s_camera_track_control_point);
 			TAG_PAD(int32, 8);
-		}; static_assert( sizeof(s_camera_track_definition) == 0x30 ); // max count: 1
+		}; static_assert(sizeof(s_camera_track_definition) == 0x30, STATIC_ASSERT_FAIL); // max count: 1
 	};
 };

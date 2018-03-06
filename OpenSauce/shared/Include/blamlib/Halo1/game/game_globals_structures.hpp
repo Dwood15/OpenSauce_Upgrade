@@ -21,6 +21,6 @@ namespace Yelo
 			bool map_loading_in_progress;
 			real map_loading_precentage;
 			s_game_options options;
-		}; static_assert( sizeof(s_game_globals) == 0x114 );
+		}; static_assert(sizeof(s_game_globals) == 0x114, STATIC_ASSERT_FAIL);
 	};
 };

@@ -26,7 +26,7 @@ namespace Yelo
 		{
 			real_point3d position;
 			real_vector3d transitional_velocity;
-		}; static_assert( sizeof(s_projectile_datum_network_data) == 0x18 );
+		}; static_assert(sizeof(s_projectile_datum_network_data) == 0x18, STATIC_ASSERT_FAIL);
 		struct s_projectile_data
 		{
 			// FLAG(1) - tracer
@@ -55,16 +55,16 @@ namespace Yelo
 			UNKNOWN_TYPE(bool);									// 0x294, delta_valid?
 			PAD24;
 			s_projectile_datum_network_data update_delta;		// 0x298
-		}; static_assert( sizeof(s_projectile_data) == (Enums::k_object_size_projectile - Enums::k_object_size_item) );
+		}; static_assert(sizeof(s_projectile_data) == (Enums::k_object_size_projectile - Enums::k_object_size_item), STATIC_ASSERT_FAIL);
 
 
 		struct s_projectile_datum
 		{
-			enum { k_object_types_mask = FLAG(Enums::_object_type_projectile) };
+			enum { k_object_types_mask=FLAG(Enums::_object_type_projectile)};
 
 			s_object_data object;
 			s_item_data unused;									// 0x1F4
 			s_projectile_data projectile;
-		}; static_assert( sizeof(s_projectile_datum) == Enums::k_object_size_projectile );
+		}; static_assert(sizeof(s_projectile_datum) == Enums::k_object_size_projectile, STATIC_ASSERT_FAIL);
 	};
 };

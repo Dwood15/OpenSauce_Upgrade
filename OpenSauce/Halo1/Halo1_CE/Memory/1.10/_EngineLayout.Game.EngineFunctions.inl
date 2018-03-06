@@ -11,8 +11,10 @@
 #else
 #include "Memory/1.10/Pointers/HaloCE_110_Dedi.Game.EngineFunctions.inl"
 #endif
+#include <YeloLib/memory/memory_interface_base.hpp>
+#include "Memory/MemoryInterface.hpp"
 
-ENGINE_PTR(const void*, gather_exception_data,	DUO_PTR(K_GATHER_EXCEPTION_DATA));
+ENGINE_PTR(const void*, gather_exception_data, DUO_PTR(K_GATHER_EXCEPTION_DATA));
 FUNC_PTR(GATHER_EXCEPTION,						DUO_PTR(K_GATHER_EXCEPTION));
 
 FUNC_PTR(RASTERIZER_SET_TEXTURE_BITMAP_DATA,	K_RASTERIZER_SET_TEXTURE_BITMAP_DATA, FUNC_PTR_NULL);

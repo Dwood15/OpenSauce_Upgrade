@@ -125,7 +125,7 @@ namespace Yelo
 				TAG_FIELD(real_argb_color, upper_bound);
 			}color4d;
 
-		}; static_assert( sizeof(s_shader_postprocess_value_union) == s_shader_postprocess_value_union::k_sizeof );
+		}; static_assert(sizeof(s_shader_postprocess_value_union) == s_shader_postprocess_value_union::k_sizeof, STATIC_ASSERT_FAIL);
 
 		struct s_shader_postprocess_value_runtime_override
 		{
@@ -142,12 +142,12 @@ namespace Yelo
 				TAG_FLAG8(inverted);
 				TAG_FLAG8(multichannel_noise);
 				TAG_FLAG8(ignore_alpha);
-			}flags;	static_assert( sizeof(_flags) == sizeof(byte_flags) );
+			}flags;	static_assert(sizeof(_flags) == sizeof(byte_flags), STATIC_ASSERT_FAIL);
 			PAD8;
 
 			TAG_FIELD(real, animation_duration);
 			TAG_FIELD(real, animation_rate);
-		}; static_assert( sizeof(s_shader_postprocess_value_animation_function) == 0xC );
+		}; static_assert(sizeof(s_shader_postprocess_value_animation_function) == 0xC, STATIC_ASSERT_FAIL);
 
 		struct s_shader_postprocess_value_base
 		{
@@ -165,7 +165,7 @@ namespace Yelo
 		{
 			TAG_PAD(byte, 12);
 			TAG_FIELD(tag_reference, bitmap, 'bitm');
-		}; static_assert( sizeof(s_shader_postprocess_bitmap) == 0x1C + sizeof(s_shader_postprocess_value_base) );
+		}; static_assert(sizeof(s_shader_postprocess_bitmap) == 0x1C + sizeof(s_shader_postprocess_value_base), STATIC_ASSERT_FAIL);
 
 		struct s_shader_postprocess_parameter : s_shader_postprocess_value_base
 		{
@@ -219,7 +219,7 @@ namespace Yelo
 			TAG_TBLOCK_(float3s, s_shader_postprocess_value_base);
 			TAG_TBLOCK_(float4s, s_shader_postprocess_value_base);
 			TAG_TBLOCK_(colors, s_shader_postprocess_value_base);
-		}; static_assert( sizeof(s_shader_postprocess_implementation) == 0x60);
+		}; static_assert(sizeof(s_shader_postprocess_implementation) == 0x60, STATIC_ASSERT_FAIL);
 
 		struct s_shader_postprocess_generic : s_shader_postprocess_definition
 		{
@@ -235,6 +235,6 @@ namespace Yelo
 #if !PLATFORM_IS_EDITOR // for externally defined shaders
 			s_shader_postprocess_generic()	{}
 #endif
-		}; static_assert( sizeof(s_shader_postprocess_generic) == 0x44 + sizeof(s_shader_postprocess_definition) + sizeof(s_shader_postprocess_implementation) );
+		}; static_assert(sizeof(s_shader_postprocess_generic) == 0x44 + sizeof(s_shader_postprocess_definition)+sizeof(s_shader_postprocess_implementation), STATIC_ASSERT_FAIL);
 	};
 };

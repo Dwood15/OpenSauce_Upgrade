@@ -6,6 +6,7 @@
 */
 
 #define TAG_ADDRESS(orig, curr, pointer) curr + (pointer - orig)
+#include <blamlib/Halo1/cache/cache_files_structures.hpp>
 
 /*!
  * \brief
@@ -24,7 +25,7 @@ uint32 CalculateCRC(void* cache_file)
 	uint32 CRC = 0xFFFFFFFF;
 
 	// get pointers to the necessary cache data
-	auto* cache = CAST_PTR(s_cache_header*, cache_file);
+	auto* cache = CAST_PTR(Yelo::Cache::s_cache_header*, cache_file);
 	auto* tag_header = CAST_PTR(s_cache_tag_header*, (uintptr_t)cache + cache->offset_to_index);
 	auto* tag_instances = CAST_PTR(s_cache_tag_instance*, (uintptr_t)tag_header + sizeof(s_cache_tag_header));
 

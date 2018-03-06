@@ -328,7 +328,7 @@ namespace Yelo
 		static s_hs_value_union hs_tag_reference_to_long(s_hs_value_union value)
 		{
 			// can just fall through as long as this is true
-			static_assert(sizeof(value.int32) == sizeof(value.tag_index));
+			static_assert(sizeof(value.int32) == sizeof(value.tag_index), STATIC_ASSERT_FAIL);
 
 			return value;
 		}
@@ -356,8 +356,7 @@ namespace Yelo
 
 			cstring name = "NOT-YET-IMPLEMENTED"; // TODO
 
-			sprintf_s(buffer, buffer_size, "%s",
-				name);
+			sprintf_s(buffer, buffer_size, "%s", name);
 		}
 
 		//////////////////////////////////////////////////////////////////////////
@@ -382,18 +381,15 @@ namespace Yelo
 
 			YELO_ASSERT(enum_value>=0 && enum_value<enum_definition.count);
 
-			sprintf_s(buffer, buffer_size, "%s", 
-				enum_definition[enum_value]);
+			sprintf_s(buffer, buffer_size, "%s", enum_definition[enum_value]);
 		}
 
 
 		//////////////////////////////////////////////////////////////////////////
 		// _hs_type_ai
 		// actually defined in ai_script.c
-		static s_hs_value_union object_list_from_ai_reference(s_hs_value_union value)
-		{
-			if (value.int32 == NONE)
-			{
+		static s_hs_value_union object_list_from_ai_reference(s_hs_value_union value) {
+			if (value.int32 == NONE) {
 				value.datum = datum_index::null;
 				return value;
 			}
@@ -403,11 +399,9 @@ namespace Yelo
 
 			AI::s_ai_index_actor_iterator iterator;
 			ai_index_actor_iterator_new(ai_reference, iterator);
-			while (auto* actor = ai_index_actor_iterator_next(iterator))
-			{
+			while (auto* actor = ai_index_actor_iterator_next(iterator)) {
 				datum_index unit_index = actor->meta.unit_index;
-				if (!unit_index.IsNull())
-				{
+				if (!unit_index.IsNull()) {
 					object_list_add(list_index, unit_index);
 				}
 
@@ -451,8 +445,7 @@ namespace Yelo
 
 			cstring name = "NOT-YET-IMPLEMENTED"; // TODO
 
-			sprintf_s(buffer, buffer_size, "%s",
-				name);
+			sprintf_s(buffer, buffer_size, "%s", name);
 		}
 
 		//////////////////////////////////////////////////////////////////////////
@@ -476,8 +469,7 @@ namespace Yelo
 
 			cstring name = object_name.name;
 
-			sprintf_s(buffer, buffer_size, "%s",
-				name);
+			sprintf_s(buffer, buffer_size, "%s", name);
 		}
 	};
 };

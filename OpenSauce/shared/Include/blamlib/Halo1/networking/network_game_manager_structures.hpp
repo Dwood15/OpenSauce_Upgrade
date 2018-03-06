@@ -15,7 +15,7 @@ namespace Yelo {
 		struct s_network_game_map {
 			int32 version;
 			char name[128];
-		}; static_assert( sizeof(s_network_game_map) == 0x84 );
+		}; static_assert(sizeof(s_network_game_map) == 0x84, STATIC_ASSERT_FAIL);
 
 		struct s_network_game {
 			wchar_t name[64];						// 0x0
@@ -30,7 +30,7 @@ namespace Yelo {
 			int32 network_game_random_seed;			// 0x3E4
 			int32 number_of_games_played;			// 0x3E8
 			int32 local_data;						// 0x3EC
-		}; static_assert( sizeof(s_network_game) == 0x3F0 );
+		}; static_assert(sizeof(s_network_game) == 0x3F0, STATIC_ASSERT_FAIL);
 
 		// For increased player counts game states
 		struct s_network_game_yelo : s_network_game

@@ -23,6 +23,6 @@ namespace Yelo
 			TAG_FIELD(real, pitch_autolevel, "degrees");
 			TAG_FIELD(real_bounds, pitch_range, "degrees");
 			TAG_TBLOCK(camera_tracks, s_unit_camera_track);
-		}; static_assert(sizeof(s_unit_camera) == 0x58);
+		}; static_assert(sizeof(s_unit_camera) == 0x58, STATIC_ASSERT_FAIL);
 	};
 };

@@ -169,7 +169,7 @@ namespace Yelo
 			bool valid_timestamp;					// 0x54
 			PAD24;
 			int32 timestamp;						// 0x58
-		}; static_assert( sizeof(s_object_datum_network_delta_data) == 0x44 );
+		}; static_assert(sizeof(s_object_datum_network_delta_data) == 0x44, STATIC_ASSERT_FAIL);
 
 		struct s_object_datum_animation_data
 		{
@@ -177,7 +177,7 @@ namespace Yelo
 			s_animation_state state;		// 0xD0
 			int16 interpolation_frame_index;// 0xD4
 			int16 interpolation_frame_count;// 0xD6
-		}; static_assert( sizeof(s_object_datum_animation_data) == 0xC );
+		}; static_assert(sizeof(s_object_datum_animation_data) == 0xC, STATIC_ASSERT_FAIL);
 
 		struct s_object_datum_damage_data
 		{
@@ -196,7 +196,7 @@ namespace Yelo
 			int32 body_damage_update_tick;		// 0x100
 			int16 stun_ticks;					// 0x104, based on ftol(s_shield_damage_resistance->stun_time * 30f)
 			word_flags flags;					// 0x106
-		}; static_assert( sizeof(s_object_datum_damage_data) == 0x30 );
+		}; static_assert(sizeof(s_object_datum_damage_data) == 0x30, STATIC_ASSERT_FAIL);
 
 		struct s_object_datum_attachments_data
 		{
@@ -206,7 +206,7 @@ namespace Yelo
 			// then the datum_index is a contrail_data handle
 			datum_index attachment_indices[Enums::k_maximum_number_of_attachments_per_object];			// 0x14C
 			datum_index first_widget_index;																// 0x16C
-		}; static_assert( sizeof(s_object_datum_attachments_data) == 0x2C );
+		}; static_assert(sizeof(s_object_datum_attachments_data) == 0x2C, STATIC_ASSERT_FAIL);
 
 		struct s_object_data
 		{
@@ -296,21 +296,21 @@ namespace Yelo
 
 				return GetBlock<TBlockData>(*ref);
 			}
-		}; static_assert( sizeof(s_object_data) == Enums::k_object_size_object );
+		}; static_assert(sizeof(s_object_data) == Enums::k_object_size_object, STATIC_ASSERT_FAIL);
 
 		struct s_object_datum
 		{
 			enum { k_object_types_mask = Enums::_object_type_object };
 
 			s_object_data object;
-		}; static_assert( sizeof(s_object_datum) == Enums::k_object_size_object );
+		}; static_assert(sizeof(s_object_datum) == Enums::k_object_size_object, STATIC_ASSERT_FAIL);
 
 		//////////////////////////////////////////////////////////////////////////
 		// scenery
 		struct s_scenery_data
 		{
 			long_flags flags; // FLAG(0) - playing animation
-		}; static_assert( sizeof(s_scenery_data) == (Enums::k_object_size_scenery - Enums::k_object_size_object) );
+		}; static_assert(sizeof(s_scenery_data) == (Enums::k_object_size_scenery - Enums::k_object_size_object), STATIC_ASSERT_FAIL);
 
 		struct s_scenery_datum
 		{
@@ -318,7 +318,7 @@ namespace Yelo
 
 			s_object_data object;
 			s_scenery_data scenery;
-		}; static_assert( sizeof(s_scenery_datum) == Enums::k_object_size_scenery );
+		}; static_assert(sizeof(s_scenery_datum) == Enums::k_object_size_scenery, STATIC_ASSERT_FAIL);
 
 
 		//////////////////////////////////////////////////////////////////////////
@@ -326,7 +326,7 @@ namespace Yelo
 		struct s_placeholder_data
 		{
 			PAD64;
-		}; static_assert( sizeof(s_placeholder_data) == (Enums::k_object_size_placeholder - Enums::k_object_size_object) );
+		}; static_assert(sizeof(s_placeholder_data) == (Enums::k_object_size_placeholder - Enums::k_object_size_object), STATIC_ASSERT_FAIL);
 
 		struct s_placeholder_datum
 		{
@@ -334,7 +334,7 @@ namespace Yelo
 
 			s_object_data object;
 			s_placeholder_data placeholder;
-		}; static_assert( sizeof(s_placeholder_datum) == Enums::k_object_size_placeholder );
+		}; static_assert(sizeof(s_placeholder_datum) == Enums::k_object_size_placeholder, STATIC_ASSERT_FAIL);
 
 
 		//////////////////////////////////////////////////////////////////////////
@@ -342,7 +342,7 @@ namespace Yelo
 		struct s_sound_scenery_data
 		{
 			PAD32;
-		}; static_assert( sizeof(s_sound_scenery_data) == (Enums::k_object_size_sound_scenery - Enums::k_object_size_object) );
+		}; static_assert(sizeof(s_sound_scenery_data) == (Enums::k_object_size_sound_scenery - Enums::k_object_size_object), STATIC_ASSERT_FAIL);
 
 		struct s_sound_scenery_datum
 		{
@@ -350,6 +350,6 @@ namespace Yelo
 
 			s_object_data object;
 			s_sound_scenery_data sound_scenery;
-		}; static_assert( sizeof(s_sound_scenery_datum) == Enums::k_object_size_sound_scenery );
+		}; static_assert(sizeof(s_sound_scenery_datum) == Enums::k_object_size_sound_scenery, STATIC_ASSERT_FAIL);
 	};
 };

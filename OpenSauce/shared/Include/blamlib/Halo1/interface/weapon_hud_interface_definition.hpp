@@ -95,19 +95,19 @@ namespace Yelo
 			TAG_ENUM(can_use_on_map_type, Enums::hud_use_on_map_type); // actually treated as byte_flags
 			PAD16;
 			TAG_PAD(int32, 7);
-		}; static_assert( sizeof(weapon_hud_element) == 0x24 );
+		}; static_assert(sizeof(weapon_hud_element) == 0x24, STATIC_ASSERT_FAIL);
 
 		struct weapon_hud_static_element : public weapon_hud_element
 		{
 			s_hud_element_overlay overlay;
 			TAG_PAD(int32, 10);
-		}; static_assert( sizeof(weapon_hud_static_element) == 0xB4 );
+		}; static_assert(sizeof(weapon_hud_static_element) == 0xB4, STATIC_ASSERT_FAIL);
 
 		struct weapon_hud_meter_element : public weapon_hud_element
 		{
 			s_hud_element_meter element;
 			TAG_PAD(int32, 10);
-		}; static_assert( sizeof(weapon_hud_meter_element) == 0xB4 );
+		}; static_assert(sizeof(weapon_hud_meter_element) == 0xB4, STATIC_ASSERT_FAIL);
 
 		struct weapon_hud_number_element : public weapon_hud_element
 		{
@@ -115,7 +115,7 @@ namespace Yelo
 			TAG_FIELD(word_flags, weapon_flags);
 			PAD16;
 			TAG_PAD(int32, 9);
-		}; static_assert( sizeof(weapon_hud_number_element) == 0xA0 );
+		}; static_assert(sizeof(weapon_hud_number_element) == 0xA0, STATIC_ASSERT_FAIL);
 
 		struct weapon_hud_crosshair_item
 		{
@@ -125,7 +125,7 @@ namespace Yelo
 			TAG_FIELD(int16, sequence_index);
 			TAG_FIELD(long_flags, flags);
 			TAG_PAD(int32, 8);
-		}; static_assert( sizeof(weapon_hud_crosshair_item) == 0x6C );
+		}; static_assert(sizeof(weapon_hud_crosshair_item) == 0x6C, STATIC_ASSERT_FAIL);
 		struct weapon_hud_crosshairs_element
 		{
 			TAG_ENUM(crosshair_type, Enums::weapon_crosshair_type);
@@ -137,7 +137,7 @@ namespace Yelo
 			TAG_FIELD(tag_reference, crosshair_bitmap, 'bitm');
 			TAG_TBLOCK(crosshair_overlays, weapon_hud_crosshair_item);
 			TAG_PAD(int32, 10);
-		}; static_assert( sizeof(weapon_hud_crosshairs_element) == 0x68 );
+		}; static_assert(sizeof(weapon_hud_crosshairs_element) == 0x68, STATIC_ASSERT_FAIL);
 
 		struct weapon_hud_overlay_item
 		{
@@ -150,7 +150,7 @@ namespace Yelo
 			TAG_FIELD(long_flags, flags);
 			TAG_PAD(tag_reference, 1);
 			TAG_PAD(int32, 10);
-		}; static_assert( sizeof(weapon_hud_overlay_item) == 0x88 );
+		}; static_assert(sizeof(weapon_hud_overlay_item) == 0x88, STATIC_ASSERT_FAIL);
 		struct weapon_hud_overaly
 		{
 			TAG_FIELD(tag_reference, overlay_bitmap, 'bitm');
@@ -160,7 +160,7 @@ namespace Yelo
 		{
 			weapon_hud_overaly overlay;
 			TAG_PAD(int32, 10);
-		}; static_assert( sizeof(weapon_hud_overlays_element) == 0x68 );
+		}; static_assert(sizeof(weapon_hud_overlays_element) == 0x68, STATIC_ASSERT_FAIL);
 
 		struct weapon_hud_messaging_information
 		{
@@ -201,7 +201,7 @@ namespace Yelo
 			TAG_TBLOCK(screen_effect, hud_screen_effect_definition);
 			TAG_PAD(tag_block, 11);
 			weapon_hud_messaging_information messaging_information;
-		}; static_assert( sizeof(weapon_hud_interface_definition) == 0x17C );
+		}; static_assert(sizeof(weapon_hud_interface_definition) == 0x17C, STATIC_ASSERT_FAIL);
 
 
 		//////////////////////////////////////////////////////////////////////////
@@ -222,6 +222,6 @@ namespace Yelo
 			TAG_TBLOCK(warning_sounds, sound_hud_element_definition);
 			TAG_PAD(int32, 17);
 			weapon_hud_messaging_information messaging_information;
-		}; static_assert( sizeof(grenade_hud_interface_definition) == 0x1F8 );
+		}; static_assert(sizeof(grenade_hud_interface_definition) == 0x1F8, STATIC_ASSERT_FAIL);
 	};
 };

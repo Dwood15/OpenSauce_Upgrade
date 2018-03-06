@@ -37,11 +37,8 @@ namespace Yelo
 				public:
 					Configuration::c_configuration_value<std::string> m_name;
 					Configuration::c_real_vector3d_container m_position;
-
-					c_weapon_position()
-						: Configuration::c_configuration_container("Weapon")
-						, m_name("Name", "")
-						, m_position("Position")
+					char pos[] = "Position";
+					c_weapon_position() : Configuration::c_configuration_container("Weapon") , m_name("Name", "") , m_position(pos)
 					{ }
 
 					bool HasOffset()
@@ -50,9 +47,9 @@ namespace Yelo
 					}
 
 				protected:
-					const std::vector<i_configuration_value* const> GetMembers() final override
+					std::vector<i_configuration_value*> GetMembers() final override
 					{
-						return std::vector<i_configuration_value* const>
+						return std::vector<i_configuration_value*>
 						{
 							&m_name,
 							&m_position

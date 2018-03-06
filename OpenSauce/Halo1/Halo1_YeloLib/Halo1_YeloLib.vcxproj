@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <OSRootDir>$(ProjectDir)..\..\..\</OSRootDir>
     <OSRequiresDirectX>true</OSRequiresDirectX>
@@ -52,11 +52,12 @@
     <ProjectGuid>{ECFFC0E4-E4A5-47E3-8A5C-6CC42CFBDF1E}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>Halo1_YeloLib</RootNamespace>
+    <WindowsTargetPlatformVersion>7.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
-    <PlatformToolset>v120_xp</PlatformToolset>
+    <PlatformToolset>v141_xp</PlatformToolset>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration.Contains(Release))' " Label="Configuration">
@@ -83,12 +84,43 @@
   <ItemDefinitionGroup>
     <ClCompile>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <CompileAsManaged Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</CompileAsManaged>
+      <WarningLevel Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Level2</WarningLevel>
+      <CompileAsManaged Condition="'$(Configuration)|$(Platform)'=='ReleaseDedi|Win32'">false</CompileAsManaged>
+      <WarningLevel Condition="'$(Configuration)|$(Platform)'=='ReleaseDedi|Win32'">Level2</WarningLevel>
+      <CompileAsManaged Condition="'$(Configuration)|$(Platform)'=='ReleaseGuerilla|Win32'">false</CompileAsManaged>
+      <WarningLevel Condition="'$(Configuration)|$(Platform)'=='ReleaseGuerilla|Win32'">Level2</WarningLevel>
+      <CompileAsManaged Condition="'$(Configuration)|$(Platform)'=='ReleaseSapien|Win32'">false</CompileAsManaged>
+      <WarningLevel Condition="'$(Configuration)|$(Platform)'=='ReleaseSapien|Win32'">Level2</WarningLevel>
+      <CompileAsManaged Condition="'$(Configuration)|$(Platform)'=='ReleaseTool|Win32'">false</CompileAsManaged>
+      <WarningLevel Condition="'$(Configuration)|$(Platform)'=='ReleaseTool|Win32'">Level2</WarningLevel>
+      <LanguageStandard Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">stdcpplatest</LanguageStandard>
+      <LanguageStandard Condition="'$(Configuration)|$(Platform)'=='ReleaseDedi|Win32'">stdcpplatest</LanguageStandard>
+      <LanguageStandard Condition="'$(Configuration)|$(Platform)'=='ReleaseGuerilla|Win32'">stdcpplatest</LanguageStandard>
+      <LanguageStandard Condition="'$(Configuration)|$(Platform)'=='ReleaseSapien|Win32'">stdcpplatest</LanguageStandard>
+      <LanguageStandard Condition="'$(Configuration)|$(Platform)'=='ReleaseTool|Win32'">stdcpplatest</LanguageStandard>
       <!--<DisableSpecificWarnings>4311;4312;%(DisableSpecificWarnings)</DisableSpecificWarnings>-->
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition=" '$(Configuration.Contains(Debug))' ">
     <ClCompile>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <CompileAsManaged Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</CompileAsManaged>
+      <WarningLevel Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Level2</WarningLevel>
+      <CompileAsManaged Condition="'$(Configuration)|$(Platform)'=='DebugDedi|Win32'">false</CompileAsManaged>
+      <WarningLevel Condition="'$(Configuration)|$(Platform)'=='DebugDedi|Win32'">Level2</WarningLevel>
+      <CompileAsManaged Condition="'$(Configuration)|$(Platform)'=='DebugGuerilla|Win32'">false</CompileAsManaged>
+      <WarningLevel Condition="'$(Configuration)|$(Platform)'=='DebugGuerilla|Win32'">Level2</WarningLevel>
+      <CompileAsManaged Condition="'$(Configuration)|$(Platform)'=='DebugSapien|Win32'">false</CompileAsManaged>
+      <WarningLevel Condition="'$(Configuration)|$(Platform)'=='DebugSapien|Win32'">Level2</WarningLevel>
+      <CompileAsManaged Condition="'$(Configuration)|$(Platform)'=='DebugTool|Win32'">false</CompileAsManaged>
+      <WarningLevel Condition="'$(Configuration)|$(Platform)'=='DebugTool|Win32'">Level2</WarningLevel>
+      <LanguageStandard Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">stdcpp17</LanguageStandard>
+      <LanguageStandard Condition="'$(Configuration)|$(Platform)'=='DebugDedi|Win32'">stdcpplatest</LanguageStandard>
+      <LanguageStandard Condition="'$(Configuration)|$(Platform)'=='DebugGuerilla|Win32'">stdcpplatest</LanguageStandard>
+      <LanguageStandard Condition="'$(Configuration)|$(Platform)'=='DebugSapien|Win32'">stdcpplatest</LanguageStandard>
+      <LanguageStandard Condition="'$(Configuration)|$(Platform)'=='DebugTool|Win32'">stdcpplatest</LanguageStandard>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">/FS %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
@@ -106,7 +138,6 @@
     <ClInclude Include="..\..\shared\Include\YeloLib\configuration\i_configuration_value.hpp" />
     <ClInclude Include="..\..\shared\Include\YeloLib\configuration\property_tree\c_property_tree_file.hpp" />
     <ClInclude Include="..\..\shared\Include\YeloLib\configuration\property_tree\c_property_tree_file_json.hpp" />
-    <ClInclude Include="..\..\shared\Include\YeloLib\configuration\property_tree\c_property_tree_file_xml.hpp" />
     <ClInclude Include="..\..\shared\Include\YeloLib\configuration\property_tree\c_property_tree_leaf.hpp" />
     <ClInclude Include="..\..\shared\Include\YeloLib\configuration\property_tree\c_property_tree_leaf_iterator.hpp" />
     <ClInclude Include="..\..\shared\Include\YeloLib\configuration\property_tree\c_property_tree_memory.hpp" />
@@ -293,7 +324,6 @@
     <ClCompile Include="..\..\shared\Include\YeloLib\configuration\c_configuration_file_factory.cpp" />
     <ClCompile Include="..\..\shared\Include\YeloLib\configuration\property_tree\c_property_tree_file.cpp" />
     <ClCompile Include="..\..\shared\Include\YeloLib\configuration\property_tree\c_property_tree_file_json.cpp" />
-    <ClCompile Include="..\..\shared\Include\YeloLib\configuration\property_tree\c_property_tree_file_xml.cpp" />
     <ClCompile Include="..\..\shared\Include\YeloLib\configuration\property_tree\c_property_tree_leaf.cpp" />
     <ClCompile Include="..\..\shared\Include\YeloLib\configuration\property_tree\c_property_tree_leaf_iterator.cpp" />
     <ClCompile Include="..\..\shared\Include\YeloLib\configuration\property_tree\c_property_tree_memory.cpp" />
@@ -486,10 +516,9 @@
     <Xml Include="..\..\shared\Halo1\CheApe\multilingual_unicode_string_list.xml" />
     <Xml Include="..\..\shared\Halo1\CheApe\project_yellow.xml" />
     <Xml Include="..\..\shared\Halo1\CheApe\project_yellow_globals.xml" />
-    <Xml Include="..\..\shared\Halo1\CheApe\project_yellow_globals_cv.xml">
+    <Xml Include="..\..\shared\Halo1\CheApe\project_yellow_includes.xml">
       <SubType>Designer</SubType>
     </Xml>
-    <Xml Include="..\..\shared\Halo1\CheApe\project_yellow_includes.xml" />
     <Xml Include="..\..\shared\Halo1\CheApe\project_yellow_scripting.xml">
       <SubType>Designer</SubType>
     </Xml>

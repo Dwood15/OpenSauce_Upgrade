@@ -6,6 +6,30 @@
 #pragma once
 
 #include <blamlib/cseries/cseries_base.hpp>
+#include <xstddef>
+
+#include <stddef.h>
+
+inline size_t fnv1a_hash_bytes(const unsigned char * first, size_t count) {
+#if defined(_WIN64)
+	static_assert(sizeof(size_t) == 8, "This code is for 64-bit size_t.");
+	const size_t fnv_offset_basis = 14695981039346656037ULL;
+	const size_t fnv_prime = 1099511628211ULL;
+
+#else /* defined(_WIN64) */
+	static_assert(sizeof(size_t) == 4, "This code is for 32-bit size_t.");
+	const size_t fnv_offset_basis = 2166136261U;
+	const size_t fnv_prime = 16777619U;
+#endif /* defined(_WIN64) */
+
+	size_t result = fnv_offset_basis;
+	for (size_t next = 0; next < count; ++next)
+	{	// fold in another byte
+		result ^= (size_t)first[next];
+		result *= fnv_prime;
+	}
+	return (result);
+}
 
 namespace Yelo
 {
@@ -51,12 +75,12 @@ namespace Yelo
 		static datum_index Create(index_t index, const void* header);
 
 #if PLATFORM_TARGET != PLATFORM_TARGET_XBOX
-		struct std_hash : public std::unary_function<datum_index, size_t>
+		struct std_hash
 		{
 			// logic copied and pasted from xstddef's _Bitwise_hash
 			size_t operator()(const datum_index& _Keyval) const
 			{	// hash _Keyval to size_t value by pseudorandomizing transform
-				return std::_Hash_seq((const unsigned char *)&_Keyval, sizeof(datum_index));
+				return fnv1a_hash_bytes((const unsigned char *)&_Keyval, sizeof(datum_index));
 			}
 		};
 #endif
@@ -68,7 +92,7 @@ namespace Yelo
 	private:
 		OVERRIDE_OPERATOR_MATH_BOOL_TYPE(uint32, handle, ==);
 		OVERRIDE_OPERATOR_MATH_BOOL_TYPE(uint32, handle, !=);
-	}; static_assert( sizeof(datum_index) == 0x4 );
+	}; static_assert(sizeof(datum_index) == 0x4, STATIC_ASSERT_FAIL);
 #define pad_datum_index PAD16 PAD16
 #define DATUM_INDEX_TO_IDENTIFIER(datum)		(datum & 0xFFFF0000)
 #define DATUM_INDEX_TO_ABSOLUTE_INDEX(datum)	(datum & 0x0000FFFF)

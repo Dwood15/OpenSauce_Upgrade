@@ -5,8 +5,9 @@
 	See license\OpenSauce\Halo1_CE for specific license information
 */
 
-bool ReadHeaderThunk(cstring relative_map_name, s_cache_header& out_header, bool& yelo_is_ok,
-	bool exception_on_fail);
+#include "Memory/1.10/_EngineLayout.TagGroups.inl"
+
+bool ReadHeaderThunk(cstring relative_map_name, s_cache_header& out_header, bool& yelo_is_ok, bool exception_on_fail);
 
 // TODO: move CacheFileReadHeadeHook related code into CacheFiles.ReadHeader.inl
 static bool CacheFileReadHeaderHookImpl(cstring relative_map_name, s_cache_header& out_header, const void* return_address)

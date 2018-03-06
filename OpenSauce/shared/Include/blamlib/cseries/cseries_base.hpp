@@ -7,6 +7,10 @@
 
 #include <cseries/MacrosCpp.hpp>
 
+#ifndef STATIC_ASSERT_FAIL
+#define STATIC_ASSERT_FAIL "static assert fail"
+#endif
+
 namespace Yelo
 {
 	namespace Enums
@@ -119,7 +123,7 @@ namespace Yelo
 
 			return strings[index];
 		}
-	}; static_assert( sizeof(string_list) == 0x8 );
+	}; static_assert(sizeof(string_list) == 0x8, STATIC_ASSERT_FAIL);
 
 
 	// a tag group id

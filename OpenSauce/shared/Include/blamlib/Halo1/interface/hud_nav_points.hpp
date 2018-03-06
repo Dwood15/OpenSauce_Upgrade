@@ -37,12 +37,12 @@ namespace Yelo
 				datum_index object_index;
 				int16 game_goal_index; //0x6
 			};
-		}; static_assert(sizeof(s_nav_waypoint) == 0xA);
+		}; static_assert(sizeof(s_nav_waypoint) == 0xA, STATIC_ASSERT_FAIL);
 
 		struct s_nav_point {
 			int16 navpoint_index; //0x0
 			s_nav_waypoint waypoint; //0x2
-		}; static_assert(sizeof(s_nav_point) == (0x2 + sizeof(s_nav_waypoint))); //0xC
+		}; static_assert(sizeof(s_nav_point) == (0x2 + sizeof(s_nav_waypoint)), STATIC_ASSERT_FAIL); //0xC
 
 		struct s_local_player_nav_points {
 			s_nav_point nav_points[4];
@@ -50,7 +50,7 @@ namespace Yelo
 
 		struct s_hud_nav_points {
 			s_local_player_nav_points local_players[Enums::k_maximum_number_of_local_players];
-		}; static_assert(sizeof(s_hud_nav_points) == (sizeof(s_local_player_nav_points) * Enums::k_maximum_number_of_local_players)); //0x30 * max players
+		}; static_assert(sizeof(s_hud_nav_points) == (sizeof(s_local_player_nav_points)* Enums::k_maximum_number_of_local_players), STATIC_ASSERT_FAIL); //0x30 * max players
 		s_hud_nav_points*			HudNavPoints();
 	};
 

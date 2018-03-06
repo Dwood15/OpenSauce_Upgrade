@@ -53,10 +53,9 @@ namespace Yelo
 			bool ValidForStock() const;
 			// Is this header valid according to OS standards?
 			bool ValidForYelo() const;
-		}; static_assert( sizeof(s_cache_header) == 0x800 );
+		}; static_assert(sizeof(s_cache_header) == 0x800, STATIC_ASSERT_FAIL);
 
-		struct s_cache_tag_instance
-		{
+		struct s_cache_tag_instance {
 			tag group_tag;			// 0x0
 			tag parent_groups[2];	// 0x4
 			datum_index handle;		// 0xC
@@ -68,7 +67,7 @@ namespace Yelo
 			BOOL bool_in_data_file;	// 0x18
 			uint32 _unused;			// 0x1C
 
-			template<typename T>
+			template<typename T> 
 			T* Definition() const { return CAST_PTR(T*, base_address); }
 
 			int32 GetAbsoluteIndex() const { return handle.index; }
@@ -76,7 +75,7 @@ namespace Yelo
 			// Is this an instance of a certain tag group?
 			// If this instance a child of a certain tag group?
 			bool MatchesGroup(tag group_tag) const;
-		}; static_assert( sizeof(s_cache_tag_instance) == 0x20 );
+		}; static_assert(sizeof(s_cache_tag_instance) == 0x20, STATIC_ASSERT_FAIL);
 
 		struct s_cache_tag_header
 		{
@@ -100,6 +99,6 @@ namespace Yelo
 #pragma warning(disable : 4200)
 			s_cache_tag_instance tags[];
 #pragma warning(pop)
-		}; static_assert( sizeof(s_cache_tag_header) == 0x28 );
+		}; static_assert(sizeof(s_cache_tag_header) == 0x28, STATIC_ASSERT_FAIL);
 	};
 };

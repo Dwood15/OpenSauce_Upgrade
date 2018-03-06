@@ -31,7 +31,7 @@ namespace Yelo
 		{
 			byte_enum type;
 			sbyte data;
-		}; static_assert( sizeof(hud_state_message_element) == 0x2 );
+		}; static_assert(sizeof(hud_state_message_element) == 0x2, STATIC_ASSERT_FAIL);
 
 		struct hud_state_message_definition
 		{
@@ -40,7 +40,7 @@ namespace Yelo
 			int16 start_index_of_message_block;
 			sbyte panel_count; PAD24;
 			TAG_PAD(int32, 6);
-		}; static_assert( sizeof(hud_state_message_definition) == 0x40 );
+		}; static_assert(sizeof(hud_state_message_definition) == 0x40, STATIC_ASSERT_FAIL);
 
 		struct hud_state_messages
 		{
@@ -50,6 +50,6 @@ namespace Yelo
 			TAG_TBLOCK(message_elements, hud_state_message_element);
 			TAG_TBLOCK(messages, hud_state_message_definition);
 			TAG_PAD(int32, 21);
-		}; static_assert( sizeof(hud_state_messages) == 0x80 );
+		}; static_assert(sizeof(hud_state_messages) == 0x80, STATIC_ASSERT_FAIL);
 	};
 };

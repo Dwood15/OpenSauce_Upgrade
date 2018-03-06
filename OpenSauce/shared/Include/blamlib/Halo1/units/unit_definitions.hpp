@@ -121,7 +121,7 @@ namespace Yelo
 
 			k_number_of_unit_seat_definition_flags_yelo,
 		};
-		static_assert(k_number_of_unit_seat_definition_flags_yelo <= BIT_COUNT(long_flags));
+		static_assert(k_number_of_unit_seat_definition_flags_yelo <= BIT_COUNT(long_flags), STATIC_ASSERT_FAIL);
 	};
 
 	namespace TagGroups
@@ -193,7 +193,7 @@ namespace Yelo
 		public:
 			static bool PLATFORM_API Postprocess(void* element, Enums::tag_postprocess_mode mode,
 				datum_index tag_index);
-		}; static_assert( sizeof(unit_seat) == 284 );
+		}; static_assert(sizeof(unit_seat) == 284, STATIC_ASSERT_FAIL);
 		//////////////////////////////////////////////////////////////////////////
 		struct _unit_definition
 		{
@@ -269,20 +269,16 @@ namespace Yelo
 			TAG_TBLOCK(weapons, unit_initial_weapon);
 			TAG_TBLOCK(seats, unit_seat);
 
-			bool Postprocess(Enums::tag_postprocess_mode mode,
-				datum_index tag_index);
+			bool Postprocess(Enums::tag_postprocess_mode mode, datum_index tag_index);
 
-		}; static_assert( sizeof(_unit_definition) == 0x174 );
+		}; static_assert(sizeof(_unit_definition) == 0x174, STATIC_ASSERT_FAIL);
 
-		struct s_unit_definition : s_object_definition
-		{
+		struct s_unit_definition : s_object_definition {
 			enum { k_group_tag = 'unit' };
 
 			_unit_definition unit;
 
-			bool Postprocess(Enums::tag_postprocess_mode mode,
-				datum_index tag_index)
-			{
+			bool Postprocess(Enums::tag_postprocess_mode mode, datum_index tag_index) {
 				return unit.Postprocess(mode, tag_index);
 			}
 		};

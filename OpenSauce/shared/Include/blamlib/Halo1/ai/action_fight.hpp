@@ -14,6 +14,6 @@ namespace Yelo
 		{
 			UNKNOWN_TYPE(int16); // timer
 			PAD16;
-		}; static_assert( sizeof(s_action_fight_state) == 0x4 );
+		}; static_assert(sizeof(s_action_fight_state) == 0x4, STATIC_ASSERT_FAIL);
 	};
 };

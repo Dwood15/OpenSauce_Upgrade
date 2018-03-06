@@ -10,14 +10,13 @@
 #include <YeloLib/Halo1/tag_files/string_id_yelo.hpp>
 
 #if PLATFORM_IS_EDITOR || defined(API_DEBUG)
-	struct string_id_yelo_kv_pair
-	{
+	struct string_id_yelo_kv_pair {
 		Yelo::string_id key;
 		Yelo::cstring value;
 	};
 	#define STRING_ID_YELO_KV_PAIRS_ARRAY_NAME(set_name)	BOOST_JOIN(k_string_id_kv_pairs_,set_name)
 	#define STRING_ID_YELO_KV_PAIRS_ARRAY_STATIC_ASSERT_LENGTH(set_name)	\
-		static_assert( BOOST_JOIN(BOOST_JOIN(Yelo::_string_id::k_number_of_,set_name), _strings) == NUMBEROF( STRING_ID_YELO_KV_PAIRS_ARRAY_NAME(set_name) )-1 ); 
+	static_assert(BOOST_JOIN(BOOST_JOIN(Yelo::_string_id::k_number_of_, set_name), _strings) == NUMBEROF(STRING_ID_YELO_KV_PAIRS_ARRAY_NAME(set_name)) - 1, STATIC_ASSERT_FAIL);
 		// minus 1 to account for the terminator pair
 		// we use a terminator so empty sets don't generate compiler errors
 
@@ -54,7 +53,7 @@
 
 		nullptr, nullptr, nullptr, nullptr, nullptr,
 		nullptr, nullptr, nullptr, nullptr, nullptr,
-	}; static_assert( NUMBEROF(k_string_id_kv_pairs) == Yelo::_string_id::k_number_of_sets );
+	}; static_assert(NUMBEROF(k_string_id_kv_pairs) == Yelo::_string_id::k_number_of_sets, STATIC_ASSERT_FAIL);
 
 	#undef __STRING_ID_GENERATE_SET_NAME
 

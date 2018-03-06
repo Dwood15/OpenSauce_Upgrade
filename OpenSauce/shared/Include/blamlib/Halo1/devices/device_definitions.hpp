@@ -51,7 +51,7 @@ namespace Yelo
 
 				real delay_time;
 			}runtime;
-		}; static_assert( sizeof(_device_definition) == 0x114 );
+		}; static_assert(sizeof(_device_definition) == 0x114, STATIC_ASSERT_FAIL);
 
 		//////////////////////////////////////////////////////////////////////////
 
@@ -65,7 +65,7 @@ namespace Yelo
 			TAG_FIELD(tag_reference, on, 'snd!', 'effe');
 			TAG_FIELD(tag_reference, off, 'snd!', 'effe');
 			TAG_FIELD(tag_reference, deny, 'snd!', 'effe');
-		}; static_assert( sizeof(_control_definition) == 0x88 );
+		}; static_assert(sizeof(_control_definition) == 0x88, STATIC_ASSERT_FAIL);
 
 		//////////////////////////////////////////////////////////////////////////
 
@@ -85,7 +85,7 @@ namespace Yelo
 			TAG_PAD(int32, 13); // 52
 
 			int32 runtime_door_open_time; // door_open_time * 30.0f
-		}; static_assert( sizeof(_machine_definition) == 0x94 );
+		}; static_assert(sizeof(_machine_definition) == 0x94, STATIC_ASSERT_FAIL);
 
 		//////////////////////////////////////////////////////////////////////////
 

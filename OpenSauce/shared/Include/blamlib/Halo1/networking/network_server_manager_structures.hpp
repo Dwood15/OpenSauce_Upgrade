@@ -30,19 +30,13 @@ namespace Yelo
 		{
 			MessageDeltas::decoding_information_data* decoding_information;
 			PAD128; PAD128; PAD128; // unknown bytes
-		}; static_assert( sizeof(s_network_client_machine_message_header) == 0x34 );
+		}; static_assert(sizeof(s_network_client_machine_message_header) == 0x34, STATIC_ASSERT_FAIL);
 
 		struct s_network_client_machine_dedi
 		{
 			enum {
-				k_sizeof = 
-#if PLATFORM_IS_DEDI
-					0x8C,
-#else
-					0,
-#endif
-				k_network_game_server_client_machines_offset_amount = 
-					Enums::k_maximum_network_machine_count * s_network_client_machine_dedi::k_sizeof,
+				k_sizeof = 0, 
+				k_network_game_server_client_machines_offset_amount = Enums::k_maximum_network_machine_count * s_network_client_machine_dedi::k_sizeof,
 			};
 
 			wchar_t player_name[Enums::k_player_name_length+1];
@@ -51,7 +45,7 @@ namespace Yelo
 			char ip_address[32];
 			char cdkey[74];
 			PAD16;
-		}; static_assert( sizeof(s_network_client_machine_dedi) == 0x8C );
+		}; static_assert(sizeof(s_network_client_machine_dedi) == 0x8C, STATIC_ASSERT_FAIL);
 		struct s_network_client_machine
 		{
 			s_network_connection* connection;							// 0x0
@@ -73,16 +67,9 @@ namespace Yelo
 			char challenge[Enums::k_network_game_challenge_length+1];	// 0x52 gamespy challenge string
 			PAD16;
 			int32 machine_key;											// 0x5C same value as gs_machine_data->unknown1
-
-#if PLATFORM_IS_DEDI
-			s_network_client_machine_dedi dedi;
-#endif
 		};
-#if PLATFORM_IS_DEDI
-		static_assert( sizeof(s_network_client_machine) == 0xEC );
-#else
-		static_assert( sizeof(s_network_client_machine) == 0x60 );
-#endif
+
+		static_assert(sizeof(s_network_client_machine) == 0x60, STATIC_ASSERT_FAIL);
 
 		struct s_countdown_timer
 		{
@@ -93,7 +80,7 @@ namespace Yelo
 			bool pause_countdown;
 			UNKNOWN_TYPE(bool);
 			PAD8;
-		}; static_assert( sizeof(s_countdown_timer) == 0x10 );
+		}; static_assert(sizeof(s_countdown_timer) == 0x10, STATIC_ASSERT_FAIL);
 		struct s_network_game_server
 		{
 			enum {
@@ -139,7 +126,7 @@ namespace Yelo
 
 				return nullptr;
 			}
-		}; static_assert( sizeof(s_network_game_server) == (0xA50 + s_network_client_machine_dedi::k_network_game_server_client_machines_offset_amount) );
+		}; static_assert(sizeof(s_network_game_server) == (0xA50 + s_network_client_machine_dedi::k_network_game_server_client_machines_offset_amount), STATIC_ASSERT_FAIL);
 
 		// For increased player counts game states
 		struct s_network_game_server_yelo : s_network_game_server

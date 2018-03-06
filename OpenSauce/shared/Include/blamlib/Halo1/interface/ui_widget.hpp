@@ -62,7 +62,7 @@ namespace Yelo
 			UNKNOWN_TYPE(int16);				// 0x5A
 			UNKNOWN_TYPE(int16);				// 0x5C
 			UNKNOWN_TYPE(int16);				// 0x5E
-		}; static_assert( sizeof(s_ui_widget_instance) == 0x60 );
+		}; static_assert(sizeof(s_ui_widget_instance) == 0x60, STATIC_ASSERT_FAIL);
 	};
 
 	namespace blam

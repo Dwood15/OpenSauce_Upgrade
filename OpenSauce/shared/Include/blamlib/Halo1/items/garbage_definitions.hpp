@@ -14,7 +14,7 @@ namespace Yelo
 		struct _garbage_definition
 		{
 			TAG_PAD(int32, 42);
-		}; static_assert( sizeof(_garbage_definition) == 0xA8 );
+		}; static_assert(sizeof(_garbage_definition) == 0xA8, STATIC_ASSERT_FAIL);
 
 		struct s_garbage_definition : s_item_definition
 		{

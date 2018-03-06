@@ -72,6 +72,6 @@ namespace Yelo
 			real_vector3d throttle;
 			real primary_trigger;
 			real_vector3d facing_vector, aiming_vector, looking_vector;
-		}; static_assert( sizeof(s_unit_control_data) == 0x40 );
+		}; static_assert(sizeof(s_unit_control_data) == 0x40, STATIC_ASSERT_FAIL);
 	};
 };

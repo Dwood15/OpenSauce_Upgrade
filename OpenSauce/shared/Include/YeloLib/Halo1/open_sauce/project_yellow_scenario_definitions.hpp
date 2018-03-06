@@ -57,7 +57,8 @@ namespace Yelo
 			PAD16;
 			TAG_ENUM(build_stage, Enums::production_build_stage);
 			TAG_FIELD(uint32, revision);
-			time_t timestamp;			static_assert(sizeof(time_t) == 0x8);
+			time_t timestamp;			
+			static_assert(sizeof(time_t) == 0x8, STATIC_ASSERT_FAIL);
 			byte uuid_buffer[Enums::k_uuid_buffer_size];
 
 			TAG_PAD(int32, 4); // 16

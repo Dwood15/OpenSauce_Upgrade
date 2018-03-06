@@ -143,10 +143,8 @@ namespace Yelo
 		static const unsigned k_cache_file_tag_memory_alignment_bit = Flags::_alignment_32_bit;
 		static const double k_byte_to_megabyte_fraction = 1.0 / Enums::k_mega;
 
-		static const size_t k_cache_file_minimum_fixed_size =
-			sizeof(TagGroups::structure_bsp_header) +
-			Enums::k_tag_allocation_size_upgrade;
-		static_assert(k_build_cache_file_scratch_buffer_size >= k_cache_file_minimum_fixed_size);
+		static const size_t k_cache_file_minimum_fixed_size = sizeof(TagGroups::structure_bsp_header) + Enums::k_tag_allocation_size_upgrade;
+		static_assert(k_build_cache_file_scratch_buffer_size >= k_cache_file_minimum_fixed_size, STATIC_ASSERT_FAIL);
 
 
 		// "return_stream" - the new stream pointer, positioned after the data which was written to it/"stream" before the stream operation started
@@ -197,23 +195,17 @@ namespace Yelo
 			return return_stream;
 		}
 		static void* stream_tag_block_to_buffer_postprocess_tag_block(
-			void*& return_stream, uintptr_t stream_base_address, uintptr_t virtual_base_address,
-			build_cache_file_tag_names_t& tag_names,
-			const TagGroups::c_tag_field_scanner& scanner)
-		{
+			void*& return_stream, uintptr_t stream_base_address, uintptr_t virtual_base_address, build_cache_file_tag_names_t& tag_names, const TagGroups::c_tag_field_scanner& scanner) {
 			auto* block = scanner.GetFieldAs<tag_block>();
 
-			if(block->count > 0)
-			{
+			if(block->count > 0) {
 				// record the current stream position as runtime address for the block elements, then write the elements
 				void* elements_address = Memory::RebasePointer(return_stream, stream_base_address, virtual_base_address);
 				return_stream = stream_tag_block_to_buffer(block, return_stream, stream_base_address, virtual_base_address, tag_names);
 
 				block->address = elements_address;
 				block->definition = nullptr;
-			}
-			else
-			{
+			} else {
 				block->address = nullptr;
 				block->definition = nullptr;
 			}
@@ -233,22 +225,16 @@ namespace Yelo
 						) 
 				);
 
-			reference->name = reference->tag_index.IsNull()
-				? nullptr
-				: tag_names[absolute_index];
+			reference->name = reference->tag_index.IsNull() ? nullptr : tag_names[absolute_index];
 			reference->name_length = 0;
 
-			if(scanner.TagFieldIsStringId())
-			{
+			if(scanner.TagFieldIsStringId()) {
 				string_id_yelo* sidy = CAST_PTR(string_id_yelo*, reference);
 			}
 
 			return return_stream;
 		}
-		static void* stream_tag_block_to_buffer(tag_block* block,
-			void* stream, uintptr_t stream_base_address, uintptr_t virtual_base_address,
-			build_cache_file_tag_names_t& tag_names)
-		{
+		static void* stream_tag_block_to_buffer(tag_block* block, void* stream, uintptr_t stream_base_address, uintptr_t virtual_base_address, build_cache_file_tag_names_t& tag_names) {
 			YELO_ASSERT( stream && stream_base_address );
 			YELO_ASSERT( virtual_base_address );
 
@@ -587,17 +573,12 @@ default_case:
 			printf_s("writing tags...");
 			ptrdiff_t cache_tags_size =
 				CAST_PTR(byte*, next_cache_tag_base_address) - CAST_PTR(byte*, cache_tag_header);
-			if (!build_cache_file_add_resource(cache_tag_header, cache_tags_size,
-				&cache_header.offset_to_index))
-			{
+			if (!build_cache_file_add_resource(cache_tag_header, cache_tags_size, &cache_header.offset_to_index)) {
 				success = false;
 				printf_s("FAILED!\n");
 			}
-			else
-			{
-				printf_s("done (%d tags for %3.2fM)\n",
-					tag_count,
-					CAST(float, k_byte_to_megabyte_fraction * cache_tags_size));
+			else {
+				printf_s("done (%d tags for %3.2fM)\n", tag_count, CAST(float, k_byte_to_megabyte_fraction * cache_tags_size));
 			}
 
 			// TODO: need to close data files here
@@ -605,17 +586,14 @@ default_case:
 			return success;
 		}
 		static bool build_cache_file_add_structure_bsps_impl(
-			void* stream, build_cache_file_tag_names_t& tag_names, _Out_ int32& out_largest_structure_bsp_size)
-		{
+			void* stream, build_cache_file_tag_names_t& tag_names, _Out_ int32& out_largest_structure_bsp_size) {
 			out_largest_structure_bsp_size = 0;
 			auto* scenario = global_scenario_get();
 
 			if (scenario->structure_bsps.Count == 0)
 				return true;
 
-			const uintptr_t k_tag_cache_max_address = BuildCacheFileForYelo()
-				? Enums::k_tag_max_address_upgrade
-				: Enums::k_tag_max_address;
+			const uintptr_t k_tag_cache_max_address = BuildCacheFileForYelo() ? Enums::k_tag_max_address_upgrade : Enums::k_tag_max_address;
 
 			bool success = true;
 			for (auto& bsp_reference : scenario->structure_bsps)
@@ -632,9 +610,7 @@ default_case:
 					bsp_tag_name,
 					CAST(float, k_byte_to_megabyte_fraction * bsp_stream_size));
 
-				if (!build_cache_file_add_resource(stream,
-					bsp_reference.bsp_data_size = CAST(int32, bsp_stream_size),
-					&bsp_reference.cache_offset))
+				if (!build_cache_file_add_resource(stream, bsp_reference.bsp_data_size = CAST(int32, bsp_stream_size), &bsp_reference.cache_offset))
 				{
 					success = false;
 					printf_s("failed to write the structure-bsp '%s' to the cache file",
@@ -652,15 +628,13 @@ default_case:
 			return success;
 		}
 
-		static API_FUNC_NAKED bool PLATFORM_API build_cache_file_add_tags(
-			s_cache_header& cache_header, void* scratch, build_cache_file_tag_names_t& tag_names, int32 largest_structure_bsp_size)
+		static API_FUNC_NAKED bool PLATFORM_API build_cache_file_add_tags(s_cache_header& cache_header, void* scratch, build_cache_file_tag_names_t& tag_names, int32 largest_structure_bsp_size)
 		{
 			static const uintptr_t FUNCTION = 0x454D40;
 
 			__asm	jmp	FUNCTION
 		}
-		static API_FUNC_NAKED bool build_cache_file_add_structure_bsps(
-			void* scratch, build_cache_file_tag_names_t& tag_names, int32& largest_structure_bsp_size)
+		static API_FUNC_NAKED bool build_cache_file_add_structure_bsps(void* scratch, build_cache_file_tag_names_t& tag_names, int32& largest_structure_bsp_size)
 		{
 			static const uintptr_t FUNCTION = 0x454B70;
 
@@ -672,8 +646,7 @@ default_case:
 				add		esp, 4 * 2
 			API_FUNC_NAKED_END(3)
 		}
-		static bool build_cache_file_add_tags(build_cache_file_tag_names_t& tag_indexes,
-			s_cache_header& cache_header, void* scratch)
+		static bool build_cache_file_add_tags(build_cache_file_tag_names_t& tag_indexes, s_cache_header& cache_header, void* scratch)
 		{
 			int32 largest_structure_bsp_size = 0;
 			return

@@ -143,6 +143,6 @@ namespace Yelo
 			enum { k_group_tag = 'vehi' };
 
 			_vehicle_definition vehicle;
-		}; static_assert( sizeof(s_vehicle_definition) == 0x3F0 );
+		}; static_assert(sizeof(s_vehicle_definition) == 0x3F0, STATIC_ASSERT_FAIL);
 	};
 };

@@ -163,11 +163,10 @@ namespace Yelo
 				return HandleIsNone(*this);
 			}
 
-			static s_hs_script_container_datum_index CreateIndex(int16 index,
-				int16 script_container_index = 0); // TODO: remove default parameter when containers come online
+			static s_hs_script_container_datum_index CreateIndex(int16 index, int16 script_container_index = 0); // TODO: remove default parameter when containers come online
 
 			static const s_hs_script_container_datum_index k_null;
-		}; static_assert( sizeof(s_hs_script_container_datum_index) == 2 );
+		}; static_assert(sizeof(s_hs_script_container_datum_index) == 2, STATIC_ASSERT_FAIL);
 
 		typedef s_hs_script_container_datum_index hs_script_index_t;
 		typedef s_hs_script_container_datum_index hs_global_index_t;
@@ -200,7 +199,7 @@ namespace Yelo
 			datum_index ToExpressionIndex() const	{ return datum; }
 			datum_index ToTagIndex() const			{ return datum; }
 			datum_index ToObjectIndex() const		{ return datum; }
-		}; static_assert( sizeof(s_hs_value_union) == sizeof(void*) );
+		}; static_assert(sizeof(s_hs_value_union) == sizeof(void*), STATIC_ASSERT_FAIL);
 		extern const s_hs_value_union k_null_value_union;
 		extern const s_hs_value_union k_none_value_union;
 

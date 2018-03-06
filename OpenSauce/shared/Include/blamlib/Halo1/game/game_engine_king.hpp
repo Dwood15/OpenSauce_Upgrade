@@ -12,6 +12,6 @@ namespace Yelo
 	{
 		struct s_king_globals
 		{
-		}; //static_assert( sizeof(s_king_globals) == 0x1B0 );
+		}; //static_assert( sizeof(s_king_globals) == 0x1B0, STATIC_ASSERT_FAIL );
 	};
 };

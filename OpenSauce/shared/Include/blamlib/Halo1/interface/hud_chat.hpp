@@ -34,7 +34,7 @@ namespace Yelo
 			Console::s_terminal_state terminal_state;
 
 			uint32 line_timers[8];
-		}; static_assert( sizeof(s_hud_chat_globals) == 0x1E8 );
+		}; static_assert(sizeof(s_hud_chat_globals) == 0x1E8, STATIC_ASSERT_FAIL);
 
 		s_hud_chat_globals*		HudChatGlobals();
 		int32 HudChatLineCount();

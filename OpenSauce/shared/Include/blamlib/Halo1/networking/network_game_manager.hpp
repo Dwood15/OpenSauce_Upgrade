@@ -30,6 +30,6 @@ namespace Yelo
 			// we can use them safely for player operations in multiplayer code
 			sbyte team_index;			// 0x1E
 			sbyte player_list_index;	// 0x1F
-		}; static_assert( sizeof(s_network_game_player) == 0x20 );
+		}; static_assert(sizeof(s_network_game_player) == 0x20, STATIC_ASSERT_FAIL);
 	};
 };

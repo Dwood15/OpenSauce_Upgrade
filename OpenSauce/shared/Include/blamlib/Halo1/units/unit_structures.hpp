@@ -370,7 +370,7 @@ namespace Yelo
 
 			byte* GetZoomLevel();
 			byte* GetDesiredZoomLevel();
-		}; static_assert( sizeof(s_unit_data) == (Enums::k_object_size_unit - Enums::k_object_size_object) );
+		}; static_assert(sizeof(s_unit_data) == (Enums::k_object_size_unit - Enums::k_object_size_object), STATIC_ASSERT_FAIL);
 
 
 		struct s_unit_datum

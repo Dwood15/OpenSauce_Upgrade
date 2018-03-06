@@ -54,7 +54,7 @@ namespace Yelo
 #endif
 	};
 #if TRUE//PLATFORM_IS_EDITOR // TODO: uncomment this when we finish 'runtime field size' support in the tag system
-	static_assert( sizeof(string_id_yelo) == 0x14 );
+	static_assert(sizeof(string_id_yelo) == 0x14, STATIC_ASSERT_FAIL);
 	#define pad_string_id_yelo PAD_TYPE(tag_reference); PAD_TYPE(string_id);
 #else
 	static_assert( sizeof(string_id_yelo) == 0x4 );

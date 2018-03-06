@@ -76,7 +76,7 @@ namespace Yelo
 			TAG_FIELD(real_fraction, cutoff_scale);
 			TAG_FIELD(long_flags, flags); // not exposed for continuous_damage_effect
 			TAG_PAD(int32, 5);
-		}; static_assert( sizeof(s_damage_effect) == 0x24 );
+		}; static_assert(sizeof(s_damage_effect) == 0x24, STATIC_ASSERT_FAIL);
 
 		struct s_damage_camera_effect
 		{
@@ -98,7 +98,7 @@ namespace Yelo
 
 			TAG_PAD(int32, 5);
 			TAG_PAD(int32, 2);
-		}; static_assert( sizeof(s_damage_camera_effect) == 0x58 );
+		}; static_assert(sizeof(s_damage_camera_effect) == 0x58, STATIC_ASSERT_FAIL);
 
 		struct s_damage_breaking_effect
 		{
@@ -110,7 +110,7 @@ namespace Yelo
 				TAG_FIELD(real, exponent);
 				TAG_PAD(int32, 3);
 			}forward, outward;
-		}; static_assert( sizeof(s_damage_breaking_effect) == 0xA0 );
+		}; static_assert(sizeof(s_damage_breaking_effect) == 0xA0, STATIC_ASSERT_FAIL);
 
 		struct s_damage_definition
 		{
@@ -139,13 +139,13 @@ namespace Yelo
 			{
 				return TEST_FLAG(flags, Flags::_damage_use_3d_acceleration_yelo_bit);
 			}
-		}; static_assert( sizeof(s_damage_definition) == 0x3C );
+		}; static_assert(sizeof(s_damage_definition) == 0x3C, STATIC_ASSERT_FAIL);
 
 		struct s_damage_modifiers
 		{
 			real modifier[Enums::k_number_of_material_types];
 			TAG_PAD(int32, 7);
-		}; static_assert( sizeof(s_damage_modifiers) == 0xA0 );
+		}; static_assert(sizeof(s_damage_modifiers) == 0xA0, STATIC_ASSERT_FAIL);
 
 		struct s_damage_effect_definition
 		{
@@ -193,7 +193,7 @@ namespace Yelo
 			s_damage_breaking_effect breaking_effect;
 			s_damage_definition damage;
 			s_damage_modifiers damage_modifiers;
-		}; static_assert( sizeof(s_damage_effect_definition) == 0x2A0 );
+		}; static_assert(sizeof(s_damage_effect_definition) == 0x2A0, STATIC_ASSERT_FAIL);
 
 
 		struct s_continuous_damage_effect_definition
@@ -207,6 +207,6 @@ namespace Yelo
 			s_damage_breaking_effect breaking_effect; // not exposed
 			s_damage_definition damage;
 			s_damage_modifiers damage_modifiers;
-		}; static_assert( sizeof(s_continuous_damage_effect_definition) == 0x200 );
+		}; static_assert(sizeof(s_continuous_damage_effect_definition) == 0x200, STATIC_ASSERT_FAIL);
 	};
 };

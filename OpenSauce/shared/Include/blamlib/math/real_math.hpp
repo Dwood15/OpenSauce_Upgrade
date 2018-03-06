@@ -9,6 +9,10 @@
 	#include <d3dx9math.h>
 #endif
 
+#ifndef STATIC_ASSERT_FAIL
+#define STATIC_ASSERT_FAIL "static assert fail"
+#endif
+
 namespace Yelo
 {
 	// a floating number in degrees
@@ -350,7 +354,7 @@ namespace Yelo
 		angle pitch;
 
 		OVERRIDE_OPERATOR_CAST_THIS(float);
-	}; static_assert(sizeof(real_euler_angles2d) == sizeof(angle) * 0x2);
+	}; static_assert(sizeof(real_euler_angles2d) == sizeof(angle)* 0x2, STATIC_ASSERT_FAIL);
 	#define pad_real_euler_angles2d PAD32 PAD32
 
 	// real Euler angles in 3d space
@@ -367,7 +371,7 @@ namespace Yelo
 
 		OVERRIDE_OPERATOR_CAST_THIS(float);
 		OVERRIDE_OPERATOR_CAST_THIS(real_euler_angles2d);
-	}; static_assert(sizeof(real_euler_angles3d) == sizeof(angle) * 0x3);
+	}; static_assert(sizeof(real_euler_angles3d) == sizeof(angle)* 0x3, STATIC_ASSERT_FAIL);
 	#define pad_real_euler_angles3d PAD32 PAD32 PAD32
 
 	// 
@@ -386,7 +390,7 @@ namespace Yelo
 		OVERRIDE_OPERATOR_CAST_THIS_REF(real_vector2d);
 
 		API_INLINE void Normalize();
-	}; static_assert(sizeof(real_plane2d) == sizeof(real) * 0x3);
+	}; static_assert(sizeof(real_plane2d) == sizeof(real)* 0x3, STATIC_ASSERT_FAIL);
 	#define pad_real_plane2d PAD32 PAD32 PAD32
 
 	// 
@@ -412,7 +416,7 @@ namespace Yelo
 #endif
 
 		API_INLINE void Normalize();
-	}; static_assert(sizeof(real_plane3d) == sizeof(real) * 0x4);
+	}; static_assert(sizeof(real_plane3d) == sizeof(real)* 0x4, STATIC_ASSERT_FAIL);
 	#define pad_real_plane3d PAD32 PAD32 PAD32 PAD32
 
 	/*union*/ struct real_rectangle2d

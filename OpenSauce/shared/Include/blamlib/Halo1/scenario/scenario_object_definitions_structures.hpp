@@ -17,7 +17,7 @@ namespace Yelo
 			TAG_FIELD(tag_string, name);
 			_enum object_type;
 			int16 scenario_object_index;
-		}; static_assert( sizeof(scenario_object_name) == 0x24 );
+		}; static_assert(sizeof(scenario_object_name) == 0x24, STATIC_ASSERT_FAIL);
 
 		struct scenario_device_group
 		{
@@ -25,14 +25,14 @@ namespace Yelo
 			real initial_value;
 			long_flags flags;
 			TAG_PAD(int32, 3);
-		}; static_assert( sizeof(scenario_device_group) == 0x34 );
+		}; static_assert(sizeof(scenario_device_group) == 0x34, STATIC_ASSERT_FAIL);
 
 		struct scenario_object_palette_entry
 		{
 			tag_reference object_definition;
 			PAD_TYPE(tag_reference);
 			PAD_TYPE(tag_reference);
-		}; static_assert( sizeof(scenario_object_palette_entry) == 0x30 );
+		}; static_assert(sizeof(scenario_object_palette_entry) == 0x30, STATIC_ASSERT_FAIL);
 
 		//////////////////////////////////////////////////////////////////////////
 		// object
@@ -40,18 +40,18 @@ namespace Yelo
 		{
 			int16 palette_index;
 			int16 name_index;
-		}; static_assert( sizeof(s_scenario_object_header) == 0x4 );
+		}; static_assert(sizeof(s_scenario_object_header) == 0x4, STATIC_ASSERT_FAIL);
 		struct s_scenario_object_datum
 		{
 			word_flags placement_flags;
 			int16 desired_permutation;
 			real_point3d position;
 			real_euler_angles3d rotation;
-		}; static_assert( sizeof(s_scenario_object_datum) == 0x1C );
+		}; static_assert(sizeof(s_scenario_object_datum) == 0x1C, STATIC_ASSERT_FAIL);
 		struct s_scenario_object_permutation
 		{
 			PAD128;	PAD64;	PAD64;
-		}; static_assert( sizeof(s_scenario_object_permutation) == 0x20 );
+		}; static_assert(sizeof(s_scenario_object_permutation) == 0x20, STATIC_ASSERT_FAIL);
 
 		struct s_scenario_scenery_datum
 		{
@@ -151,46 +151,46 @@ namespace Yelo
 		struct s_scenario_scenery : public s_scenario_object
 		{
 			s_scenario_scenery_datum scenery;
-		}; static_assert( sizeof(s_scenario_scenery) == 0x48 );
+		}; static_assert(sizeof(s_scenario_scenery) == 0x48, STATIC_ASSERT_FAIL);
 
 		//////////////////////////////////////////////////////////////////////////
 		// units
 		struct s_scenario_biped : public s_scenario_unit
 		{
 			s_scenario_biped_datum biped;
-		}; static_assert( sizeof(s_scenario_biped) == 0x78 );
+		}; static_assert(sizeof(s_scenario_biped) == 0x78, STATIC_ASSERT_FAIL);
 		struct s_scenario_vehicle : public s_scenario_unit
 		{
 			s_scenario_vehicle_datum vehicle;
-		}; static_assert( sizeof(s_scenario_vehicle) == 0x78 );
+		}; static_assert(sizeof(s_scenario_vehicle) == 0x78, STATIC_ASSERT_FAIL);
 		//////////////////////////////////////////////////////////////////////////
 		// items
 		struct s_scenario_equipment : public s_scenario_object
 		{
 			s_scenario_equipment_datum equipment;
-		}; static_assert( sizeof(s_scenario_equipment) == 0x28 );
+		}; static_assert(sizeof(s_scenario_equipment) == 0x28, STATIC_ASSERT_FAIL);
 		struct s_scenario_weapon : public s_scenario_object
 		{
 			s_scenario_weapon_datum weapon;
-		}; static_assert( sizeof(s_scenario_weapon) == 0x5C );
+		}; static_assert(sizeof(s_scenario_weapon) == 0x5C, STATIC_ASSERT_FAIL);
 		//////////////////////////////////////////////////////////////////////////
 		// devices
 		struct s_scenario_machine : public s_scenario_device
 		{
 			s_scenario_machine_datum machine;
-		}; static_assert( sizeof(s_scenario_machine) == 0x40 );
+		}; static_assert(sizeof(s_scenario_machine) == 0x40, STATIC_ASSERT_FAIL);
 		struct s_scenario_control : public s_scenario_device
 		{
 			s_scenario_control_datum control;
-		}; static_assert( sizeof(s_scenario_control) == 0x40 );
+		}; static_assert(sizeof(s_scenario_control) == 0x40, STATIC_ASSERT_FAIL);
 		struct s_scenario_light_fixture : public s_scenario_device
 		{
 			s_scenario_light_fixture_datum light_fixture;
-		}; static_assert( sizeof(s_scenario_light_fixture) == 0x58 );
+		}; static_assert(sizeof(s_scenario_light_fixture) == 0x58, STATIC_ASSERT_FAIL);
 
 		struct s_scenario_sound_scenery : public s_scenario_object
 		{
 			s_scenario_sound_scenery_datum sound_scenery;
-		}; static_assert( sizeof(s_scenario_sound_scenery) == 0x28 );
+		}; static_assert(sizeof(s_scenario_sound_scenery) == 0x28, STATIC_ASSERT_FAIL);
 	};
 };

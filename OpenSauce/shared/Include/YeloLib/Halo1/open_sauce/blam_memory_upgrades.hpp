@@ -94,8 +94,8 @@ namespace Yelo {
 			k_hs_external_globals_count_upgrade = 1024 - k_maximum_hs_globals_per_scenario,
 		};
 
-		static_assert( k_maximum_hs_syntax_nodes_per_scenario_upgrade >= k_maximum_hs_syntax_nodes_per_scenario );
-		static_assert( k_maximum_hs_string_data_per_scenario_upgrade >= k_maximum_hs_string_data_per_scenario );
+		static_assert(k_maximum_hs_syntax_nodes_per_scenario_upgrade >= k_maximum_hs_syntax_nodes_per_scenario, STATIC_ASSERT_FAIL);
+		static_assert(k_maximum_hs_string_data_per_scenario_upgrade >= k_maximum_hs_string_data_per_scenario, STATIC_ASSERT_FAIL);
 	};
 
 
@@ -116,11 +116,9 @@ namespace Yelo {
 	// Render
 	namespace Enums {
 		enum {
-			k_maximum_rendered_objects_upgrade = 
-				k_maximum_rendered_objects + k_maximum_rendered_objects_upgrade_amount,
+			k_maximum_rendered_objects_upgrade = k_maximum_rendered_objects * k_maximum_rendered_objects_upgrade_amount,
 
-			k_maximum_rendered_triangles_upgrade =
-				CAST(uint32, k_maximum_rendered_triangles * K_MEMORY_UPGRADE_INCREASE_AMOUNT),
+			k_maximum_rendered_triangles_upgrade = CAST(uint32, k_maximum_rendered_triangles * K_MEMORY_UPGRADE_INCREASE_AMOUNT),
 		};
 	};
 

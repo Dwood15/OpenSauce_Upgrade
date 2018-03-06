@@ -32,7 +32,7 @@ namespace Yelo
 			PAD16;
 
 			s_shader_postprocess_bloom_definition bloom;
-		}; static_assert( sizeof(s_shader_postprocess_globals_bloom) == 0x28 );
+		}; static_assert(sizeof(s_shader_postprocess_globals_bloom) == 0x28, STATIC_ASSERT_FAIL);
 
 		struct s_shader_postprocess_globals
 		{
@@ -47,6 +47,6 @@ namespace Yelo
 					TAG_TBLOCK_(bloom_globals, s_shader_postprocess_globals_bloom);
 				};
 			};
-		}; static_assert( sizeof(s_shader_postprocess_globals) == 0xF4 );
+		}; static_assert(sizeof(s_shader_postprocess_globals) == 0xF4, STATIC_ASSERT_FAIL);
 	};
 };

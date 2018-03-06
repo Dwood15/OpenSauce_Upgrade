@@ -56,7 +56,7 @@ namespace Yelo
 		}
 	};
 #if !defined(PLATFORM_USE_CONDENSED_TAG_INTERFACE)
-	static_assert( sizeof(tag_reference) == 0x10 );
+	static_assert(sizeof(tag_reference) == 0x10, STATIC_ASSERT_FAIL);
 	#define pad_tag_reference PAD32 PAD32 PAD32 PAD32
 #else
 	static_assert( sizeof(tag_reference) == 0x8 );
@@ -150,7 +150,7 @@ namespace Yelo
 #endif
 	};
 #if !defined(PLATFORM_USE_CONDENSED_TAG_INTERFACE)
-	static_assert( sizeof(tag_block) == 0xC );
+	static_assert(sizeof(tag_block) == 0xC, STATIC_ASSERT_FAIL);
 	#define pad_tag_block PAD32 PAD32 PAD32
 #else
 	static_assert( sizeof(tag_block) == 0x8 );
@@ -208,7 +208,7 @@ namespace Yelo
 		bool resize(int32 new_size = 0);
 	};
 #if !defined(PLATFORM_USE_CONDENSED_TAG_INTERFACE)
-	static_assert( sizeof(tag_data) == 0x14 );
+	static_assert(sizeof(tag_data) == 0x14, STATIC_ASSERT_FAIL);
 	#define pad_tag_data PAD32 PAD32 PAD32 PAD32 PAD32
 #else
 	static_assert( sizeof(tag_data) == 0x8 );
@@ -356,6 +356,6 @@ namespace Yelo
 		struct s_tag_iterator {
 			Memory::s_data_iterator instances_iterator;
 			tag group_tag_filter;
-		}; static_assert( sizeof(s_tag_iterator) == 0x14 );
+		}; static_assert(sizeof(s_tag_iterator) == 0x14, STATIC_ASSERT_FAIL);
 	};
 };

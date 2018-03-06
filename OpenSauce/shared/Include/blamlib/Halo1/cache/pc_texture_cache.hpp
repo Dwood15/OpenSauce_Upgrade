@@ -26,6 +26,6 @@ namespace Yelo
 			PAD16;
 			TagGroups::s_bitmap_data* bitmap;
 			IDirect3DBaseTexture9* hardware_format; // the address of this field is returned by the texture request function
-		}; static_assert( sizeof(s_texture_cache_datum) == 0x10 );
+		}; static_assert(sizeof(s_texture_cache_datum) == 0x10, STATIC_ASSERT_FAIL);
 	};
 };

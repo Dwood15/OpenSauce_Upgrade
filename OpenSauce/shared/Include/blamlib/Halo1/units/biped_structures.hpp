@@ -84,7 +84,7 @@ namespace Yelo
 			UNKNOWN_TYPE(bool);								// 0x53C probably delta_valid. engine only writes to this, never reads. consider it 'unused'
 			PAD24;
 			s_biped_datum_network_data update_delta;		// 0x540
-		}; static_assert( sizeof(s_biped_data) == (Enums::k_object_size_biped - Enums::k_object_size_unit) );
+		}; static_assert(sizeof(s_biped_data) == (Enums::k_object_size_biped - Enums::k_object_size_unit), STATIC_ASSERT_FAIL);
 
 
 		struct s_biped_datum : s_unit_datum
@@ -92,6 +92,6 @@ namespace Yelo
 			enum { k_object_types_mask = FLAG(Enums::_object_type_biped) };
 
 			s_biped_data biped;
-		}; static_assert( sizeof(s_biped_datum) == Enums::k_object_size_biped );
+		}; static_assert(sizeof(s_biped_datum) == Enums::k_object_size_biped, STATIC_ASSERT_FAIL);
 	};
 };

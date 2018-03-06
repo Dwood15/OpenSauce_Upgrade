@@ -41,7 +41,7 @@ namespace Yelo
 				TAG_FLAG(self_illuminated, "don't cast world-lights onto this particle");
 				TAG_FLAG(random_horizontal_mirroring);
 				TAG_FLAG(random_vertical_mirroring);
-			}; static_assert( sizeof(__flags) == sizeof(long_flags) );
+			}; static_assert(sizeof(__flags) == sizeof(long_flags), STATIC_ASSERT_FAIL);
 
 			TAG_FIELD(__flags, flags);
 			TAG_FIELD(tag_reference, bitmap, 'bitm');

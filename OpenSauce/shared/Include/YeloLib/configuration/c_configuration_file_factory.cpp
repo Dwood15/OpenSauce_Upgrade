@@ -6,9 +6,7 @@
 #include "Common/Precompile.hpp"
 #include <YeloLib/configuration/c_configuration_file_factory.hpp>
 
-#include <YeloLib/configuration/property_tree/c_property_tree_file_xml.hpp>
 #include <YeloLib/configuration/property_tree/c_property_tree_file_json.hpp>
-#include <YeloLib/configuration/property_tree/c_property_tree_memory_xml.hpp>
 #include <YeloLib/configuration/property_tree/c_property_tree_memory_json.hpp>
 
 namespace Yelo
@@ -20,11 +18,7 @@ namespace Yelo
 			configuration_file_ptr_t configuration_file(nullptr);
 
 			// Determine the file type
-			if (EndsWith(file_path, ".xml"))
-			{
-				configuration_file.reset(new PropertyTree::c_property_tree_file_xml(file_path));
-			}
-			else if (EndsWith(file_path, ".json"))
+			if (EndsWith(file_path, ".json"))
 			{
 				configuration_file.reset(new PropertyTree::c_property_tree_file_json(file_path));
 			}
@@ -37,11 +31,7 @@ namespace Yelo
 			configuration_file_ptr_t configuration_file(nullptr);
 
 			// Determine the file type
-			if (format == "xml")
-			{
-				configuration_file.reset(new PropertyTree::c_property_tree_memory_xml(data));
-			}
-			else if (format == "json")
+			if (format == "json")
 			{
 				configuration_file.reset(new PropertyTree::c_property_tree_memory_json(data));
 			}

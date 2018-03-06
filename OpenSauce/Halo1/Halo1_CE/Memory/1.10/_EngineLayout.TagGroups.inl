@@ -12,6 +12,9 @@
 #include "Memory/1.10/Pointers/HaloCE_110_Dedi.TagGroups.inl"
 #include "Memory/1.10/Pointers/HaloCE_110_Dedi_Manual.TagGroups.inl"
 #endif
+#include "TagGroups/CacheFiles.MapList.inl"
+#include <blamlib/Halo1/interface/map_list.hpp>
+#include <BlamLib/Halo1/cache/cache_files_globals.hpp>
 
 //////////////////////////////////////////////////////////////////////////
 // CacheFiles.cpp
@@ -65,18 +68,18 @@
 		};
 
 #if !PLATFORM_IS_DEDI
-		static cstring* K_UI_SCENARIO_NAME_REFERENCES[] = {
-			CAST_PTR(cstring*,K_UI_SCENARIO_NAME_REFERENCE_0),
-			CAST_PTR(cstring*,K_UI_SCENARIO_NAME_REFERENCE_1),
+		static Yelo::cstring* K_UI_SCENARIO_NAME_REFERENCES[] = {
+			CAST_PTR(Yelo::cstring*,K_UI_SCENARIO_NAME_REFERENCE_0),
+			CAST_PTR(Yelo::cstring*,K_UI_SCENARIO_NAME_REFERENCE_1),
 		};
 #endif
 
-		ENGINE_PTR(s_cache_file_globals, cache_file_globals,	DUO_PTR(K_CACHE_FILE_GLOBALS));
+		ENGINE_PTR(Yelo::Cache::s_cache_file_globals, cache_file_globals,	DUO_PTR(K_CACHE_FILE_GLOBALS));
 		ENGINE_PTR(char, maps_folder_parent_dir,				DUO_PTR(K_MAPS_FOLDER_PARENT_DIR));
 	};
 	namespace Interface
 	{
-		ENGINE_PTR(map_list_data_t, multiplayer_maps,			DUO_PTR(K_MULTIPLAYER_MAPS));
+		ENGINE_PTR(Yelo::Interface::map_list_data_t, multiplayer_maps,			DUO_PTR(K_MULTIPLAYER_MAPS));
 		FUNC_PTR(MULTIPLAYER_MAP_LIST_INITIALIZE,				DUO_PTR(K_MULTIPLAYER_MAP_LIST_INITIALIZE));
 		FUNC_PTR(MULTIPLAYER_MAP_LIST_DISPOSE,					DUO_PTR(K_MULTIPLAYER_MAP_LIST_DISPOSE));
 	};

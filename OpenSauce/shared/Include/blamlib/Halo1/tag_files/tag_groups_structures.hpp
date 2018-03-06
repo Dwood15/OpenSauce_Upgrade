@@ -279,7 +279,7 @@ namespace Yelo
 			return s_field_iterator();
 		}
 #endif
-	}; static_assert( sizeof(tag_block_definition) == 0x2C );
+	}; static_assert(sizeof(tag_block_definition) == 0x2C, STATIC_ASSERT_FAIL);
 
 	typedef void (PLATFORM_API* proc_tag_data_byte_swap)(void* block_element, void* address, int32 size);
 	struct tag_data_definition
@@ -296,7 +296,7 @@ namespace Yelo
 				TEST_FLAG(flags, Flags::_tag_data_never_streamed_bit) ||
 				TEST_FLAG(flags, Flags::_tag_data_not_streamed_to_cache_bit);
 		}
-	}; static_assert( sizeof(tag_data_definition) == 0x10 );
+	}; static_assert(sizeof(tag_data_definition) == 0x10, STATIC_ASSERT_FAIL);
 
 	struct tag_reference_definition
 	{
@@ -339,7 +339,7 @@ namespace Yelo
 			return s_group_tag_iterator();
 		}
 #endif
-	}; static_assert( sizeof(tag_reference_definition) == 0xC );
+	}; static_assert(sizeof(tag_reference_definition) == 0xC, STATIC_ASSERT_FAIL);
 
 	// Postprocess a tag definition (eg, automate the creation of fields, etc)
 	// Called once the tag has been fully loaded (header_block_definition's postprocess is called before this)
@@ -356,18 +356,7 @@ namespace Yelo
 		tag child_group_tags[Enums::k_maximum_children_per_tag];
 		int16 child_count; PAD16;
 
-#if PLATFORM_IS_EDITOR
-		TagGroups::s_tag_field_set_runtime_data* GetHeaderRuntimeInfo() const { return header_block_definition->GetRuntimeInfo(); }
-
-		bool IsDebugOnly() const { return TEST_FLAG(flags, Flags::_tag_group_debug_only_yelo_bit); }
-
-		// tag_group* [] (ie, tag_group**) qsort procs
-		static int __cdecl CompareByNameProc(void*, const tag_group*const* lhs, const tag_group*const* rhs);
-		static int __cdecl CompareByGroupTagProc(void*, const tag_group*const* lhs, const tag_group*const* rhs);
-
-		static int __cdecl SearchByNameProc(void*, cstring key, const tag_group*const* group);
-#endif
-	}; static_assert( sizeof(tag_group) == 0x60 );
+	}; static_assert(sizeof(tag_group) == 0x60, STATIC_ASSERT_FAIL);
 
 
 	struct s_tag_instance : Memory::s_datum_base_aligned
@@ -382,13 +371,11 @@ namespace Yelo
 		datum_index reload_index;	// 0x114 index of the instance used to reload -this- tag's definition
 		uint32 file_checksum;		// 0x118
 		tag_block root_block;		// 0x11C
-	}; static_assert( sizeof(s_tag_instance) == 0x128 );
+	}; static_assert(sizeof(s_tag_instance) == 0x128, STATIC_ASSERT_FAIL);
 
 
-	namespace TagGroups
-	{
-		struct s_tag_field_definition
-		{
+	namespace TagGroups {
+		struct s_tag_field_definition {
 			size_t size;						/// <summary>	The size of a single instance of this field. </summary>
 			cstring name;						/// <summary>	The user-friendly name of this field. </summary>
 			byte_swap_code_t* byte_swap_codes;	/// <summary>	The needed for byte swapping an instance of this field. </summary>

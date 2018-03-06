@@ -72,7 +72,7 @@ namespace Yelo
 			int16 vertex0_index;
 			int16 vertex1_index;
 			int16 vertex2_index;
-		}; static_assert(sizeof(rasterizer_triangle) == 0x6);
+		}; static_assert(sizeof(rasterizer_triangle) == 0x6, STATIC_ASSERT_FAIL);
 
 		struct rasterizer_triangle_buffer
 		{
@@ -81,7 +81,7 @@ namespace Yelo
 			int32 count;
 			void* data;
 			void* hardware_format;
-		}; static_assert( sizeof(rasterizer_triangle_buffer) == 0x10 );
+		}; static_assert(sizeof(rasterizer_triangle_buffer) == 0x10, STATIC_ASSERT_FAIL);
 
 		struct rasterizer_vertex_buffer
 		{
@@ -91,7 +91,7 @@ namespace Yelo
 			int32 vertex_count;
 			void* data;
 			void* hardware_format;
-		}; static_assert( sizeof(rasterizer_vertex_buffer) == 0x14 );
+		}; static_assert(sizeof(rasterizer_vertex_buffer) == 0x14, STATIC_ASSERT_FAIL);
 
 		struct environment_vertex_uncompressed
 		{

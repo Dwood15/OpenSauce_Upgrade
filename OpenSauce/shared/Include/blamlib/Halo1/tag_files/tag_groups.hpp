@@ -23,57 +23,6 @@ namespace Yelo
 
 	namespace TagGroups
 	{
-#if PLATFORM_IS_EDITOR
-		typedef Memory::DataArray<	s_tag_instance, 
-								Enums::k_maximum_simultaneous_tag_instances,
-								Enums::k_maximum_simultaneous_tag_instances_upgrade> 
-			tag_instance_data_t;
-		tag_instance_data_t& TagInstances();
-
-		// Patches stock tag_groups with new fields where they once had useless padding
-		// Called before group definitions have been verified (but after group tags have) and group parents are built
-		// We do this to ensure we don't fuck anything up, but also because a parent group may get modified
-		// Defined in CheApe's TagFieldSetReplacements.cpp
-		// TODO: perhaps instead we should run this -after- initial verification, then in true debug builds
-		// run group verification again after this executes. Or we could perform verification in the fieldset replacement code
-		void InitializeFieldSetReplacements();
-		// Patches stock tag groups for various *fixes* (eg, to correct behavior), not additions or the like
-		// Called after the group definitions have been verified
-		// Defined in CheApe's TagGroups.cpp
-		void InitializeFixes();
-
-		extern const s_tag_field_definition k_tag_field_definitions[];
-
-		/// <summary>	when true, all 'model' references are loaded or get as gbxmodels </summary>
-		extern bool g_gbxmodel_group_enabled;
-
-		// Get the length, in characters, of a string field, excluding the null character
-		int32 StringFieldGetLength(const tag_field* field);
-		// Get the size, in characters, of a string field, inclusive of the null character
-		int32 StringFieldGetSize(const tag_field* field);
-
-		tag_group* FindTagGroupByName(cstring name);
-
-		char* TryAndGetGroupName(tag group_tag, _Out_ long_string name);
-
-		// Convenience function to handle deleting all of the data in tag_data field.
-		// Use [terminator_size] for tag_data which HAS to have a specific amount of 
-		// bytes no matter what. IE, text data requires 1 or 2 bytes (ascii or unicode) 
-		// for the null terminator.
-		void tag_data_delete(tag_data* data, size_t terminator_size = 0);
-		template<typename T> inline
-		void tag_data_delete(TagData<T>& data, size_t terminator_size = 0)
-		{
-			tag_data_delete(data.to_tag_data(), terminator_size);
-		}
-
-		bool tag_block_delete_all_elements(tag_block* block);
-		template<typename T> inline
-		bool tag_block_delete_all_elements(TagBlock<T>& block)
-		{
-			return tag_block_delete_all_elements(block.to_tag_block());
-		}
-#endif
 		// Note: when used in range based for loops this will create an unnecessary copy operation, but with SSE2 it shouldn't be that bad
 		class c_tag_iterator {
 			s_tag_iterator m_state;

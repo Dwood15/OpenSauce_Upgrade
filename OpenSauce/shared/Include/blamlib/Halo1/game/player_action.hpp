@@ -35,7 +35,7 @@ namespace Yelo {
 			datum_index action_object_index; //0x0
 			int16 action_result;			 //0x4  num object_type
 			int16 action_seat_index;		 //0x6
-		}; static_assert( sizeof(s_player_action_result) == 0x8 );
+		}; static_assert(sizeof(s_player_action_result) == 0x8, STATIC_ASSERT_FAIL);
 
 		struct s_player_action {
 			long_flags control_flags; //0x4
@@ -45,7 +45,7 @@ namespace Yelo {
 			int16 desired_weapon_index, desired_grenade_index;
 			int16 desired_zoom_index;
 			PAD16;
-		}; static_assert( sizeof(s_player_action) == 0x20 );
+		}; static_assert(sizeof(s_player_action) == 0x20, STATIC_ASSERT_FAIL);
 
 		struct s_player_set_action_result_network_data
 		{
@@ -53,6 +53,6 @@ namespace Yelo {
 			long_enum action_result_type;
 			s_player_action_result action;
 			datum_index weapon_to_drop_as_result_of_swap;
-		}; static_assert( sizeof(s_player_set_action_result_network_data) == 0x14 );
+		}; static_assert(sizeof(s_player_set_action_result_network_data) == 0x14, STATIC_ASSERT_FAIL);
 	};
 };

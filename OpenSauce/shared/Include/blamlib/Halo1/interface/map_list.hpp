@@ -36,7 +36,7 @@ namespace Yelo
 			cstring name;
 			bool is_original; // ie, bungie made it
 			PAD24;
-		}; static_assert( sizeof(s_map_list_map_info) == 0xC );
+		}; static_assert(sizeof(s_map_list_map_info) == 0xC, STATIC_ASSERT_FAIL);
 
 		// This is the engine's struct for representing maps it found in the maps\ folder.
 		// We don't define an actual ctor\dtor because of this
@@ -67,11 +67,11 @@ namespace Yelo
 			// returns whether the map, and thus this entry, is valid
 			bool ReadHeader(cstring map_path);
 			
-			void InitializeFromHeader(const Cache::s_cache_header& header);
+			void InitializeFromHeader(Cache::s_cache_header& header);
 
 			// Our dtor disposer for this engine struct
 			void Dispose();
-		}; static_assert( sizeof(s_map_list_map) == 0x10 );
+		}; static_assert(sizeof(s_map_list_map) == 0x10, STATIC_ASSERT_FAIL);
 		typedef Memory::GbxArray<s_map_list_map> map_list_data_t;
 
 		map_list_data_t* MultiplayerMaps();
@@ -90,8 +90,7 @@ namespace Yelo
 		/// <param name="system_map_index">	(Optional) zero-based index of the map. </param>
 		///
 		/// <returns>	Index of the new s_map_list_map, or NONE if it failed to add. </returns>
-		int32 MapListAddMapFromPath(cstring maps_path, cstring map_file_name,
-			int32 system_map_index = Enums::_system_multiplayer_map_user_created);
+		int32 MapListAddMapFromPath(cstring maps_path, cstring map_file_name, int32 system_map_index = Enums::_system_multiplayer_map_user_created);
 
 		////////////////////////////////////////////////////////////////////////////////////////////////////
 		/// <summary>	Lookup the index of a s_map_list_map by a map_name. </summary>
@@ -104,10 +103,8 @@ namespace Yelo
 
 	namespace blam
 	{
-#if !PLATFORM_IS_EDITOR
-		extern cstring const k_map_list_ignored_map_names[10+1+3];
-		extern const Interface::s_map_list_map_info k_map_list_mp_maps[Enums::k_number_of_system_multiplayer_maps];
-#endif
+		extern cstring k_map_list_ignored_map_names[10+1+3];
+		extern Interface::s_map_list_map_info k_map_list_mp_maps[Enums::k_number_of_system_multiplayer_maps];
 
 		cstring map_list_map_name(int32 index);
 		int32 map_list_map_index(int32 index);

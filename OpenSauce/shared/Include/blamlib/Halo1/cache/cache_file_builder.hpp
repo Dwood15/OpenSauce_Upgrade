@@ -32,7 +32,7 @@ namespace Yelo
 			_build_cache_file_begin_dump_tag_group_allocation_stats_bit,
 
 			k_number_of_build_cache_file_begin_flags
-		}; static_assert(k_number_of_build_cache_file_begin_flags <= BIT_COUNT(byte));
+		}; static_assert(k_number_of_build_cache_file_begin_flags <= BIT_COUNT(byte), STATIC_ASSERT_FAIL);
 	}
 
 	namespace Cache
@@ -91,11 +91,11 @@ namespace Yelo
 			byte padding[k_pad_size];
 
 			tag footer_signature;
-		}; static_assert( sizeof(s_cache_header_xbox) == 0x800 );
+		}; static_assert( sizeof(s_cache_header_xbox) == 0x800, STATIC_ASSERT_FAIL );
 
 		typedef s_cache_tag_instance
 			s_cache_tag_instance_xbox;
-		static_assert( sizeof(s_cache_tag_instance_xbox) == 0x20 );
+		static_assert( sizeof(s_cache_tag_instance_xbox) == 0x20, STATIC_ASSERT_FAIL );
 
 		struct s_cache_tag_header_xbox
 		{
@@ -108,7 +108,7 @@ namespace Yelo
 				void* base_address;
 			}vertices, indices;			// 0x10, 0x18
 			tag signature;				// 0x20
-		}; static_assert( sizeof(s_cache_tag_header_xbox) == 0x24 );
+		}; static_assert( sizeof(s_cache_tag_header_xbox) == 0x24, STATIC_ASSERT_FAIL );
 		//////////////////////////////////////////////////////////////////////////
 
 		s_build_cache_file_globals* BuildCacheFileGlobals();
@@ -139,8 +139,7 @@ namespace Yelo
 
 		bool PLATFORM_API scenario_load_all_structure_bsps();
 
-		void build_cache_file_for_scenario(cstring scenario_path,
-			byte_flags begin_flags);
+		void build_cache_file_for_scenario(cstring scenario_path, byte_flags begin_flags);
 	};
 };
 #endif

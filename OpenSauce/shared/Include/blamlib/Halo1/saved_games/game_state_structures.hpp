@@ -27,7 +27,7 @@ namespace Yelo
 				byte _unused[32];
 				s_yelo_header_data yelo;
 			};
-		}; static_assert( sizeof(s_header_data) == 0x14C );
+		}; static_assert(sizeof(s_header_data) == 0x14C, STATIC_ASSERT_FAIL);
 
 		struct s_game_state_globals
 		{
@@ -54,6 +54,6 @@ namespace Yelo
 			bool autosave_finished;
 			bool creating_autosave;
 			PAD16;
-		}; static_assert( sizeof(s_game_state_globals) == 0x23C );
+		}; static_assert(sizeof(s_game_state_globals) == 0x23C, STATIC_ASSERT_FAIL);
 	};
 };

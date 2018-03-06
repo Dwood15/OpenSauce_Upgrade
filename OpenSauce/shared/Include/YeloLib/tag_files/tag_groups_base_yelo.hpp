@@ -38,9 +38,9 @@ namespace Yelo
 		tag Tag() const { return K_TAG; }
 	};
 #if !defined(PLATFORM_USE_CONDENSED_TAG_INTERFACE)
-	static_assert( sizeof(TagReference<NONE>) == 0x10 );
+	static_assert(sizeof(TagReference<NONE>) == 0x10, STATIC_ASSERT_FAIL);
 #else
-	static_assert( sizeof(TagReference<NONE>) == 0x8 );
+	static_assert( sizeof(TagReference<NONE>) == 0x8, STATIC_ASSERT_FAIL );
 #endif
 	template<>
 	inline bool TagReference<NONE>::IsValid() const { return true; }
@@ -142,9 +142,9 @@ namespace Yelo
 		size_t size() const { return CAST(size_t, Count); }
 	};
 #if !defined(PLATFORM_USE_CONDENSED_TAG_INTERFACE)
-	static_assert( sizeof(TagBlock<byte>) == 0xC );
+	static_assert(sizeof(TagBlock<byte>) == 0xC, STATIC_ASSERT_FAIL);
 #else
-	static_assert( sizeof(TagBlock<byte>) == 0x8 );
+	static_assert( sizeof(TagBlock<byte>) == 0x8, STATIC_ASSERT_FAIL);
 #endif
 	namespace blam
 	{
@@ -247,9 +247,9 @@ namespace Yelo
 #endif
 	};
 #if !defined(PLATFORM_USE_CONDENSED_TAG_INTERFACE)
-	static_assert( sizeof(TagData<byte>) == 0x14 );
+	static_assert(sizeof(TagData<byte>) == 0x14, STATIC_ASSERT_FAIL);
 #else
-	static_assert( sizeof(TagData<byte>) == 0x8 );
+	static_assert( sizeof(TagData<byte>) == 0x8, STATIC_ASSERT_FAIL );
 #endif
 	namespace blam
 	{

@@ -18,10 +18,6 @@
 //
 //////////////////////////////////////////////////////////////////////////
 
-#if PLATFORM_IS_DEDI
-	#define PLATFORM_VALUE(ce_value, cededi_value) cededi_value
-#elif PLATFORM_IS_USER
-	#define PLATFORM_VALUE(ce_value, cededi_value) ce_value
-#endif
 
+#define PLATFORM_VALUE(ce_value, cededi_value) ce_value
 #define PLATFORM_PTR(type, ce_value, cededi_value) CAST_PTR(type, PLATFORM_VALUE(ce_value, cededi_value))

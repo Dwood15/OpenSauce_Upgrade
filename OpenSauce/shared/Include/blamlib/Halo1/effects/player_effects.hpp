@@ -19,7 +19,7 @@ namespace Yelo
 			UNKNOWN_TYPE(real); UNKNOWN_TYPE(real); UNKNOWN_TYPE(real);
 			UNKNOWN_TYPE(int32); // unused?
 			UNKNOWN_TYPE(int32); // unused?
-		}; static_assert( sizeof(s_player_screen_flash) == 0x20 );
+		}; static_assert(sizeof(s_player_screen_flash) == 0x20, STATIC_ASSERT_FAIL);
 
 
 		struct s_player_effects_data : TStructImpl(0x128)

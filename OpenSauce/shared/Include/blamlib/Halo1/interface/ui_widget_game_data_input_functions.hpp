@@ -85,6 +85,6 @@ namespace Yelo
 			TAG_ENUM(function, Enums::game_data_input_reference_function);
 			PAD16;
 			TAG_PAD(tag_string, 1);
-		}; static_assert( sizeof(game_data_input_reference) == 0x24 ); // max count: 64
+		}; static_assert(sizeof(game_data_input_reference) == 0x24, STATIC_ASSERT_FAIL); // max count: 64
 	};
 };

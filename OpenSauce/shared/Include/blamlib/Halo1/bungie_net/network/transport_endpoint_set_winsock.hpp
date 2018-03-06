@@ -20,6 +20,6 @@ namespace Yelo
 			int32 max_endpoints;
 			int32 count;
 			int32 array_cursor;
-		}; static_assert( sizeof(s_transport_endpoint_set) == 0x114 );
+		}; static_assert(sizeof(s_transport_endpoint_set) == 0x114, STATIC_ASSERT_FAIL);
 	};
 };

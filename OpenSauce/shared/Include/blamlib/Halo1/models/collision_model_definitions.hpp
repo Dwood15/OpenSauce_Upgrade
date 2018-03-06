@@ -86,7 +86,7 @@ namespace Yelo
 			TAG_FIELD(tag_reference, depleted_effect, 'effe');
 			TAG_FIELD(real, destroyed_threshold);
 			TAG_FIELD(tag_reference, destroyed_effect, 'effe');
-		}; static_assert( sizeof(s_body_damage_resistance) == 0xC4 );
+		}; static_assert(sizeof(s_body_damage_resistance) == 0xC4, STATIC_ASSERT_FAIL);
 		struct s_shield_damage_resistance
 		{
 			TAG_FIELD(real, maximum_vitality);
@@ -112,7 +112,7 @@ namespace Yelo
 			TAG_FIELD(tag_reference, depleted_effect, 'effe');
 
 			TAG_FIELD(tag_reference, recharging_effect, 'effe');
-		}; static_assert( sizeof(s_shield_damage_resistance) == 0xEC );
+		}; static_assert(sizeof(s_shield_damage_resistance) == 0xEC, STATIC_ASSERT_FAIL);
 		struct s_damage_resistance // or s_model_damage_info
 		{
 			TAG_FIELD(long_flags, flags);

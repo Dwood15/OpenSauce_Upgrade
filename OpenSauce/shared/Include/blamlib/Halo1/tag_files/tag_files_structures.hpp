@@ -50,7 +50,7 @@ namespace Yelo
 			void InitializeForYeloFormat(int16 tag_version);
 		private:
 			void Initialize(int16 tag_version);
-		}; static_assert( sizeof(s_tag_header) == 0x40 );
+		}; static_assert(sizeof(s_tag_header) == 0x40, STATIC_ASSERT_FAIL);
 
 
 		struct s_tag_file_globals

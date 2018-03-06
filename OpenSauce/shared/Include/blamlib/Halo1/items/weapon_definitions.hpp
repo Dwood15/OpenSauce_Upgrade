@@ -36,7 +36,7 @@ namespace Yelo
 			TAG_FIELD(int16, rounds);
 			PAD16; PAD64;
 			TAG_FIELD(tag_reference, equipment);
-		}; static_assert( sizeof(weapon_ammunition_object) == 0x1C); // VS2012.2's intellisense is broken http://connect.microsoft.com/VisualStudio/feedback/details/745237/invalid-byte-order-in-intellisense
+		}; static_assert(sizeof(weapon_ammunition_object) == 0x1C, STATIC_ASSERT_FAIL); // VS2012.2's intellisense is broken http://connect.microsoft.com/VisualStudio/feedback/details/745237/invalid-byte-order-in-intellisense
 		struct weapon_magazine_definition
 		{
 			struct _flags {
@@ -58,7 +58,7 @@ namespace Yelo
 			TAG_FIELD(tag_reference, chambering_effect);
 			TAG_PAD(tag_block, 1);
 			TAG_TBLOCK(magazines, weapon_ammunition_object);
-		}; static_assert( sizeof(weapon_magazine_definition) == 0x70);
+		}; static_assert(sizeof(weapon_magazine_definition) == 0x70, STATIC_ASSERT_FAIL);
 		struct weapon_trigger_firing_effect
 		{
 			TAG_FIELD(short_bounds, shot_count);
@@ -69,7 +69,7 @@ namespace Yelo
 			TAG_FIELD(tag_reference, firing_damage);
 			TAG_FIELD(tag_reference, misfire_damage);
 			TAG_FIELD(tag_reference, empty_damage);
-		}; static_assert( sizeof(weapon_trigger_firing_effect) == 0x84);
+		}; static_assert(sizeof(weapon_trigger_firing_effect) == 0x84, STATIC_ASSERT_FAIL);
 		struct weapon_trigger_definition
 		{
 			struct _flags{
@@ -87,7 +87,7 @@ namespace Yelo
 				TAG_FLAG(projectile_vector_cannot_be_adjusted);
 				TAG_FLAG(projectiles_have_identical_error);
 				TAG_FLAG(projectile_is_client_side_only); // added in HaloPC
-			}flags; static_assert( sizeof(_flags) == sizeof(long_flags) );
+			}flags; static_assert(sizeof(_flags) == sizeof(long_flags), STATIC_ASSERT_FAIL);
 
 			//firing
 			TAG_FIELD(real_bounds, rounds_per_second);
@@ -148,7 +148,7 @@ namespace Yelo
 				real error_deceleration_time;
 			}postprocessed;
 			TAG_TBLOCK(firing_effects, weapon_trigger_firing_effect);
-		}; static_assert( sizeof(weapon_trigger_definition) == 0x114);
+		}; static_assert(sizeof(weapon_trigger_definition) == 0x114, STATIC_ASSERT_FAIL);
 		struct _weapon_definition
 		{
 			struct _flags {
@@ -169,7 +169,7 @@ namespace Yelo
 				TAG_FLAG(enables_integrated_night_vision);
 				TAG_FLAG(AIs_use_weapon_melee_damage);
 				TAG_FLAG(third_person_weapon);
-			}flags; static_assert( sizeof(_flags) == sizeof(long_flags) );
+			}flags; static_assert(sizeof(_flags) == sizeof(long_flags), STATIC_ASSERT_FAIL);
 			TAG_FIELD(tag_string, label);
 			TAG_ENUM(secondary_trigger_mode);
 			TAG_FIELD(int16, maximum_alternate_shots_loaded);
@@ -249,13 +249,13 @@ namespace Yelo
 			TAG_TBLOCK(predicted_resources, predicted_resource);
 			TAG_TBLOCK(magazines, weapon_magazine_definition);
 			TAG_TBLOCK(triggers, weapon_trigger_definition);
-		}; static_assert( sizeof(_weapon_definition) == 0x200);
+		}; static_assert(sizeof(_weapon_definition) == 0x200, STATIC_ASSERT_FAIL);
 
 		struct s_weapon_definition : s_item_definition
 		{
 			enum { k_group_tag = 'weap' };
 
 			_weapon_definition weapon;
-		}; static_assert( sizeof(s_weapon_definition) == 0x508);
+		}; static_assert(sizeof(s_weapon_definition) == 0x508, STATIC_ASSERT_FAIL);
 	};
 };

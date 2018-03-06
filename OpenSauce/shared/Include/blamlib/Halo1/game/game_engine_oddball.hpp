@@ -22,6 +22,6 @@ namespace Yelo
 			int32 undocumented1[Enums::k_multiplayer_maximum_players];
 			datum_index current_ball_owners[Enums::k_multiplayer_maximum_players]; // player_index
 			int32 current_ball_held_times[Enums::k_multiplayer_maximum_players]; // game-ticks
-		}; //static_assert( sizeof(s_slayer_globals) == 0x );
+		}; //static_assert( sizeof(s_slayer_globals) == 0x , STATIC_ASSERT_FAIL);
 	};
 };
