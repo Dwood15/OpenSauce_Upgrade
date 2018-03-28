@@ -6,8 +6,6 @@
 */
 #include "Common/Precompile.hpp"
 #include "Interface/Controls.hpp"
-#if !PLATFORM_IS_DEDI
-
 #include "Memory/MemoryInterface.hpp"
 #include "Interface/OpenSauceUI.hpp"
 
@@ -78,51 +76,6 @@ namespace Yelo
 		void AllowMovement(bool allow)	{ SET_FLAG(GET_PTR(InputStateFlags), Flags::_input_state_enabled_bit, allow); }
 
 
-		int32 GetControlState(int16 device, int16 type, int16 index, int16 direction)
-		{
-			int32 state = 0;
-
-			if(device == Enums::_ControlDeviceKeyboard)		state = GetKeyState( (Enums::key_code)index );
-			else if(device == Enums::_ControlDeviceMouse)
-			{
-				if(type == Enums::_ControlTypeButton)		state = GetMouseButtonState( (Enums::MouseButton)index );
-				else if(type == Enums::_ControlTypeAxis)	state = GetMouseAxisState( (Enums::MouseAxis)index );
-			}
-			else if(device == Enums::_ControlDeviceGamepad)
-			{
-				if(type == Enums::_ControlTypeButton)		state = GetGamepadButtonState( (Enums::GamepadButton)index );
-				else if(type == Enums::_ControlTypeAxis)	state = GetGamepadAxisState( (Enums::GamepadAxis)index );
-				else if(type == Enums::_ControlTypeDpad)	state = GetGamepadDpadState( (Enums::GamepadDpad)index );
-			}
-
-			// Check if direction matches setting
-			if(	type == Enums::_ControlTypeAxis && 
-				direction && 
-				state != (direction > 0 ? 1 : 2) )
-				state = 0;
-			else if(type == Enums::_ControlTypeDpad && 
-					state != direction )
-				state = 0;
-
-			return state;
-		}
-
-		void SetControlState(int16 device, int16 type, int16 index, int32 state)
-		{
-			if(device == Enums::_ControlDeviceKeyboard)		SetKeyState( (Enums::key_code)index, (byte)state);
-			else if(device == Enums::_ControlDeviceMouse)
-			{
-				if(type == Enums::_ControlTypeButton)		SetMouseButtonState( (Enums::MouseButton)index, (byte)state);
-				else if(type == Enums::_ControlTypeAxis)	SetMouseAxisState( (Enums::MouseAxis)index, state);
-			}
-			else if(device == Enums::_ControlDeviceGamepad)
-			{
-				if(type == Enums::_ControlTypeButton)		SetGamepadButtonState( (Enums::GamepadButton)index, (byte)state);
-				else if(type == Enums::_ControlTypeAxis)	SetGamepadAxisState( (Enums::GamepadAxis)index, (sbyte)state);
-				else if(type == Enums::_ControlTypeDpad)	SetGamepadDpadState( (Enums::GamepadDpad)index, state);
-			}
-		}
-
 		int16 SettingsGetDevice(Enums::PlayerControl control)			{ return GET_PTR2(Settings)[control].Device; }
 		int16 SettingsGetType(Enums::PlayerControl control)				{ return GET_PTR2(Settings)[control].Type; }
 		int16 SettingsGetIndex(Enums::PlayerControl control)			{ return GET_PTR2(Settings)[control].Index; }
@@ -151,7 +104,6 @@ namespace Yelo
 		int32 GetGamepadDpadState(Enums::GamepadDpad dpad)				{ return GET_PTR2(ControlState)->GamepadDpad[dpad]; }
 		void SetGamepadDpadState(Enums::GamepadDpad dpad, int32 state)	{ GET_PTR2(ControlState)->GamepadDpad[dpad] = state; }
 
-#ifdef API_DEBUG
 		cstring ControlTypeToString(Enums::ControlType value)
 		{
 			static cstring string_list[] = {
@@ -214,8 +166,5 @@ namespace Yelo
 
 			return string_list[value];
 		}
-#endif
 	};
 };
-
-#endif

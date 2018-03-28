@@ -11,6 +11,7 @@
 #else
 #include "Memory/1.10/Pointers/HaloCE_110_Dedi.OpenSauce.inl"
 #endif
+#include <YeloLib/memory/memory_interface_base.hpp>
 
 //////////////////////////////////////////////////////////////////////////
 // Memory/FunctionInterface.cpp
@@ -44,12 +45,8 @@
 //////////////////////////////////////////////////////////////////////////
 // Common/GameSystems.cpp
 #elif __EL_INCLUDE_FILE_ID == __EL_COMMON_GAME_SYSTEMS
-	FUNC_PTR(QUERY_EXITFLAG_REG_CALL,									DUO_PTR(K_QUERY_EXITFLAG_REG_CALL));
 	FUNC_PTR(QUERY_EXITFLAG_REG,										DUO_PTR(K_QUERY_EXITFLAG_REG));
-	FUNC_PTR(RELEASE_RESOURCES_ON_EXIT_CALL,							DUO_PTR(K_RELEASE_RESOURCES_ON_EXIT_CALL));
 	FUNC_PTR(RELEASE_RESOURCES_ON_EXIT,									DUO_PTR(K_RELEASE_RESOURCES_ON_EXIT));
-
-	DATA_PTR(PE_DATA_SIZE,												0x215000, 0x171000);
 
 
 //////////////////////////////////////////////////////////////////////////

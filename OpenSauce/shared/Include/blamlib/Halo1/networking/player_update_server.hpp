@@ -51,7 +51,7 @@ namespace Yelo
 		{
 			//s_action_update current_action
 
-			TStructGetPtrImpl(Memory::s_simple_circular_queue, ActionQueue, 0x28, STATIC_ASSERT_FAIL);
+			TStructGetPtrImpl(Memory::s_simple_circular_queue, ActionQueue, 0x28);
 		};
 		typedef Memory::DataArray<update_server_queues_datum, Enums::k_multiplayer_maximum_players>
 			update_server_queues_data_t;

@@ -36,7 +36,8 @@ namespace Yelo
 			TAG_FIELD(int16, rounds);
 			PAD16; PAD64;
 			TAG_FIELD(tag_reference, equipment);
-		}; static_assert(sizeof(weapon_ammunition_object) == 0x1C, STATIC_ASSERT_FAIL); // VS2012.2's intellisense is broken http://connect.microsoft.com/VisualStudio/feedback/details/745237/invalid-byte-order-in-intellisense
+		}; static_assert(sizeof(weapon_ammunition_object) == 0x1C, STATIC_ASSERT_FAIL); 
+		// VS2012.2's intellisense is broken http://connect.microsoft.com/VisualStudio/feedback/details/745237/invalid-byte-order-in-intellisense
 		struct weapon_magazine_definition
 		{
 			struct _flags {

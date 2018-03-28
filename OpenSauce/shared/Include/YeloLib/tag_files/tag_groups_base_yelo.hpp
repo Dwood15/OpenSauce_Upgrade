@@ -50,6 +50,7 @@ namespace Yelo
 	template<typename T>
 	struct TagBlock
 	{
+		//STATIC TYPEDEFS. THESE ARENT EVER COMPILED HOLY MOLEY.
 		typedef T*			iterator;
 		typedef const T*	const_iterator;
 		typedef T			value_type;
@@ -146,43 +147,6 @@ namespace Yelo
 #else
 	static_assert( sizeof(TagBlock<byte>) == 0x8, STATIC_ASSERT_FAIL);
 #endif
-	namespace blam
-	{
-#if PLATFORM_IS_EDITOR
-		template<typename T>
-		T* tag_block_get_element(TagBlock<T>& block, int32 element)
-		{
-			return CAST_PTR(T*, tag_block_get_element(block.to_tag_block(), element));
-		}
-		template<typename T>
-		const T* tag_block_get_element(const TagBlock<T>& block, int32 element)
-		{
-			return CAST_PTR(const T*, tag_block_get_element(block.to_tag_block(), element));
-		}
-		template<typename T>
-		int32 tag_block_add_element(TagBlock<T>& block)
-		{
-			return tag_block_add_element(block.to_tag_block());
-		}
-		template<typename T>
-		bool tag_block_resize(TagBlock<T>& block, int32 element_count)
-		{
-			return tag_block_resize(block.to_tag_block(), element_count);
-		}
-		template<typename T>
-		void tag_block_delete_element(TagBlock<T>& block, int32 element)
-		{
-			tag_block_delete_element(block.to_tag_block(), element);
-		}
-
-		template<typename T>
-		T* tag_block_add_and_get_element(TagBlock<T>& block)
-		{
-			return CAST_PTR(T*, tag_block_add_and_get_element(block.to_tag_block()));
-		}
-#endif
-	};
-
 
 	// Template'd tag_data for more robust code dealing with known
 	// sub-structures.
@@ -240,27 +204,12 @@ namespace Yelo
 
 		bool empty() const { return Size == 0; }
 		size_t size() const { return CAST(size_t, Count()); }
-
-
-#if PLATFORM_IS_EDITOR
-		void resize(size_t new_size = 0)	{ blam::tag_data_resize(this, new_size); }
-#endif
 	};
 #if !defined(PLATFORM_USE_CONDENSED_TAG_INTERFACE)
 	static_assert(sizeof(TagData<byte>) == 0x14, STATIC_ASSERT_FAIL);
 #else
 	static_assert( sizeof(TagData<byte>) == 0x8, STATIC_ASSERT_FAIL );
 #endif
-	namespace blam
-	{
-#if PLATFORM_IS_EDITOR
-		template<typename T>
-		bool tag_data_resize(TagData<T>& data, size_t new_size = 0)
-		{
-			return tag_data_resize(data.to_tag_data(), new_size);
-		}
-#endif
-	};
 };
 
 

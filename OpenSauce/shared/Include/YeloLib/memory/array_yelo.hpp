@@ -8,8 +8,8 @@
 namespace Yelo::Memory {
 	// C++ wrapper for blamlib's s_dynamic_array
 	template <typename DatumT> class DynamicArray {
-		size_t  element_size;
-		int32   count;
+		size_t  element_size = sizeof(DatumT);
+		int32   count = 0;
 		DatumT* elements;
 
 	public:
@@ -17,15 +17,11 @@ namespace Yelo::Memory {
 			return count;
 		}
 
-		const DatumT* operator [](int32 index) const {
+		DatumT* operator [](int32 index) {
 			if (index < 0 || index >= count)
 				return nullptr;
 
 			return &CAST_PTR(DatumT*, elements)[index];
-		}
-
-		DatumT* operator [](int32 index) {
-			return CAST_THIS_NONCONST_MEMBER_FUNC(DatumT*, [index]);
 		}
 	};
 
@@ -53,9 +49,5 @@ namespace Yelo::Memory {
 
 			return &CAST_PTR(DatumT*, elements)[index];
 		}
-
-//		DatumT* operator [](int32 index) {
-//			return CAST_THIS_NONCONST_MEMBER_FUNC(DatumT*, [index]);
-//		}
 	};
 };

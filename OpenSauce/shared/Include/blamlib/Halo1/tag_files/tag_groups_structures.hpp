@@ -152,21 +152,6 @@ namespace Yelo
 		Enums::field_type type; PAD16;
 		cstring name;
 		void* definition;
-
-#if PLATFORM_IS_EDITOR
-		// cast the [definition] pointer to a T*
-		template<typename T>
-		T* Definition() const { return CAST_PTR(T*, definition); }
-		// cast the data of [definition] to T
-		template<typename T>
-		T DefinitionCast() const { return CAST_PTR(T, definition); }
-
-		size_t GetSize(_Out_opt_ size_t* runtime_size) const;
-		bool IsReadOnly() const;
-		bool IsAdvanced() const;
-		bool IsBlockName() const;
-		bool IsInvisible() const;
-#endif
 	}; static_assert(sizeof(tag_field) == 0xC, STATIC_ASSERT_FAIL);
 
 	// Called as each element is read from the tag stream
@@ -192,93 +177,6 @@ namespace Yelo
 		proc_tag_block_format format_proc;
 		proc_tag_block_delete_element delete_proc;
 		byte_swap_code_t* byte_swap_codes;
-
-#if PLATFORM_IS_EDITOR
-		// Searches the definition for a field of type [field_type] with a name which starts 
-		// with [name] characters. Optionally starts at a specific field index.
-		// Returns NONE if this fails.
-		int32 FindFieldIndex(_enum field_type, cstring name, int32 start_index = NONE) const;
-		tag_field* FindField(_enum field_type, cstring name, int32 start_index = NONE);
-		tag_block_definition* FindBlockField(cstring name, int32 start_index = NONE);
-
-		size_t GetAlignmentBit() const;
-		TagGroups::s_tag_field_set_runtime_data* GetRuntimeInfo() const;
-		void SetRuntimeInfo(TagGroups::s_tag_field_set_runtime_data* info);
-
-		// TAction: void operator()([const] tag_block_definition* block, [const] tag_field& field)
-		template<class TAction, bool k_assert_field_type>
-		void FieldsDoAction(TAction& action = TAction())
-		{
-			for(auto& field : *this)
-			{
-				if(k_assert_field_type)
-				{
-					YELO_ASSERT( field.type>=0 && field.type<Enums::k_number_of_tag_field_types );
-				}
-
-				action(this, field);
-			}
-		}
-
-		// Mainly a visitor for startup/shutdown processes, performs an action (via a functor) on a root block definition
-		// then repeats the action for all child blocks (etc)
-		// Uses CRT assert()'s since it is assumed this is used after the group definitions have been verified
-		// TAction: void operator()([const] tag_block_definition* block_definition)
-		template<class TAction>
-		void DoRecursiveAction(TAction& action = TAction())
-		{
-			action(this); // perform the action on the root first
-
-			size_t field_index = 0;
-
-			do {
-				const tag_field& field = fields[field_index];
-				assert( field.type>=0 && field.type<Enums::k_number_of_tag_field_types );
-
-				if(field.type == Enums::_field_block)
-				{
-					assert(field.definition != this);
-
-					action(field.Definition<tag_block_definition>());
-				}
-
-			} while(fields[field_index++].type != Enums::_field_terminator);
-		}
-
-		struct s_field_iterator
-		{
-		private:
-			tag_field* m_fields;
-
-			bool IsEndHack() const			{ return m_fields == nullptr; }
-
-		public:
-			s_field_iterator() : m_fields(nullptr) {} // for EndHack
-			s_field_iterator(const tag_block_definition* definition) : m_fields(definition->fields) {}
-
-			bool operator!=(const s_field_iterator& other) const;
-
-			s_field_iterator& operator++()
-			{
-				++m_fields;
-				return *this;
-			}
-			tag_field& operator*() const
-			{
-				return *m_fields;
-			}
-		};
-
-		s_field_iterator begin() /*const*/
-		{
-			auto iter = s_field_iterator(this);
-			return iter;
-		}
-		static const s_field_iterator end() /*const*/
-		{
-			return s_field_iterator();
-		}
-#endif
 	}; static_assert(sizeof(tag_block_definition) == 0x2C, STATIC_ASSERT_FAIL);
 
 	typedef void (PLATFORM_API* proc_tag_data_byte_swap)(void* block_element, void* address, int32 size);
@@ -303,42 +201,6 @@ namespace Yelo
 		long_flags flags;
 		tag group_tag;
 		tag* group_tags;
-
-#if PLATFORM_IS_EDITOR
-		struct s_group_tag_iterator
-		{
-		private:
-			tag* m_group_tags;
-
-			bool IsEndHack() const			{ return m_group_tags == nullptr; }
-
-		public:
-			s_group_tag_iterator() : m_group_tags(nullptr) {} // for EndHack
-			s_group_tag_iterator(const tag_reference_definition* definition) : m_group_tags(definition->group_tags) {}
-
-			bool operator!=(const s_group_tag_iterator& other) const;
-
-			s_group_tag_iterator& operator++()
-			{
-				++m_group_tags;
-				return *this;
-			}
-			tag& operator*() const
-			{
-				return *m_group_tags;
-			}
-		};
-
-		s_group_tag_iterator begin() /*const*/
-		{
-			auto iter = s_group_tag_iterator(this);
-			return iter;
-		}
-		static const s_group_tag_iterator end() /*const*/
-		{
-			return s_group_tag_iterator();
-		}
-#endif
 	}; static_assert(sizeof(tag_reference_definition) == 0xC, STATIC_ASSERT_FAIL);
 
 	// Postprocess a tag definition (eg, automate the creation of fields, etc)

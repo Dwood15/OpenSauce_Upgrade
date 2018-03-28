@@ -52,7 +52,7 @@
     <ProjectGuid>{56A27846-FDDC-48EC-B8C2-BDBB81AD5D07}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>Halo1_BlamLib</RootNamespace>
-    <WindowsTargetPlatformVersion>7.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Label="Configuration">
@@ -73,8 +73,8 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>D:\Program Files (x86)\Microsoft SDKs\Windows\v7.1A\Include;D:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\x86;$(IncludePath);</IncludePath>
-    <LibraryPath>D:\Program Files (x86)\Microsoft SDKs\Windows\v7.1A\Include;D:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Lib\x86;</LibraryPath>
+    <IncludePath>D:\Program Files (x86)\Windows Kits\8.1\Include\shared\;D:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\x86;$(IncludePath);</IncludePath>
+    <LibraryPath>D:\Program Files (x86)\Windows Kits\8.1\Lib\winv6.3\um\x86;D:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Lib\x86;</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <IncludePath>D:\Program Files (x86)\Microsoft SDKs\Windows\v7.1A\Include;</IncludePath>
@@ -96,7 +96,7 @@
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <CompileAsManaged Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</CompileAsManaged>
-      <LanguageStandard Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">stdcpp17</LanguageStandard>
+      <LanguageStandard Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">stdcpplatest</LanguageStandard>
       <LanguageStandard Condition="'$(Configuration)|$(Platform)'=='DebugDedi|Win32'">stdcpplatest</LanguageStandard>
       <LanguageStandard Condition="'$(Configuration)|$(Platform)'=='DebugGuerilla|Win32'">stdcpplatest</LanguageStandard>
       <LanguageStandard Condition="'$(Configuration)|$(Platform)'=='DebugSapien|Win32'">stdcpplatest</LanguageStandard>
@@ -295,17 +295,6 @@
     <ClInclude Include="..\..\shared\Include\blamlib\Halo1\models\model_definitions.hpp" />
     <ClInclude Include="..\..\shared\Include\blamlib\Halo1\networking\message_delta_definitions.hpp" />
     <ClInclude Include="..\..\shared\Include\blamlib\Halo1\networking\message_delta_parameters_protocol.hpp" />
-    <ClInclude Include="..\..\shared\Include\blamlib\Halo1\networking\network_client_manager.hpp" />
-    <ClInclude Include="..\..\shared\Include\blamlib\Halo1\networking\network_client_manager_structures.hpp" />
-    <ClInclude Include="..\..\shared\Include\blamlib\Halo1\networking\network_client_time.hpp" />
-    <ClInclude Include="..\..\shared\Include\blamlib\Halo1\networking\network_connection.hpp" />
-    <ClInclude Include="..\..\shared\Include\blamlib\Halo1\networking\network_game_globals.hpp" />
-    <ClInclude Include="..\..\shared\Include\blamlib\Halo1\networking\network_game_manager.hpp" />
-    <ClInclude Include="..\..\shared\Include\blamlib\Halo1\networking\network_game_manager_structures.hpp" />
-    <ClInclude Include="..\..\shared\Include\blamlib\Halo1\networking\network_messages.hpp" />
-    <ClInclude Include="..\..\shared\Include\blamlib\Halo1\networking\network_messages_structures.hpp" />
-    <ClInclude Include="..\..\shared\Include\blamlib\Halo1\networking\network_server_manager.hpp" />
-    <ClInclude Include="..\..\shared\Include\blamlib\Halo1\networking\network_server_manager_structures.hpp" />
     <ClInclude Include="..\..\shared\Include\blamlib\Halo1\networking\player_update.hpp" />
     <ClInclude Include="..\..\shared\Include\blamlib\Halo1\networking\player_update_client.hpp" />
     <ClInclude Include="..\..\shared\Include\blamlib\Halo1\networking\player_update_history.hpp" />

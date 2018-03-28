@@ -64,6 +64,7 @@
 	#include "Objects/Objects.hpp"
 
 	#include "Memory/FunctionInterface.hpp"
+#include "Memory/1.10/Pointers/HaloCE_110_Runtime.OpenSauce.inl"
 
 //#define API_YELO_NO_PROJECT_COMPONENTS
 //#define API_YELO_NO_DX_COMPONENTS
@@ -230,6 +231,10 @@ namespace Yelo
 
 			DisposeOnExit();
 		}
+
+		FUNC_PTR(RELEASE_RESOURCES_ON_EXIT_CALL, DUO_PTR(K_RELEASE_RESOURCES_ON_EXIT_CALL));
+		FUNC_PTR(QUERY_EXITFLAG_REG_CALL, DUO_PTR(K_QUERY_EXITFLAG_REG_CALL));
+		DATA_PTR(PE_DATA_SIZE, 0x215000, 0x171000);
 
 		void InsertHooks()
 		{

@@ -10,6 +10,7 @@ namespace Yelo
 {
 	namespace Objects
 	{
+		//In Tempera now.
 		struct s_object_lighting
 		{
 			real_rgb_color ambient_color;

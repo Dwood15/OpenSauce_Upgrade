@@ -582,39 +582,6 @@
     <ClInclude Include="..\..\shared\Include\blamlib\Halo1\networking\message_delta_parameters_protocol.hpp">
       <Filter>networking</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\shared\Include\blamlib\Halo1\networking\network_client_manager.hpp">
-      <Filter>networking</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\shared\Include\blamlib\Halo1\networking\network_client_manager_structures.hpp">
-      <Filter>networking</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\shared\Include\blamlib\Halo1\networking\network_client_time.hpp">
-      <Filter>networking</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\shared\Include\blamlib\Halo1\networking\network_connection.hpp">
-      <Filter>networking</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\shared\Include\blamlib\Halo1\networking\network_game_globals.hpp">
-      <Filter>networking</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\shared\Include\blamlib\Halo1\networking\network_game_manager.hpp">
-      <Filter>networking</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\shared\Include\blamlib\Halo1\networking\network_game_manager_structures.hpp">
-      <Filter>networking</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\shared\Include\blamlib\Halo1\networking\network_messages.hpp">
-      <Filter>networking</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\shared\Include\blamlib\Halo1\networking\network_messages_structures.hpp">
-      <Filter>networking</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\shared\Include\blamlib\Halo1\networking\network_server_manager.hpp">
-      <Filter>networking</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\shared\Include\blamlib\Halo1\networking\network_server_manager_structures.hpp">
-      <Filter>networking</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\shared\Include\blamlib\Halo1\networking\player_update.hpp">
       <Filter>networking</Filter>
     </ClInclude>

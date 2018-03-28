@@ -1325,9 +1325,7 @@ namespace Yelo
 		{
 			// TODO
 		}
-		void PLATFORM_API object_cause_damage(s_damage_data& data, datum_index damaged_object_index, 
-			int16 node_index, int16 region_index, int16 damage_materials_element_index, 
-			real_vector3d* normal)
+		void PLATFORM_API object_cause_damage(s_damage_data& data, datum_index damaged_object_index, int16 node_index, int16 region_index, int16 damage_materials_element_index, real_vector3d* normal)
 		{
 			Engine::Objects::ObjectCauseDamage(data, damaged_object_index, 
 				node_index, region_index, damage_materials_element_index, 

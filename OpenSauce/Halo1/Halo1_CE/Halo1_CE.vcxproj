@@ -30,7 +30,7 @@
     <ProjectGuid>{2647697B-680F-4155-B6A2-041C184A479D}</ProjectGuid>
     <RootNamespace>Halo1_CE</RootNamespace>
     <Keyword>Win32Proj</Keyword>
-    <WindowsTargetPlatformVersion>7.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Label="Configuration">
@@ -82,7 +82,7 @@
       <DebugInformationFormat Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">ProgramDatabase</DebugInformationFormat>
       <CreateHotpatchableImage Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</CreateHotpatchableImage>
       <CompileAsManaged Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</CompileAsManaged>
-      <LanguageStandard Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">stdcpp17</LanguageStandard>
+      <LanguageStandard Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">stdcpplatest</LanguageStandard>
       <LanguageStandard Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">stdcpplatest</LanguageStandard>
     </ClCompile>
     <Link>
@@ -100,8 +100,8 @@
     <OSDebugExecutableName>OS_haloceded.exe</OSDebugExecutableName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>D:\Program Files %28x86%29\Visual Leak Detector\Include;D:\Program Files %28x86%29\Microsoft SDKs\Windows\v7.1A\Include;$(IncludePath)</IncludePath>
-    <LibraryPath>D:\Program Files %28x86%29\Microsoft SDKs\Windows\v7.1A\Lib;$(LibraryPath);D:\Program Files (x86)\Visual Leak Detector\lib\Win32;</LibraryPath>
+    <IncludePath>D:\Program Files %28x86%29\Visual Leak Detector\Include;D:\Program Files (x86)\Windows Kits\8.1\Include\shared\;$(IncludePath)</IncludePath>
+    <LibraryPath>D:\Program Files (x86)\Windows Kits\8.1\Lib\winv6.3\um\x86;$(LibraryPath);D:\Program Files (x86)\Visual Leak Detector\lib\Win32;</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <IncludePath>D:\Program Files %28x86%29\Visual Leak Detector\include;D:\Program Files %28x86%29\Microsoft SDKs\Windows\v7.1A\Include;$(IncludePath)</IncludePath>
@@ -726,17 +726,6 @@
     <None Include="Game\Players.NetworkPlayerUnit.inl" />
     <None Include="Game\Players.Scripting.inl" />
     <None Include="Interface\GameUI_Hud.inl" />
-    <None Include="Memory\1.10\Pointers\HaloCE_110_Dedi.Game.EngineFunctions.inl" />
-    <None Include="Memory\1.10\Pointers\HaloCE_110_Dedi.Game.HS.inl" />
-    <None Include="Memory\1.10\Pointers\HaloCE_110_Dedi.Game.inl" />
-    <None Include="Memory\1.10\Pointers\HaloCE_110_Dedi.Networking.inl" />
-    <None Include="Memory\1.10\Pointers\HaloCE_110_Dedi.Objects.inl" />
-    <None Include="Memory\1.10\Pointers\HaloCE_110_Dedi.OpenSauce.inl" />
-    <None Include="Memory\1.10\Pointers\HaloCE_110_Dedi.Scenario.inl" />
-    <None Include="Memory\1.10\Pointers\HaloCE_110_Dedi.TagGroups.inl" />
-    <None Include="Memory\1.10\Pointers\HaloCE_110_Dedi_Manual.Game.HS.inl" />
-    <None Include="Memory\1.10\Pointers\HaloCE_110_Dedi_Manual.Game.inl" />
-    <None Include="Memory\1.10\Pointers\HaloCE_110_Dedi_Manual.Networking.inl" />
     <None Include="Memory\1.10\Pointers\HaloCE_110_Runtime.Game.EngineFunctions.inl" />
     <None Include="Memory\1.10\Pointers\HaloCE_110_Runtime.Game.HS.inl" />
     <None Include="Memory\1.10\Pointers\HaloCE_110_Runtime.Game.inl" />
@@ -750,7 +739,6 @@
     <None Include="Memory\1.10\Pointers\HaloCE_110_Runtime.Rasterizer.ShaderExtension.inl" />
     <None Include="Memory\1.10\Pointers\HaloCE_110_Runtime.Scenario.inl" />
     <None Include="Memory\1.10\Pointers\HaloCE_110_Runtime.TagGroups.inl" />
-    <None Include="Memory\1.10\Pointers\HaloCE_110_Dedi_Manual.TagGroups.inl" />
     <None Include="Memory\1.10\Pointers\HaloCE_110_Runtime_Manual.Game.EngineFunctions.inl" />
     <None Include="Memory\1.10\Pointers\HaloCE_110_Runtime_Manual.Game.HS.inl" />
     <None Include="Memory\1.10\Pointers\HaloCE_110_Runtime_Manual.Game.inl" />

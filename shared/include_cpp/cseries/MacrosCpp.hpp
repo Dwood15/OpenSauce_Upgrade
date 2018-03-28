@@ -24,30 +24,6 @@
 	/// [const], [volatile], and [__unaligned]
 	#define CAST_QUAL(type, value)	(const_cast<type>(value))
 	#define CAST_QUAL_OP(type)		const_cast<type>
-
-	// Helper macros for implementing non-const member functions that call a like-wise const member function (eg, operator[] functions). To avoid code duplication
-
-	/// Cast [this] to a 'const this&' so that its const member functions can be invoked
-	#define CAST_THIS_NONCONST()			\
-		static_cast<						\
-			std::add_reference<				\
-				std::add_const<				\
-					std::remove_reference<	\
-						decltype(*this)		\
-					>::type					\
-				>::type						\
-			>::type							\
-		>(*this)
-
-	/// Cast [this] to a 'const this&' so that a const member function can be invoked
-	/// [ret_type] is the return type of the member function. Usually there's a const return type, so we need to cast it to non-const too.
-	/// [...] the code that represents the member function (or operator) call
-	#define CAST_THIS_NONCONST_MEMBER_FUNC(ret_type, ...)	\
-		CAST_QUAL(ret_type,									\
-			CAST_THIS_NONCONST()							\
-			__VA_ARGS__										\
-		)
-
 #pragma endregion
 
 

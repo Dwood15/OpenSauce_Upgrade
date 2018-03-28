@@ -208,14 +208,12 @@ namespace Yelo
 			YELO_ASSERT(global_tag_instances);
 
 			auto& cache_tag_header = *TagGroups::Index();
-			YELO_ASSERT_DISPLAY(tag_index.index > NONE && tag_index.index < cache_tag_header.count,
-				"i don't think %08x is a tag index", tag_index);
+			YELO_ASSERT_DISPLAY(tag_index.index > NONE && tag_index.index < cache_tag_header.count, "i don't think %08x is a tag index", tag_index.handle);
 
 			auto& tag_instance = global_tag_instances[tag_index.index];
 			if (tag_index.salt != NONE)
 			{
-				YELO_ASSERT_DISPLAY(tag_instance.handle == tag_index,
-					"i don't think %08x is a tag index", tag_index);
+				YELO_ASSERT_DISPLAY(tag_instance.handle == tag_index, "i don't think %08x is a tag index", tag_index.handle);
 			}
 
 			return CAST_QUAL(s_cache_tag_instance*, &tag_instance);
@@ -244,15 +242,10 @@ namespace Yelo
 
 			auto* tag_instance = cache_file_tag_get_instance(tag_index);
 
-			YELO_ASSERT_DISPLAY(tag_instance->MatchesGroup(group_tag),
-				"expected tag group '%s' but got '%s' for %08x",
-				group_tag_to_string { group_tag }.ToString(),
-				group_tag_to_string { tag_instance->group_tag }.ToString(),
-				tag_index);
+			YELO_ASSERT_DISPLAY(tag_instance->MatchesGroup(group_tag), "expected tag group '%s' but got '%s' for %08x", group_tag_to_string { group_tag }.ToString(),
+				group_tag_to_string { tag_instance->group_tag }.ToString(), tag_index.handle);
 
-			YELO_ASSERT_DISPLAY(tag_instance->base_address != nullptr,
-				"can't get() a tag (%08x) with a base address!",
-				tag_index);
+			YELO_ASSERT_DISPLAY(tag_instance->base_address != nullptr, "can't get() a tag (%08x) with a base address!", tag_index.handle);
 
 			return tag_instance->base_address;
 		}
